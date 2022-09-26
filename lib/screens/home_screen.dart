@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'noti_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -12,6 +14,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Page 1'),),);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 205, 219),
+        title: const Center(child: const Text('Hi Jane')),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Noti_screen()),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Text('Page 1'),
+      ),
+    );
   }
 }

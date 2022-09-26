@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/prescription_screen.dart';
+import 'package:flutter_clinic/record_screen.dart';
+import 'package:flutter_clinic/screens/profile_screen.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
-import 'home_screen.dart';
+import 'screens/appointment_screen.dart';
+import 'screens/home_screen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -17,6 +21,11 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   final _pageOptions = [
     const HomeScreen(),
+    const Appointment(),
+
+    const healthRecord(),
+    const Profile(),
+
     // const NotificationScreen(),
     // const GroupManagementScreen(),
     // const ProfileScreen(),
@@ -42,9 +51,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: _pageOptions[_selectedIndex]
-          ),
+      body: Center(child: _pageOptions[_selectedIndex]),
       bottomNavigationBar: StylishBottomBar(
         onTap: (index) {
           setState(() {
