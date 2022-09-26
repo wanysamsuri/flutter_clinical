@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'home_page.dart';
+
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
 
@@ -59,55 +61,48 @@ class _WelcomeState extends State<Welcome> {
               ),
             ),
             SizedBox(height: 200),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
                   width: 150,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 3, 219, 183),
-                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(255, 3, 205, 219),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Sign Up",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/signup_page');
+                    },
+                    child: Center(
+                      child: Text('Sign Up', style: TextStyle(fontSize: 20)),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Container(
+                  )),
+              SizedBox(
+                width: 20,
+              ),
+              Container(
                   width: 150,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(181, 14, 198, 226),
-                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(255, 3, 205, 219),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Sign In",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/signin_page');
+                    },
+                    child: Center(
+                      child: Text('Sign In', style: TextStyle(fontSize: 20)),
                     ),
-                  ),
-                ),
-              ],
-            ),
+                  )),
+            ]),
             SizedBox(
               height: 30,
             ),
             Container(
                 child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed('/signin_page');
+                Navigator.of(context).pushNamed('/homepage_page');
               },
               child: Center(
                 child: Text('Continue as guest',

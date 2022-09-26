@@ -9,7 +9,17 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-    );
+        backgroundColor: Colors.grey[50],
+        body: Container(
+          child: Center(
+            child: Text(
+              "CLINIC",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ));
   }
 }

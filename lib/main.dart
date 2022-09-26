@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/home_page.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
+import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
 
 void main() {
@@ -15,9 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        routes: <String, WidgetBuilder>{
-          '/homepage_page': ((context) => new Homepage()),
-          '/signin_page': ((context) => new Signinpage()),
+        routes: {
+          '/homepage_page': ((context) => const Homepage()),
+          '/signin_page': ((context) => const SignIn()),
+          '/signup_page': ((context) => const SignUp()),
         },
         home: const Welcome());
   }
