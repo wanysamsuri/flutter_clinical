@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic/screens/home_page.dart';
+import 'package:flutter_clinic/screens/signin_page.dart';
+import 'package:flutter_clinic/screens/signup_page.dart';
+import 'package:flutter_clinic/screens/welcome_page.dart';
 import 'package:flutter_clinic/screens/dashboard.dart';
 import 'package:flutter_clinic/welcome.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -38,9 +42,14 @@ class _MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: const Dashboard());
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/homepage_page': ((context) => const Homepage()),
+          '/signin_page': ((context) => const SignIn()),
+          '/signup_page': ((context) => const SignUp()),
+        },
+        home: const Welcome());
   }
-
   Future<void> initPlatformState() async {
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
@@ -89,5 +98,4 @@ class _MyAppState extends State<MyApp> {
       await sprefs.setString('playerIdOneSignal', osUserID ?? '');
       print('Player ID: ' '$osUserID');
     });
-  }
 }
