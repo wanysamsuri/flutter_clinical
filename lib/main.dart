@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic/welcome.dart';
+import 'package:flutter_clinic/screens/home_page.dart';
+import 'package:flutter_clinic/screens/signin_page.dart';
+import 'package:flutter_clinic/screens/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const Welcome()
-    );
+        debugShowCheckedModeBanner: false,
+        routes: <String, WidgetBuilder>{
+          '/homepage_page': ((context) => new Homepage()),
+          '/signin_page': ((context) => new Signinpage()),
+        },
+        home: const Welcome());
   }
 }
-
-
-
