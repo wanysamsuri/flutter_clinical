@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/panel_records.dart';
 import 'package:flutter_clinic/screens/prescription_screen.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/profile_screen.dart';
@@ -23,7 +24,7 @@ class _DashboardState extends State<Dashboard> {
     const HomeScreen(),
     const Appointment(),
 
-    const healthRecord(),
+    const PanelRecords(),
     const Profile(),
 
     // const NotificationScreen(),

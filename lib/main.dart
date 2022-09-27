@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:flutter_clinic/screens/panel_records.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
@@ -48,7 +49,8 @@ class _MyAppState extends State<MyApp> {
           '/homepage_page': ((context) => const HomeScreen()),
           '/signin_page': ((context) => const SignIn()),
           '/signup_page': ((context) => const SignUp()),
-          '/record_screen': ((context) => const healthRecord()),
+          '/record_screen': ((context) => const HealthRecord()),
+          '/panel_records': ((context) => const PanelRecords()),
           '/dashboard': ((context) => const Dashboard()),
         },
         home: const Dashboard());

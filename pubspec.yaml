@@ -39,6 +39,7 @@ dependencies:
   onesignal_flutter: ^3.4.1
   shared_preferences: ^2.0.15
   carousel_slider: ^4.1.1
+  device_info_plus: ^4.1.2
 
 dev_dependencies:
   flutter_test:
