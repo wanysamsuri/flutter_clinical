@@ -1,46 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 
-class Service {
+class AppointmentServiceModel {
   IconData? icon;
   String? serviceName;
   Function? navigator;
-  Service({this.icon, this.serviceName, this.navigator});
+  AppointmentServiceModel({this.icon, this.serviceName, this.navigator});
 }
 
-List<Service> services = [
-  Service(
-      serviceName: 'Health Status',
+List<AppointmentServiceModel> appointmentServices = [
+  AppointmentServiceModel(
+      serviceName: 'I DON\'T KNOW WHAT MY SICKNESS IS',
       icon: Icons.health_and_safety,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Book Appointment',
+  AppointmentServiceModel(
+      serviceName: 'CARDIOLOGY',
       icon: Icons.edit_calendar,
       navigator: () {
         print('object');
       }),
-  Service(
-      serviceName: 'Find Clinic',
+  AppointmentServiceModel(
+      serviceName: 'EAR, NOSE AND THROAT',
       icon: Icons.search,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Teleconsulation',
+  AppointmentServiceModel(
+      serviceName: 'INTERNAL MEDICINE',
       icon: Icons.co_present,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Coming Soon',
+  AppointmentServiceModel(
+      serviceName: 'DERMATOLOGY',
       icon: Icons.not_interested,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Coming Soon',
+  AppointmentServiceModel(
+      serviceName: 'PAEDIATRICS',
       icon: Icons.not_interested,
       navigator: (context) {
         Navigator.pop(context);
