@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/home_page.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import 'home_screen.dart';
@@ -17,9 +18,9 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   final _pageOptions = [
     const HomeScreen(),
-    // const NotificationScreen(),
-    // const GroupManagementScreen(),
-    // const ProfileScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
   ];
   // final iconList = <IconData>[
   //   Icons.home_outlined,
@@ -42,9 +43,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: _pageOptions[_selectedIndex]
-          ),
+      body: Center(child: _pageOptions[_selectedIndex]),
       bottomNavigationBar: StylishBottomBar(
         onTap: (index) {
           setState(() {
