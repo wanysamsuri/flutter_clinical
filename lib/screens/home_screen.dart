@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
-                          const Icon(Icons.notifications)
+                          const Icon(Icons.notifications),
                         ],
                       ),
                       Spacer(),

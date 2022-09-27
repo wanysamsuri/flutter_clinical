@@ -108,8 +108,8 @@ class SignIn extends StatelessWidget {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           minimumSize: const Size(130, 45),
-                                          primary:
-                                              const Color.fromARGB(255, 3, 205, 219)),
+                                          primary: const Color.fromARGB(
+                                              255, 3, 205, 219)),
                                       child: const Text(
                                         'Sign In',
                                         style: TextStyle(fontSize: 18),
