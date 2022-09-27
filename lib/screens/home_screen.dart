@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -49,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           const Text('30'),
                           const Spacer(),
-                          const Icon(Icons.notifications)
+                          const Icon(Icons.notifications),
                         ],
                       ),
                       const Text(
@@ -72,12 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 150,
-                            mainAxisExtent: 100,
-                            // childAspectRatio: 5 / 4,
-                            // crossAxisSpacing: 20,
-                            mainAxisSpacing: 0),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 150,
+                                mainAxisExtent: 100,
+                                // childAspectRatio: 5 / 4,
+                                // crossAxisSpacing: 20,
+                                mainAxisSpacing: 0),
                         itemCount: services.length,
                         itemBuilder: (context, index) {
                           return Column(

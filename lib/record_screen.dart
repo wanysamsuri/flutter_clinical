@@ -54,7 +54,7 @@ class _HealthRecordState extends State<HealthRecord> {
                             text: 'Note',
                           ),
                           Tab(
-                            text: 'Precription',
+                            text: 'Prescription',
                           ),
                           Tab(
                             text: 'E-MC',
