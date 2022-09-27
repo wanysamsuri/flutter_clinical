@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/panel_records.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           '/panel_records': ((context) => const PanelRecords()),
           '/dashboard': ((context) => const Dashboard()),
         },
-        home: const Dashboard());
+        home: const LoadingScreens());
   }
 
   Future<void> initPlatformState() async {

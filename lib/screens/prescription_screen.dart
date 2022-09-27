@@ -40,7 +40,7 @@ class _PrescriptionState extends State<Prescription>
         body: SafeArea(
             child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: SingleChildScrollView(
+          child: SingleChildScrollView(physics: BouncingScrollPhysics(),
             child: Column(
               children: <Widget>[
                 ListView.builder(

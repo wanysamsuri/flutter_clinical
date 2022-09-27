@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
+import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 
 import 'noti_screen.dart';
 
@@ -27,15 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 padding: const EdgeInsets.all(20),
-                height: screenHeight * 0.3,
+                height: screenHeight * 0.25,
                 decoration: const BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.only(
@@ -47,16 +48,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Row(
                         children: [
-                          const Text('30'),
+                          const Text(
+                            "Hi Guest!",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           const Spacer(),
                           const Icon(Icons.notifications)
                         ],
                       ),
-                      const Text(
-                        "Hi Guest!",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
+                      Spacer(),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.search),
+                                labelText: 'Search',
+                                border: InputBorder.none),
+                          ))
                     ],
                   ),
                 ),
@@ -72,28 +84,49 @@ class _HomeScreenState extends State<HomeScreen> {
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 150,
-                            mainAxisExtent: 100,
-                            // childAspectRatio: 5 / 4,
-                            // crossAxisSpacing: 20,
-                            mainAxisSpacing: 0),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 150,
+                                mainAxisExtent: 100,
+                                // childAspectRatio: 5 / 4,
+                                // crossAxisSpacing: 20,
+                                mainAxisSpacing: 0),
                         itemCount: services.length,
                         itemBuilder: (context, index) {
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
-                                  height: screenHeight * 0.09,
-                                  alignment: Alignment.center,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: primaryColor,
-                                  ),
-                                  child: Icon(
-                                    services[index].icon,
-                                    size: 30,
-                                  )),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    if (index == 0) {
+                                      return AppointmentScreen();
+                                    } else if (index == 1) {
+                                      return AppointmentScreen();
+                                    } else if (index == 2) {
+                                      return AppointmentScreen();
+                                    } else if (index == 3) {
+                                      return AppointmentScreen();
+                                    } else if (index == 4) {
+                                      return AppointmentScreen();
+                                    } else {
+                                      return AppointmentScreen();
+                                    }
+                                  }));
+                                },
+                                child: Container(
+                                    height: screenHeight * 0.09,
+                                    alignment: Alignment.center,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: primaryColor,
+                                    ),
+                                    child: Icon(
+                                      services[index].icon,
+                                      size: 30,
+                                    )),
+                              ),
                               const SizedBox(
                                 height: 5,
                               ),

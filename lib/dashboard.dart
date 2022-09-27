@@ -8,7 +8,7 @@ import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/profile_screen.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
-import 'screens/appointment_screen.dart';
+import 'screens/appointment/appointment_records_screen.dart';
 import 'screens/home_screen.dart';
 
 class Dashboard extends StatefulWidget {
