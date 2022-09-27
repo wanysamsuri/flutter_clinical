@@ -17,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 3, 205, 219),
-        title: const Center(child: const Text('Hi Jane')),
+        title: const Text('Hi Jane'),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Noti_screen()),
+                MaterialPageRoute(builder: (context) => const NotiScreen()),
               );
             },
           ),

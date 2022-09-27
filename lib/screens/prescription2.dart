@@ -4,14 +4,14 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'noti_screen.dart';
 
-class prescription2 extends StatefulWidget {
-  const prescription2({Key? key}) : super(key: key);
+class Prescription2 extends StatefulWidget {
+  const Prescription2({Key? key}) : super(key: key);
 
   @override
-  State<prescription2> createState() => _prescription2State();
+  State<Prescription2> createState() => _Prescription2State();
 }
 
-class _prescription2State extends State<prescription2> {
+class _Prescription2State extends State<Prescription2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

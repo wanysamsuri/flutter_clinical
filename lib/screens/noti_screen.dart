@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Noti_screen extends StatefulWidget {
-  const Noti_screen({Key? key}) : super(key: key);
+class NotiScreen extends StatefulWidget {
+  const NotiScreen({Key? key}) : super(key: key);
 
   @override
-  State<Noti_screen> createState() => _Noti_screenState();
+  State<NotiScreen> createState() => _NotiScreenState();
 }
 
-class _Noti_screenState extends State<Noti_screen> {
+class _NotiScreenState extends State<NotiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -31,7 +31,8 @@ class _HomeScreenState extends State<healthRecord> {
                     width: MediaQuery.of(context).size.width,
                     color: Color.fromARGB(255, 3, 205, 219),
                   )),
-              title: const Center(child: const Text('Health Record')),
+              title: const Text('Health Record'),
+              centerTitle: true,
             ),
             body: Padding(
               padding: EdgeInsets.all(8.0),
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<healthRecord> {
                     Note(),
                     Prescription(),
                     EMC(),
-                    referLetter()
+                    ReferLetter()
                   ]))
                 ],
               ),

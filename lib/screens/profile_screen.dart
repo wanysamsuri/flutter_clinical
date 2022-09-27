@@ -26,7 +26,8 @@ class _ProfileState extends State<Profile> {
               width: MediaQuery.of(context).size.width,
               color: Color.fromARGB(255, 3, 205, 219),
             )),
-        title: const Center(child: const Text('Profile')),
+        title: const Text('Profile'),
+        centerTitle: true,
       ),
       body: Center(
         child: Text('Page 4'),
