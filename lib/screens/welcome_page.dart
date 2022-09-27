@@ -58,7 +58,7 @@ class _WelcomeState extends State<Welcome> {
                 ),
               ),
             ),
-            SizedBox(height: 200),
+            SizedBox(height: 100),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
                   width: 150,

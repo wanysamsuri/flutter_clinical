@@ -7,14 +7,14 @@ import 'package:flutter_clinic/screens/note_screen.dart';
 import 'package:flutter_clinic/screens/prescription_screen.dart';
 import 'package:flutter_clinic/screens/referletter.dart';
 
-class healthRecord extends StatefulWidget {
-  const healthRecord({Key? key}) : super(key: key);
+class HealthRecord extends StatefulWidget {
+  const HealthRecord({Key? key}) : super(key: key);
 
   @override
-  State<healthRecord> createState() => _HomeScreenState();
+  State<HealthRecord> createState() => _HealthRecordState();
 }
 
-class _HomeScreenState extends State<healthRecord> {
+class _HealthRecordState extends State<HealthRecord> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

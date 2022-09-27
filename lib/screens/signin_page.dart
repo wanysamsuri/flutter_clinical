@@ -12,24 +12,24 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 211, 246, 249),
+        backgroundColor: const Color.fromARGB(255, 211, 246, 249),
         body: SafeArea(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Row(children: [
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: Image.asset('assets/medic.png',
                       width: 100, height: 100, fit: BoxFit.fill),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Container(
-                  child: Text(
+                  child: const Text(
                     "Sign In",
                     style: TextStyle(
                       fontSize: 35,
@@ -38,11 +38,11 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
               ]),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Center(
                 child: Container(
                   width: 200,
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Sign In to access your account",
                       textAlign: TextAlign.center,
@@ -54,7 +54,7 @@ class SignIn extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Column(
                 children: [
                   Container(
@@ -65,12 +65,12 @@ class SignIn extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 25),
-                                TextField(
+                                const SizedBox(height: 25),
+                                const TextField(
                                     decoration: InputDecoration(
                                   labelText: "Email Address",
                                   labelStyle: TextStyle(
@@ -79,8 +79,8 @@ class SignIn extends StatelessWidget {
                                     color: Colors.black,
                                   ),
                                 )),
-                                SizedBox(height: 20),
-                                TextField(
+                                const SizedBox(height: 20),
+                                const TextField(
                                     decoration: InputDecoration(
                                   labelText: "Password",
                                   labelStyle: TextStyle(
@@ -89,28 +89,28 @@ class SignIn extends StatelessWidget {
                                     color: Colors.black,
                                   ),
                                 )),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Container(
-                                    padding: EdgeInsets.only(left: 127),
+                                    padding: const EdgeInsets.only(left: 127),
                                     child: InkWell(
                                       onTap: () {
                                         Navigator.of(context)
                                             .pushNamed('/forgot_page');
                                       },
-                                      child: Text('Forgot Password',
+                                      child: const Text('Forgot Password',
                                           style: TextStyle(
                                             color: Colors.blue,
                                           )),
                                     )),
-                                SizedBox(height: 34),
+                                const SizedBox(height: 34),
                                 Center(
                                   child: Container(
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          minimumSize: Size(130, 45),
+                                          minimumSize: const Size(130, 45),
                                           primary:
-                                              Color.fromARGB(255, 3, 205, 219)),
-                                      child: Text(
+                                              const Color.fromARGB(255, 3, 205, 219)),
+                                      child: const Text(
                                         'Sign In',
                                         style: TextStyle(fontSize: 18),
                                       ),
@@ -124,25 +124,25 @@ class SignIn extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 50),
+                                const SizedBox(height: 50),
                                 Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Text(
+                                      const Text(
                                         "Don't have an account?",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 18,
                                         ),
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       InkWell(
                                           onTap: () {
                                             Navigator.of(context)
                                                 .pushNamed('/signup_page');
                                           },
-                                          child: Text(' Sign Up',
+                                          child: const Text(' Sign Up',
                                               style: TextStyle(
                                                 color: Colors.blue,
                                                 fontSize: 18,
