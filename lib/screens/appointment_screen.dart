@@ -26,7 +26,8 @@ class _AppointmentState extends State<Appointment> {
               width: MediaQuery.of(context).size.width,
               color: Color.fromARGB(255, 3, 205, 219),
             )),
-        title: const Center(child: const Text('Appointment')),
+        title: const Text('Appointment'),
+        centerTitle: true,
       ),
       body: Center(
         child: Text('Page 2'),

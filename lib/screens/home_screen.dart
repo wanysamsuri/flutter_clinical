@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
