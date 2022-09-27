@@ -6,6 +6,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 
+import 'noti_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

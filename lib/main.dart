@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clinic/screens/home_page.dart';
+import 'package:flutter_clinic/record_screen.dart';
+import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
-import 'package:flutter_clinic/screens/dashboard.dart';
+import 'package:flutter_clinic/dashboard.dart';
+
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,9 +45,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/homepage_page': ((context) => const Homepage()),
+          '/homepage_page': ((context) => const HomeScreen()),
           '/signin_page': ((context) => const SignIn()),
           '/signup_page': ((context) => const SignUp()),
+          '/record_screen': ((context) => const healthRecord()),
+          '/dashboard': ((context) => const Dashboard()),
         },
         home: const Dashboard());
   }

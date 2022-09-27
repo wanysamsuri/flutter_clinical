@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
-import 'home_page.dart';
+import 'package:flutter_clinic/dashboard.dart';
+import 'package:flutter_clinic/screens/home_screen.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -174,7 +174,7 @@ class SignUp extends StatelessWidget {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Homepage()));
+                                      builder: (context) => Dashboard()));
                             },
                           ),
                         ),

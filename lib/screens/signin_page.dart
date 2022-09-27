@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clinic/screens/home_page.dart';
+import 'package:flutter_clinic/dashboard.dart';
+
+import 'package:flutter_clinic/screens/home_screen.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -117,7 +119,7 @@ class SignIn extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const Homepage()));
+                                                    Dashboard()));
                                       },
                                     ),
                                   ),
