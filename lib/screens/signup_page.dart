@@ -59,7 +59,7 @@ class SignUp extends StatelessWidget {
                       //first name
                       SizedBox(height: 50),
                       Text(
-                        'First Name',
+                        'Name',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(height: 10),
@@ -80,7 +80,7 @@ class SignUp extends StatelessWidget {
                       //last name
                       SizedBox(height: 15),
                       Text(
-                        'Last Name',
+                        'NRIC',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(height: 10),

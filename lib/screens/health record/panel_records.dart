@@ -5,7 +5,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 
-import '../customshape.dart';
+import '../../customshape.dart';
 
 class PanelRecords extends StatefulWidget {
   const PanelRecords({Key? key}) : super(key: key);

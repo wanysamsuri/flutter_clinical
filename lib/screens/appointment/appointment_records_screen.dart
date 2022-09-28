@@ -6,8 +6,8 @@ import 'package:flutter_clinic/screens/appointment/history_appointment_record.da
 import 'package:flutter_clinic/screens/appointment/new_appointment_record.dart';
 
 import '../../customshape.dart';
-import '../note_screen.dart';
-import '../prescription_screen.dart';
+import '../health record/note_screen.dart';
+import '../health record/prescription_screen.dart';
 
 class Appointment extends StatefulWidget {
   const Appointment({Key? key}) : super(key: key);
