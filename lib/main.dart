@@ -3,6 +3,8 @@ import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
+import 'package:flutter_clinic/screens/notification/no_noti_screen.dart';
+import 'package:flutter_clinic/screens/notification/noti_screen.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';

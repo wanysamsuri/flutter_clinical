@@ -24,7 +24,7 @@ class _ViewPDFState extends State<ViewPDF> {
     return SafeArea(
       child: Scaffold(
         body: SfPdfViewer.asset(
-          'assets/example.pdf',
+          'assets/prescription.pdf',
           controller: _pdfViewerController,
         ),
         appBar: AppBar(backgroundColor: Colors.black, actions: <Widget>[

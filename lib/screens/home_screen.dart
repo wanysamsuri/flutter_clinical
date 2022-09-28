@@ -7,7 +7,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 
-import 'noti_screen.dart';
+import 'notification/noti_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

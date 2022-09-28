@@ -1,12 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/health%20record/viewPDF.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
-import '../noti_screen.dart';
 
 class Prescription2 extends StatefulWidget {
   const Prescription2({Key? key}) : super(key: key);

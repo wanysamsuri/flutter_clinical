@@ -78,7 +78,11 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  ChoiceScreen(serviceName: appointmentServices[index].serviceName.toString(),)));
+                                builder: (context) => ChoiceScreen(
+                                      serviceName: appointmentServices[index]
+                                          .serviceName
+                                          .toString(),
+                                    )));
                       },
                       child: Container(
                         // margin: EdgeInsets.all(10),
@@ -99,7 +103,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                             Text(
                               appointmentServices[index].serviceName.toString(),
                               textAlign: TextAlign.center,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const Text(
                               'from RM100.00/consultation',
@@ -109,7 +114,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         ),
                       ),
                     );
-                  
                   }),
             ],
           ),

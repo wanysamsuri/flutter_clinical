@@ -16,7 +16,7 @@ class _NoteState extends State<Note> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                 child: SingleChildScrollView(
                     child: Column(children: [
                   SizedBox(height: 25),

@@ -18,17 +18,61 @@ class _PrescriptionState extends State<Prescription>
   late List<GlobalKey> expansionTile;
   int selected = -1;
   final List<AdvancedTile> items = [
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'UniKlinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'PoliKlinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Shah Alam',
+      patient: 'Name',
+      date: "Date",
+    ),
   ];
 
   @override

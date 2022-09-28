@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/customshape.dart';
-import 'package:flutter_clinic/screens/health%20record/EMC.dart';
+import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/referletter.dart';
