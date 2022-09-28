@@ -61,11 +61,12 @@ class _PrescriptionState extends State<Prescription>
                             //body listview
 
                             child: Card(
+                                color: Color(0xFFEEEEEE),
                                 shadowColor: Colors.grey[300],
                                 elevation: 3.0,
                                 shape: RoundedRectangleBorder(
                                     side: BorderSide(
-                                        color: Colors.white, width: 1),
+                                        color: Color(0xFFEEEEEE), width: 1),
                                     borderRadius: BorderRadius.circular(20)),
                                 child: ExpansionTile(
                                     key: Key(index.toString()),
@@ -105,6 +106,8 @@ class _PrescriptionState extends State<Prescription>
                                         ),
                                       ),
                                     ),
+
+                                    //below
                                     children: <Widget>[
                                       AspectRatio(
                                         aspectRatio: 100,
@@ -119,8 +122,7 @@ class _PrescriptionState extends State<Prescription>
                                                     new BorderRadius.circular(
                                                         30.0),
                                               ),
-                                              primary: Color.fromARGB(
-                                                  255, 3, 205, 219),
+                                              primary: Colors.grey[500],
                                             ),
                                             child: Text(
                                               'Select',

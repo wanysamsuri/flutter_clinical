@@ -12,6 +12,7 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: const Color.fromARGB(255, 211, 246, 249),
         body: SafeArea(
           child: Container(
@@ -58,7 +59,7 @@ class SignIn extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.5,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -69,60 +70,85 @@ class SignIn extends StatelessWidget {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(height: 25),
-                                const TextField(
+                                //email
+                                SizedBox(height: 50),
+                                Text(
+                                  'Email',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all()),
+                                  child: TextField(
+                                    style: TextStyle(fontSize: 20),
                                     decoration: InputDecoration(
-                                  labelText: "Email Address",
-                                  labelStyle: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
+                                      border: InputBorder.none,
+                                    ),
                                   ),
-                                )),
-                                const SizedBox(height: 20),
-                                const TextField(
+                                ),
+
+                                //password
+                                SizedBox(height: 15),
+                                Text(
+                                  'Password',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all()),
+                                  child: TextField(
+                                    style: TextStyle(fontSize: 20),
                                     decoration: InputDecoration(
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
+                                      border: InputBorder.none,
+                                    ),
                                   ),
-                                )),
+                                ),
                                 const SizedBox(height: 5),
                                 Container(
                                     padding: const EdgeInsets.only(left: 127),
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.of(context)
-                                            .pushNamed('/forgot_page');
+                                        Navigator.of(context).pushNamed('');
                                       },
                                       child: const Text('Forgot Password',
                                           style: TextStyle(
                                             color: Colors.blue,
                                           )),
                                     )),
-                                const SizedBox(height: 34),
+                                const SizedBox(height: 40),
                                 Center(
                                   child: Container(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          minimumSize: const Size(130, 45),
-                                          primary: const Color.fromARGB(
-                                              255, 3, 205, 219)),
-                                      child: const Text(
-                                        'Sign In',
-                                        style: TextStyle(fontSize: 18),
+                                      width: 150,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color.fromARGB(255, 3, 205, 219),
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(0.0, 1.0), //(x,y)
+                                            blurRadius: 6.0,
+                                          ),
+                                        ],
                                       ),
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Dashboard()));
-                                      },
-                                    ),
-                                  ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushNamed('/dashboard');
+                                        },
+                                        child: Center(
+                                          child: Text('Sign In',
+                                              style: TextStyle(fontSize: 20)),
+                                        ),
+                                      )),
                                 ),
                                 const SizedBox(height: 50),
                                 Center(

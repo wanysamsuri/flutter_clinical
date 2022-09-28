@@ -24,10 +24,10 @@ class _ProfileState extends State<Profile> {
               child: Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 3, 205, 219),
+                color: Color.fromARGB(255, 157, 228, 234),
               )),
+          title: const Text('Profile'),
           centerTitle: true,
-          title: const Center(child: const Text('Profile')),
         ),
         body: Column(
           children: [
@@ -41,7 +41,6 @@ class _ProfileState extends State<Profile> {
                 color: Colors.red,
               ),
             )),
-
             Text(
               'Guest',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -53,6 +52,5 @@ class _ProfileState extends State<Profile> {
             )
           ],
         ));
-  
   }
 }

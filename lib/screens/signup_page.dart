@@ -11,6 +11,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[50],
         body: SafeArea(
             child: Container(
@@ -162,22 +163,28 @@ class SignUp extends StatelessWidget {
                       SizedBox(height: 34),
                       Center(
                         child: Container(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size(130, 45),
-                                primary: Color.fromARGB(255, 3, 205, 219)),
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(fontSize: 18),
+                            width: 150,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 3, 205, 219),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(0.0, 1.0), //(x,y)
+                                  blurRadius: 6.0,
+                                ),
+                              ],
                             ),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Dashboard()));
-                            },
-                          ),
-                        ),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/dashboard');
+                              },
+                              child: Center(
+                                child: Text('Sign Up',
+                                    style: TextStyle(fontSize: 20)),
+                              ),
+                            )),
                       ),
 
                       SizedBox(height: 30),

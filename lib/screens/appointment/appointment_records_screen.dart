@@ -31,10 +31,10 @@ class _AppointmentState extends State<Appointment> {
               child: Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 3, 205, 219),
+                color: Color.fromARGB(255, 157, 228, 234),
               )),
           centerTitle: true,
-          title: const Center(child: const Text('My Appointments')),
+          title: const Text('My Appointments'),
         ),
         body: Column(
           children: [

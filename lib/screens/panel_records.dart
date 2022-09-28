@@ -26,9 +26,10 @@ class _PanelRecordsState extends State<PanelRecords> {
             child: Container(
               height: 200,
               width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 3, 205, 219),
+              color: Color.fromARGB(255, 157, 228, 234),
             )),
-        title: const Center(child: const Text('Panels Records')),
+        centerTitle: true,
+        title: const Text('Panels Records'),
       ),
       body: Center(
         child: GridView.builder(
@@ -64,6 +65,5 @@ class _PanelRecordsState extends State<PanelRecords> {
             }),
       ),
     );
-  
   }
 }

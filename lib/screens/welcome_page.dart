@@ -66,6 +66,13 @@ class _WelcomeState extends State<Welcome> {
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 3, 205, 219),
                     borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
                   ),
                   child: InkWell(
                     onTap: () {
@@ -84,6 +91,13 @@ class _WelcomeState extends State<Welcome> {
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 3, 205, 219),
                     borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
                   ),
                   child: InkWell(
                     onTap: () {

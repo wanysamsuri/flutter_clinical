@@ -29,7 +29,7 @@ class _HealthRecordState extends State<HealthRecord> {
                   child: Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
-                    color: Color.fromARGB(255, 3, 205, 219),
+                    color: Color.fromARGB(255, 157, 228, 234),
                   )),
               title: const Text('Health Record'),
               centerTitle: true,
