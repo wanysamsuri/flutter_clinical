@@ -49,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         routes: {
           '/loading': ((context) => const LoadingScreens()),
+          '/welcome': ((context) => const Welcome()),
           '/homepage_page': ((context) => const HomeScreen()),
           '/signin_page': ((context) => const SignIn()),
           '/signup_page': ((context) => const SignUp()),
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           '/panel_records': ((context) => const PanelRecords()),
           '/dashboard': ((context) => const Dashboard()),
         },
-        home: const Welcome());
+        home: const LoadingScreens());
   }
 
   Future<void> initPlatformState() async {

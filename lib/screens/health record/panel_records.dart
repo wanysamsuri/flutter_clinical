@@ -55,7 +55,7 @@ class _PanelRecordsState extends State<PanelRecords> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HealthRecord(orderId: snapshot.data[index]['id'],)));
+                                  builder: (context) => HealthRecord(orderId: snapshot.data[index]['id'].toString(),)));
                         },
                         child: Container(
                           margin: EdgeInsets.all(10),
