@@ -7,6 +7,7 @@ import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
 import 'package:flutter_clinic/dashboard.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,13 +45,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
+          '/loading': ((context) => const LoadingScreens()),
           '/homepage_page': ((context) => const HomeScreen()),
           '/signin_page': ((context) => const SignIn()),
           '/signup_page': ((context) => const SignUp()),
-          '/record_screen': ((context) => const HealthRecord()),
+          // '/record_screen': ((context) =>  HealthRecord()),
           '/panel_records': ((context) => const PanelRecords()),
           '/dashboard': ((context) => const Dashboard()),
         },

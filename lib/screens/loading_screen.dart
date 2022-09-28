@@ -23,7 +23,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
   void initState() {
     super.initState();
     setState(() {
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(Duration(seconds: 2), () {
         _loadUserInfo();
       });
       // initPlatformState();
@@ -34,9 +34,10 @@ class _LoadingScreensState extends State<LoadingScreens> {
 
   _loadUserInfo() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
+    // storage.clear();
     await storage.reload();
     final sharedToken = storage.getString('token');
-    sharedFullName = storage.getString('_userName');
+    sharedFullName = storage.getString('userName');
     sharedDeviceName = storage.getString('modelPhone');
     sharedEmail = storage.getString('_userEmail');
     sharedNric = storage.getString('_userNric');

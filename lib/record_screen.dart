@@ -8,7 +8,8 @@ import 'package:flutter_clinic/screens/prescription_screen.dart';
 import 'package:flutter_clinic/screens/referletter.dart';
 
 class HealthRecord extends StatefulWidget {
-  const HealthRecord({Key? key}) : super(key: key);
+  final String orderId;
+  const HealthRecord({Key? key, required this.orderId}) : super(key: key);
 
   @override
   State<HealthRecord> createState() => _HealthRecordState();
@@ -20,8 +21,9 @@ class _HealthRecordState extends State<HealthRecord> {
     return DefaultTabController(
         length: 4,
         child: Scaffold(
-            appBar: AppBar(automaticallyImplyLeading: false,
-              toolbarHeight: 55,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              toolbarHeight: 75,
               backgroundColor: Colors.grey[50],
               elevation: 0.0,
               flexibleSpace: ClipPath(

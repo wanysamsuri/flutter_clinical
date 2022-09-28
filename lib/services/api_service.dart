@@ -18,6 +18,7 @@ class ApiService {
       String playerId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
+    final loginUserName = storage.getString('userName');
 
     final endpointLogin = Uri.parse('$baseUrl/login-nric');
 
@@ -35,10 +36,9 @@ class ApiService {
 
     if (response.statusCode == 200) {
       storage.setString('token', responseBody['token']['token']);
-      GetSnackBar(
-        title: '$headerToken',
-      );
-      Get.toNamed('/dashboard');
+      storage.setString('userName', responseBody['user']['name']);
+      Get.snackbar('$loginUserName', '$headerToken');
+      Get.toNamed('/loading');
     } else {
       void _showToast(BuildContext context) {
         final scaffold = Scaffold.of(context);
@@ -51,6 +51,38 @@ class ApiService {
 
 // this._showToast(context);
     }
+
+    return responseBody;
+  }
+
+  Future fetchPanelRecords() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/patient-records');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    final responseBody = json.decode(response.body)['data']['data'];
+
+    return responseBody;
+  }
+
+  Future fetchSinglePanelRecord(String orderId) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/patient-records/$orderId');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    final responseBody = json.decode(response.body)['data'];
 
     return responseBody;
   }
