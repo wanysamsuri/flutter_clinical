@@ -17,7 +17,7 @@ class _PanelRecordsState extends State<PanelRecords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
         toolbarHeight: 55,
         backgroundColor: Colors.grey[50],
         elevation: 0.0,

@@ -5,10 +5,18 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/dashboard.dart';
 
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:flutter_clinic/services/api_service.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  TextEditingController nricController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

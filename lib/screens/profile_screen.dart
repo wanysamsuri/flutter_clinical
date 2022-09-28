@@ -14,8 +14,11 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 55,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -31,6 +34,9 @@ class _ProfileState extends State<Profile> {
         ),
         body: Column(
           children: [
+            SizedBox(
+              height: screenWidth * 0.03,
+            ),
             Align(
                 child: CircleAvatar(
               backgroundColor: Colors.grey,

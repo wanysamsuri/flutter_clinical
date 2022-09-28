@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
+import 'package:flutter_clinic/screens/appointment/choice_screen.dart';
 
 import '../../constant.dart';
 
@@ -30,7 +31,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 },
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.navigate_before,
                       size: 30,
                     ),
@@ -74,8 +75,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) => HealthRecord()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  ChoiceScreen(serviceName: appointmentServices[index].serviceName.toString(),)));
                       },
                       child: Container(
                         // margin: EdgeInsets.all(10),
@@ -88,17 +91,17 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                           children: [
                             (index == 0)
                                 ? Container()
-                                : CircleAvatar(
+                                : const CircleAvatar(
                                     backgroundColor: Colors.white,
                                     radius: 30,
-                                    child: const FlutterLogo(size: 30),
+                                    child: FlutterLogo(size: 30),
                                   ),
                             Text(
                               appointmentServices[index].serviceName.toString(),
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text(
+                            const Text(
                               'from RM100.00/consultation',
                               textAlign: TextAlign.center,
                             )
@@ -106,6 +109,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         ),
                       ),
                     );
+                  
                   }),
             ],
           ),
