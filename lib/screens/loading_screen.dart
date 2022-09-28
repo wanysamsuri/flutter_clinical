@@ -33,15 +33,15 @@ class _LoadingScreensState extends State<LoadingScreens> {
   }
 
   _loadUserInfo() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.reload();
-    final sharedToken = prefs.getString('_apiToken');
-    sharedFullName = prefs.getString('_userName');
-    sharedDeviceName = prefs.getString('modelPhone');
-    sharedEmail = prefs.getString('_userEmail');
-    sharedNric = prefs.getString('_userNric');
-    sharedPhoneNum = prefs.getString('_userPhoneNumber');
-    final sharedPlayerIdOneSignal = prefs.getString('playerIdOneSignal');
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    await storage.reload();
+    final sharedToken = storage.getString('token');
+    sharedFullName = storage.getString('_userName');
+    sharedDeviceName = storage.getString('modelPhone');
+    sharedEmail = storage.getString('_userEmail');
+    sharedNric = storage.getString('_userNric');
+    sharedPhoneNum = storage.getString('_userPhoneNumber');
+    final sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
 
     print('this is from loading $sharedDeviceName');
     print('this is from loading $sharedToken');

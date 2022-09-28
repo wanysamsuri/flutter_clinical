@@ -14,8 +14,11 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 55,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -26,11 +29,14 @@ class _ProfileState extends State<Profile> {
                 width: MediaQuery.of(context).size.width,
                 color: Color.fromARGB(255, 3, 205, 219),
               )),
+          title: const Text('Profile'),
           centerTitle: true,
-          title: const Center(child: const Text('Profile')),
         ),
         body: Column(
           children: [
+            SizedBox(
+              height: screenWidth * 0.03,
+            ),
             Align(
                 child: CircleAvatar(
               backgroundColor: Colors.grey,
@@ -41,7 +47,6 @@ class _ProfileState extends State<Profile> {
                 color: Colors.red,
               ),
             )),
-
             Text(
               'Guest',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -53,6 +58,5 @@ class _ProfileState extends State<Profile> {
             )
           ],
         ));
-  
   }
 }

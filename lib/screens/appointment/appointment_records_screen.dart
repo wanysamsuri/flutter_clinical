@@ -23,6 +23,7 @@ class _AppointmentState extends State<Appointment> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 55,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -34,30 +35,33 @@ class _AppointmentState extends State<Appointment> {
                 color: Color.fromARGB(255, 3, 205, 219),
               )),
           centerTitle: true,
-          title: const Center(child: const Text('My Appointments')),
+          title: const Text('My Appointments'),
         ),
-        body: Column(
-          children: [
-            TabBar(
-                indicator: BoxDecoration(
-                    color: Color.fromARGB(255, 3, 205, 219),
-                    borderRadius: BorderRadius.circular(25)),
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.black,
-                tabs: [
-                  Tab(
-                    text: 'New',
-                  ),
-                  Tab(
-                    text: 'History',
-                  ),
-                ]),
-            Expanded(
-                child: TabBarView(children: [
-              NewAppointmentRecord(),
-              HistoryAppointmentScreen(),
-            ]))
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              TabBar(
+                  indicator: BoxDecoration(
+                      color: Color.fromARGB(255, 3, 205, 219),
+                      borderRadius: BorderRadius.circular(25)),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.black,
+                  tabs: [
+                    Tab(
+                      text: 'New',
+                    ),
+                    Tab(
+                      text: 'History',
+                    ),
+                  ]),
+              Expanded(
+                  child: TabBarView(children: [
+                NewAppointmentRecord(),
+                HistoryAppointmentScreen(),
+              ]))
+            ],
+          ),
         ),
       ),
     );

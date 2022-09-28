@@ -17,7 +17,7 @@ class _PanelRecordsState extends State<PanelRecords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
         toolbarHeight: 55,
         backgroundColor: Colors.grey[50],
         elevation: 0.0,
@@ -28,7 +28,8 @@ class _PanelRecordsState extends State<PanelRecords> {
               width: MediaQuery.of(context).size.width,
               color: Color.fromARGB(255, 3, 205, 219),
             )),
-        title: const Center(child: const Text('Panels Records')),
+        title: const Text('Panels Records'),
+        centerTitle: true,
       ),
       body: Center(
         child: GridView.builder(
@@ -64,6 +65,5 @@ class _PanelRecordsState extends State<PanelRecords> {
             }),
       ),
     );
-  
   }
 }

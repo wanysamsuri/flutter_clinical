@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           '/panel_records': ((context) => const PanelRecords()),
           '/dashboard': ((context) => const Dashboard()),
         },
-        home: const Welcome());
+        home: const LoadingScreens());
   }
 
   Future<void> initPlatformState() async {

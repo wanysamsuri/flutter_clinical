@@ -5,10 +5,18 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/dashboard.dart';
 
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:flutter_clinic/services/api_service.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  TextEditingController nricController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,25 +78,27 @@ class SignIn extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 25),
-                                const TextField(
+                                TextFormField(
+                                    controller: nricController,
                                     decoration: InputDecoration(
-                                  labelText: "Email Address",
-                                  labelStyle: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
-                                  ),
-                                )),
+                                      labelText: "Email Address",
+                                      labelStyle: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                      ),
+                                    )),
                                 const SizedBox(height: 20),
-                                const TextField(
+                                TextFormField(
+                                    controller: passwordController,
                                     decoration: InputDecoration(
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
-                                  ),
-                                )),
+                                      labelText: "Password",
+                                      labelStyle: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                      ),
+                                    )),
                                 const SizedBox(height: 5),
                                 Container(
                                     padding: const EdgeInsets.only(left: 127),
@@ -115,11 +125,11 @@ class SignIn extends StatelessWidget {
                                         style: TextStyle(fontSize: 18),
                                       ),
                                       onPressed: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Dashboard()));
+                                        ApiService().userLogin(
+                                            nricController.text,
+                                            passwordController.text,
+                                            '',
+                                            '');
                                       },
                                     ),
                                   ),

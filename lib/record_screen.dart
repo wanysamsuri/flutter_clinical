@@ -20,7 +20,7 @@ class _HealthRecordState extends State<HealthRecord> {
     return DefaultTabController(
         length: 4,
         child: Scaffold(
-            appBar: AppBar(
+            appBar: AppBar(automaticallyImplyLeading: false,
               toolbarHeight: 55,
               backgroundColor: Colors.grey[50],
               elevation: 0.0,
@@ -40,29 +40,36 @@ class _HealthRecordState extends State<HealthRecord> {
                 children: [
                   Container(
                     height: 45,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(25)),
-                    child: TabBar(
-                        indicator: BoxDecoration(
-                            color: Color.fromARGB(255, 3, 205, 219),
-                            borderRadius: BorderRadius.circular(25)),
-                        labelColor: Colors.white,
-                        unselectedLabelColor: Colors.black,
-                        tabs: [
-                          Tab(
-                            text: 'Note',
-                          ),
-                          Tab(
-                            text: 'Prescription',
-                          ),
-                          Tab(
-                            text: 'E-MC',
-                          ),
-                          Tab(
-                            text: 'Letter',
-                          ),
-                        ]),
+                    child: Expanded(
+                      child: TabBar(
+                          isScrollable: true,
+                          labelPadding: EdgeInsets.symmetric(horizontal: 25.0),
+                          indicator: BoxDecoration(
+                              color: Color.fromARGB(255, 3, 205, 219),
+                              borderRadius: BorderRadius.circular(25)),
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.black,
+                          tabs: [
+                            Tab(
+                              text: 'Note',
+                            ),
+                            Container(
+                              child: Tab(
+                                text: 'Prescription',
+                              ),
+                            ),
+                            Tab(
+                              text: 'E-MC',
+                            ),
+                            Tab(
+                              text: 'Refferal Letter',
+                            ),
+                          ]),
+                    ),
                   ),
                   const Expanded(
                       child: TabBarView(children: [
