@@ -24,7 +24,7 @@ class _AppointmentState extends State<Appointment> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 55,
+          toolbarHeight: 75,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           flexibleSpace: ClipPath(

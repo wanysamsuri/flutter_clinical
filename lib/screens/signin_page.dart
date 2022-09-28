@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/dashboard.dart';
 
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 
 class SignIn extends StatefulWidget {
@@ -91,7 +92,8 @@ class _SignInState extends State<SignIn> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20),
                                       border: Border.all()),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    controller: nricController,
                                     style: TextStyle(fontSize: 20),
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -112,7 +114,8 @@ class _SignInState extends State<SignIn> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20),
                                       border: Border.all()),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    controller: passwordController,
                                     style: TextStyle(fontSize: 20),
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -148,9 +151,15 @@ class _SignInState extends State<SignIn> {
                                         ],
                                       ),
                                       child: InkWell(
-                                        onTap: () {
-                                          Navigator.of(context)
-                                              .pushNamed('/dashboard');
+                                        onTap: () async {
+                                          // Navigator.of(context)
+                                          //     .pushNamed('/dashboard');
+
+                                          ApiService().userLogin(
+                                              nricController.text,
+                                              passwordController.text,
+                                              '',
+                                              '');
                                         },
                                         child: Center(
                                           child: Text('Sign In',

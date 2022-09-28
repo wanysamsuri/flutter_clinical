@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 
 import 'notification/noti_screen.dart';
 
@@ -48,11 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Row(
                         children: [
-                          const Text(
-                            "Hi Guest!",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          Expanded(
+                            child: Text(
+                              "Hi, $sharedFullName!",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
+                          
                           const Spacer(),
                           const Icon(Icons.notifications),
                         ],
