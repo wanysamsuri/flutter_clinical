@@ -81,7 +81,7 @@ class _SignInState extends State<SignIn> {
                                 //email
                                 SizedBox(height: 50),
                                 Text(
-                                  'Email',
+                                  'NRIC',
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 SizedBox(height: 10),

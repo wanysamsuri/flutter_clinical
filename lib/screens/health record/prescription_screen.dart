@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/data/data_model.dart';
-import 'package:flutter_clinic/screens/prescription2.dart';
+import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 
 class Prescription extends StatefulWidget {

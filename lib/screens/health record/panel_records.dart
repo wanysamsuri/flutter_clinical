@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/record_screen.dart';
 
-import '../customshape.dart';
+import '../../customshape.dart';
 
 class PanelRecords extends StatefulWidget {
   const PanelRecords({Key? key}) : super(key: key);
@@ -17,14 +17,15 @@ class _PanelRecordsState extends State<PanelRecords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 55,
         backgroundColor: Colors.grey[50],
         elevation: 0.0,
         flexibleSpace: ClipPath(
             clipper: CustomShape(),
             child: Container(
-              height: 200,
+              height: 250,
               width: MediaQuery.of(context).size.width,
               color: Color.fromARGB(255, 157, 228, 234),
             )),
