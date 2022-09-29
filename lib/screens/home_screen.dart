@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: Text(
@@ -56,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          
                           const Spacer(),
                           const Icon(Icons.notifications),
                         ],
@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: TextField(
+                            enabled: false,
                             decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.search),
                                 labelText: 'Search',
@@ -88,13 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 150,
-                                mainAxisExtent: 120,
-                                // childAspectRatio: 5 / 4,
-                                // crossAxisSpacing: 20,
-                                mainAxisSpacing: 0),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: screenWidth * 0.4,
+                            mainAxisExtent: screenHeight * 0.15,
+                            // childAspectRatio: 5 / 4,
+                            // crossAxisSpacing: 20,
+                            mainAxisSpacing: 0),
                         itemCount: services.length,
                         itemBuilder: (context, index) {
                           return Column(
@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         }),
                     SizedBox(
-                      height: screenHeight * 0.04,
+                      height: screenHeight * 0.02,
                     ),
                     const Text(
                       "Latest Articles",

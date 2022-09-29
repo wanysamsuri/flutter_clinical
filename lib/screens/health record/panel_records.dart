@@ -35,7 +35,7 @@ class _PanelRecordsState extends State<PanelRecords> {
               child: Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 157, 228, 234),
+                color: Color.fromARGB(255, 3, 205, 219),
               )),
           centerTitle: true,
           title: const Text('Panels Records'),
@@ -55,7 +55,10 @@ class _PanelRecordsState extends State<PanelRecords> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HealthRecord(orderId: snapshot.data[index]['id'].toString(),)));
+                                  builder: (context) => HealthRecord(
+                                        orderId: snapshot.data[index]['id']
+                                            .toString(),
+                                      )));
                         },
                         child: Container(
                           margin: EdgeInsets.all(10),
@@ -76,6 +79,7 @@ class _PanelRecordsState extends State<PanelRecords> {
                                     .toString()
                                     .toUpperCase(),
                                 textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               )
                             ],
                           ),

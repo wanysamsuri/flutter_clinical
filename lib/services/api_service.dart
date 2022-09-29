@@ -31,7 +31,7 @@ class ApiService {
     };
 
     final response = await http.post(endpointLogin, body: body);
-
+    print(response.statusCode);
     final responseBody = json.decode(response.body);
 
     if (response.statusCode == 200) {
@@ -48,8 +48,6 @@ class ApiService {
           ),
         );
       }
-
-// this._showToast(context);
     }
 
     return responseBody;
@@ -71,7 +69,7 @@ class ApiService {
     return responseBody;
   }
 
-  Future fetchSinglePanelRecord(String orderId) async {
+  Future fetchPanelPrescriptions(String orderId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 
 import '../customshape.dart';
 
@@ -27,7 +28,7 @@ class _ProfileState extends State<Profile> {
               child: Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 157, 228, 234),
+                color: Color.fromARGB(255, 3, 205, 219),
               )),
           title: const Text('Profile'),
           centerTitle: true,
@@ -44,12 +45,15 @@ class _ProfileState extends State<Profile> {
               child: Icon(
                 Icons.person_outline,
                 size: 50,
-                color: Colors.red,
+                color: Colors.white,
               ),
             )),
+            SizedBox(
+              height: screenHeight * 0.02,
+            ),
             Text(
-              'Guest',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              '$sharedFullName',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Divider(thickness: 2),
             Container(
