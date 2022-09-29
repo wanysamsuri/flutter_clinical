@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_clinic/data/data_model.dart';
+import 'package:flutter_clinic/models/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 
@@ -19,57 +19,57 @@ class _PrescriptionState extends State<Prescription>
   int selected = -1;
   final List<AdvancedTile> items = [
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'PoliKlinik Shah Alam',
+      title: 'PoliKlinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
     AdvancedTile(
-      title: 'Poliklinik Shah Alam',
+      title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
@@ -207,7 +207,7 @@ class _PrescriptionState extends State<Prescription>
   //               color: Colors.grey[300],
   //               borderRadius: BorderRadius.circular(20)),
   //           padding: EdgeInsets.symmetric(horizontal: 20),
-  //           child: Column(
+  //           child: Column(Dr Hanafi
   //               crossAxisAlignment: CrossAxisAlignment.start,
   //               children: [
   //                 SizedBox(height: 25),

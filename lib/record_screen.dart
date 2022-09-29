@@ -5,7 +5,7 @@ import 'package:flutter_clinic/customshape.dart';
 import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
-import 'package:flutter_clinic/screens/health%20record/referletter.dart';
+import 'package:flutter_clinic/screens/health%20record/refer_letter_screen.dart';
 
 class HealthRecord extends StatefulWidget {
   final String orderId;

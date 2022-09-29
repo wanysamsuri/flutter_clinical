@@ -41,7 +41,7 @@ class _NoteState extends State<Note> {
                                   child: Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Poliklinik Shah Alam',
+                                        text: 'Poliklinik Dr Hanafi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -112,7 +112,7 @@ class _NoteState extends State<Note> {
                                   child: Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Poliklinik Shah Alam',
+                                        text: 'Poliklinik Dr Hanafi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -183,7 +183,7 @@ class _NoteState extends State<Note> {
                                   child: Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Poliklinik Shah Alam',
+                                        text: 'Poliklinik Dr Hanafi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -254,7 +254,7 @@ class _NoteState extends State<Note> {
                                   child: Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Poliklinik Shah Alam',
+                                        text: 'Poliklinik Dr Hanafi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -325,7 +325,7 @@ class _NoteState extends State<Note> {
                                   child: Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        text: 'Poliklinik Shah Alam',
+                                        text: 'Poliklinik Dr Hanafi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black,

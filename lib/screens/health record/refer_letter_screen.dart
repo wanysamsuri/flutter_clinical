@@ -4,19 +4,19 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/models/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
+import 'package:flutter_clinic/screens/health%20record/refer_letter_screen2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter/widgets.dart';
 
-import 'EMC2.dart';
-
-class EMC extends StatefulWidget {
-  const EMC({Key? key}) : super(key: key);
+class ReferLetter extends StatefulWidget {
+  const ReferLetter({Key? key}) : super(key: key);
 
   @override
-  State<EMC> createState() => _EMCState();
+  State<ReferLetter> createState() => _ReferLetterState();
 }
 
-class _EMCState extends State<EMC> with TickerProviderStateMixin {
+class _ReferLetterState extends State<ReferLetter>
+    with TickerProviderStateMixin {
   late List<GlobalKey> expansionTile;
   int selected = -1;
   final List<AdvancedTile> items = [
@@ -79,7 +79,7 @@ class _EMCState extends State<EMC> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    expansionTile = List<GlobalKey<_EMCState>>.generate(
+    expansionTile = List<GlobalKey<_ReferLetterState>>.generate(
         items.length, (index) => GlobalKey());
   }
 
@@ -178,7 +178,7 @@ class _EMCState extends State<EMC> with TickerProviderStateMixin {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          EMC_2()));
+                                                          ReferLetter2()));
                                             },
                                           ),
                                         ),

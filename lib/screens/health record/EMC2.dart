@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/health%20record/viewPDF_emc.dart';
 import 'package:flutter_clinic/screens/health%20record/viewPDF_prescription.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class Prescription2 extends StatefulWidget {
-  const Prescription2({Key? key}) : super(key: key);
+class EMC_2 extends StatefulWidget {
+  const EMC_2({Key? key}) : super(key: key);
 
   @override
-  State<Prescription2> createState() => _Prescription2State();
+  State<EMC_2> createState() => _EMC_2State();
 }
 
-class _Prescription2State extends State<Prescription2> {
+class _EMC_2State extends State<EMC_2> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 157, 228, 234),
-          title: const Text('Prescription'),
+          title: const Text('Medical Certificate'),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -45,7 +46,7 @@ class _Prescription2State extends State<Prescription2> {
                         child: Center(
                           child: RichText(
                             text: TextSpan(
-                              text: 'Poliklinik Shah Alam',
+                              text: 'Poliklinik Dr Hanafi',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -120,7 +121,7 @@ class _Prescription2State extends State<Prescription2> {
                                     child: Center(
                                       child: RichText(
                                         text: TextSpan(
-                                          text: 'Medicine',
+                                          text: 'Medical Certificate',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -130,74 +131,60 @@ class _Prescription2State extends State<Prescription2> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(height: 20),
+                                  // SizedBox(width: 20),
+                                  Container(
+                                    child: RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        text:
+                                            'The above name person came to our clinic today and was found to have ',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: ' DIARHEA.',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' She/He is unfit to attend her/his present duty for day(s) from:',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                      child: RichText(
+                                          text: TextSpan(
+                                              text: 'Start:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight:
+                                                      FontWeight.bold)))),
                                   SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: 20),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: 'Name',
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold)))),
-                                      SizedBox(width: 60),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: 'Quantity',
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold)))),
-                                      SizedBox(width: 60),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: 'Dose',
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold)))),
-                                    ],
-                                  ),
-
-                                  //medicine
-                                  Row(
-                                    children: [
-                                      SizedBox(height: 50, width: 20),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: 'panadol',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                  )))),
-                                      SizedBox(width: 60),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: '6',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                  )))),
-                                      SizedBox(width: 60),
-                                      Container(
-                                          child: RichText(
-                                              text: TextSpan(
-                                                  text: '',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                  )))),
-                                    ],
-                                  ),
+                                  Container(
+                                      child: RichText(
+                                          text: TextSpan(
+                                              text: 'Till:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight:
+                                                      FontWeight.bold)))),
                                 ]),
                           ),
                         ),
@@ -209,8 +196,7 @@ class _Prescription2State extends State<Prescription2> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        ViewPDF_prescription()));
+                                    builder: (context) => viewPDF_EMC()));
                           },
                           child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10),
