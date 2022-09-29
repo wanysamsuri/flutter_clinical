@@ -58,7 +58,9 @@ class _ProfileState extends State<Profile> {
             Divider(thickness: 2),
             Container(
               padding: EdgeInsets.all(20),
-              child: Column(),
+              child: Column(
+                children: [Container()],
+              ),
             )
           ],
         ));

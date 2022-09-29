@@ -40,7 +40,7 @@ class _NewAppointmentRecordState extends State<NewAppointmentRecord> {
                                     child: Center(
                                       child: RichText(
                                         text: TextSpan(
-                                          text: 'Poliklinik Shah Alam',
+                                          text: 'Poliklinik Dr Hanafi',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -95,7 +95,6 @@ class _NewAppointmentRecordState extends State<NewAppointmentRecord> {
                                           ]),
                                     ),
                                   ),
-                                  
                                 ]),
                           ),
                         ]),
