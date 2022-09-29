@@ -7,6 +7,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'notification/noti_screen.dart';
 
@@ -36,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(20),
-                height: screenHeight * 0.25,
+                padding: EdgeInsets.all(Adaptive.w(5)),
+                height: Adaptive.h(26),
                 decoration: const BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.only(
@@ -54,7 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               "Hi, $sharedFullName!",
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 0.3.dp,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           const Spacer(),
@@ -79,10 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.04,
+                height: Adaptive.h(4),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: Adaptive.w(4.5)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: screenWidth * 0.4,
-                            mainAxisExtent: screenHeight * 0.15,
+                            maxCrossAxisExtent: Adaptive.w(40),
+                            mainAxisExtent: Adaptive.h(15),
                             // childAspectRatio: 5 / 4,
                             // crossAxisSpacing: 20,
                             mainAxisSpacing: 0),
@@ -140,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }));
                                 },
                                 child: Container(
-                                    height: screenHeight * 0.09,
+                                    height: Adaptive.h(9),
                                     alignment: Alignment.center,
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
@@ -154,7 +156,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(
                                 height: 5,
                               ),
-                              Text(services[index].serviceName.toString())
+                              Text(
+                                services[index].serviceName.toString(),
+                                style: TextStyle(fontSize: 0.246.dp),
+                              )
                             ],
                           );
                         }),

@@ -34,7 +34,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
 
   _loadUserInfo() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
-    storage.clear();
+    // storage.clear();
     await storage.reload();
     final sharedToken = storage.getString('token');
     sharedFullName = storage.getString('userName');
