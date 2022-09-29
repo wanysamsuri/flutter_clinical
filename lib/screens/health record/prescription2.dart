@@ -131,6 +131,8 @@ class _Prescription2State extends State<Prescription2> {
                                     ),
                                   ),
                                   SizedBox(height: 5),
+                                  Divider(thickness: 2),
+                                  SizedBox(height: 5),
                                   Row(
                                     children: [
                                       SizedBox(width: 20),

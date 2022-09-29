@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clinic/models/EMC_model.dart';
 import 'package:flutter_clinic/models/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
@@ -19,58 +20,58 @@ class EMC extends StatefulWidget {
 class _EMCState extends State<EMC> with TickerProviderStateMixin {
   late List<GlobalKey> expansionTile;
   int selected = -1;
-  final List<AdvancedTile> items = [
-    AdvancedTile(
+  final List<EMC_Model> items = [
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'PoliKlinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    EMC_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
@@ -142,14 +143,34 @@ class _EMCState extends State<EMC> with TickerProviderStateMixin {
                                     )),
                                     subtitle: Padding(
                                       padding:
-                                          const EdgeInsets.only(bottom: 15.0),
-                                      child: Text(
-                                        items[index].patient,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              items[index].patient,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              items[index].date,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                          ]),
                                     ),
 
                                     //below

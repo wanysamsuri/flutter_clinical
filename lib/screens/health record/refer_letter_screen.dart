@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/models/data_model.dart';
+import 'package:flutter_clinic/models/refer_letter_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/health%20record/refer_letter_screen2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
@@ -19,58 +20,58 @@ class _ReferLetterState extends State<ReferLetter>
     with TickerProviderStateMixin {
   late List<GlobalKey> expansionTile;
   int selected = -1;
-  final List<AdvancedTile> items = [
-    AdvancedTile(
+  final List<ReferLetter_Model> items = [
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'PoliKlinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
     ),
-    AdvancedTile(
+    ReferLetter_Model(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
@@ -142,14 +143,31 @@ class _ReferLetterState extends State<ReferLetter>
                                     )),
                                     subtitle: Padding(
                                       padding:
-                                          const EdgeInsets.only(bottom: 15.0),
-                                      child: Text(
-                                        items[index].patient,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              items[index].patient,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              items[index].date,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ]),
                                     ),
 
                                     //below

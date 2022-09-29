@@ -108,7 +108,7 @@ class _EMC_2State extends State<EMC_2> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Center(
                           child: Container(
-                            height: 200,
+                            height: 230,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
@@ -131,7 +131,9 @@ class _EMC_2State extends State<EMC_2> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 5),
+                                  Divider(thickness: 2),
+                                  SizedBox(height: 5),
                                   // SizedBox(width: 20),
                                   Container(
                                     child: RichText(
@@ -164,7 +166,7 @@ class _EMC_2State extends State<EMC_2> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 20,
                                   ),
                                   Container(
                                       child: RichText(

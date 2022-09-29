@@ -26,7 +26,7 @@ class _ReferLetter2State extends State<ReferLetter2> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Center(
                     child: Container(
-                  height: 700,
+                  height: 600,
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(20)),
@@ -132,7 +132,9 @@ class _ReferLetter2State extends State<ReferLetter2> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  SizedBox(height: 5),
+                                  Divider(thickness: 2),
+                                  SizedBox(height: 5),
                                   // SizedBox(width: 20),
                                   Container(
                                     child: RichText(

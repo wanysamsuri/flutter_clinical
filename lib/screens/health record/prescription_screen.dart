@@ -22,56 +22,67 @@ class _PrescriptionState extends State<Prescription>
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'PoliKlinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
     AdvancedTile(
       title: 'Poliklinik Dr Hanafi',
       patient: 'Name',
       date: "Date",
+      phone: "Phone No.",
     ),
   ];
 
@@ -141,14 +152,42 @@ class _PrescriptionState extends State<Prescription>
                                     )),
                                     subtitle: Padding(
                                       padding:
-                                          const EdgeInsets.only(bottom: 15.0),
-                                      child: Text(
-                                        items[index].patient,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              items[index].patient,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              items[index].date,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              items[index].phone,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ]),
                                     ),
 
                                     //below
