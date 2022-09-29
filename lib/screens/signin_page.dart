@@ -7,6 +7,7 @@ import 'package:flutter_clinic/dashboard.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _SignInState extends State<SignIn> {
         backgroundColor: const Color.fromARGB(255, 211, 246, 249),
         body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: EdgeInsets.symmetric(horizontal: Adaptive.w(11)),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const SizedBox(height: 30),
@@ -51,7 +52,8 @@ class _SignInState extends State<SignIn> {
               const SizedBox(height: 10),
               Center(
                 child: Container(
-                  width: 200,
+                  // width: 200,
+                  width: Adaptive.w(50),
                   child: const Center(
                     child: Text(
                       "Sign In to access your account",
@@ -64,23 +66,23 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: Adaptive.h(3)),
               Column(
                 children: [
                   Container(
-                      height: MediaQuery.of(context).size.height * 0.5,
+                      // height: MediaQuery.of(context).size.height * 0.5,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          padding: EdgeInsets.all(Adaptive.w(10)),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 //email
-                                SizedBox(height: 50),
+
                                 Text(
                                   'NRIC',
                                   style: TextStyle(fontSize: 18),
@@ -124,7 +126,8 @@ class _SignInState extends State<SignIn> {
                                 ),
                                 const SizedBox(height: 5),
                                 Container(
-                                    padding: const EdgeInsets.only(left: 127),
+                                    padding:
+                                        EdgeInsets.only(left: Adaptive.w(31)),
                                     child: InkWell(
                                       onTap: () {
                                         Navigator.of(context).pushNamed('');
@@ -134,7 +137,7 @@ class _SignInState extends State<SignIn> {
                                             color: Colors.blue,
                                           )),
                                     )),
-                                const SizedBox(height: 40),
+                                SizedBox(height: Adaptive.h(3)),
                                 Center(
                                   child: Container(
                                       width: 150,
@@ -167,7 +170,7 @@ class _SignInState extends State<SignIn> {
                                         ),
                                       )),
                                 ),
-                                const SizedBox(height: 50),
+                                SizedBox(height: Adaptive.w(10)),
                                 Center(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

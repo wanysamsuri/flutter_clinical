@@ -105,17 +105,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
                                     if (index == 0) {
-                                      return AppointmentScreen();
+                                      return Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: primaryColor,
+                                        ),
+                                      );
                                     } else if (index == 1) {
                                       return AppointmentScreen();
                                     } else if (index == 2) {
-                                      return AppointmentScreen();
+                                      return Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: primaryColor,
+                                        ),
+                                      );
                                     } else if (index == 3) {
-                                      return AppointmentScreen();
+                                      return Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: primaryColor,
+                                        ),
+                                      );
                                     } else if (index == 4) {
-                                      return AppointmentScreen();
+                                      return Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: primaryColor,
+                                        ),
+                                      );
                                     } else {
-                                      return AppointmentScreen();
+                                      return Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: primaryColor,
+                                        ),
+                                      );
                                     }
                                   }));
                                 },
