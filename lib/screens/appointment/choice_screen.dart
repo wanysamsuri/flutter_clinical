@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../models/appointment_service.dart';
 
@@ -70,7 +71,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   ),
                   ListView.separated(
                       shrinkWrap: true,
-                      itemCount: 5,
+                      itemCount: 1,
                       separatorBuilder: (context, index) {
                         return SizedBox(
                           height: screenHeight * 0.02,
@@ -79,15 +80,15 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ChoiceScreen(
-                                          serviceName:
-                                              appointmentServices[index]
-                                                  .serviceName
-                                                  .toString(),
-                                        )));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => ChoiceScreen(
+                            //               serviceName:
+                            //                   appointmentServices[index]
+                            //                       .serviceName
+                            //                       .toString(),
+                            //             )));
                           },
                           child: Container(
                             // margin: EdgeInsets.all(10),
@@ -102,6 +103,9 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                                   backgroundColor: Colors.white,
                                   radius: 30,
                                   child: FlutterLogo(size: 30),
+                                ),
+                                SizedBox(
+                                  height: Adaptive.h(1),
                                 ),
                                 Text(
                                   'SCHEDULE YOUR APPOINTMENT',

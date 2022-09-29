@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomShape extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    double height = size.height;
-    double width = size.width;
+    double height = Adaptive.h(13);
+    double width = Adaptive.w(100);
 
     var path = Path();
     path.lineTo(0, height - 55);

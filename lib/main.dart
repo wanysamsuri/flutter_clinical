@@ -12,7 +12,9 @@ import 'package:flutter_clinic/dashboard.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,19 +49,21 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/loading': ((context) => const LoadingScreens()),
-          '/welcome': ((context) => const Welcome()),
-          '/homepage_page': ((context) => const HomeScreen()),
-          '/signin_page': ((context) => const SignIn()),
-          '/signup_page': ((context) => const SignUp()),
-          // '/record_screen': ((context) =>  HealthRecord()),
-          '/panel_records': ((context) => const PanelRecords()),
-          '/dashboard': ((context) => const Dashboard()),
-        },
-        home: const LoadingScreens());
+    return ResponsiveSizer(builder: (context, orientation, screenType) {
+      return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            '/loading': ((context) => const LoadingScreens()),
+            '/welcome': ((context) => const Welcome()),
+            '/homepage_page': ((context) => const HomeScreen()),
+            '/signin_page': ((context) => const SignIn()),
+            '/signup_page': ((context) => const SignUp()),
+            // '/record_screen': ((context) =>  HealthRecord()),
+            '/panel_records': ((context) => const PanelRecords()),
+            '/dashboard': ((context) => const Dashboard()),
+          },
+          home: const LoadingScreens());
+    });
   }
 
   Future<void> initPlatformState() async {
