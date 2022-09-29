@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/data/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
+import 'package:flutter_clinic/services/api_service.dart';
+import 'package:intl/intl.dart';
 
 class Prescription extends StatefulWidget {
-  const Prescription({Key? key}) : super(key: key);
+  final String orderId;
+  const Prescription({Key? key, required this.orderId}) : super(key: key);
 
   @override
   State<Prescription> createState() => _PrescriptionState();
@@ -30,10 +34,13 @@ class _PrescriptionState extends State<Prescription>
     AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
     AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
   ];
-
+  Future? futureFetchPanelPrescriptions;
   @override
   void initState() {
+    futureFetchPanelPrescriptions =
+        ApiService().fetchPanelPrescriptions(widget.orderId);
     super.initState();
+
     expansionTile = List<GlobalKey<_PrescriptionState>>.generate(
         items.length, (index) => GlobalKey());
   }
@@ -47,107 +54,256 @@ class _PrescriptionState extends State<Prescription>
                 padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                 child: SingleChildScrollView(
                     child: Column(children: <Widget>[
-                  ListView.builder(
-                      key: Key('builder ${selected.toString()}'),
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 1.0, vertical: 10.0),
+                  FutureBuilder(
+                      future: futureFetchPanelPrescriptions,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              key: Key('builder ${selected.toString()}'),
+                              padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data['prescriptions'].length,
+                              itemBuilder: (context, index) {
+                                // return Text('$index data');
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 1.0, vertical: 10.0),
 
-                            //body listview
+                                  //body listview
 
-                            child: Card(
-                                color: Color(0xFFEEEEEE),
-                                shadowColor: Colors.grey[300],
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Color(0xFFEEEEEE), width: 1),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: ExpansionTile(
-                                    key: Key(index.toString()),
-                                    initiallyExpanded: index == selected,
-                                    onExpansionChanged: (newState) {
-                                      if (newState) {
-                                        setState(() {
-                                          selected = index;
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selected = -1;
-                                        });
-                                      }
-                                    },
-                                    title: Center(
-                                        child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 15, bottom: 15.0),
-                                      child: Text(
-                                        items[index].title,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    )),
-                                    subtitle: Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 15.0),
-                                      child: Text(
-                                        items[index].patient,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-
-                                    //below
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 100,
-                                        // child: Text(items[index].patient),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shape: new RoundedRectangleBorder(
-                                                borderRadius:
-                                                    new BorderRadius.circular(
-                                                        30.0),
-                                              ),
-                                              primary: Colors.grey[500],
-                                            ),
+                                  child: Card(
+                                      color: Color(0xFFEEEEEE),
+                                      shadowColor: Colors.grey[300],
+                                      elevation: 3.0,
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xFFEEEEEE),
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: ExpansionTile(
+                                          key: Key(index.toString()),
+                                          initiallyExpanded: index == selected,
+                                          onExpansionChanged: (newState) {
+                                            if (newState) {
+                                              setState(() {
+                                                selected = index;
+                                              });
+                                            } else {
+                                              setState(() {
+                                                selected = -1;
+                                              });
+                                            }
+                                          },
+                                          title:
+                                              // Text('data'),
+                                              Center(
+                                                  child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 15, bottom: 15.0),
                                             child: Text(
-                                              'Select',
-                                              style: TextStyle(fontSize: 18),
+                                              snapshot.data['panel']['name'],
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
                                             ),
-                                            onPressed: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Prescription2()));
-                                            },
+                                          )),
+                                          subtitle: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15.0),
+                                            child: Text(
+                                              DateFormat('EEEE, MMMM d, '
+                                                      'yyyy, '
+                                                      'hh:mm a')
+                                                  .format(DateTime.parse(snapshot
+                                                                  .data[
+                                                              'prescriptions']
+                                                          [index]['created_at'])
+                                                      .toLocal()),
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 15.0),
-                                      )
-                                    ])));
+
+                                          //below
+                                          children: <Widget>[
+                                            AspectRatio(
+                                              aspectRatio: 100,
+                                              // child: Text(items[index].patient),
+                                            ),
+                                            Center(
+                                              child: Container(
+                                                child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    shape:
+                                                        new RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          new BorderRadius
+                                                              .circular(30.0),
+                                                    ),
+                                                    primary: Color.fromARGB(
+                                                        255, 3, 205, 219),
+                                                  ),
+                                                  child: Text(
+                                                    'View Details',
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                PrescriptionDetail(
+                                                                  panelName: snapshot
+                                                                              .data[
+                                                                          'panel']
+                                                                      ['name'],
+                                                                  patientName:
+                                                                      snapshot.data[
+                                                                          'name'],
+                                                                  nric: snapshot
+                                                                          .data[
+                                                                      'nric'],
+                                                                  phoneNum: snapshot
+                                                                          .data[
+                                                                      'phone'],
+                                                                  gender:
+                                                                      "Male",
+                                                                  date: DateFormat(
+                                                                          'dd MMMM yyyy')
+                                                                      .format(DateTime.parse(snapshot.data['prescriptions'][index]
+                                                                              [
+                                                                              'created_at'])
+                                                                          .toLocal()),
+                                                                )));
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                            )
+                                          ])),
+                                );
+                              });
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
                       })
                 ])))));
   }
 }
+// ListView.builder(
+//                       key: Key('builder ${selected.toString()}'),
+//                       padding: EdgeInsets.only(left: 5.0, right: 5.0),
+//                       shrinkWrap: true,
+//                       physics: NeverScrollableScrollPhysics(),
+//                       itemCount: items.length,
+//                       itemBuilder: (context, index) {
+//                         return Padding(
+//                             padding: EdgeInsets.symmetric(
+//                                 horizontal: 1.0, vertical: 10.0),
 
+//                             //body listview
+
+//                             child: Card(
+//                                 color: Color(0xFFEEEEEE),
+//                                 shadowColor: Colors.grey[300],
+//                                 elevation: 3.0,
+//                                 shape: RoundedRectangleBorder(
+//                                     side: BorderSide(
+//                                         color: Color(0xFFEEEEEE), width: 1),
+//                                     borderRadius: BorderRadius.circular(20)),
+//                                 child: ExpansionTile(
+//                                     key: Key(index.toString()),
+//                                     initiallyExpanded: index == selected,
+//                                     onExpansionChanged: (newState) {
+//                                       if (newState) {
+//                                         setState(() {
+//                                           selected = index;
+//                                         });
+//                                       } else {
+//                                         setState(() {
+//                                           selected = -1;
+//                                         });
+//                                       }
+//                                     },
+//                                     title: Center(
+//                                         child: Padding(
+//                                       padding: const EdgeInsets.only(
+//                                           top: 15, bottom: 15.0),
+//                                       child: Text(
+//                                         items[index].title,
+//                                         style: TextStyle(
+//                                           fontSize: 18,
+//                                           fontWeight: FontWeight.bold,
+//                                           color: Colors.black,
+//                                         ),
+//                                       ),
+//                                     )),
+//                                     subtitle: Padding(
+//                                       padding:
+//                                           const EdgeInsets.only(bottom: 15.0),
+//                                       child: Text(
+//                                         items[index].patient,
+//                                         style: TextStyle(
+//                                           fontSize: 16,
+//                                           color: Colors.black,
+//                                         ),
+//                                       ),
+//                                     ),
+
+//                                     //below
+//                                     children: <Widget>[
+//                                       AspectRatio(
+//                                         aspectRatio: 100,
+//                                         // child: Text(items[index].patient),
+//                                       ),
+//                                       Center(
+//                                         child: Container(
+//                                           child: ElevatedButton(
+//                                             style: ElevatedButton.styleFrom(
+//                                               shape: new RoundedRectangleBorder(
+//                                                 borderRadius:
+//                                                     new BorderRadius.circular(
+//                                                         30.0),
+//                                               ),
+//                                               primary: Colors.grey[500],
+//                                             ),
+//                                             child: Text(
+//                                               'Select',
+//                                               style: TextStyle(fontSize: 18),
+//                                             ),
+//                                             onPressed: () {
+//                                               Navigator.pushReplacement(
+//                                                   context,
+//                                                   MaterialPageRoute(
+//                                                       builder: (context) =>
+//                                                           Prescription2()));
+//                                             },
+//                                           ),
+//                                         ),
+//                                       ),
+//                                       Padding(
+//                                         padding:
+//                                             const EdgeInsets.only(bottom: 15.0),
+//                                       )
+//                                     ])
+//                                     )
+//                                     );
+                      
+//                       }),
+                
 
 
   // SizedBox(height: 25),

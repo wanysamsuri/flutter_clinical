@@ -6,6 +6,7 @@ import 'package:flutter_clinic/screens/health%20record/EMC.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/referletter.dart';
+import 'package:flutter_clinic/services/api_service.dart';
 
 class HealthRecord extends StatefulWidget {
   final String orderId;
@@ -16,7 +17,15 @@ class HealthRecord extends StatefulWidget {
 }
 
 class _HealthRecordState extends State<HealthRecord> {
+  // Future? futureFetchSingleRecord;
   @override
+  void initState() {
+    // TODO: implement initState
+    // futureFetchSingleRecord =
+    //     ApiService().fetchSinglePanelRecord(widget.orderId);
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 4,
@@ -31,7 +40,7 @@ class _HealthRecordState extends State<HealthRecord> {
                   child: Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
-                    color: Color.fromARGB(255, 157, 228, 234),
+                    color: Color.fromARGB(255, 3, 205, 219),
                   )),
               title: const Text('Health Record'),
               centerTitle: true,
@@ -73,10 +82,12 @@ class _HealthRecordState extends State<HealthRecord> {
                           ]),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                       child: TabBarView(children: [
                     Note(),
-                    Prescription(),
+                    Prescription(
+                      orderId: widget.orderId,
+                    ),
                     EMC(),
                     ReferLetter()
                   ]))
