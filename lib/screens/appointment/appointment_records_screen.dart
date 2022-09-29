@@ -19,12 +19,14 @@ class Appointment extends StatefulWidget {
 class _AppointmentState extends State<Appointment> {
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 75,
+          toolbarHeight: screenHeight * 0.1,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           flexibleSpace: ClipPath(

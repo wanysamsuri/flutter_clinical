@@ -24,10 +24,12 @@ class _PanelRecordsState extends State<PanelRecords> {
   }
 
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 75,
+          toolbarHeight: screenHeight * 0.1,
           backgroundColor: Colors.grey[50],
           elevation: 0.0,
           flexibleSpace: ClipPath(

@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 75,
+          toolbarHeight: screenHeight * 0.1,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           flexibleSpace: ClipPath(
