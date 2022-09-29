@@ -37,7 +37,7 @@ class ApiService {
     if (response.statusCode == 200) {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
-      Get.snackbar('$loginUserName', '$headerToken');
+      // Get.snackbar('$loginUserName', '$headerToken');
       Get.toNamed('/loading');
     } else {
       void _showToast(BuildContext context) {
