@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clinic/screens/health%20record/viewPDF.dart';
+import 'package:flutter_clinic/screens/health%20record/viewPDF_prescription.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import '../noti_screen.dart';
 import 'package:intl/intl.dart';
 
 class PrescriptionDetail extends StatefulWidget {
@@ -488,7 +485,7 @@ class _PrescriptionDetailState extends State<PrescriptionDetail> {
                   GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ViewPDF()));
+                            MaterialPageRoute(builder: (context) => ViewPDF_prescription()));
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(

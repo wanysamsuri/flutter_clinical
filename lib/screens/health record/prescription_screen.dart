@@ -3,11 +3,12 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/constant.dart';
-import 'package:flutter_clinic/data/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:intl/intl.dart';
+
+import '../../models/data_model.dart';
 
 class Prescription extends StatefulWidget {
   final String orderId;
@@ -22,17 +23,72 @@ class _PrescriptionState extends State<Prescription>
   late List<GlobalKey> expansionTile;
   int selected = -1;
   final List<AdvancedTile> items = [
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'UniKlinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
-    AdvancedTile(title: 'Poliklinik Shah Alam', patient: 'Date', symbol: ':'),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'PoliKlinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
+    AdvancedTile(
+      title: 'Poliklinik Dr Hanafi',
+      patient: 'Name',
+      date: "Date",
+      phone: "Phone No.",
+    ),
   ];
   Future? futureFetchPanelPrescriptions;
   @override
@@ -319,7 +375,7 @@ class _PrescriptionState extends State<Prescription>
   //               color: Colors.grey[300],
   //               borderRadius: BorderRadius.circular(20)),
   //           padding: EdgeInsets.symmetric(horizontal: 20),
-  //           child: Column(
+  //           child: Column(Dr Hanafi
   //               crossAxisAlignment: CrossAxisAlignment.start,
   //               children: [
   //                 SizedBox(height: 25),
