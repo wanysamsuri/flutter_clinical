@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,17 +41,17 @@ class ApiService {
       // Get.snackbar('$loginUserName', '$headerToken');
       Get.toNamed('/loading');
     } else {
-      void _showToast(BuildContext context) {
-        final scaffold = Scaffold.of(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Updating..'),
-          ),
-        );
-      }
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
 
-    return responseBody;
+    return json.decode(response.body);
   }
 
   Future fetchPanelRecords() async {

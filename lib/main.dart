@@ -1,5 +1,8 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
+import 'package:flutter_clinic/screens/appointment/queue_new.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
@@ -61,8 +64,9 @@ class _MyAppState extends State<MyApp> {
             // '/record_screen': ((context) =>  HealthRecord()),
             '/panel_records': ((context) => const PanelRecords()),
             '/dashboard': ((context) => const Dashboard()),
+            '/queue_new': ((context) => const QueueNew()),
           },
-          home: const LoadingScreens());
+          home: const SignIn());
     });
   }
 

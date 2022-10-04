@@ -27,11 +27,7 @@ class _PanelRecordsState extends State<PanelRecords> {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
-    var imageList = [
-      'https://scontent.fkul2-4.fna.fbcdn.net/v/t39.30808-6/302161743_156784073678482_5514990310422987500_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=kqS32AZ7L2UAX_qKpki&_nc_ht=scontent.fkul2-4.fna&oh=00_AT_As_G1FlIVGGYylCZAVqg7o2p0m9C8kf-19y1looKknw&oe=6339FEC6',
-      'https://klinikaween.web.clinical.my/storage/panels-logo/5-CLINICAL-MALAYSIA-313422022-07-01.jpeg',
-      'https://medcare.web.clinical.my/storage/panels-logo/7-CLINICAL-MALAYSIA-333042022-07-01.jpeg'
-    ];
+    var imageList = [''];
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -84,8 +80,8 @@ class _PanelRecordsState extends State<PanelRecords> {
                                     color: Colors.white,
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                        image: NetworkImage(
-                                            imageList[index].toString()))),
+                                        image: NetworkImage (snapshot.data[index]['panel']
+                                            ['logo_url']))),
                               ),
                               Text(
                                 snapshot.data[index]['panel']['name']
