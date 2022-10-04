@@ -7,9 +7,8 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import 'notification/noti_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -60,7 +59,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const Spacer(),
-                          const Icon(Icons.notifications),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.notifications,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ViewNotification()),
+                              );
+                            },
+                          ),
                         ],
                       ),
                       Spacer(),
