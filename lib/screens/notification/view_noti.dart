@@ -18,16 +18,16 @@ class _ViewNotificationState extends State<ViewNotification> {
       backgroundColor: Colors.white,
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: screenHeight * 0.1,
+          toolbarHeight: screenHeight * 0.07,
           backgroundColor: Colors.grey[50],
           elevation: 0.0,
           flexibleSpace: ClipPath(
-              clipper: CustomShape(),
+              //clipper: CustomShape(),
               child: Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 3, 205, 219),
-              )),
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            color: Color.fromARGB(255, 157, 228, 234),
+          )),
           title: const Text('Notifications'),
           centerTitle: true,
           leading: GestureDetector(
