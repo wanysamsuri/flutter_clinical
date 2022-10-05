@@ -238,7 +238,7 @@ class _PrescriptionState extends State<Prescription>
                                                       .toLocal()),
                                               style: TextStyle(
                                                 fontSize: 16,
-                                                color: Colors.black,
+                                                color: Colors.green,
                                               ),
                                             ),
                                           ),
@@ -306,7 +306,6 @@ class _PrescriptionState extends State<Prescription>
                                             )
                                           ])),
                                 );
-                              
                               });
                         } else {
                           return Text('Something is wrong');
