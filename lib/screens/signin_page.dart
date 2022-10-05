@@ -92,78 +92,67 @@ class _SignInState extends State<SignIn> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        //email
-
+                                        //nric
                                         Text(
                                           'NRIC',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         SizedBox(height: 10),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 10),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all()),
-                                          child: TextFormField(
-                                            obscureText: true,
-                                            controller: nricController,
-                                            style: TextStyle(fontSize: 20),
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                            ),
-                                            validator: (NRIC) => NRIC != null &&
-                                                    !EmailValidator.validate(
-                                                        NRIC)
-                                                ? 'Enter a valid IC No.'
-                                                : null,
-                                            // {
-                                            //   if (value != null && value.length < 7){
-                                            //     return 'Enter min. 7 characters';
-                                            //   } else {
-                                            //     return null;
-                                            //   }
+                                        TextFormField(
+                                          obscureText: false,
+                                          controller: nricController,
+                                          style: TextStyle(fontSize: 20),
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20))
+                                              // border: InputBorder.none,
+                                              ),
+                                          // validator: (NRIC) => NRIC != null &&
+                                          //         !EmailValidator.validate(NRIC)
+                                          //     ? 'Enter a valid IC No.'
+                                          //     : null,
 
-                                            // },
-                                          ),
+                                          validator: (value) {
+                                            if (value != null &&
+                                                value.length < 12) {
+                                              return 'Enter a valid IC No. Numbers only';
+                                            } else {
+                                              return null;
+                                            }
+                                          },
                                         ),
 
                                         //password
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 30),
                                         Text(
                                           'Password',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         SizedBox(height: 10),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 10),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all()),
-                                          child: TextFormField(
-                                              obscureText: isHiddenPassword,
-                                              controller: passwordController,
-                                              style: TextStyle(fontSize: 20),
-                                              decoration: InputDecoration(
+                                        TextFormField(
+                                            obscureText: isHiddenPassword,
+                                            controller: passwordController,
+                                            style: TextStyle(fontSize: 20),
+                                            decoration: InputDecoration(
                                                 suffixIcon: InkWell(
                                                   onTap: _togglePasswordView,
                                                   child: Icon(Icons.visibility),
                                                 ),
-                                                border: InputBorder.none,
-                                              ),
-                                              validator: (value) {
-                                                if (value != null &&
-                                                    value.length < 8) {
-                                                  return 'Enter min. 8 characters';
-                                                } else {
-                                                  return null;
-                                                }
-                                              }),
-                                        ),
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                  20,
+                                                ))),
+                                            validator: (value) {
+                                              if (value != null &&
+                                                  value.length < 8) {
+                                                return 'Enter min. 8 characters';
+                                              } else {
+                                                return null;
+                                              }
+                                            }),
                                         const SizedBox(height: 5),
                                         Container(
                                             padding: EdgeInsets.only(
@@ -198,37 +187,37 @@ class _SignInState extends State<SignIn> {
                                                   ),
                                                 ],
                                               ),
-                                              child: InkWell(onTap: () {
-                                                final isValidForm = formkey
-                                                    .currentState!
-                                                    .validate();
-                                                if (isValidForm) {
-                                                  Navigator.of(context)
-                                                      .pushAndRemoveUntil(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HomeScreen()),
-                                                    (route) => false,
-                                                  );
-                                                  // Navigator.of(context)
-                                                  //     .pushNamed('/dashboard');
+                                              child: InkWell(
+                                                onTap: () {
+                                                  final isValidForm = formkey
+                                                      .currentState!
+                                                      .validate();
+                                                  if (isValidForm) {
+                                                    Navigator.of(context)
+                                                        .pushAndRemoveUntil(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomeScreen()),
+                                                      (route) => false,
+                                                    );
+                                                    // Navigator.of(context)
+                                                    //     .pushNamed('/dashboard');
 
-                                                  ApiService().userLogin(
-                                                      nricController.text,
-                                                      passwordController.text,
-                                                      '',
-                                                      '');
-                                                }
-
-                                                child:
-                                                Center(
+                                                    ApiService().userLogin(
+                                                        nricController.text,
+                                                        passwordController.text,
+                                                        '',
+                                                        '');
+                                                  }
+                                                },
+                                                child: Center(
                                                   child: Text(
                                                     'Sign In',
                                                     style:
                                                         TextStyle(fontSize: 20),
                                                   ),
-                                                );
-                                              })),
+                                                ),
+                                              )),
                                         ),
                                         SizedBox(height: Adaptive.w(10)),
                                         Center(
