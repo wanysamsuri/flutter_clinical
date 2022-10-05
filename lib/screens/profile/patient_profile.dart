@@ -49,48 +49,48 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
             height: 20,
           ),
           Center(
-            child: Stack(
-              children: [
-                Container(
-                  width: 130,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 4,
-                        color: Theme.of(context).scaffoldBackgroundColor),
-                    boxShadow: [
-                      BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.1),
-                        offset: Offset(0, 10),
-                      )
-                    ],
-                    // shape: BoxShape.circle,
-                    // image: DecorationImage(
-                    //   fit: BoxFit.cover,
-                    //   image: AssetImage("assets/sakura.jpg"),
-                    // )
+            child: Stack(children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: screenWidth * 0.03,
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 4,
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                      ),
-                      color: Colors.green,
+                  Align(
+                      child: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: 50,
+                    child: Icon(
+                      Icons.person_outline,
+                      size: 50,
+                      color: Colors.white,
                     ),
-                  ),
-                )
-              ],
-            ),
+                  )),
+                ],
+                // shape: BoxShape.circle,
+                // image: DecorationImage(
+                //   fit: BoxFit.cover,
+                //   image: AssetImage("assets/sakura.jpg"),
+                // )
+              ),
+            ]),
+            //   Positioned(
+            //     bottom: 0,
+            //     right: 0,
+            //     child: Container(
+            //       height: 40,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         border: Border.all(
+            //           width: 4,
+            //           color: Theme.of(context).scaffoldBackgroundColor,
+            //         ),
+            //         color: Colors.green,
+            //       ),
+            //     ),
+            //   )
+            // ],
           ),
+          // ),
           SizedBox(
             height: 35,
           ),
