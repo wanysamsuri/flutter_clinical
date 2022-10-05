@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,61 +38,84 @@ class _ProfileState extends State<Profile> {
         title: const Text('Profile'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: screenWidth * 0.03,
-          ),
-          Align(
-              child: CircleAvatar(
-            backgroundColor: Colors.grey,
-            radius: 50,
-            child: Icon(
-              Icons.person_outline,
-              size: 50,
-              color: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: screenWidth * 0.03,
             ),
-          )),
-          SizedBox(
-            height: screenHeight * 0.02,
-          ),
-          Text(
-            '$sharedFullName',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Divider(thickness: 2),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-              // padding: EdgeInsets.all(20),
-              child: Column(children: [
-            ListView(shrinkWrap: true, children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey[200]),
-                  child: ListTile(
-                    onTap: () async {
-                      SharedPreferences storage =
-                          await SharedPreferences.getInstance();
-                      storage.clear();
-                      Get.toNamed('/profile');
-                    },
-                    leading: Icon(Icons.person),
-                    title: Text('Patient Profile'),
+            Align(
+                child: CircleAvatar(
+              backgroundColor: Colors.grey,
+              radius: 50,
+              child: Icon(
+                Icons.person_outline,
+                size: 50,
+                color: Colors.white,
+              ),
+            )),
+            SizedBox(
+              height: screenHeight * 0.02,
+            ),
+            Text(
+              '$sharedFullName',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Divider(thickness: 2),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+                // padding: EdgeInsets.all(20),
+                child: Column(children: [
+              ListView(shrinkWrap: true, children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[200]),
+                    child: ListTile(
+                      onTap: () async {
+                        // SharedPreferences storage =
+                        //     await SharedPreferences.getInstance();
+                        // storage.clear();
+                        Get.toNamed('/profile');
+                      },
+                      leading: Icon(Icons.person),
+                      title: Text('Patient Profile'),
+                    ),
                   ),
                 ),
-              ),
-              // Divider(
-              //   thickness: 2,
-            ]),
+                // Divider(
+                //   thickness: 2,
+              ]),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[200]),
+                    child: ListTile(
+                      onTap: () async {
+                        // SharedPreferences storage =
+                        //     await SharedPreferences.getInstance();
+                        // storage.clear();
+                        Get.toNamed('/feedback');
+                      },
+                      leading: Icon(Icons.thumb_up),
+                      title: Text('Give Feedback'),
+                    ),
+                  ))
+            ])),
+            // Divider(
+            //   thickness: 2,
+            // ),
             Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 10.0),
@@ -101,86 +125,66 @@ class _ProfileState extends State<Profile> {
                       color: Colors.grey[200]),
                   child: ListTile(
                     onTap: () async {
-                      SharedPreferences storage =
-                          await SharedPreferences.getInstance();
-                      storage.clear();
-                      Get.toNamed('/feedback');
+                      // SharedPreferences storage =
+                      //     await SharedPreferences.getInstance();
+                      // storage.clear();
+                      Get.toNamed('/terms');
                     },
-                    leading: Icon(Icons.thumb_up),
-                    title: Text('Give Feedback'),
+                    leading: Icon(Icons.document_scanner),
+                    title: Text('Terms & Conditions'),
                   ),
-                ))
-          ])),
-          // Divider(
-          //   thickness: 2,
-          // ),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey[200]),
-                child: ListTile(
-                  onTap: () async {
-                    SharedPreferences storage =
-                        await SharedPreferences.getInstance();
-                    storage.clear();
-                    Get.toNamed('/terms');
-                  },
-                  leading: Icon(Icons.document_scanner),
-                  title: Text('Terms & Conditions'),
-                ),
-              )),
+                )),
 
-          // Divider(
-          //   thickness: 2,
-          // ),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Container(
+            // Divider(
+            //   thickness: 2,
+            // ),
+            Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 10.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[200]),
+                    child: ListTile(
+                      onTap: () async {
+                        // SharedPreferences storage =
+                        //     await SharedPreferences.getInstance();
+                        // storage.clear();
+                        Get.toNamed('/help');
+                      },
+                      leading: Icon(Icons.help),
+                      title: Text('Help'),
+                    ))),
+            Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 10.0),
+                child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey[200]),
                   child: ListTile(
                     onTap: () async {
-                      SharedPreferences storage =
-                          await SharedPreferences.getInstance();
-                      storage.clear();
-                      Get.toNamed('/help');
+                      // SharedPreferences storage =
+                      //     await SharedPreferences.getInstance();
+                      // storage.clear();
+                      ApiService().userLogout();
+                      // Get.toNamed('/loading');
                     },
-                    leading: Icon(Icons.help),
-                    title: Text('Help'),
-                  ))),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey[200]),
-                child: ListTile(
-                  onTap: () async {
-                    SharedPreferences storage =
-                        await SharedPreferences.getInstance();
-                    storage.clear();
-                    Get.toNamed('/loading');
-                  },
-                  leading: Icon(
-                    Icons.logout,
-                    color: Colors.red,
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(color: Colors.red),
+                    ),
                   ),
-                  title: Text(
-                    'Logout',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ),
-                // Divider(
-                //   thickness: 2,
-                // ),
-              ))
-        ],
+                  // Divider(
+                  //   thickness: 2,
+                  // ),
+                ))
+          ],
+        ),
       ),
     );
   }

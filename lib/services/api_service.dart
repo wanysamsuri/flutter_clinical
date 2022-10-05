@@ -54,7 +54,7 @@ class ApiService {
     return json.decode(response.body);
   }
 
-  Future fetchPanelRecords() async {
+  Future fetchPanelList() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
@@ -70,7 +70,7 @@ class ApiService {
     return responseBody;
   }
 
-  Future fetchPanelPrescriptions(String orderId) async {
+  Future fetchPanelRecords(String orderId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
@@ -84,5 +84,50 @@ class ApiService {
     final responseBody = json.decode(response.body)['data'];
 
     return responseBody;
+  }
+
+  Future userLogout(
+      // String email,
+      ) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final loginUserName = storage.getString('userName');
+
+    final endpointLogout = Uri.parse('$baseUrl/logout');
+
+    final response = await http.get(endpointLogout, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    print(response.statusCode);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      // storage.setString('token', responseBody['token']['token']);
+      // storage.setString('userName', responseBody['user']['name']);
+      // Get.snackbar('$loginUserName', '$headerToken');
+      storage.clear();
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      Get.toNamed('/loading');
+    } else {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+
+    return json.decode(response.body);
   }
 }

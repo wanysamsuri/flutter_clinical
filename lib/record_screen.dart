@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/customshape.dart';
 import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
@@ -20,7 +21,6 @@ class _HealthRecordState extends State<HealthRecord>
     with SingleTickerProviderStateMixin {
   // Future? futureFetchSingleRecord;
   late TabController tabController;
-  
 
   @override
   void initState() {
@@ -29,8 +29,8 @@ class _HealthRecordState extends State<HealthRecord>
     //     ApiService().fetchSinglePanelRecord(widget.orderId);
     super.initState();
     tabController = TabController(length: 4, vsync: this);
-    
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -43,17 +43,18 @@ class _HealthRecordState extends State<HealthRecord>
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: screenHeight * 0.1,
-          backgroundColor: Colors.grey[50],
-          elevation: 0.0,
-          flexibleSpace: ClipPath(
-              clipper: CustomShape(),
-              child: Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 3, 205, 219),
-              )),
+          // automaticallyImplyLeading: false,
+          // toolbarHeight: screenHeight * 0.1,
+          // backgroundColor: Colors.grey[50],
+          // elevation: 0.0,
+          // flexibleSpace: ClipPath(
+          //     clipper: CustomShape(),
+          //     child: Container(
+          //       height: 200,
+          //       width: MediaQuery.of(context).size.width,
+          //       color: Color.fromARGB(255, 3, 205, 219),
+          //     )),
+          backgroundColor: Color.fromARGB(255, 157, 228, 234),
           title: const Text('Health Record'),
           centerTitle: true,
         ),
@@ -95,7 +96,7 @@ class _HealthRecordState extends State<HealthRecord>
               ),
               Expanded(
                 child: TabBarView(controller: tabController, children: [
-                  Note(),
+                  Note(orderId: widget.orderId,),
                   Prescription(
                     orderId: widget.orderId,
                   ),

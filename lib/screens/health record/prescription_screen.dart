@@ -6,7 +6,9 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/services/api_service.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:intl/intl.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 import '../../models/data_model.dart';
 
@@ -94,7 +96,7 @@ class _PrescriptionState extends State<Prescription>
   @override
   void initState() {
     futureFetchPanelPrescriptions =
-        ApiService().fetchPanelPrescriptions(widget.orderId);
+        ApiService().fetchPanelRecords(widget.orderId);
     super.initState();
 
     expansionTile = List<GlobalKey<_PrescriptionState>>.generate(
@@ -113,7 +115,62 @@ class _PrescriptionState extends State<Prescription>
                   FutureBuilder(
                       future: futureFetchPanelPrescriptions,
                       builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            itemCount: 10,
+                            padding: EdgeInsets.all(0),
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 15,
+                            ),
+                            itemBuilder: (context, index) {
+                              return Card(
+                                color: Colors.white,
+                                shadowColor: Colors.grey[300],
+                                elevation: 3.0,
+                                // margin: EdgeInsets.all(30),
+                                shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: Color(0xFFEEEEEE), width: 1),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: SkeletonAnimation(
+                                    shimmerDuration: 500,
+                                    child: Container(
+                                      padding: EdgeInsets.all(30),
+                                      // color: Colors.grey,
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 10,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Container(
+                                              height: 10,
+                                              width: 150,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+                              );
+                            },
+                          );
+                        } else if (snapshot.hasData) {
                           return ListView.builder(
                               key: Key('builder ${selected.toString()}'),
                               padding: EdgeInsets.only(left: 5.0, right: 5.0),
@@ -181,7 +238,7 @@ class _PrescriptionState extends State<Prescription>
                                                       .toLocal()),
                                               style: TextStyle(
                                                 fontSize: 16,
-                                                color: Colors.black,
+                                                color: Colors.green,
                                               ),
                                             ),
                                           ),
@@ -251,9 +308,7 @@ class _PrescriptionState extends State<Prescription>
                                 );
                               });
                         } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
+                          return Text('Something is wrong');
                         }
                       })
                 ])))));

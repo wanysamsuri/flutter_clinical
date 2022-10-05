@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
             '/dashboard': ((context) => const Dashboard()),
             '/queue_new': ((context) => const QueueNew()),
           },
-          home: const SignIn());
+          home: const LoadingScreens());
     });
   }
 

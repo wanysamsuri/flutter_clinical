@@ -199,20 +199,20 @@ class _SignInState extends State<SignIn> {
                                                       .currentState!
                                                       .validate();
                                                   if (isValidForm) {
-                                                    Navigator.of(context)
-                                                        .pushAndRemoveUntil(
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeScreen()),
-                                                      (route) => false,
-                                                    );
+                                                    // Navigator.of(context)
+                                                    //     .pushAndRemoveUntil(
+                                                    //   MaterialPageRoute(
+                                                    //       builder: (context) =>
+                                                    //           HomeScreen()),
+                                                    //   (route) => false,
+                                                    // );
                                                     // Navigator.of(context)
                                                     //     .pushNamed('/dashboard');
 
                                                     ApiService().userLogin(
                                                         nricController.text,
                                                         passwordController.text,
-                                                        '',
+                                                        sharedDeviceName!,
                                                         '');
                                                   }
                                                 },
