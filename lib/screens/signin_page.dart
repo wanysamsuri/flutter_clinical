@@ -83,9 +83,15 @@ class _SignInState extends State<SignIn> {
                               // height: MediaQuery.of(context).size.height * 0.5,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      offset: Offset(0.0, 1.0), //(x,y)
+                                      blurRadius: 6.0,
+                                    ),
+                                  ]),
                               child: Container(
                                   padding: EdgeInsets.all(Adaptive.w(10)),
                                   child: Column(

@@ -6,6 +6,10 @@ import 'package:flutter_clinic/screens/appointment/queue_new.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
+import 'package:flutter_clinic/screens/profile/feedback.dart';
+import 'package:flutter_clinic/screens/profile/help.dart';
+import 'package:flutter_clinic/screens/profile/patient_profile.dart';
+import 'package:flutter_clinic/screens/profile/terms_condition.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
@@ -55,6 +59,11 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           routes: {
             '/loading': ((context) => const LoadingScreens()),
+            '/profile': ((context) => const PatientProfileScreen()),
+            '/feedback': ((context) => const FeedbackScreen()),
+            '/terms': ((context) => const TermsConditionScreen()),
+            '/help': ((context) => const HelpScreen()),
+            
             '/welcome': ((context) => const Welcome()),
             '/homepage_page': ((context) => const HomeScreen()),
             '/signin_page': ((context) => const SignIn()),

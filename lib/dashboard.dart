@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/record_screen.dart';
-import 'package:flutter_clinic/screens/profile_screen.dart';
+import 'package:flutter_clinic/screens/profile/profile_screen.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import 'screens/appointment/appointment_records_screen.dart';
