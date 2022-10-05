@@ -48,8 +48,12 @@ dependencies:
   fluttertoast: ^8.0.9
   wc_form_validators: ^1.0.0
   email_validator: ^2.0.1
+<<<<<<< HEAD
   skeleton_text: ^3.0.0
   html2md: ^1.2.6
+=======
+  username_validator: ^0.1.1
+>>>>>>> 83a1e6c1449b65a3ba326df8f721d94845cfa053
 
 dev_dependencies:
   flutter_test:

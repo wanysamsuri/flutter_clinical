@@ -83,94 +83,82 @@ class _SignInState extends State<SignIn> {
                               // height: MediaQuery.of(context).size.height * 0.5,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      offset: Offset(0.0, 1.0), //(x,y)
+                                      blurRadius: 6.0,
+                                    ),
+                                  ]),
                               child: Container(
                                   padding: EdgeInsets.all(Adaptive.w(10)),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        //email
-
+                                        //nric
                                         Text(
                                           'NRIC',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         SizedBox(height: 10),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 10),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all()),
-                                          child: TextFormField(
-                                            obscureText: true,
-                                            controller: nricController,
-                                            style: TextStyle(fontSize: 20),
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                            ),
-                                            validator: (nric) {
-                                              if (nric != null &&
-                                                  nric.length < 8) {
-                                                return 'Enter min. 8 characters';
-                                              } else {
-                                                return null;
-                                              }
-                                            },
-                                            // {
-                                            //   if (value != null && value.length < 7){
-                                            //     return 'Enter min. 7 characters';
-                                            //   } else {
-                                            //     return null;
-                                            //   }
+                                        TextFormField(
+                                          obscureText: false,
+                                          controller: nricController,
+                                          style: TextStyle(fontSize: 20),
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20))
+                                              // border: InputBorder.none,
+                                              ),
+                                          // validator: (NRIC) => NRIC != null &&
+                                          //         !EmailValidator.validate(NRIC)
+                                          //     ? 'Enter a valid IC No.'
+                                          //     : null,
 
-                                            // },
-                                          ),
+                                          validator: (value) {
+                                            if (value != null &&
+                                                value.length < 12) {
+                                              return 'Enter a valid IC No. Numbers only';
+                                            } else {
+                                              return null;
+                                            }
+                                          },
                                         ),
 
                                         //password
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 30),
                                         Text(
                                           'Password',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         SizedBox(height: 10),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 10),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all()),
-                                          child: TextFormField(
-                                              obscureText: isHiddenPassword,
-                                              controller: passwordController,
-                                              style: TextStyle(fontSize: 20),
-                                              decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
+                                        TextFormField(
+                                            obscureText: isHiddenPassword,
+                                            controller: passwordController,
+                                            style: TextStyle(fontSize: 20),
+                                            decoration: InputDecoration(
                                                 suffixIcon: InkWell(
                                                   onTap: _togglePasswordView,
                                                   child: Icon(Icons.visibility),
                                                 ),
-                                                // border: InputBorder.none,
-                                              ),
-                                              validator: (password) {
-                                                if (password != null &&
-                                                    password.length < 8) {
-                                                  return 'Enter min. 8 characters';
-                                                } else {
-                                                  return null;
-                                                }
-                                              }),
-                                        ),
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                  20,
+                                                ))),
+                                            validator: (value) {
+                                              if (value != null &&
+                                                  value.length < 8) {
+                                                return 'Enter min. 8 characters';
+                                              } else {
+                                                return null;
+                                              }
+                                            }),
                                         const SizedBox(height: 5),
                                         Container(
                                             padding: EdgeInsets.only(
@@ -211,16 +199,16 @@ class _SignInState extends State<SignIn> {
                                                       .currentState!
                                                       .validate();
                                                   if (isValidForm) {
-                                                    // Navigator.of(context)
-                                                    //     .pushAndRemoveUntil(
-                                                    //   MaterialPageRoute(
-                                                    //       builder: (context) =>
-                                                    //           HomeScreen()),
-                                                    //   (route) => false,
-
-                                                    // );
+                                                    Navigator.of(context)
+                                                        .pushAndRemoveUntil(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomeScreen()),
+                                                      (route) => false,
+                                                    );
                                                     // Navigator.of(context)
                                                     //     .pushNamed('/dashboard');
+
                                                     ApiService().userLogin(
                                                         nricController.text,
                                                         passwordController.text,
