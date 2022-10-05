@@ -46,6 +46,10 @@ dependencies:
   responsive_sizer: ^3.1.1
   flutter_launcher_icons: ^0.10.0
   fluttertoast: ^8.0.9
+  wc_form_validators: ^1.0.0
+  email_validator: ^2.0.1
+  skeleton_text: ^3.0.0
+  html2md: ^1.2.6
 
 dev_dependencies:
   flutter_test:

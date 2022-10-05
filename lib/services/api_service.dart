@@ -54,7 +54,7 @@ class ApiService {
     return json.decode(response.body);
   }
 
-  Future fetchPanelRecords() async {
+  Future fetchPanelList() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
@@ -70,7 +70,7 @@ class ApiService {
     return responseBody;
   }
 
-  Future fetchPanelPrescriptions(String orderId) async {
+  Future fetchPanelRecords(String orderId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');

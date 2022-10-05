@@ -16,11 +16,11 @@ class PanelRecords extends StatefulWidget {
 }
 
 class _PanelRecordsState extends State<PanelRecords> {
-  Future? futureFetchRecords;
+  Future? futureFetchPanelList;
   @override
   void initState() {
     // TODO: implement initState
-    futureFetchRecords = ApiService().fetchPanelRecords();
+    futureFetchPanelList = ApiService().fetchPanelList();
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _PanelRecordsState extends State<PanelRecords> {
           title: const Text('Panels Records'),
         ),
         body: FutureBuilder(
-            future: futureFetchRecords,
+            future: futureFetchPanelList,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return GridView.builder(
