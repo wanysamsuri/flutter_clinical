@@ -130,4 +130,21 @@ class ApiService {
 
     return json.decode(response.body);
   }
+
+  Future userProfile(
+    String nric,
+    String name,
+    String nricNo,
+    String phoneNo,
+    String email,
+    String nationality,
+    String password,
+    String Cpassword) async {
+      SharedPreferences storage = await SharedPreferences.getInstance();
+
+      final headerToken = storage.getString('token');
+      final endpointuserProfile = Uri.parse('$baseUrl/profile');
+    }
 }
+
+

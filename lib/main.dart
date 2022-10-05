@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
             '/feedback': ((context) => const FeedbackScreen()),
             '/terms': ((context) => const TermsConditionScreen()),
             '/help': ((context) => const HelpScreen()),
-            
+
             '/welcome': ((context) => const Welcome()),
             '/homepage_page': ((context) => const HomeScreen()),
             '/signin_page': ((context) => const SignIn()),
