@@ -131,20 +131,18 @@ class ApiService {
     return json.decode(response.body);
   }
 
-  Future userProfile(
-    String nric,
-    String name,
-    String nricNo,
-    String phoneNo,
-    String email,
-    String nationality,
-    String password,
-    String Cpassword) async {
-      SharedPreferences storage = await SharedPreferences.getInstance();
+  Future fetchUserProfile() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
-      final headerToken = storage.getString('token');
-      final endpointuserProfile = Uri.parse('$baseUrl/profile');
-    }
+    final headerToken = storage.getString('token');
+    final endpointUserProfile = Uri.parse('$baseUrl/profile');
+    final response = await http.get(endpointUserProfile, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    final responseBody = json.decode(response.body)['data'];
+
+    return responseBody;
+  }
 }
-
-

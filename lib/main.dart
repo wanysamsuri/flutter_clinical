@@ -6,6 +6,7 @@ import 'package:flutter_clinic/screens/appointment/queue_new.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
+import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
 import 'package:flutter_clinic/screens/profile/feedback.dart';
 import 'package:flutter_clinic/screens/profile/help.dart';
 import 'package:flutter_clinic/screens/profile/patient_profile.dart';
@@ -72,6 +73,7 @@ class _MyAppState extends State<MyApp> {
             '/panel_records': ((context) => const PanelRecords()),
             '/dashboard': ((context) => const Dashboard()),
             '/queue_new': ((context) => const QueueNew()),
+            '/noNoti': ((context) => const NoNotiScreens()),
           },
           home: const LoadingScreens());
     });
