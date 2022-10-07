@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
+import 'package:flutter_clinic/screens/health_status.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -68,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const ViewNotification()),
+                                    builder: (context) =>
+                                        const ViewNotification()),
                               );
                             },
                           ),
@@ -118,11 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
                                     if (index == 0) {
-                                      return Scaffold(
-                                        appBar: AppBar(
-                                          backgroundColor: primaryColor,
-                                        ),
-                                      );
+                                      return HealthStatusScreen();
                                     } else if (index == 1) {
                                       return AppointmentScreen();
                                     } else if (index == 2) {

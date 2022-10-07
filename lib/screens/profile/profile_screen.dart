@@ -167,7 +167,30 @@ class _ProfileState extends State<Profile> {
                       // SharedPreferences storage =
                       //     await SharedPreferences.getInstance();
                       // storage.clear();
-                      ApiService().userLogout();
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text('Are you sure want to logout?'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        ApiService().userLogout();
+                                      },
+                                      child: Text(
+                                        'Yes',
+                                        style: TextStyle(color: Colors.green),
+                                      )),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'No',
+                                        style: TextStyle(color: Colors.red),
+                                      ))
+                                ],
+                              ));
+
                       // Get.toNamed('/loading');
                     },
                     leading: Icon(

@@ -37,20 +37,20 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: screenHeight * 0.1,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        flexibleSpace: ClipPath(
-            clipper: CustomShape(),
-            child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 157, 228, 234),
-            )),
-        title: const Text('My Profile'),
-        centerTitle: true,
-        leading: GestureDetector(
+          automaticallyImplyLeading: false,
+          toolbarHeight: screenHeight * 0.1,
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          flexibleSpace: ClipPath(
+              clipper: CustomShape(),
+              child: Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                color: Color.fromARGB(255, 157, 228, 234),
+              )),
+          title: const Text('My Profile'),
+          centerTitle: true,
+          leading: GestureDetector(
             child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
@@ -59,7 +59,6 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
               Navigator.pop(context);
             },
           )),
-      
       body: FutureBuilder(
           future: ApiService().fetchUserProfile(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -165,28 +164,26 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
 
                   SizedBox(height: 50),
                   Container(
-                    child: Center(
-                      child: Row(children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 70),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size(130, 45),
-                                primary: Color.fromARGB(255, 157, 228, 234)),
-                            child: Text(
-                              'Edit',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EditProfileScreens()));
-                            },
-                          ),
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(130, 45),
+                          primary: Color.fromARGB(255, 157, 228, 234),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
                         ),
-                      ]),
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfileScreens()));
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(height: 20),
