@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:flutter_clinic/screens/appointment/appointment_form.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../models/appointment_service.dart';
@@ -80,15 +82,15 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => ChoiceScreen(
-                            //               serviceName:
-                            //                   appointmentServices[index]
-                            //                       .serviceName
-                            //                       .toString(),
-                            //             )));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AppointmentForm(
+                                        // serviceName:
+                                        //     appointmentServices[index]
+                                        //         .serviceName
+                                        //         .toString(),
+                                        )));
                           },
                           child: Container(
                             // margin: EdgeInsets.all(10),
