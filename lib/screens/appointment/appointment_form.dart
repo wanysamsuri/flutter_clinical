@@ -181,8 +181,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                         height: screenHeight * 0.02,
                       ),
                       Container(
-
-                          //margin: EdgeInsets.all(10),
+                          // margin: EdgeInsets.all(10),
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               color: secondaryColor,
@@ -202,7 +201,6 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                         physics: const BouncingScrollPhysics(),
                                         scrollDirection: Axis.horizontal,
                                         itemCount: 10,
-                                        // itemCount: snapshot.data[highlightIndex]['tags'].length,
                                         itemBuilder: (context, index) {
                                           return Container(
                                             margin: const EdgeInsets.only(
@@ -292,9 +290,9 @@ class _AppointmentFormState extends State<AppointmentForm> {
                       ],
                     ),
                     child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed('');
-                      },
+                      // onTap: () {
+                      //   Navigator.of(context).pushNamed('');
+                      // },
                       child: Center(
                         child: Text('Next', style: TextStyle(fontSize: 20)),
                       ),
