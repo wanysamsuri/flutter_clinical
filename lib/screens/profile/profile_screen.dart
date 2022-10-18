@@ -40,8 +40,8 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(Adaptive.w(1)),
-        height: 130.h,
+        padding: EdgeInsets.all(Adaptive.w(3)),
+        height: 110.h,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -199,20 +199,31 @@ class _ProfileState extends State<Profile> {
                                   actions: [
                                     TextButton(
                                         onPressed: () {
-                                          ApiService().userLogout();
-                                        },
-                                        child: Text(
-                                          'Yes',
-                                          style: TextStyle(color: Colors.green),
-                                        )),
-                                    TextButton(
-                                        onPressed: () {
                                           Navigator.pop(context);
                                         },
                                         child: Text(
                                           'No',
                                           style: TextStyle(color: Colors.red),
-                                        ))
+                                        )),
+                                    Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          border:
+                                              Border.all(color: Colors.green),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: TextButton(
+                                          onPressed: () {
+                                            ApiService().userLogout();
+                                          },
+                                          child: Text(
+                                            'Yes',
+                                            style: TextStyle(
+                                              color: Colors.green,
+                                            ),
+                                          )),
+                                    )
                                   ],
                                 ));
 

@@ -6,11 +6,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../constant.dart';
 
-List<Widget> services = <Widget>[
-  Text('Doctor - Home Visit'),
-  Text('Doctor - Video Consultation'),
-  Text('Nurse - Home Visit')
-];
+// List<Widget> services = <Widget>[
+//   Text('Doctor - Home Visit'),
+//   Text('Doctor - Video Consultation'),
+//   Text('Nurse - Home Visit')
+// ];
 
 class AppointmentForm extends StatefulWidget {
   const AppointmentForm({Key? key}) : super(key: key);
@@ -20,7 +20,25 @@ class AppointmentForm extends StatefulWidget {
 }
 
 class _AppointmentFormState extends State<AppointmentForm> {
-  final List<bool> _selectedServices = <bool>[true, false, false];
+  // final List<bool> _selectedServices = <bool>[true, false, false];
+  int selected = 0;
+
+  Widget customRadio(String text, int index) {
+    return OutlinedButton(
+      onPressed: () {
+        setState(() {
+          selected = index;
+        });
+      },
+      child: Text(
+        text,
+        style: TextStyle(
+          color: (selected == index) ? Colors.blue : Colors.grey,
+        ),
+      ),
+      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +74,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
               },
             )),
         body: Container(
-            padding: EdgeInsets.all(Adaptive.w(5)),
-            height: Adaptive.h(100),
+            padding: EdgeInsets.all(Adaptive.w(3)),
+            height: 120.h,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
@@ -247,37 +265,58 @@ class _AppointmentFormState extends State<AppointmentForm> {
                               ),
                             ),
                             SizedBox(height: screenHeight * 0.02),
-                            ToggleButtons(
-                              onPressed: (int index) {
-                                setState(() {
-                                  // The button that is tapped is set to true, and the others to false.
-                                  for (int i = 0;
-                                      i < _selectedServices.length;
-                                      i++) {
-                                    _selectedServices[i] = i == index;
-                                  }
-                                });
-                              },
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              selectedBorderColor: primaryColor,
-                              selectedColor: Colors.black,
-                              fillColor: secondaryColor,
-                              color: Colors.black,
-                              constraints: const BoxConstraints(
-                                minHeight: 60.0,
-                                minWidth: 110.0,
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  customRadio("Doctor - Home Visit", 1),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  customRadio("Doctor - Video Consultation", 2),
+                                ],
                               ),
-                              isSelected: _selectedServices,
-                              children: services,
-                            ),
+                            )
+
+                            // ToggleButtons(
+                            //   onPressed: (int index) {
+                            //     setState(() {
+                            //       // The button that is tapped is set to true, and the others to false.
+                            //       for (int i = 0;
+                            //           i < _selectedServices.length;
+                            //           i++) {
+                            //         _selectedServices[i] = i == index;
+                            //       }
+                            //     });
+                            //   },
+                            //   borderRadius:
+                            //       const BorderRadius.all(Radius.circular(8)),
+                            //   selectedBorderColor: primaryColor,
+                            //   selectedColor: Colors.black,
+                            //   fillColor: secondaryColor,
+                            //   color: Colors.black,
+                            //   constraints: const BoxConstraints(
+                            //     minHeight: 60.0,
+                            //     minWidth: 110.0,
+                            //   ),
+                            //   isSelected: _selectedServices,
+                            //   children: services,
+                            // ),
                           ],
                         ),
                       ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            customRadio("Nurse - Home Visit", 3),
+                          ],
+                        ),
+                      )
                     ]),
               ),
               SizedBox(
-                height: 100,
+                height: 20,
               ),
               Center(
                 child: Container(
