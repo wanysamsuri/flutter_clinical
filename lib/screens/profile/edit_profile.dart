@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/profile/patient_profile.dart';
 import 'package:flutter_clinic/screens/profile/profile_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../customshape.dart';
 
@@ -49,7 +50,8 @@ class _EditProfileScreensState extends State<EditProfileScreens> {
             //   future: ApiService(),
             //   child:
             Container(
-          padding: EdgeInsets.only(left: 16, right: 16),
+          padding: EdgeInsets.all(Adaptive.w(4)),
+          height: 130.h,
           child: ListView(children: [
             SizedBox(height: 20),
             Text(

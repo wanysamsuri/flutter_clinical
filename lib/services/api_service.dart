@@ -145,4 +145,19 @@ class ApiService {
 
     return responseBody;
   }
+
+  Future fetchDeviceName() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointDeviceName = Uri.parse('$baseUrl/personal-access-tokens');
+    final response = await http.get(endpointDeviceName, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    final responseBody = json.decode(response.body)['data'];
+
+    return responseBody;
+  }
 }

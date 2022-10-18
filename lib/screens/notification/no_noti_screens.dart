@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NoNotiScreens extends StatefulWidget {
   const NoNotiScreens({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class _NoNotiScreensState extends State<NoNotiScreens> {
           )),
       body: SafeArea(
           child: Container(
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.all(Adaptive.w(5)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -51,6 +52,8 @@ class _NoNotiScreensState extends State<NoNotiScreens> {
               children: [
                 Image.asset(
                   'assets/noNoti.png',
+                  color: Colors.white.withOpacity(0.5),
+                  colorBlendMode: BlendMode.modulate,
                   fit: BoxFit.fill,
                   height: 190,
                 ),
@@ -60,7 +63,7 @@ class _NoNotiScreensState extends State<NoNotiScreens> {
                 const Text(
                   'No Notifications Yet',
                   style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                   textAlign: TextAlign.center,

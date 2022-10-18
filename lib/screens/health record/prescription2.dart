@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/health%20record/viewPDF_prescription.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:intl/intl.dart';
 
@@ -39,10 +40,11 @@ class _PrescriptionDetailState extends State<PrescriptionDetail> {
           centerTitle: true,
         ),
         body: Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(Adaptive.w(4)),
+            height: 130.h,
             child: Center(
                 child: Container(
-              height: screenHeight * 0.9,
+              height: 700,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(20)),
@@ -484,8 +486,10 @@ class _PrescriptionDetailState extends State<PrescriptionDetail> {
                   SizedBox(height: screenHeight * 0.04),
                   GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ViewPDF_prescription()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewPDF_prescription()));
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(

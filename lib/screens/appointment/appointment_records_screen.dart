@@ -8,6 +8,7 @@ import 'package:flutter_clinic/screens/appointment/new_appointment_record.dart';
 import '../../customshape.dart';
 import '../health record/note_screen.dart';
 import '../health record/prescription_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Appointment extends StatefulWidget {
   const Appointment({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _AppointmentState extends State<Appointment> {
           title: const Text('My Appointments'),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(Adaptive.w(5)),
           child: Column(
             children: [
               TabBar(

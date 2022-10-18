@@ -9,6 +9,7 @@ import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:skeleton_text/skeleton_text.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../models/data_model.dart';
 
@@ -109,7 +110,9 @@ class _PrescriptionState extends State<Prescription>
         backgroundColor: Colors.grey[50],
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                padding: EdgeInsets.all(Adaptive.w(1)),
+                height: 100.h,
+                // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                 child: SingleChildScrollView(
                     child: Column(children: <Widget>[
                   FutureBuilder(

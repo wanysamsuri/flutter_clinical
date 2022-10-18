@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../customshape.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ViewNotification extends StatefulWidget {
   const ViewNotification({Key? key}) : super(key: key);
@@ -42,195 +43,196 @@ class _ViewNotificationState extends State<ViewNotification> {
               },
             )),
         body: SingleChildScrollView(
+            padding: EdgeInsets.all(Adaptive.w(5)),
             child: Column(children: [
-          SizedBox(
-            height: screenWidth * 0.03,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Center(
-              child: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 1.0), //(x,y)
-                  blurRadius: 5.0,
-                ),
-              ],
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/noNoti');
-              },
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notification\ntesting',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
+              SizedBox(
+                height: screenWidth * 0.03,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                  child: Container(
+                padding: EdgeInsets.all(10),
+                width: 400,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 5.0,
+                    ),
                   ],
                 ),
-              ),
-            ),
-          )),
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-              child: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 1.0), //(x,y)
-                  blurRadius: 5.0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/noNoti');
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notification\ntesting',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/noNoti');
-              },
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notification\ntesting',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
+              )),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Container(
+                padding: EdgeInsets.all(10),
+                width: 400,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 5.0,
+                    ),
                   ],
                 ),
-              ),
-            ),
-          )),
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-              child: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 1.0), //(x,y)
-                  blurRadius: 5.0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/noNoti');
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notification\ntesting',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/noNoti');
-              },
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notification\ntesting',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
+              )),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Container(
+                padding: EdgeInsets.all(10),
+                width: 400,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 5.0,
+                    ),
                   ],
                 ),
-              ),
-            ),
-          )),
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-              child: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 1.0), //(x,y)
-                  blurRadius: 5.0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/noNoti');
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notification\ntesting',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/noNoti');
-              },
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notification\ntesting',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
+              )),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Container(
+                padding: EdgeInsets.all(10),
+                width: 400,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 5.0,
+                    ),
                   ],
                 ),
-              ),
-            ),
-          )),
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-              child: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0.0, 1.0), //(x,y)
-                  blurRadius: 5.0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/noNoti');
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notification\ntesting',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/noNoti');
-              },
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notification\ntesting',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        )),
+              )),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Container(
+                padding: EdgeInsets.all(10),
+                width: 400,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 5.0,
+                    ),
                   ],
                 ),
-              ),
-            ),
-          )),
-        ])));
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/noNoti');
+                  },
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notification\ntesting',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              )),
+            ])));
   }
 }

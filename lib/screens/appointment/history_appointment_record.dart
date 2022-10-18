@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/screens/appointment/queue_new.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HistoryAppointmentScreen extends StatefulWidget {
   const HistoryAppointmentScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _HistoryAppointmentScreenState extends State<HistoryAppointmentScreen> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.all(Adaptive.w(5)),
                 child: SingleChildScrollView(
                     child: Column(children: [
                   SizedBox(height: 25),

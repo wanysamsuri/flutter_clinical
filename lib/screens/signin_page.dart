@@ -226,33 +226,33 @@ class _SignInState extends State<SignIn> {
                                               )),
                                         ),
                                         SizedBox(height: Adaptive.w(10)),
-                                        Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              const Text(
-                                                "Don't have an account?",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 10),
-                                              InkWell(
-                                                  onTap: () {
-                                                    Navigator.of(context)
-                                                        .pushNamed(
-                                                            '/signup_page');
-                                                  },
-                                                  child: const Text(' Sign Up',
-                                                      style: TextStyle(
-                                                        color: Colors.blue,
-                                                        fontSize: 18,
-                                                      )))
-                                            ],
-                                          ),
-                                        )
+                                        // Center(
+                                        //   child: Column(
+                                        //     mainAxisAlignment:
+                                        //         MainAxisAlignment.center,
+                                        //     children: <Widget>[
+                                        //       const Text(
+                                        //         "Don't have an account?",
+                                        //         style: TextStyle(
+                                        //           color: Colors.black,
+                                        //           fontSize: 18,
+                                        //         ),
+                                        //       ),
+                                        //       const SizedBox(height: 10),
+                                        //       InkWell(
+                                        //           onTap: () {
+                                        //             Navigator.of(context)
+                                        //                 .pushNamed(
+                                        //                     '/signup_page');
+                                        //           },
+                                        //           child: const Text(' Sign Up',
+                                        //               style: TextStyle(
+                                        //                 color: Colors.blue,
+                                        //                 fontSize: 18,
+                                        //               )))
+                                        //     ],
+                                        //   ),
+                                        // )
                                       ])))
                         ],
                       ),

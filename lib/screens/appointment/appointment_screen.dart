@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/screens/appointment/choice_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../constant.dart';
 
@@ -21,7 +22,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(Adaptive.w(3)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -98,7 +99,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                 : const CircleAvatar(
                                     backgroundColor: Colors.white,
                                     radius: 30,
-                                    child: FlutterLogo(size: 30),
+                                    child: Icon(Icons.medication),
                                   ),
                             Text(
                               appointmentServices[index].serviceName.toString(),

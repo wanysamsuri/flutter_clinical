@@ -7,6 +7,7 @@ import 'package:flutter_clinic/models/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'EMC2.dart';
 
@@ -90,7 +91,8 @@ class _EMCState extends State<EMC> with TickerProviderStateMixin {
         backgroundColor: Colors.grey[50],
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                padding: EdgeInsets.all(Adaptive.w(1)),
+                height: 130.h,
                 child: SingleChildScrollView(
                     child: Column(children: <Widget>[
                   ListView.builder(

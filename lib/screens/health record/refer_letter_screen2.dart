@@ -5,6 +5,7 @@ import 'package:flutter_clinic/screens/health%20record/viewPDF_emc.dart';
 import 'package:flutter_clinic/screens/health%20record/viewPDF_prescription.dart';
 import 'package:flutter_clinic/screens/health%20record/viewPDF_refer.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ReferLetter2 extends StatefulWidget {
   const ReferLetter2({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class _ReferLetter2State extends State<ReferLetter2> {
         ),
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.all(Adaptive.w(4)),
+                height: 130.h,
                 child: Center(
                     child: Container(
                   height: 600,

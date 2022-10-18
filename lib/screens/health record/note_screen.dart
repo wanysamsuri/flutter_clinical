@@ -7,6 +7,7 @@ import 'package:flutter_clinic/services/api_service.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:intl/intl.dart';
 import 'package:html2md/html2md.dart' as html2md;
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Note extends StatefulWidget {
   final String orderId;
@@ -30,7 +31,8 @@ class _NoteState extends State<Note> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                padding: EdgeInsets.all(Adaptive.w(1)),
+                height: 100.h,
                 child: SingleChildScrollView(
                     child: Column(children: [
                   // SizedBox(height: 25),
@@ -53,133 +55,134 @@ class _NoteState extends State<Note> {
 
                                 //body listview
 
-                                child: Card(
-                                    color: Color(0xFFEEEEEE),
-                                    shadowColor: Colors.grey[300],
-                                    elevation: 3.0,
-                                    shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            color: Color(0xFFEEEEEE), width: 1),
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: ExpansionTile(
-                                        key: Key(index.toString()),
-                                        initiallyExpanded: index == selected,
-                                        onExpansionChanged: (newState) {
-                                          if (newState) {
-                                            setState(() {
-                                              selected = index;
-                                            });
-                                          } else {
-                                            setState(() {
-                                              selected = -1;
-                                            });
-                                          }
-                                        },
-                                        title:
-                                            // Text('data'),
+                                child: Container(
+                                  child: Card(
+                                      color: Color(0xFFEEEEEE),
+                                      shadowColor: Colors.grey[300],
+                                      elevation: 3.0,
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xFFEEEEEE),
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: ExpansionTile(
+                                          key: Key(index.toString()),
+                                          initiallyExpanded: index == selected,
+                                          onExpansionChanged: (newState) {
+                                            if (newState) {
+                                              setState(() {
+                                                selected = index;
+                                              });
+                                            } else {
+                                              setState(() {
+                                                selected = -1;
+                                              });
+                                            }
+                                          },
+                                          title:
+                                              // Text('data'),
+                                              Center(
+                                                  child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 15, bottom: 15.0),
+                                            child: Text(
+                                              snapshot.data['name'],
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          )),
+                                          subtitle: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15.0),
+                                            child: Text(
+                                              DateFormat('EEEE, MMMM d, '
+                                                      'yyyy, '
+                                                      'hh:mm a')
+                                                  .format(DateTime.parse(snapshot
+                                                                  .data[
+                                                              'prescriptions']
+                                                          [index]['created_at'])
+                                                      .toLocal()),
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                          ),
+
+                                          //below
+                                          children: <Widget>[
+                                            // AspectRatio(
+                                            //   aspectRatio: 100,
+                                            //   // child: Text(items[index].patient),
+                                            // ),
+
                                             Center(
-                                                child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 15, bottom: 15.0),
-                                          child: Text(
-                                            snapshot.data['name'],
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        )),
-                                        subtitle: Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 15.0),
-                                          child: Text(
-                                            DateFormat('EEEE, MMMM d, '
-                                                    'yyyy, '
-                                                    'hh:mm a')
-                                                .format(DateTime.parse(snapshot
-                                                                .data[
-                                                            'prescriptions']
-                                                        [index]['created_at'])
-                                                    .toLocal()),
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.green,
-                                            ),
-                                          ),
-                                        ),
-
-                                        //below
-                                        children: <Widget>[
-                                          // AspectRatio(
-                                          //   aspectRatio: 100,
-                                          //   // child: Text(items[index].patient),
-                                          // ),
-
-                                          Center(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Notes :',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(convertedHtml),
-                                                ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    shape:
-                                                        new RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          new BorderRadius
-                                                              .circular(30.0),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'Notes :',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(convertedHtml),
+                                                  ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      shape:
+                                                          new RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            new BorderRadius
+                                                                .circular(30.0),
+                                                      ),
+                                                      primary: Color.fromARGB(
+                                                          255, 3, 205, 219),
                                                     ),
-                                                    primary: Color.fromARGB(
-                                                        255, 3, 205, 219),
+                                                    child: Text(
+                                                      'View Details',
+                                                      style: TextStyle(
+                                                          fontSize: 18),
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  NoteDetailScreen(
+                                                                    panelName: snapshot
+                                                                            .data['panel']
+                                                                        [
+                                                                        'name'],
+                                                                    patientName:
+                                                                        snapshot
+                                                                            .data['name'],
+                                                                    nric: snapshot
+                                                                            .data[
+                                                                        'nric'],
+                                                                    phoneNum: snapshot
+                                                                            .data[
+                                                                        'phone'],
+                                                                    gender:
+                                                                        "Male",
+                                                                    date: DateFormat(
+                                                                            'dd MMMM yyyy')
+                                                                        .format(
+                                                                            DateTime.parse(snapshot.data['prescriptions'][index]['created_at']).toLocal()),
+                                                                    description:
+                                                                        convertedHtml,
+                                                                  )));
+                                                    },
                                                   ),
-                                                  child: Text(
-                                                    'View Details',
-                                                    style:
-                                                        TextStyle(fontSize: 18),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                NoteDetailScreen(
-                                                                  panelName: snapshot
-                                                                              .data[
-                                                                          'panel']
-                                                                      ['name'],
-                                                                  patientName:
-                                                                      snapshot.data[
-                                                                          'name'],
-                                                                  nric: snapshot
-                                                                          .data[
-                                                                      'nric'],
-                                                                  phoneNum: snapshot
-                                                                          .data[
-                                                                      'phone'],
-                                                                  gender:
-                                                                      "Male",
-                                                                  date: DateFormat(
-                                                                          'dd MMMM yyyy')
-                                                                      .format(DateTime.parse(snapshot.data['prescriptions'][index]
-                                                                              [
-                                                                              'created_at'])
-                                                                          .toLocal()),
-                                                                  description:
-                                                                      convertedHtml,
-                                                                )));
-                                                  },
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ])),
+                                          ])),
+                                ),
                               );
                             },
                             separatorBuilder: (context, index) =>

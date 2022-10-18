@@ -23,7 +23,6 @@ class _DashboardState extends State<Dashboard> {
   final _pageOptions = [
     const HomeScreen(),
     const Appointment(),
-
     const PanelRecords(),
     const Profile(),
 

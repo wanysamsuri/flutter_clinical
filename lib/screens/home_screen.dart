@@ -8,6 +8,7 @@ import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/screens/health_status.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ViewNotification()),
+                                        const NoNotiScreens()),
                               );
                             },
                           ),
@@ -240,7 +241,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               padding: const EdgeInsets.all(10),
                                               width: 300,
                                               height: 200,
-                                              child: const FlutterLogo()
+                                              child: const Icon(
+                                                Icons.article,
+                                                size: 80,
+                                              )
                                               //     CachedNetworkImage(
                                               //   imageUrl: snapshot
                                               //               .data[highlightIndex]

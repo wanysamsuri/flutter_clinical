@@ -22,7 +22,9 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SafeArea(
+        body: SafeArea(
+      child: Container(
+        padding: EdgeInsets.all(Adaptive.w(3)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +36,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                 children: [
                   const Icon(
                     Icons.navigate_before,
-                    size: 40,
+                    size: 30,
                   ),
                   SizedBox(
                     width: screenWidth * 0.01,
@@ -104,7 +106,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                                 const CircleAvatar(
                                   backgroundColor: Colors.white,
                                   radius: 30,
-                                  child: FlutterLogo(size: 30),
+                                  child: Icon(Icons.calendar_month),
                                 ),
                                 SizedBox(
                                   height: Adaptive.h(1),
@@ -130,6 +132,6 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

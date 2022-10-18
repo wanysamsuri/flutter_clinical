@@ -27,6 +27,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -55,7 +56,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
               },
             )),
         body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.all(Adaptive.w(5)),
+            height: Adaptive.h(100),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
@@ -194,8 +196,10 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 40,
+                                    width: 295,
+                                    // width: MediaQuery.of(context).size.width,
+                                    height: 80,
+
                                     child: ListView.builder(
                                         shrinkWrap: true,
                                         physics: const BouncingScrollPhysics(),
@@ -203,6 +207,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                         itemCount: 10,
                                         itemBuilder: (context, index) {
                                           return Container(
+                                            height: 30,
                                             margin: const EdgeInsets.only(
                                                 right: 10, top: 10),
                                             decoration: BoxDecoration(
@@ -261,7 +266,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                               color: Colors.black,
                               constraints: const BoxConstraints(
                                 minHeight: 60.0,
-                                minWidth: 117.0,
+                                minWidth: 110.0,
                               ),
                               isSelected: _selectedServices,
                               children: services,
@@ -272,7 +277,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                     ]),
               ),
               SizedBox(
-                height: 150,
+                height: 100,
               ),
               Center(
                 child: Container(

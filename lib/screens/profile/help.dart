@@ -13,6 +13,5 @@ class _HelpScreenState extends State<HelpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold();
-    
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/models/new_appointment_model.dart';
 import 'package:flutter_clinic/screens/appointment/queue_new.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NewAppointmentRecord extends StatefulWidget {
   const NewAppointmentRecord({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _NewAppointmentRecordState extends State<NewAppointmentRecord>
     return Scaffold(
         body: SafeArea(
             child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.all(Adaptive.w(5)),
       child: SingleChildScrollView(
         child: Column(children: [
           SizedBox(height: 25),

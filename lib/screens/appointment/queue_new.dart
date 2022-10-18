@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class QueueNew extends StatefulWidget {
   const QueueNew({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _QueueNewState extends State<QueueNew> {
         backgroundColor: Color.fromARGB(255, 157, 228, 234),
         body: SafeArea(
             child: Container(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(Adaptive.w(5)),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
