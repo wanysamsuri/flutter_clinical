@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -29,15 +29,40 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  syncfusion_flutter_pdfviewer: ^19.1.69-beta
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  animated_bottom_navigation_bar: ^1.1.0
+  stylish_bottom_bar: ^0.1.5
+  onesignal_flutter: ^3.4.1
+  shared_preferences: ^2.0.15
+  carousel_slider: ^4.1.1
+  device_info_plus: ^4.1.2
+  http: ^0.13.5
+  get: ^4.6.5
+  sizer: ^2.0.15
+  responsive_sizer: ^3.1.1
+  flutter_launcher_icons: ^0.10.0
+  fluttertoast: ^8.0.9
+  wc_form_validators: ^1.0.0
+  email_validator: ^2.0.1
+  skeleton_text: ^3.0.0
+  html2md: ^1.2.6
+  username_validator: ^0.1.1
+  rename: ^2.0.1
+  url_launcher: ^6.1.6
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/medic_logo.png"
+  min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -51,7 +76,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
