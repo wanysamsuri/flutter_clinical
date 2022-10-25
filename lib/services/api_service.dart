@@ -160,4 +160,20 @@ class ApiService {
 
     return responseBody;
   }
+
+  Future fetchNotification() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointDeviceName = Uri.parse('$baseUrl/notifications');
+    final response = await http.get(endpointDeviceName, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    final responseBody =
+        json.decode(response.body)['data'];
+
+    return responseBody;
+  }
 }

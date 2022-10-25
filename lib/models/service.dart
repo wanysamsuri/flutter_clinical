@@ -27,22 +27,22 @@ List<Service> services = [
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Teleconsulation',
-      icon: Icons.co_present,
-      navigator: (context) {
-        Navigator.pop(context);
-      }),
-  Service(
-      serviceName: 'Coming Soon',
-      icon: Icons.not_interested,
-      navigator: (context) {
-        Navigator.pop(context);
-      }),
-  Service(
-      serviceName: 'Coming Soon',
-      icon: Icons.not_interested,
-      navigator: (context) {
-        Navigator.pop(context);
-      }),
+  // Service(
+  //     serviceName: 'Teleconsulation',
+  //     icon: Icons.co_present,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
+  // Service(
+  //     serviceName: 'Coming Soon',
+  //     icon: Icons.not_interested,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
+  // Service(
+  //     serviceName: 'Coming Soon',
+  //     icon: Icons.not_interested,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
 ];

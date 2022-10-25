@@ -6,11 +6,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
-import 'package:flutter_clinic/screens/health_status.dart';
+import 'package:flutter_clinic/bmi/health_status.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'find_clinic.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -71,25 +73,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const NoNotiScreens()),
+                                        const ViewNotification()),
                               );
                             },
                           ),
                         ],
                       ),
                       Spacer(),
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: TextField(
-                            enabled: false,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.search),
-                                labelText: 'Search',
-                                border: InputBorder.none),
-                          ))
+                      // Container(
+                      //     padding: EdgeInsets.symmetric(horizontal: 10),
+                      //     decoration: BoxDecoration(
+                      //         color: Colors.white,
+                      //         borderRadius: BorderRadius.circular(20)),
+                      //     child: TextField(
+                      //       enabled: false,
+                      //       decoration: InputDecoration(
+                      //           contentPadding: EdgeInsets.only(left: 10),
+                      //           // prefixIcon: Icon(Icons.search),
+                      //           labelText: 'Search',
+                      //           border: InputBorder.none),
+
+                      //     ),
+
+                      //     )
                     ],
                   ),
                 ),
@@ -125,11 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     } else if (index == 1) {
                                       return AppointmentScreen();
                                     } else if (index == 2) {
-                                      return Scaffold(
-                                        appBar: AppBar(
-                                          backgroundColor: primaryColor,
-                                        ),
-                                      );
+                                      return FindClinicScreen();
                                     } else if (index == 3) {
                                       return Scaffold(
                                         appBar: AppBar(
@@ -316,6 +318,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   height: 5,
                                                 ),
                                                 const Text('Subtitle'),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                const Text('Description'),
                                                 // Text(
                                                 //     snapshot.data[
                                                 //             highlightIndex]
