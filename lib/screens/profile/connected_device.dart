@@ -100,12 +100,10 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                 height: 1,
                                               ),
                                               ListTile(
-                                                leading: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Icon(Icons.phone_android),
-                                                  ],
+                                                leading: Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child:
+                                                      Icon(Icons.phone_android),
                                                 ),
                                                 title:
                                                     // Text('data'),

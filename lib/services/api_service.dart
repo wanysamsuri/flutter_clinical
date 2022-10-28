@@ -65,7 +65,7 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
 
-    final responseBody = json.decode(response.body)['data'];
+    final responseBody = json.decode(response.body)['data']['data'];
 
     return responseBody;
   }

@@ -8,6 +8,7 @@ import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/health_status.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
+import 'package:flutter_clinic/screens/notification/notification_main.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ViewNotification()),
+                                        const MainNotification()),
                               );
                             },
                           ),

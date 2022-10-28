@@ -7,6 +7,7 @@ import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
+import 'package:flutter_clinic/screens/notification/noti_screens.dart';
 import 'package:flutter_clinic/screens/profile/connected_device.dart';
 import 'package:flutter_clinic/screens/profile/feedback.dart';
 import 'package:flutter_clinic/screens/profile/help.dart';
@@ -75,6 +76,7 @@ class _MyAppState extends State<MyApp> {
             '/queue_new': ((context) => const QueueNew()),
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
+            '/notification': ((context) => const NotificationScreen()),
           },
           home: const LoadingScreens());
     });
