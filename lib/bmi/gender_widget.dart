@@ -45,7 +45,8 @@ class _GenderWidgetState extends State<GenderWidget> {
             },
             onUnSelected: () {},
             selected: _gender == 1,
-            child: Center(
+            child: Container(
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   Image.asset(
@@ -76,17 +77,20 @@ class _GenderWidgetState extends State<GenderWidget> {
             },
             onUnSelected: () {},
             selected: _gender == 2,
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/woman.png',
-                  width: 50,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                const Text('Female')
-              ],
+            child: Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/woman.png',
+                    width: 50,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  const Text('Female')
+                ],
+              ),
             ),
           )
         ],

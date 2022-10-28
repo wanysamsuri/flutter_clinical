@@ -91,77 +91,118 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                       ),
                     ]),
                   ),
-                  SizedBox(height: 30),
-                  Text(
-                    'Name:',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  
+                  SizedBox(height: 50),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 65,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey[200]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            'Name:',
+                            style: TextStyle(
+                              letterSpacing: 5,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            snapshot.data['name'],
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    snapshot.data['name'],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-
-                  // TextField(
-                  //   controller: nameController,
-                  //   decoration: InputDecoration(
-                  //     floatingLabelBehavior: FloatingLabelBehavior.always,
-                  //     hintText: "",
-                  //     labelStyle: TextStyle(
-                  //       fontSize: 20,
-                  //       fontWeight: FontWeight.bold,
-                  //       color: Colors.black,
-                  //     ),
-                  //     hintStyle: TextStyle(fontSize: 20),
-                  //   ),
-                  // ),
-
-                  SizedBox(height: 20),
-                  Text(
-                    'NRIC:',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    snapshot.data['nric'],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-
-                  SizedBox(height: 20),
-                  Text(
-                    'Email:',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 65,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey[200]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            'NRIC:',
+                            style: TextStyle(
+                              letterSpacing: 5,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            snapshot.data['nric'],
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    snapshot.data['email'],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 65,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey[200]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            'Email:',
+                            style: TextStyle(
+                              letterSpacing: 5,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            snapshot.data['email'],
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-
                   SizedBox(height: 50),
                   Container(
                     child: Container(
@@ -171,7 +212,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                           minimumSize: Size(130, 45),
                           primary: Color.fromARGB(255, 157, 228, 234),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(12)),
                         ),
                         child: Text(
                           'Edit',

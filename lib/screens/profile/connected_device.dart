@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 
 import '../../customshape.dart';
 import '../../services/api_service.dart';
@@ -71,7 +72,7 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                             Container(
                               padding: EdgeInsets.all(20),
                               child: const Text(
-                                "Where your are logged in",
+                                "Where you are logged in",
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
@@ -80,53 +81,139 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                     shrinkWrap: true,
                                     physics: const BouncingScrollPhysics(),
                                     scrollDirection: Axis.vertical,
-                                    itemCount: 15,
+                                    itemCount: 5,
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 1.0, vertical: 1.0),
+                                            horizontal: 1.0, vertical: 10),
 
                                         //body listview
 
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              // color: Color(0xFFEEEEEE),
+                                              color: Colors.grey[200],
                                               borderRadius:
                                                   BorderRadius.circular(20)),
-                                          child: ListTile(
-                                            leading: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(Icons.phone_android),
-                                              ],
-                                            ),
-                                            title:
-                                                // Text('data'),
-                                                Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10, bottom: 10),
-                                              child: Text(
-                                                snapshot.data[index]['name'],
-                                                style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black,
-                                                ),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 1,
                                               ),
-                                            ),
-                                            subtitle: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15.0),
-                                              child: Text(
-                                                (snapshot.data[index]
-                                                    ['created_at']),
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black,
+                                              ListTile(
+                                                leading: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(Icons.phone_android),
+                                                  ],
                                                 ),
+                                                title:
+                                                    // Text('data'),
+                                                    Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10, bottom: 10),
+                                                  child: Text(
+                                                    snapshot.data[index]
+                                                        ['name'],
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                                subtitle: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: Text(
+                                                    (snapshot.data[index]
+                                                        ['created_at']),
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                                trailing: IconButton(
+                                                  icon: Icon(Icons.delete,
+                                                      color: Colors.red),
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            ((context) =>
+                                                                AlertDialog(
+                                                                  shape: RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(20))),
+                                                                  title: Center(
+                                                                    child: Text(
+                                                                        'Are you sure want to delete?'),
+                                                                  ),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          'No',
+                                                                          style:
+                                                                              TextStyle(color: Colors.red),
+                                                                        )),
+                                                                    TextButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          ApiService()
+                                                                              .deleteDevice(
+                                                                            sharedDeviceName!,
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          'Yes',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                Colors.green,
+                                                                          ),
+                                                                        ))
+                                                                  ],
+                                                                )));
+
+                                                    // ApiService().deleteDevice();
+                                                    // if (response) {
+                                                    //   print(
+                                                    //       'Delete data success');
+                                                    // } else {
+                                                    //   print(
+                                                    //       'Delete data failed');
+                                                    // }
+                                                  },
+                                                ),
+                                                // InkWell(
+                                                //   onTap: () {
+
+                                                //   },
+                                                //   child: Padding(
+                                                //     padding:
+                                                //         const EdgeInsets.only(
+                                                //             top: 10,
+                                                //             bottom: 10),
+                                                //     child: Icon(
+                                                //       Icons.delete,
+                                                //       color: Colors.red,
+                                                //     ),
+                                                //   ),
+                                                // )
                                               ),
-                                            ),
+                                            ],
                                           ),
                                         ),
                                       );

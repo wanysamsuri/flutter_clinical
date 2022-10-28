@@ -65,7 +65,7 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
 
-    final responseBody = json.decode(response.body)['data']['data'];
+    final responseBody = json.decode(response.body)['data'];
 
     return responseBody;
   }
@@ -165,15 +165,61 @@ class ApiService {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
-    final endpointDeviceName = Uri.parse('$baseUrl/notifications');
-    final response = await http.get(endpointDeviceName, headers: {
+    final endpointMessage = Uri.parse('$baseUrl/notifications');
+    final response = await http.get(endpointMessage, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
 
-    final responseBody =
-        json.decode(response.body)['data'];
+    final responseBody = json.decode(response.body)['data'];
 
     return responseBody;
+  }
+
+  Future deleteDevice(String s) async {
+    String id;
+
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final deviceName = storage.getString('name');
+
+    final endpointDelete =
+        Uri.parse('$baseUrl/personal-access-tokens/$deviceName/delete');
+
+    final body = {
+      'id': deviceName,
+    };
+
+    final response = await http.post(endpointDelete, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    print(response.statusCode);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      storage.clear();
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      Get.toNamed('/loading');
+    } else {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+
+    return json.decode(response.body);
   }
 }
