@@ -69,8 +69,8 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
           child: Container(
             padding: EdgeInsets.all(20),
             child: Card(
+              color: Colors.grey[100],
               elevation: 5,
-              shape: const RoundedRectangleBorder(),
               child: Column(children: [
                 SizedBox(
                   height: 20,

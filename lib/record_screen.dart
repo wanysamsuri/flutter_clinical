@@ -110,7 +110,7 @@ class _HealthRecordState extends State<HealthRecord>
                   Prescription(
                     orderId: widget.orderId,
                   ),
-                  EMC(),
+                  ReferLetter(),
                   ReferLetter()
                 ]),
               )

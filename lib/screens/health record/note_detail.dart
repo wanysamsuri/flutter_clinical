@@ -43,11 +43,12 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
         ),
         body: Container(
             padding: EdgeInsets.all(Adaptive.w(4)),
-            height: 130.h,
+            height: 170.h,
             margin: EdgeInsets.all(15),
-            child: Center(
-                child: Container(
-              height: 700,
+            child: SingleChildScrollView(
+                child: Center(
+                    child: Container(
+              height: 95.h,
               // height: screenHeight * 0.9,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
@@ -366,7 +367,7 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
                           )))
                 ],
               ),
-            ))));
+            )))));
   }
 }
 

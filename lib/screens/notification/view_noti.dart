@@ -34,7 +34,7 @@ class _ViewNotificationState extends State<ViewNotification> {
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.all(Adaptive.w(2)),
+      padding: EdgeInsets.only(top: Adaptive.w(2)),
       height: 130.h,
       child: SafeArea(
         child: FutureBuilder(

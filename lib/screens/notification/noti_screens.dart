@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 
 import '../../customshape.dart';
@@ -31,28 +32,42 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: screenHeight * 0.14,
-          backgroundColor: Colors.grey[50],
-          elevation: 0.0,
-          flexibleSpace: ClipPath(
-              clipper: CustomShape(),
-              child: Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(255, 157, 228, 234),
-              )),
-          // title: const Text('Notifications'),
-          // centerTitle: true,
-          leading: GestureDetector(
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
+          toolbarHeight: screenHeight * 0.2,
+          title: Center(
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[200],
+              radius: 50,
+              child: Icon(
+                Icons.foundation,
+                size: 50,
+                color: Colors.black,
+              ),
             ),
+          ),
+          backgroundColor: primaryColor,
+          leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black, // add custom icons also
+            ),
           ),
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                    
+                  },
+                  child: Icon(
+                    Icons.delete,
+                    size: 26.0,
+                    color: Colors.black,
+                  ),
+                )),
+          ],
         ),
         body: Container(
           padding: EdgeInsets.all(Adaptive.w(2)),

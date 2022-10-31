@@ -7,7 +7,24 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EMC_2 extends StatefulWidget {
-  const EMC_2({Key? key}) : super(key: key);
+  final String panelName;
+  final String patientName;
+  final String nric;
+  final String phoneNum;
+  final String gender;
+  final String date;
+  final String description;
+
+  const EMC_2(
+      {Key? key,
+      required this.patientName,
+      required this.nric,
+      required this.phoneNum,
+      required this.gender,
+      required this.date,
+      required this.panelName,
+      required this.description})
+      : super(key: key);
 
   @override
   State<EMC_2> createState() => _EMC_2State();

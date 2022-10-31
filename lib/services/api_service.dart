@@ -176,7 +176,7 @@ class ApiService {
     return responseBody;
   }
 
-  Future deleteDevice(String s) async {
+  Future deleteDevice(String deviceId) async {
     String id;
 
     SharedPreferences storage = await SharedPreferences.getInstance();
