@@ -28,7 +28,6 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
 
   @override
   void dispose() {
-    
     super.dispose();
   }
 
@@ -109,8 +108,14 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                               ListTile(
                                                 leading: Container(
                                                   padding: EdgeInsets.all(10),
-                                                  child:
-                                                      Icon(Icons.phone_android),
+                                                  child: Icon(
+                                                    Icons.phone_android,
+                                                    color: snapshot.data[index]
+                                                                ['name'] ==
+                                                            sharedDeviceName
+                                                        ? Colors.green
+                                                        : Colors.grey,
+                                                  ),
                                                 ),
                                                 title:
                                                     // Text('data'),
@@ -142,6 +147,7 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                     ),
                                                   ),
                                                 ),
+                                                
                                                 trailing: IconButton(
                                                   icon: Icon(Icons.delete,
                                                       color: Colors.red),
@@ -177,7 +183,7 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                                             () {
                                                                           ApiService()
                                                                               .deleteDevice(
-                                                                            sharedDeviceName!,
+                                                                            snapshot.data[index]['id'],
                                                                           );
                                                                         },
                                                                         child:

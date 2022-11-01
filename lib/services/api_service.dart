@@ -232,7 +232,7 @@ class ApiService {
     final responseBody = json.decode(response.body);
 
     if (response.statusCode == 200) {
-      storage.clear();
+      // storage.clear();
       Fluttertoast.showToast(
           msg: (responseBody['message']),
           toastLength: Toast.LENGTH_SHORT,
@@ -242,7 +242,7 @@ class ApiService {
           textColor: Colors.white,
           fontSize: 16.0);
 
-      Get.toNamed('/loading');
+      // Get.toNamed('/loading');
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
