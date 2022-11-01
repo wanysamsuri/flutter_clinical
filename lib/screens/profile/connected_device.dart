@@ -17,11 +17,18 @@ class ConnectedDevicesScreens extends StatefulWidget {
 class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
   TextEditingController nameController = TextEditingController();
   Future? futureDeviceName;
+  // Future? futureConnection = Connectivity().onConnectivityChanged;
   int selected = -1;
   @override
   void initState() {
     super.initState();
     futureDeviceName = ApiService().fetchDeviceName();
+  }
+
+  @override
+  void dispose() {
+    
+    super.dispose();
   }
 
   @override

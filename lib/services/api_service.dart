@@ -64,10 +64,13 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
-
-    final responseBody = json.decode(response.body)['data']['data'];
-
-    return responseBody;
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data']['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
   }
 
   Future fetchPanelRecords(String orderId) async {
@@ -80,10 +83,16 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
 
-    final responseBody = json.decode(response.body)['data'];
-
-    return responseBody;
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
   }
 
   Future userLogout(
@@ -117,6 +126,9 @@ class ApiService {
           fontSize: 16.0);
 
       Get.toNamed('/loading');
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -126,6 +138,7 @@ class ApiService {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
+      Get.toNamed('/loading');
     }
 
     return json.decode(response.body);
@@ -140,10 +153,16 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
 
-    final responseBody = json.decode(response.body)['data'];
-
-    return responseBody;
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
   }
 
   Future fetchDeviceName() async {
@@ -156,9 +175,16 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
 
-    final responseBody = json.decode(response.body)['data'];
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
 
-    return responseBody;
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
   }
 
   Future fetchNotification() async {
@@ -170,10 +196,15 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+    // final responseBody = json.decode(response.body)['data'];
 
-    final responseBody =
-        json.decode(response.body)['data'];
-
-    return responseBody;
+    // return responseBody;
   }
 }

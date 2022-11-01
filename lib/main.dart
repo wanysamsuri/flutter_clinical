@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
@@ -16,12 +17,15 @@ import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
 import 'package:flutter_clinic/dashboard.dart';
+import 'package:flutter_clinic/services/api_service.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -39,9 +43,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
+    initPlatformState();
     super.initState();
 
-    initPlatformState();
     // configOneSignal();
   }
 
@@ -81,6 +85,26 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
+    final baseUrl = 'https://staging.clinical.my/api/v1';
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/patient-records');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      print('Okay good');
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      print('token cleared!');
+      Get.offAllNamed('/loading');
+    }
+
+    // final responseBody = json.decode(response.body)['data']['data'];
+
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);

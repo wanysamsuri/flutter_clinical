@@ -6,6 +6,7 @@ import 'package:flutter_clinic/screens/appointment/history_appointment_record.da
 import 'package:flutter_clinic/screens/appointment/new_appointment_record.dart';
 
 import '../../customshape.dart';
+import '../../services/api_service.dart';
 import '../health record/note_screen.dart';
 import '../health record/prescription_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -18,6 +19,12 @@ class Appointment extends StatefulWidget {
 }
 
 class _AppointmentState extends State<Appointment> {
+  @override
+  void initState() {
+    ApiService().fetchPanelList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;

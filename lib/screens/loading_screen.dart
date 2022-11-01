@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,7 @@ String? sharedDeviceName;
 String? sharedEmail;
 String? sharedNric;
 String? sharedPhoneNum;
+String? sharedToken;
 
 class LoadingScreens extends StatefulWidget {
   const LoadingScreens({Key? key}) : super(key: key);
@@ -36,7 +38,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
     SharedPreferences storage = await SharedPreferences.getInstance();
     // storage.clear();
     await storage.reload();
-    final sharedToken = storage.getString('token');
+    sharedToken = storage.getString('token');
     sharedFullName = storage.getString('userName');
     sharedDeviceName = storage.getString('modelPhone');
     sharedEmail = storage.getString('_userEmail');
@@ -49,11 +51,17 @@ class _LoadingScreensState extends State<LoadingScreens> {
     print('this is from loading $sharedPlayerIdOneSignal');
 
     if (sharedToken == null) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/signin_page', (route) => false);
+      print('token if null : $sharedToken');
+      print('token if null, mounted?: $mounted');
+      Get.offAllNamed('/signin_page');
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, '/signin_page', (route) => false);
     } else {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/dashboard', (route) => false);
+      print('token if not null : $sharedToken');
+      print('token if not null, mounted?: $mounted');
+      Get.offAllNamed('/dashboard');
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, '/dashboard', (route) => false);
     }
   }
 
