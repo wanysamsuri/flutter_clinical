@@ -147,7 +147,7 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                     ),
                                                   ),
                                                 ),
-                                                
+
                                                 trailing: IconButton(
                                                   icon: Icon(Icons.delete,
                                                       color: Colors.red),
@@ -181,6 +181,10 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                                     TextButton(
                                                                         onPressed:
                                                                             () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          Navigator.pop(
+                                                                              context);
                                                                           ApiService()
                                                                               .deleteDevice(
                                                                             snapshot.data[index]['id'],
