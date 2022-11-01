@@ -10,8 +10,8 @@ class Service {
 
 List<Service> services = [
   Service(
-      serviceName: 'Health Status',
-      icon: Icons.health_and_safety,
+      serviceName: 'Body Mass Index',
+      icon: Icons.scale,
       navigator: (context) {
         Navigator.pop(context);
       }),
@@ -27,12 +27,13 @@ List<Service> services = [
       navigator: (context) {
         Navigator.pop(context);
       }),
-  // Service(
-  //     serviceName: 'Teleconsulation',
-  //     icon: Icons.co_present,
-  //     navigator: (context) {
-  //       Navigator.pop(context);
-  //     }),
+  Service(
+      serviceName: 'Health Status',
+      icon: Icons.bloodtype,
+      navigator: (context) {
+        Navigator.pop(context);
+      }),
+      
   // Service(
   //     serviceName: 'Coming Soon',
   //     icon: Icons.not_interested,

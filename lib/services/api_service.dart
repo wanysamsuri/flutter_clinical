@@ -184,7 +184,7 @@ class ApiService {
     final deviceName = storage.getString('name');
 
     final endpointDelete =
-        Uri.parse('$baseUrl/personal-access-tokens/$deviceName/delete');
+        Uri.parse('$baseUrl/personal-access-tokens/$deviceId/delete');
 
     final body = {
       'id': deviceName,

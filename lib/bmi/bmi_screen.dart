@@ -13,14 +13,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:swipebuttonflutter/swipebuttonflutter.dart';
 
-class HealthStatusScreen extends StatefulWidget {
-  const HealthStatusScreen({Key? key}) : super(key: key);
+class BMIScreen extends StatefulWidget {
+  const BMIScreen({Key? key}) : super(key: key);
 
   @override
-  State<HealthStatusScreen> createState() => _HealthStatusScreenState();
+  State<BMIScreen> createState() => _BMIScreenState();
 }
 
-class _HealthStatusScreenState extends State<HealthStatusScreen> {
+class _BMIScreenState extends State<BMIScreen> {
   int currentindex = 0;
   int _gender = 0;
   int _height = 0;
@@ -52,7 +52,7 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
               color: Color.fromARGB(255, 157, 228, 234),
             )),
             title: const Text(
-              'Health Status',
+              'Body Mass Index (BMI)',
               style: TextStyle(color: Colors.black),
             ),
             centerTitle: true,
