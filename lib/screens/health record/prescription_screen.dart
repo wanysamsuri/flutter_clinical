@@ -213,7 +213,6 @@ class _PrescriptionState extends State<Prescription>
                                             }
                                           },
                                           title:
-                                              // Text('data'),
                                               Center(
                                                   child: Padding(
                                             padding: const EdgeInsets.only(

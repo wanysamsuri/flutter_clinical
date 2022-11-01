@@ -1,14 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:flutter_clinic/screens/health_status.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
-import 'package:flutter_clinic/bmi/health_status.dart';
+import 'package:flutter_clinic/bmi/bmi_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
+import 'package:flutter_clinic/screens/notification/notification_main.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:gauges/main.dart';
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ViewNotification()),
+                                        const MainNotification()),
                               );
                             },
                           ),
@@ -130,17 +130,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
                                     if (index == 0) {
-                                      return HealthStatusScreen();
+                                      return BMIScreen();
                                     } else if (index == 1) {
                                       return AppointmentScreen();
                                     } else if (index == 2) {
                                       return FindClinicScreen();
                                     } else if (index == 3) {
-                                      return Scaffold(
-                                        appBar: AppBar(
-                                          backgroundColor: primaryColor,
-                                        ),
-                                      );
+                                      return HealthStatusScreen();
                                     } else if (index == 4) {
                                       return Scaffold(
                                         appBar: AppBar(
@@ -409,3 +405,159 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+// void _showBottomSheet(BuildContext context) {
+//   showModalBottomSheet(
+//       context: context,
+//       builder: (BuildContext test) {
+//         return Wrap(
+//           children: [
+//             Container(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: <Widget>[
+//                   Padding(
+//                     padding: const EdgeInsets.all(12.0),
+//                     child: Text(
+//                       'Health Status',
+//                       style:
+//                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                     ),
+//                   ),
+//                   Divider(
+//                     height: 2.0,
+//                     color: Colors.grey,
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                   InkWell(
+//                     child: Container(
+//                       child: ListTile(
+//                         leading: const Icon(
+//                           Icons.medication,
+//                           size: 30,
+//                           color: Colors.black,
+//                         ),
+//                         title: Text(
+//                           'Temperature',
+//                           style: TextStyle(fontSize: 18, color: Colors.black),
+//                         ),
+//                       ),
+//                     ),
+//                     onTap: () {
+//                       Navigator.pop(context);
+//                     },
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         );
+//       });
+// }

@@ -8,209 +8,201 @@ import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:skeleton_text/skeleton_text.dart';
+import 'package:html2md/html2md.dart' as html2md;
 
+import '../../services/api_service.dart';
 import 'EMC2.dart';
 
 class EMC extends StatefulWidget {
-  const EMC({Key? key}) : super(key: key);
+  final String orderId;
+  const EMC({Key? key, required this.orderId}) : super(key: key);
 
   @override
   State<EMC> createState() => _EMCState();
 }
 
 class _EMCState extends State<EMC> with TickerProviderStateMixin {
-  late List<GlobalKey> expansionTile;
+  Future? futureFetchPanelRecord;
   int selected = -1;
-  final List<EMC_Model> items = [
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'PoliKlinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-    EMC_Model(
-      title: 'Poliklinik Dr Hanafi',
-      patient: 'Name',
-      date: "Date",
-    ),
-  ];
   @override
   void initState() {
     super.initState();
-    expansionTile = List<GlobalKey<_EMCState>>.generate(
-        items.length, (index) => GlobalKey());
+    futureFetchPanelRecord = ApiService().fetchPanelRecords(widget.orderId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[50],
         body: SafeArea(
             child: Container(
                 padding: EdgeInsets.all(Adaptive.w(1)),
-                height: 130.h,
+                height: 100.h,
                 child: SingleChildScrollView(
-                    child: Column(children: <Widget>[
-                  ListView.builder(
-                      key: Key('builder ${selected.toString()}'),
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 1.0, vertical: 10.0),
+                    child: Column(children: [
+                  // SizedBox(height: 25),
+                  FutureBuilder(
+                      future: futureFetchPanelRecord,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.separated(
+                            key: Key('builder ${selected.toString()}'),
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: snapshot.data['notes'].length,
+                            itemBuilder: (context, index) {
+                              var html = snapshot.data['notes'][index]['notes'];
+                              var convertedHtml = html2md.convert(html);
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 1.0, vertical: 10.0),
 
-                            //body listview
+                                //body listview
 
-                            child: Card(
-                                color: Color(0xFFEEEEEE),
-                                shadowColor: Colors.grey[300],
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Color(0xFFEEEEEE), width: 1),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: ExpansionTile(
-                                    key: Key(index.toString()),
-                                    initiallyExpanded: index == selected,
-                                    onExpansionChanged: (newState) {
-                                      if (newState) {
-                                        setState(() {
-                                          selected = index;
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selected = -1;
-                                        });
-                                      }
-                                    },
-                                    title: Center(
-                                        child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 15, bottom: 15.0),
-                                      child: Text(
-                                        items[index].title,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    )),
-                                    subtitle: Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10),
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              items[index].patient,
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              items[index].date,
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                          ]),
-                                    ),
-
-                                    //below
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 100,
-                                        // child: Text(items[index].patient),
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shape: new RoundedRectangleBorder(
-                                                borderRadius:
-                                                    new BorderRadius.circular(
-                                                        30.0),
-                                              ),
-                                              primary: Colors.grey[500],
-                                            ),
+                                child: Container(
+                                  child: Card(
+                                      color: Color(0xFFEEEEEE),
+                                      shadowColor: Colors.grey[300],
+                                      elevation: 3.0,
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xFFEEEEEE),
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: ExpansionTile(
+                                          key: Key(index.toString()),
+                                          initiallyExpanded: index == selected,
+                                          onExpansionChanged: (newState) {
+                                            if (newState) {
+                                              setState(() {
+                                                selected = index;
+                                              });
+                                            } else {
+                                              setState(() {
+                                                selected = -1;
+                                              });
+                                            }
+                                          },
+                                          title:
+                                              // Text('data'),
+                                              Center(
+                                                  child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 15, bottom: 15.0),
                                             child: Text(
-                                              'Select',
-                                              style: TextStyle(fontSize: 18),
+                                              snapshot.data['name'],
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
                                             ),
-                                            onPressed: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          EMC_2()));
-                                            },
+                                          )),
+                                          subtitle: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15.0),
+                                            child: Text(
+                                              'test',
+                                              // DateFormat('EEEE, MMMM d, '
+                                              //         'yyyy, '
+                                              //         'hh:mm a')
+                                              //     .format(DateTime.parse(
+                                              //       snapshot
+                                              //                     .data[
+                                              //                 'prescriptions']
+                                              //             [index]['created_at'])
+                                              //         .toLocal()),
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.green,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 15.0),
-                                      )
-                                    ])));
+
+                                          //below
+                                          children: <Widget>[
+                                            // AspectRatio(
+                                            //   aspectRatio: 100,
+                                            //   // child: Text(items[index].patient),
+                                            // ),
+
+                                            Center(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'Notes :',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(convertedHtml),
+                                                  ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      shape:
+                                                          new RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            new BorderRadius
+                                                                .circular(30.0),
+                                                      ),
+                                                      primary: Color.fromARGB(
+                                                          255, 3, 205, 219),
+                                                    ),
+                                                    child: Text(
+                                                      'View Details',
+                                                      style: TextStyle(
+                                                          fontSize: 18),
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      EMC_2(
+                                                                        panelName:
+                                                                            snapshot.data['panel']['name'],
+                                                                        patientName:
+                                                                            snapshot.data['name'],
+                                                                        nric: snapshot
+                                                                            .data['nric'],
+                                                                        phoneNum:
+                                                                            snapshot.data['phone'],
+                                                                        gender:
+                                                                            "Male",
+                                                                        date:
+                                                                            // DateFormat(
+                                                                            //         'dd MMMM yyyy')
+                                                                            //     .format(
+                                                                            //         DateTime.parse(
+                                                                            snapshot.data['prescriptions'][index]['created_at'],
+                                                                        // .toLocal()),
+                                                                        description:
+                                                                            convertedHtml,
+                                                                      )));
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ])),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 5),
+                          );
+                        } else {
+                          return SkeletonAnimation(
+                              child: Container(
+                            height: 10,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20)),
+                          ));
+                        }
                       })
                 ])))));
   }

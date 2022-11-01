@@ -91,13 +91,10 @@ class _ProfileState extends State<Profile> {
                           color: Colors.grey[200]),
                       child: ListTile(
                         onTap: () async {
-                          // SharedPreferences storage =
-                          //     await SharedPreferences.getInstance();
-                          // storage.clear();
                           Get.toNamed('/profile');
                         },
                         leading: Icon(Icons.person),
-                        title: Text('Patient Profile'),
+                        title: Text('User Profile'),
                       ),
                     ),
                   ),
@@ -201,39 +198,38 @@ class _ProfileState extends State<Profile> {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  title: Text('Are you sure want to logout?'),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  title: Center(
+                                      child:
+                                          Text('Are you sure want to logout?')),
                                   actions: [
                                     TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text(
-                                          'No',
-                                          style: TextStyle(color: Colors.red),
-                                        )),
-                                    Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey[300],
-                                          border:
-                                              Border.all(color: Colors.green),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: TextButton(
-                                          onPressed: () {
-                                            ApiService().userLogout();
-                                          },
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(
-                                              color: Colors.green,
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              'No',
+                                              style:
+                                                  TextStyle(color: Colors.red),
                                             ),
-                                          )),
-                                    )
+                                          ],
+                                        )),
+                                    TextButton(
+                                        onPressed: () {
+                                          ApiService().userLogout();
+                                        },
+                                        child: Text(
+                                          'Yes',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                          ),
+                                        ))
                                   ],
                                 ));
-
-                        // Get.toNamed('/loading');
                       },
                       leading: Icon(
                         Icons.logout,
