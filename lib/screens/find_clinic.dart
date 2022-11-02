@@ -6,6 +6,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../customshape.dart';
+import '../services/api_service.dart';
 
 class FindClinicScreen extends StatefulWidget {
   const FindClinicScreen({Key? key}) : super(key: key);
@@ -15,7 +16,14 @@ class FindClinicScreen extends StatefulWidget {
 }
 
 class _FindClinicScreenState extends State<FindClinicScreen> {
+  Future? futureFetchPanelList;
   @override
+  void initState() {
+    // TODO: implement initState
+    futureFetchPanelList = ApiService().fetchPanelList();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
@@ -89,78 +97,215 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                   color: Colors.blue),
                             ),
                             SizedBox(
-                              height: 30,
+                              height: 60,
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: primaryColor,
-                                // borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: TextField(
-                                enabled: false,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 10),
-                                    labelText: 'Poliklinik Dr Hanafi',
-                                    labelStyle: TextStyle(color: Colors.black),
-                                    border: InputBorder.none),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Nearby clinics are as below:',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 20,
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: primaryColor,
-                                // borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: TextField(
-                                enabled: false,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 10),
-                                    labelText: 'Poliklinik Dr Hanafi',
-                                    labelStyle: TextStyle(color: Colors.black),
-                                    border: InputBorder.none),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: primaryColor,
-                                // borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: TextField(
-                                enabled: false,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 10),
-                                    labelText: 'Poliklinik Dr Hanafi',
-                                    labelStyle: TextStyle(color: Colors.black),
-                                    border: InputBorder.none),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: primaryColor,
-                                // borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: TextField(
-                                enabled: false,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 10),
-                                    labelText: 'Poliklinik Dr Hanafi',
-                                    labelStyle: TextStyle(color: Colors.black),
-                                    border: InputBorder.none),
-                              ),
-                            ),
-                          ]))),
+                            FutureBuilder(
+                                future: futureFetchPanelList,
+                                builder: (context, AsyncSnapshot snapshot) {
+                                  if (snapshot.hasData) {
+                                    return ListView.builder(
+                                        shrinkWrap: true,
+                                        // gridDelegate:
+                                        //     SliverGridDelegateWithFixedCrossAxisCount(
+                                        //         crossAxisCount: 2),
+                                        itemCount: snapshot.data.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                  height: 100,
+                                                  margin: EdgeInsets.all(5),
+                                                  padding: EdgeInsets.all(20),
+                                                  decoration: BoxDecoration(
+                                                      color: secondaryColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: Column(children: [
+                                                    Column(
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              snapshot
+                                                                  .data[index]
+                                                                      ['panel']
+                                                                      ['name']
+                                                                  .toString()
+                                                                  .toUpperCase(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold, fontSize: 18),
+                                                            ),
+                                                            Spacer(),
+                                                            Row(
+                                                              children: [
+                                                                Column(
+                                                                  children: [
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          '1.3 km',
+                                                                          style:
+                                                                              TextStyle(fontSize: 20),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 30,
+                                                      child: Container(
+                                                        child: Column(
+                                                          children: [
+                                                            Row(children: [
+                                                              Text(
+                                                                'Address',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    fontSize:
+                                                                        16),
+                                                              ),
+                                                              Spacer(),
+                                                              Row(children: [
+                                                                Column(
+                                                                  children: [
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          'Postcode',
+                                                                          style:
+                                                                              TextStyle(fontSize: 16),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ]),
+                                                            ])
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ])));
+                                        });
+                                  } else {
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  }
+                                })
+                            //   Text(
+                            //     'Show in map',
+                            //     style: TextStyle(
+                            //         fontSize: 18,
+                            //         fontWeight: FontWeight.bold,
+                            //         color: Colors.blue),
+                            //   ),
+                            //   SizedBox(
+                            //     height: 30,
+                            //   ),
+                            //   Container(
+                            //     padding: EdgeInsets.symmetric(horizontal: 10),
+                            //     decoration: BoxDecoration(
+                            //       color: secondaryColor,
+                            //       // borderRadius: BorderRadius.circular(20)
+                            //     ),
+                            //     child: TextField(
+                            //       enabled: false,
+                            //       decoration: InputDecoration(
+                            //           contentPadding: EdgeInsets.only(left: 10),
+                            //           labelText: 'Poliklinik Dr Hanafi',
+                            //           labelStyle: TextStyle(color: Colors.black),
+                            //           border: InputBorder.none),
+                            //     ),
+                            //   ),
+                            //   SizedBox(
+                            //     height: 10,
+                            //   ),
+                            //   Container(
+                            //     padding: EdgeInsets.symmetric(horizontal: 10),
+                            //     decoration: BoxDecoration(
+                            //       color: secondaryColor,
+                            //       // borderRadius: BorderRadius.circular(20)
+                            //     ),
+                            //     child: TextField(
+                            //       enabled: false,
+                            //       decoration: InputDecoration(
+                            //           contentPadding: EdgeInsets.only(left: 10),
+                            //           labelText: 'Poliklinik Dr Hanafi',
+                            //           labelStyle: TextStyle(color: Colors.black),
+                            //           border: InputBorder.none),
+                            //     ),
+                            //   ),
+                            //   SizedBox(
+                            //     height: 10,
+                            //   ),
+                            //   Container(
+                            //     padding: EdgeInsets.symmetric(horizontal: 10),
+                            //     decoration: BoxDecoration(
+                            //       color: secondaryColor,
+                            //       // borderRadius: BorderRadius.circular(20)
+                            //     ),
+                            //     child: TextField(
+                            //       enabled: false,
+                            //       decoration: InputDecoration(
+                            //           contentPadding: EdgeInsets.only(left: 10),
+                            //           labelText: 'Poliklinik Dr Hanafi',
+                            //           labelStyle: TextStyle(color: Colors.black),
+                            //           border: InputBorder.none),
+                            //     ),
+                            //   ),
+                            //   SizedBox(
+                            //     height: 10,
+                            //   ),
+                            //   Container(
+                            //     padding: EdgeInsets.symmetric(horizontal: 10),
+                            //     decoration: BoxDecoration(
+                            //       color: secondaryColor,
+                            //       // borderRadius: BorderRadius.circular(20)
+                            //     ),
+                            //     child: TextField(
+                            //       enabled: false,
+                            //       decoration: InputDecoration(
+                            //           contentPadding: EdgeInsets.only(left: 10),
+                            //           labelText: 'Poliklinik Dr Hanafi',
+                            //           labelStyle: TextStyle(color: Colors.black),
+                            //           border: InputBorder.none),
+                            //     ),
+                            //   ),
+                            // ]))),
+                          ])))
                     ]))));
   }
 }
