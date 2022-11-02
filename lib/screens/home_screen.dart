@@ -127,30 +127,38 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    if (index == 0) {
+                                  if (index == 0) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
                                       return BMIScreen();
-                                    } else if (index == 1) {
+                                    }));
+                                  } else if (index == 1) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
                                       return AppointmentScreen();
-                                    } else if (index == 2) {
+                                    }));
+                                  } else if (index == 2) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
                                       return FindClinicScreen();
-                                    } else if (index == 3) {
+                                    }));
+                                  } else if (index == 3) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
                                       return HealthStatusScreen();
-                                    } else if (index == 4) {
+                                    }));
+                                  } else if (index == 4) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
                                       return Scaffold(
                                         appBar: AppBar(
                                           backgroundColor: primaryColor,
                                         ),
                                       );
-                                    } else {
-                                      return Scaffold(
-                                        appBar: AppBar(
-                                          backgroundColor: primaryColor,
-                                        ),
-                                      );
-                                    }
-                                  }));
+                                    }));
+                                  } else {
+                                    _showBottomSheet(context);
+                                  }
                                 },
                                 child: Container(
                                     height: Adaptive.h(9),
@@ -406,158 +414,158 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// void _showBottomSheet(BuildContext context) {
-//   showModalBottomSheet(
-//       context: context,
-//       builder: (BuildContext test) {
-//         return Wrap(
-//           children: [
-//             Container(
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: <Widget>[
-//                   Padding(
-//                     padding: const EdgeInsets.all(12.0),
-//                     child: Text(
-//                       'Health Status',
-//                       style:
-//                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                     ),
-//                   ),
-//                   Divider(
-//                     height: 2.0,
-//                     color: Colors.grey,
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                   InkWell(
-//                     child: Container(
-//                       child: ListTile(
-//                         leading: const Icon(
-//                           Icons.medication,
-//                           size: 30,
-//                           color: Colors.black,
-//                         ),
-//                         title: Text(
-//                           'Temperature',
-//                           style: TextStyle(fontSize: 18, color: Colors.black),
-//                         ),
-//                       ),
-//                     ),
-//                     onTap: () {
-//                       Navigator.pop(context);
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         );
-//       });
-// }
+void _showBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext test) {
+        return Wrap(
+          children: [
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      'Health Status',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Divider(
+                    height: 2.0,
+                    color: Colors.grey,
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Temperature',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      });
+}

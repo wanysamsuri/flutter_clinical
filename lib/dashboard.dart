@@ -76,7 +76,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               title: const Text('Records')),
           AnimatedBarItems(
-              selectedColor: Colors.blue,
+              selectedColor: Color.fromARGB(255, 170, 182, 193),
               icon: const Icon(
                 Icons.person_outline,
               ),
@@ -90,20 +90,20 @@ class _DashboardState extends State<Dashboard> {
         opacity: 0.2,
         currentIndex: _selectedIndex,
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'buttonToPhoneCallBottomNav',
-        onPressed: () {
-          setState(() {
-            heart = !heart;
-          });
-        },
-        backgroundColor: Colors.white,
-        child: Icon(
-          heart ? CupertinoIcons.location_solid : CupertinoIcons.location,
-          color: Colors.red,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: 'buttonToPhoneCallBottomNav',
+      //   onPressed: () {
+      //     setState(() {
+      //       heart = !heart;
+      //     });
+      //   },
+      //   backgroundColor: Colors.white,
+      //   child: Icon(
+      //     heart ? CupertinoIcons.location_solid : CupertinoIcons.location,
+      //     color: Colors.red,
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

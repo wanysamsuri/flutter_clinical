@@ -33,7 +33,19 @@ List<Service> services = [
       navigator: (context) {
         Navigator.pop(context);
       }),
-      
+  Service(
+      serviceName: 'Tutorial',
+      icon: Icons.tungsten_outlined,
+      navigator: (context) {
+        Navigator.pop(context);
+      }),
+  Service(
+      serviceName: 'More',
+      icon: Icons.more_horiz,
+      navigator: (context) {
+        Navigator.pop(context);
+      }),
+
   // Service(
   //     serviceName: 'Coming Soon',
   //     icon: Icons.not_interested,
