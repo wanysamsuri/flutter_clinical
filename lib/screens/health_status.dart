@@ -79,14 +79,14 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChoiceScreen(
-                                        serviceName: healthStatus[index]
-                                            .serviceName
-                                            .toString(),
-                                      )));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => ChoiceScreen(
+                          //               serviceName: healthStatus[index]
+                          //                   .serviceName
+                          //                   .toString(),
+                          //             )));
                         },
                         child: Container(
                           // margin: EdgeInsets.all(10),
@@ -97,7 +97,7 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              (index == 8)
+                              (index == 10)
                                   ? Container()
                                   : const CircleAvatar(
                                       backgroundColor: Colors.white,

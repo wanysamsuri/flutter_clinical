@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(
                 height: 30,
-              ),
+            ),
               Divider(thickness: 2),
               SizedBox(
                 height: 30,

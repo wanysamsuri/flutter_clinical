@@ -256,4 +256,26 @@ class ApiService {
 
     return json.decode(response.body);
   }
+
+  Future fetchPanel() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointPanel = Uri.parse('$baseUrl/panels');
+    final response = await http.get(endpointPanel, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
+  }
 }
