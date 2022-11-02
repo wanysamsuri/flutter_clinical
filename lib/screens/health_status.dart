@@ -97,7 +97,7 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              (index == 8)
+                              (index == 10)
                                   ? Container()
                                   : const CircleAvatar(
                                       backgroundColor: Colors.white,

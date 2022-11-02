@@ -46,7 +46,7 @@ List<HealthStatus> healthStatus = [
         Navigator.pop(context);
       }),
   HealthStatus(
-      serviceName: 'SUGAR INTAKE',
+      serviceName: 'SUGAR LEVEL',
       icon: Icons.medication,
       navigator: (context) {
         Navigator.pop(context);

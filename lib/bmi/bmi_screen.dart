@@ -97,7 +97,7 @@ class _BMIScreenState extends State<BMIScreen> {
                           _age = ageVal;
                         },
                         title: 'Age',
-                        initValue: 21,
+                        initValue: 25,
                         min: 0,
                         max: 200),
                     SizedBox(
@@ -108,7 +108,7 @@ class _BMIScreenState extends State<BMIScreen> {
                           _weight = weightVal;
                         },
                         title: 'Weight (kg)',
-                        initValue: 0,
+                        initValue: 50,
                         min: 0,
                         max: 1000),
                   ],
