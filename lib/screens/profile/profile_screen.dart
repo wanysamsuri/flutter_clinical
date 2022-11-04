@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(
                 height: 30,
-            ),
+              ),
               Divider(thickness: 2),
               SizedBox(
                 height: 30,
@@ -181,7 +181,7 @@ class _ProfileState extends State<Profile> {
                           Get.toNamed('/help');
                         },
                         leading: Icon(Icons.help),
-                        title: Text('Help'),
+                        title: Text('FAQ'),
                       ))),
               Padding(
                   padding: const EdgeInsets.symmetric(

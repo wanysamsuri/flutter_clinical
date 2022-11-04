@@ -28,7 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     ApiService().fetchPanelList();
+    ApiService().fetchPanelList();
+    
     super.initState();
+    
+
   }
 
   Widget build(BuildContext context) {
@@ -36,9 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        flexibleSpace: ClipPath(
+          // clipper: CustomShape(),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            color: Color.fromARGB(255, 157, 228, 234),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          // physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -76,29 +90,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const MainNotification()),
+                                        const ViewNotification()),
                               );
                             },
                           ),
                         ],
                       ),
                       Spacer(),
-                      // Container(
-                      //     padding: EdgeInsets.symmetric(horizontal: 10),
-                      //     decoration: BoxDecoration(
-                      //         color: Colors.white,
-                      //         borderRadius: BorderRadius.circular(20)),
-                      //     child: TextField(
-                      //       enabled: false,
-                      //       decoration: InputDecoration(
-                      //           contentPadding: EdgeInsets.only(left: 10),
-                      //           // prefixIcon: Icon(Icons.search),
-                      //           labelText: 'Search',
-                      //           border: InputBorder.none),
-
-                      //     ),
-
-                      //     )
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: TextField(
+                          enabled: false,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(left: 10),
+                              prefixIcon: Icon(Icons.search),
+                              labelText: 'Search',
+                              border: InputBorder.none),
+                        ),
+                      )
                     ],
                   ),
                 ),

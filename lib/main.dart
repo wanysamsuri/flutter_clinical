@@ -11,7 +11,7 @@ import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
 import 'package:flutter_clinic/screens/notification/noti_screens.dart';
 import 'package:flutter_clinic/screens/profile/connected_device.dart';
 import 'package:flutter_clinic/screens/profile/feedback.dart';
-import 'package:flutter_clinic/screens/profile/help.dart';
+import 'package:flutter_clinic/screens/profile/help_faq.dart';
 import 'package:flutter_clinic/screens/profile/patient_profile.dart';
 import 'package:flutter_clinic/screens/profile/terms_condition.dart';
 import 'package:flutter_clinic/screens/signin_page.dart';
