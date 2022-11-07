@@ -29,10 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     ApiService().fetchPanelList();
     ApiService().fetchPanelList();
-    
-    super.initState();
-    
 
+    super.initState();
   }
 
   Widget build(BuildContext context) {
@@ -41,6 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        title:
+            Image.asset('assets/medic_logo.png', width: 60, fit: BoxFit.cover),
         elevation: 0.0,
         flexibleSpace: ClipPath(
           // clipper: CustomShape(),

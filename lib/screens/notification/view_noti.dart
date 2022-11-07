@@ -84,11 +84,11 @@ class _ViewNotificationState extends State<ViewNotification> {
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 1.0, vertical: 10),
+                                          horizontal: 0, vertical: 2.0),
 
                                       //body listview
                                       child: Container(
-                                        height: 9.h,
+                                        height: 12.h,
                                         decoration: BoxDecoration(
                                             color: Colors.grey[200],
                                             borderRadius:
