@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,12 +7,14 @@ import 'package:flutter_clinic/screens/health_status.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
+import 'package:flutter_clinic/screens/highlight/article_details_show.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
 import 'package:flutter_clinic/screens/notification/notification_main.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:gauges/main.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'find_clinic.dart';
@@ -24,10 +27,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future? fetchPanelList;
+  Future? fetchHighlightIndex;
+
   @override
   void initState() {
     // TODO: implement initState
-    ApiService().fetchPanelList();
+    fetchHighlightIndex = ApiService().fetchHighlightIndex();
+    fetchPanelList = ApiService().fetchPanelList();
+
     super.initState();
   }
 
@@ -193,216 +201,270 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: screenHeight * 0.02,
                     ),
-                    SizedBox(
-                      height: screenHeight * 0.5,
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (context, highlightIndex) {
-                          return InkWell(
-                            onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             HighlightDetailScreen(
-                              //               id: snapshot.data[
-                              //                       highlightIndex]
-                              //                       ['id']
-                              //                   .toString(),
-                              //             )));
-                            },
-                            child: Container(
-                                width: 250,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.black.withOpacity(0.2),
-                                              spreadRadius: 0.1,
-                                              blurRadius: 2,
-                                              offset: const Offset(0,
-                                                  3), // changes position of shadow
-                                            ),
-                                          ],
-                                          color: Colors.white,
-                                          // borderRadius: const BorderRadius
-                                          //         .only(
-                                          //     bottomLeft: Radius
-                                          //         .circular(
-                                          //             10),
-                                          //     bottomRight: Radius
-                                          //         .circular(
-                                          //             10))
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              padding: const EdgeInsets.all(10),
-                                              width: 300,
-                                              height: 200,
-                                              child: const Icon(
-                                                Icons.article,
-                                                size: 80,
-                                              )
-                                              //     CachedNetworkImage(
-                                              //   imageUrl: snapshot
-                                              //               .data[highlightIndex]
-                                              //           [
-                                              //           'media'][0]
-                                              //       [
-                                              //       'original_url'],
-                                              //   imageBuilder:
-                                              //       (context,
-                                              //               imageProvider) =>
-                                              //           Container(
-                                              //     decoration:
-                                              //         BoxDecoration(
-                                              //             image:
-                                              //                 DecorationImage(
-                                              //               image:
-                                              //                   imageProvider,
-                                              //               fit:
-                                              //                   BoxFit.cover,
-                                              //             ),
-                                              //             borderRadius:
-                                              //                 BorderRadius.circular(5)),
-                                              //   ),
-                                              //   placeholder: (BuildContext
-                                              //               context,
-                                              //           String
-                                              //               url) =>
-                                              //       const Center(
-                                              //     child:
-                                              //         SizedBox(
-                                              //       width: 30,
-                                              //       height: 30,
-                                              //       child:
-                                              //           CircularProgressIndicator(),
-                                              //     ),
-                                              //   ),
-                                              //   errorWidget: (context,
-                                              //           url,
-                                              //           error) =>
-                                              //       const Icon(Icons
-                                              //           .error),
-                                              // ),
-
-                                              ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text('Title'),
-                                                // Text(
-                                                //     snapshot.data[
-                                                //             highlightIndex]
-                                                //         [
-                                                //         'title'],
-                                                //     maxLines:
-                                                //         2,
-                                                //     style:
-                                                //         const TextStyle(
-                                                //       fontWeight:
-                                                //           FontWeight.w500,
-                                                //     )),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                const Text('Subtitle'),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                const Text('Description'),
-                                                // Text(
-                                                //     snapshot.data[
-                                                //             highlightIndex]
-                                                //         [
-                                                //         'subtitle'],
-                                                //     overflow:
-                                                //         TextOverflow
-                                                //             .ellipsis,
-                                                //     style: const TextStyle(
-                                                //         color: Colors
-                                                //             .grey,
-                                                //         fontSize:
-                                                //             12)),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  height: 40,
-                                                  child: ListView.builder(
-                                                      shrinkWrap: true,
-                                                      physics:
-                                                          const BouncingScrollPhysics(),
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount: 5,
-                                                      // itemCount: snapshot.data[highlightIndex]['tags'].length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return Container(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 10,
-                                                                  top: 10),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              color: Colors.grey
-                                                                  .withOpacity(
-                                                                      0.2)),
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 8.0,
-                                                                  left: 8.0),
-                                                          child: const Center(
-                                                            child: Text('tags'),
-                                                            // Text(
-                                                            //   snapshot.data[highlightIndex]['tags'][index]['name'],
-                                                            // ),
+                    FutureBuilder(
+                        future: fetchHighlightIndex,
+                        builder: (context, AsyncSnapshot snapshot) {
+                          // return Text('data');
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            if (snapshot.hasData) {
+                              return SizedBox(
+                                height: screenHeight * 0.5,
+                                child: ListView.builder(
+                                  physics: BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, highlightIndex) {
+                                    // (highlightIndex > snapshot.data.length)?
+                                    return InkWell(
+                                      onTap: () {
+                                        Get.to(() => ArticleDetailsShow(
+                                              articleId: snapshot
+                                                  .data[highlightIndex]['id']
+                                                  .toString(),
+                                            ));
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) =>
+                                        //             HighlightDetailScreen(
+                                        //               id: snapshot.data[
+                                        //                       highlightIndex]
+                                        //                       ['id']
+                                        //                   .toString(),
+                                        //             )));
+                                      },
+                                      child: Container(
+                                          width: 250,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 5),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
+                                                        spreadRadius: 0.1,
+                                                        blurRadius: 2,
+                                                        offset: const Offset(0,
+                                                            3), // changes position of shadow
+                                                      ),
+                                                    ],
+                                                    color: Colors.white,
+                                                    // borderRadius: const BorderRadius
+                                                    //         .only(
+                                                    //     bottomLeft: Radius
+                                                    //         .circular(
+                                                    //             10),
+                                                    //     bottomRight: Radius
+                                                    //         .circular(
+                                                    //             10))
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      width: 300,
+                                                      height: 200,
+                                                      child:
+                                                          // Icon(
+                                                          //   Icons.article,
+                                                          //   size: 80,
+                                                          // )
+                                                          CachedNetworkImage(
+                                                        imageUrl: snapshot.data[
+                                                                    highlightIndex]
+                                                                ['media'][0]
+                                                            ['original_url'],
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                        ),
+                                                        placeholder:
+                                                            (BuildContext
+                                                                        context,
+                                                                    String
+                                                                        url) =>
+                                                                const Center(
+                                                          child: SizedBox(
+                                                            width: 30,
+                                                            height: 30,
+                                                            child:
+                                                                CircularProgressIndicator(),
                                                           ),
-                                                        );
-                                                      }),
+                                                        ),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            const Icon(
+                                                                Icons.error),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Container(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            snapshot.data[
+                                                                    highlightIndex]
+                                                                ['name'],
+                                                            maxLines: 2,
+                                                          ),
+                                                          // Text(
+                                                          //     snapshot.data[
+                                                          //             highlightIndex]
+                                                          //         [
+                                                          //         'title'],
+                                                          //     maxLines:
+                                                          //         2,
+                                                          //     style:
+                                                          //         const TextStyle(
+                                                          //       fontWeight:
+                                                          //           FontWeight.w500,
+                                                          //     )),
+                                                          const SizedBox(
+                                                            height: 5,
+                                                          ),
+                                                          Text(
+                                                            snapshot.data[
+                                                                    highlightIndex]
+                                                                ['subtitle'],
+                                                            maxLines: 3,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 12),
+                                                          ),
+                                                          // const SizedBox(
+                                                          //   height: 5,
+                                                          // ),
+
+                                                          // Text(
+                                                          //     snapshot.data[
+                                                          //             highlightIndex]
+                                                          //         [
+                                                          //         'subtitle'],
+                                                          //     overflow:
+                                                          //         TextOverflow
+                                                          //             .ellipsis,
+                                                          //     style: const TextStyle(
+                                                          //         color: Colors
+                                                          //             .grey,
+                                                          //         fontSize:
+                                                          //             12)),
+                                                          // const SizedBox(
+                                                          //   height: 10,
+                                                          // ),
+                                                          SizedBox(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            height: 40,
+                                                            child: ListView
+                                                                .builder(
+                                                                    shrinkWrap:
+                                                                        true,
+                                                                    physics:
+                                                                        const BouncingScrollPhysics(),
+                                                                    scrollDirection:
+                                                                        Axis
+                                                                            .horizontal,
+                                                                    // itemCount:
+                                                                    //     5,
+                                                                    itemCount: snapshot
+                                                                        .data[
+                                                                            highlightIndex]
+                                                                            [
+                                                                            'tags']
+                                                                        .length,
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                            index) {
+                                                                      return Container(
+                                                                        margin: const EdgeInsets.only(
+                                                                            right:
+                                                                                10,
+                                                                            top:
+                                                                                10),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(10),
+                                                                            color: Colors.grey.withOpacity(0.2)),
+                                                                        padding: const EdgeInsets.only(
+                                                                            right:
+                                                                                8.0,
+                                                                            left:
+                                                                                8.0),
+                                                                        child:
+                                                                            Center(
+                                                                          child:
+                                                                              // Text('tags'),
+                                                                              Text(
+                                                                            snapshot.data[highlightIndex]['tags'][index]['name'],
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 10,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          );
-                        },
-                      ),
-                    ),
+                                              )
+                                            ],
+                                          )),
+                                    );
+
+                                    // :  Text('data');
+                                  },
+                                ),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('Error');
+                            } else {
+                              return Text('Empty');
+                            }
+                          } else {
+                            return Text('State: ${snapshot.connectionState}');
+                          }
+                        }),
                   ],
                 ),
               ),
@@ -427,7 +489,7 @@ void _showBottomSheet(BuildContext context) {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
-                      'Health Status',
+                      'More',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -445,7 +507,7 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Body Mass Index',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
@@ -463,7 +525,7 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Book Appointment',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
@@ -481,7 +543,7 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Find Clinic',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
@@ -499,7 +561,7 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Health Status',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
@@ -517,7 +579,7 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Tutorial',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),

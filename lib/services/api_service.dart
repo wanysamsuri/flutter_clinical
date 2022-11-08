@@ -257,15 +257,88 @@ class ApiService {
     return json.decode(response.body);
   }
 
+  Future fetchHighlightIndex() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final endpointHighlight = Uri.parse(
+      '$baseUrl/articles/highlight',
+    );
+    final response = await http.get(
+      endpointHighlight,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $headerToken'
+      },
+    );
+    print('Highlight Index:${response.statusCode}');
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
+  Future fetchArticleIndex() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final endpointHighlight = Uri.parse(
+      '$baseUrl/articles/',
+    );
+    final response = await http.get(
+      endpointHighlight,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $headerToken'
+      },
+    );
+    print('Article Index : ${response.statusCode}');
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data']['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
+  Future fetchArticleShow(String id) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final endpointHighlight = Uri.parse(
+      '$baseUrl/articles/$id',
+    );
+    final response = await http.get(
+      endpointHighlight,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $headerToken'
+      },
+    );
+    print('Highlight Show : ${response.statusCode}');
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
   Future fetchPanel() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
-
     final headerToken = storage.getString('token');
-    final endpointPanel = Uri.parse('$baseUrl/panels');
-    final response = await http.get(endpointPanel, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $headerToken'
-    });
+    final endpointPanel = Uri.parse(
+      '$baseUrl/panels',
+    );
+    final response = await http.get(
+      endpointPanel,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $headerToken'
+      },
+    );
 
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body)['data'];
