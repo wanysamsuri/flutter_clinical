@@ -555,7 +555,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
-<<<<<<< HEAD
   rxdart:
     dependency: transitive
     description:
@@ -563,7 +562,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
-=======
   scroll_to_index:
     dependency: transitive
     description:
@@ -571,7 +569,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
->>>>>>> 41c1906898cdac456188076ea1cff6e4fc9b902c
   share_plus:
     dependency: "direct main"
     description:

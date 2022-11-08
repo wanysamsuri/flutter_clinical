@@ -17,7 +17,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    futurefetchPanels = ApiService().fetchPanels();
+    // futurefetchPanels = ApiService().fetchPanels();
     super.initState();
   }
   @override

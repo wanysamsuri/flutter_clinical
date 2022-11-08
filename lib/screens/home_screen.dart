@@ -33,9 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    fetchHighlightIndex = ApiService().fetchHighlightIndex();
+    fetchHighlightIndex = ApiService().fetchHighlight();
     fetchPanelList = ApiService().fetchPanelList();
-
     super.initState();
   }
 
@@ -46,13 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        flexibleSpace: ClipPath(
-          // clipper: CustomShape(),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            color: Color.fromARGB(255, 157, 228, 234),
-          ),
-        ),
+        backgroundColor: primaryColor,
+        // flexibleSpace: ClipPath(
+        //   // clipper: CustomShape(),
+        //   child: Container(
+        //     width: MediaQuery.of(context).size.width,
+        //     color: Color.fromARGB(255, 157, 228, 234),
+        //   ),
+        // ),
         title: Image.asset('assets/Clinical-Logo.png',
             fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(24)),
         centerTitle: true,

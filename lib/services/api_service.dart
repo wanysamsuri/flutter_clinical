@@ -258,27 +258,28 @@ class ApiService {
   }
 
   Future fetchHighlightIndex() async {
-    Future fetchFAQ() async {
-      SharedPreferences storage = await SharedPreferences.getInstance();
 
-      final headerToken = storage.getString('token');
-      final endpointPanel = Uri.parse('$baseUrl/faq');
-      final response = await http.get(endpointPanel, headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $headerToken'
-      });
+  }
+  Future fetchFAQ() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
-      if (response.statusCode == 200) {
-        final responseBody = json.decode(response.body)['data'];
-        return responseBody;
-      } else if (response.statusCode == 401) {
-        await storage.clear();
-        Get.offAllNamed('/loading');
-      }
+    final headerToken = storage.getString('token');
+    final endpointPanel = Uri.parse('$baseUrl/faq');
+    final response = await http.get(endpointPanel, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
 
-      // final responseBody = json.decode(response.body)['data'];
-      // return responseBody;
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
     }
+
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
   }
 
   Future fetchHighlight() async {
@@ -350,11 +351,11 @@ class ApiService {
     }
   }
 
-  Future fetchPanels() async {
+  Future fetchPanels(String latitude, String longitude) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
     final endpointPanel = Uri.parse(
-      '$baseUrl/panels',
+      '$baseUrl/panels?latitude=$latitude&longitude=$longitude',
     );
     final response = await http.get(
       endpointPanel,
@@ -394,6 +395,6 @@ class ApiService {
   //     Get.offAllNamed('/loading');
   //   }
 
-    // final responseBody = json.decode(response.body)['data'];
-    // return responseBody;
-  }
+  // final responseBody = json.decode(response.body)['data'];
+  // return responseBody;
+}
