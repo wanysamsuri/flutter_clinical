@@ -7,7 +7,7 @@ import 'package:flutter_clinic/models/health_status_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../customshape.dart';
-import 'appointment/choice_screen.dart';
+import '../screens/appointment/choice_screen.dart';
 import 'test_screens.dart';
 
 class HealthStatusScreen extends StatefulWidget {
@@ -62,38 +62,38 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                ),
-                Container(
-                  width: Adaptive.w(30),
-                  //margin: EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.sort),
-                          SizedBox(width: 20),
-                          Column(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Sort by'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                // SizedBox(
+                //   height: screenHeight * 0.03,
+                // ),
+                // Container(
+                //   width: Adaptive.w(30),
+                //   //margin: EdgeInsets.all(10),
+                //   padding: const EdgeInsets.all(10),
+                //   decoration: BoxDecoration(
+                //       color: secondaryColor,
+                //       borderRadius: BorderRadius.circular(20)),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Row(
+                //         children: [
+                //           Icon(Icons.sort),
+                //           SizedBox(width: 20),
+                //           Column(
+                //             children: [
+                //               Column(
+                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                //                 children: [
+                //                   Text('Sort by'),
+                //                 ],
+                //               ),
+                //             ],
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
@@ -124,12 +124,12 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                           decoration: BoxDecoration(
                             color: secondaryColor,
                             borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey, //New
-                                  blurRadius: 10.0,
-                                  offset: Offset(-5, -5))
-                            ],
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //       color: Colors.grey, //New
+                            //       blurRadius: 10.0,
+                            //       offset: Offset(-5, -5))
+                            // ],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

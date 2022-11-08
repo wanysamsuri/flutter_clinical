@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
-import 'package:flutter_clinic/screens/health_status.dart';
+import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
@@ -16,6 +16,7 @@ import 'package:flutter_clinic/services/api_service.dart';
 import 'package:gauges/main.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '';
 
 import 'find_clinic.dart';
 
