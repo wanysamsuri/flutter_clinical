@@ -123,7 +123,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                         //body listview
 
                                         child: Container(
-                                          height: 20.h,
+                                          height: Adaptive.h(23),
                                           decoration: BoxDecoration(
                                               color: secondaryColor,
                                               borderRadius:

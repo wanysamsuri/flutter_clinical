@@ -101,20 +101,20 @@ class _ViewStatusScreenState extends State<ViewStatusScreen> {
                               Container(
                                   child: RichText(
                                       text: TextSpan(
-                                          text: 'IC/Passport:',
+                                          text: 'Date:',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold)))),
                               SizedBox(height: 5),
-                              Container(
-                                  child: RichText(
-                                      text: TextSpan(
-                                          text: 'Phone Number:',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold)))),
+                              // Container(
+                              //     child: RichText(
+                              //         text: TextSpan(
+                              //             text: 'Phone Number:',
+                              //             style: TextStyle(
+                              //                 color: Colors.black,
+                              //                 fontSize: 15,
+                              //                 fontWeight: FontWeight.bold)))),
                             ]))))));
   }
 }
