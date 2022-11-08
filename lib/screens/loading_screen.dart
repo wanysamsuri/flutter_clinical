@@ -13,6 +13,7 @@ String? sharedEmail;
 String? sharedNric;
 String? sharedPhoneNum;
 String? sharedToken;
+String? sharedPlayerIdOneSignal;
 
 class LoadingScreens extends StatefulWidget {
   const LoadingScreens({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
       Future.delayed(Duration(seconds: 2), () {
         _loadUserInfo();
       });
-      // initPlatformState();
+      initPlatformState();
       getModelDetails();
       // configOneSignel();
     });
@@ -44,11 +45,11 @@ class _LoadingScreensState extends State<LoadingScreens> {
     sharedEmail = storage.getString('_userEmail');
     sharedNric = storage.getString('_userNric');
     sharedPhoneNum = storage.getString('_userPhoneNumber');
-    final sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
+    sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
 
-    print('this is from loading $sharedDeviceName');
-    print('this is from loading $sharedToken');
-    print('this is from loading $sharedPlayerIdOneSignal');
+    print('this is from loading device name : $sharedDeviceName');
+    print('this is from loading token : $sharedToken');
+    print('this is from loading player id : $sharedPlayerIdOneSignal');
 
     if (sharedToken == null) {
       print('token if null : $sharedToken');
@@ -144,6 +145,12 @@ class _LoadingScreensState extends State<LoadingScreens> {
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    SharedPreferences sprefs = await SharedPreferences.getInstance();
+
+    final status = await OneSignal.shared.getDeviceState();
+    String? osUserID = status?.userId;
+    await sprefs.setString('playerIdOneSignal', osUserID ?? '');
+    print('Player ID: ' '$osUserID');
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
     OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
@@ -180,13 +187,6 @@ class _LoadingScreensState extends State<LoadingScreens> {
     });
 
     OneSignal.shared
-        .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {
-      SharedPreferences sprefs = await SharedPreferences.getInstance();
-
-      final status = await OneSignal.shared.getDeviceState();
-      String? osUserID = status?.userId;
-      await sprefs.setString('playerIdOneSignal', osUserID ?? '');
-      print('Player ID: ' '$osUserID');
-    });
+        .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {});
   }
 }

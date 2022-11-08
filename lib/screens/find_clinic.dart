@@ -24,7 +24,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    futurefetchPanels = ApiService().fetchPanels();
+    futurefetchPanels = ApiService().fetchPanels('3.05453', '101.48533');
     super.initState();
   }
 
@@ -64,7 +64,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
           height: 130.h,
           child: SafeArea(
             child: FutureBuilder(
-              future: ApiService().fetchPanels(),
+              future: futurefetchPanels,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   return Container(
