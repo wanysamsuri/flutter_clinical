@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../customshape.dart';
@@ -16,11 +19,12 @@ class FindClinicScreen extends StatefulWidget {
 }
 
 class _FindClinicScreenState extends State<FindClinicScreen> {
-  Future? futureFetchPanelList;
+  Future? futurefetchPanels;
+  int selected = -1;
   @override
   void initState() {
     // TODO: implement initState
-    futureFetchPanelList = ApiService().fetchPanelList();
+    futurefetchPanels = ApiService().fetchPanels();
     super.initState();
   }
 
@@ -42,7 +46,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
               color: Color.fromARGB(255, 157, 228, 234),
             )),
             title: const Text(
-              'Nearby Clinics',
+              'Find Clinics',
               style: TextStyle(color: Colors.black),
             ),
             centerTitle: true,
@@ -55,23 +59,20 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                 Navigator.pop(context);
               },
             )),
-        body: SafeArea(
-            child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(Adaptive.w(3)),
-                          height: 110.h,
-                          child: SingleChildScrollView(
-                              child: Column(children: [
-                            SizedBox(
-                              height: screenWidth * 0.03,
-                            ),
-                            // SizedBox(
-                            //   height: screenHeight * 0.01,
-                            // ),
+        body: Container(
+          padding: EdgeInsets.all(Adaptive.w(2)),
+          height: 130.h,
+          child: SafeArea(
+            child: FutureBuilder(
+              future: ApiService().fetchPanels(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                      padding: EdgeInsets.all(Adaptive.w(2)),
+                      height: 130.h,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
@@ -86,145 +87,157 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                     border: InputBorder.none),
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Show in map',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue),
-                            ),
-                            SizedBox(
-                              height: 60,
-                            ),
                             Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Nearby clinics are as below:',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ],
+                              padding: EdgeInsets.all(20),
+                              child: const Text(
+                                "Show in map",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
+                            Container(
+                              padding: EdgeInsets.only(
+                                  left: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Nearby clinics are as below:",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  // fontWeight: FontWeight.bold
+                                ),
+                              ),
                             ),
-                            FutureBuilder(
-                                future: futureFetchPanelList,
-                                builder: (context, AsyncSnapshot snapshot) {
-                                  if (snapshot.hasData) {
-                                    return ListView.builder(
-                                        shrinkWrap: true,
-                                        // gridDelegate:
-                                        //     SliverGridDelegateWithFixedCrossAxisCount(
-                                        //         crossAxisCount: 2),
-                                        itemCount: snapshot.data.length,
-                                        itemBuilder: (context, index) {
-                                          return GestureDetector(
-                                              onTap: () {},
-                                              child: Container(
-                                                  height: 100,
-                                                  margin: EdgeInsets.all(5),
-                                                  padding: EdgeInsets.all(20),
-                                                  decoration: BoxDecoration(
-                                                      color: secondaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: Column(children: [
-                                                    Column(
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              snapshot
-                                                                  .data[index]
-                                                                      ['panel']
-                                                                      ['name']
-                                                                  .toString()
-                                                                  .toUpperCase(),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold, fontSize: 18),
-                                                            ),
-                                                            Spacer(),
-                                                            Row(
-                                                              children: [
-                                                                Column(
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          '1.3 km',
-                                                                          style:
-                                                                              TextStyle(fontSize: 20),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 30,
-                                                      child: Container(
-                                                        child: Column(
-                                                          children: [
-                                                            Row(children: [
-                                                              Text(
-                                                                'Address',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        16),
-                                                              ),
-                                                              Spacer(),
-                                                              Row(children: [
-                                                                Column(
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'Postcode',
-                                                                          style:
-                                                                              TextStyle(fontSize: 16),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ]),
-                                                            ])
-                                                          ],
+                            Expanded(
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: 3,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 1.0, vertical: 5),
+
+                                        //body listview
+
+                                        child: Container(
+                                          height: 20.h,
+                                          decoration: BoxDecoration(
+                                              color: secondaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Container(
+                                            padding: EdgeInsets.all(20),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                          child: Text(
+                                                        snapshot.data['data']
+                                                            [index]['name'],
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      )),
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: Adaptive.w(60),
+                                                      child: Text(
+                                                        snapshot.data['data']
+                                                            [index]['address'],
+                                                        maxLines: 3,
+                                                        style: TextStyle(
+                                                          fontSize: 16,
                                                         ),
                                                       ),
-                                                    )
-                                                  ])));
-                                        });
-                                  } else {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                })
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                        width: Adaptive.w(60),
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                              [index]['city'],
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                        width: Adaptive.w(60),
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                              [index]['state'],
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                        width: Adaptive.w(60),
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                              [index]['phone'],
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                        width: Adaptive.w(60),
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                                  [index]
+                                                              ['website'],
+                                                          style: TextStyle(
+                                                            color: Colors.blue,
+                                                            fontSize: 16,
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }))
+                          ]));
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          ),
+        ));
+  }
+}
                             //   Text(
                             //     'Show in map',
                             //     style: TextStyle(
@@ -305,7 +318,5 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                             //     ),
                             //   ),
                             // ]))),
-                          ])))
-                    ]))));
-  }
-}
+                          
+

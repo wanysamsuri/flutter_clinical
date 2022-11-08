@@ -258,6 +258,30 @@ class ApiService {
   }
 
   Future fetchHighlightIndex() async {
+    Future fetchFAQ() async {
+      SharedPreferences storage = await SharedPreferences.getInstance();
+
+      final headerToken = storage.getString('token');
+      final endpointPanel = Uri.parse('$baseUrl/faq');
+      final response = await http.get(endpointPanel, headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $headerToken'
+      });
+
+      if (response.statusCode == 200) {
+        final responseBody = json.decode(response.body)['data'];
+        return responseBody;
+      } else if (response.statusCode == 401) {
+        await storage.clear();
+        Get.offAllNamed('/loading');
+      }
+
+      // final responseBody = json.decode(response.body)['data'];
+      // return responseBody;
+    }
+  }
+
+  Future fetchHighlight() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
     final endpointHighlight = Uri.parse(
@@ -326,7 +350,7 @@ class ApiService {
     }
   }
 
-  Future fetchPanel() async {
+  Future fetchPanels() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
     final endpointPanel = Uri.parse(
@@ -351,4 +375,25 @@ class ApiService {
     // final responseBody = json.decode(response.body)['data'];
     // return responseBody;
   }
-}
+
+  // Future fetchHighlight() async {
+  //   SharedPreferences storage = await SharedPreferences.getInstance();
+
+  //   final headerToken = storage.getString('token');
+  //   final endpointHighlight = Uri.parse('$baseUrl/highlight');
+  //   final response = await http.get(endpointHighlight, headers: {
+  //     'Accept': 'application/json',
+  //     'Authorization': 'Bearer $headerToken'
+  //   });
+
+  //   if (response.statusCode == 200) {
+  //     final responseBody = json.decode(response.body)['data'];
+  //     return responseBody;
+  //   } else if (response.statusCode == 401) {
+  //     await storage.clear();
+  //     Get.offAllNamed('/loading');
+  //   }
+
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
+  }

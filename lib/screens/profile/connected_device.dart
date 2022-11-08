@@ -183,8 +183,6 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                                                             () {
                                                                           Navigator.pop(
                                                                               context);
-                                                                          Navigator.pop(
-                                                                              context);
                                                                           ApiService()
                                                                               .deleteDevice(
                                                                             snapshot.data[index]['id'],

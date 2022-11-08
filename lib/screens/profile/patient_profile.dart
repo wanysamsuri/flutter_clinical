@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/screens/profile/edit_profile.dart';
-import 'package:flutter_clinic/screens/profile/help.dart';
+import 'package:flutter_clinic/screens/profile/help_faq.dart';
 import 'package:flutter_clinic/screens/profile/profile_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_clinic/services/api_service.dart';
@@ -91,11 +91,10 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                       ),
                     ]),
                   ),
-                  
                   SizedBox(height: 50),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),
@@ -132,7 +131,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                   SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),
@@ -169,7 +168,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                   SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),

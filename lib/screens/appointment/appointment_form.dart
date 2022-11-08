@@ -73,275 +73,292 @@ class _AppointmentFormState extends State<AppointmentForm> {
                 Navigator.pop(context);
               },
             )),
-        body: Container(
-            padding: EdgeInsets.all(Adaptive.w(3)),
-            height: 120.h,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              const Text(
-                'Schedule an appointment',
-                style: TextStyle(
-                  fontSize: 15,
-                ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              Container(
-                //margin: EdgeInsets.all(10),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Container(
+              padding: EdgeInsets.all(Adaptive.w(3)),
+              height: Adaptive.h(90),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Icon(Icons.access_time),
-                        SizedBox(width: 20),
-                        Column(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Now'),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                    SizedBox(
+                      height: screenHeight * 0.02,
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              Container(
-                //margin: EdgeInsets.all(10),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.location_pin),
-                        SizedBox(width: 20),
-                        Column(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Select your location'),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                    const Text(
+                      'Schedule an appointment',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              Container(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
-                      const Text(
-                        'Select a patient',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
-                      Container(
-                        //margin: EdgeInsets.all(10),
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            color: secondaryColor,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.person),
-                                SizedBox(width: 20),
-                                Column(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Patient'),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
-                      Container(
-                          // margin: EdgeInsets.all(10),
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Row(
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    Container(
+                      //margin: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Icon(Icons.add),
+                              Icon(Icons.access_time),
                               SizedBox(width: 20),
                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(
-                                    width: 295,
-                                    // width: MediaQuery.of(context).size.width,
-                                    height: 80,
-
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: const BouncingScrollPhysics(),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: 10,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            height: 30,
-                                            margin: const EdgeInsets.only(
-                                                right: 10, top: 10),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Color.fromARGB(
-                                                        255, 113, 112, 112)
-                                                    .withOpacity(0.2)),
-                                            padding: const EdgeInsets.only(
-                                                right: 8.0, left: 8.0),
-                                            child: const Center(
-                                              child: Text(
-                                                'Add a symptom',
-                                              ),
-                                            ),
-                                          );
-                                        }),
-                                  )
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Now'),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
-                          )),
-                      SizedBox(
-                        height: screenHeight * 0.02,
+                          ),
+                        ],
                       ),
-                      Container(
-                        child: Column(
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    Container(
+                      //margin: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.location_pin),
+                              SizedBox(width: 20),
+                              Column(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Select your location'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    Container(
+                      child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
                               height: screenHeight * 0.02,
                             ),
                             const Text(
-                              'Type of service',
+                              'Select a patient',
                               style: TextStyle(
                                 fontSize: 15,
                               ),
                             ),
-                            SizedBox(height: screenHeight * 0.02),
+                            SizedBox(
+                              height: screenHeight * 0.02,
+                            ),
+                            Container(
+                              //margin: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: secondaryColor,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(Icons.person),
+                                      SizedBox(width: 20),
+                                      Column(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text('Patient'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.02,
+                            ),
+                            Container(
+                                // margin: EdgeInsets.all(10),
+
+                                width: Adaptive.w(100),
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                    color: secondaryColor,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.add),
+                                    SizedBox(width: 20),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: Adaptive.w(70),
+                                          // width: MediaQuery.of(context).size.width,
+                                          height: 80,
+
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: 5,
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  height: Adaptive.h(30),
+                                                  margin: const EdgeInsets.only(
+                                                      right: 10, top: 10),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: Color.fromARGB(255,
+                                                              113, 112, 112)
+                                                          .withOpacity(0.2)),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 8.0,
+                                                          left: 8.0),
+                                                  child: const Center(
+                                                    child: Text(
+                                                      'Add a symptom',
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                            SizedBox(
+                              height: screenHeight * 0.02,
+                            ),
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: screenHeight * 0.02,
+                                  ),
+                                  const Text(
+                                    'Type of service',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(height: screenHeight * 0.02),
+                                  Container(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        customRadio("Doctor - Home Visit", 1),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        customRadio(
+                                            "Doctor - Video Consultation", 2),
+                                      ],
+                                    ),
+                                  )
+
+                                  // ToggleButtons(
+                                  //   onPressed: (int index) {
+                                  //     setState(() {
+                                  //       // The button that is tapped is set to true, and the others to false.
+                                  //       for (int i = 0;
+                                  //           i < _selectedServices.length;
+                                  //           i++) {
+                                  //         _selectedServices[i] = i == index;
+                                  //       }
+                                  //     });
+                                  //   },
+                                  //   borderRadius:
+                                  //       const BorderRadius.all(Radius.circular(8)),
+                                  //   selectedBorderColor: primaryColor,
+                                  //   selectedColor: Colors.black,
+                                  //   fillColor: secondaryColor,
+                                  //   color: Colors.black,
+                                  //   constraints: const BoxConstraints(
+                                  //     minHeight: 60.0,
+                                  //     minWidth: 110.0,
+                                  //   ),
+                                  //   isSelected: _selectedServices,
+                                  //   children: services,
+                                  // ),
+                                ],
+                              ),
+                            ),
                             Container(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  customRadio("Doctor - Home Visit", 1),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  customRadio("Doctor - Video Consultation", 2),
+                                  customRadio("Nurse - Home Visit", 3),
                                 ],
                               ),
                             )
-
-                            // ToggleButtons(
-                            //   onPressed: (int index) {
-                            //     setState(() {
-                            //       // The button that is tapped is set to true, and the others to false.
-                            //       for (int i = 0;
-                            //           i < _selectedServices.length;
-                            //           i++) {
-                            //         _selectedServices[i] = i == index;
-                            //       }
-                            //     });
-                            //   },
-                            //   borderRadius:
-                            //       const BorderRadius.all(Radius.circular(8)),
-                            //   selectedBorderColor: primaryColor,
-                            //   selectedColor: Colors.black,
-                            //   fillColor: secondaryColor,
-                            //   color: Colors.black,
-                            //   constraints: const BoxConstraints(
-                            //     minHeight: 60.0,
-                            //     minWidth: 110.0,
-                            //   ),
-                            //   isSelected: _selectedServices,
-                            //   children: services,
-                            // ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            customRadio("Nurse - Home Visit", 3),
-                          ],
-                        ),
-                      )
-                    ]),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Container(
-                    width: 400,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 3, 205, 219),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 1.0), //(x,y)
-                          blurRadius: 6.0,
-                        ),
-                      ],
+                          ]),
                     ),
-                    child: InkWell(
-                      // onTap: () {
-                      //   Navigator.of(context).pushNamed('');
-                      // },
-                      child: Center(
-                        child: Text('Next', style: TextStyle(fontSize: 20)),
-                      ),
-                    )),
-              ),
-            ])));
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Container(
+                          width: 400,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 3, 205, 219),
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(0.0, 1.0), //(x,y)
+                                blurRadius: 6.0,
+                              ),
+                            ],
+                          ),
+                          child: InkWell(
+                            // onTap: () {
+                            //   Navigator.of(context).pushNamed('');
+                            // },
+                            child: Center(
+                              child:
+                                  Text('Next', style: TextStyle(fontSize: 20)),
+                            ),
+                          )),
+                    ),
+                  ])),
+        )));
   }
 }

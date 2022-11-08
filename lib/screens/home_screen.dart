@@ -44,9 +44,36 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        flexibleSpace: ClipPath(
+          // clipper: CustomShape(),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            color: Color.fromARGB(255, 157, 228, 234),
+          ),
+        ),
+        title: Image.asset('assets/Clinical-Logo.png',
+            fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(24)),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ViewNotification()),
+                );
+              }),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          // physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,39 +101,37 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const Spacer(),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.notifications,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MainNotification()),
-                              );
-                            },
-                          ),
+                          // IconButton(
+                          //   icon: const Icon(
+                          //     Icons.notifications,
+                          //     color: Colors.black,
+                          //   ),
+                          //   onPressed: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               const ViewNotification()),
+                          //     );
+                          //   },
+                          // ),
                         ],
                       ),
                       Spacer(),
-                      // Container(
-                      //     padding: EdgeInsets.symmetric(horizontal: 10),
-                      //     decoration: BoxDecoration(
-                      //         color: Colors.white,
-                      //         borderRadius: BorderRadius.circular(20)),
-                      //     child: TextField(
-                      //       enabled: false,
-                      //       decoration: InputDecoration(
-                      //           contentPadding: EdgeInsets.only(left: 10),
-                      //           // prefixIcon: Icon(Icons.search),
-                      //           labelText: 'Search',
-                      //           border: InputBorder.none),
-
-                      //     ),
-
-                      //     )
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: TextField(
+                          enabled: false,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(left: 10),
+                              prefixIcon: Icon(Icons.search),
+                              labelText: 'Search',
+                              border: InputBorder.none),
+                        ),
+                      )
                     ],
                   ),
                 ),
