@@ -208,6 +208,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
                             ),
                             Container(
                                 // margin: EdgeInsets.all(10),
+
+                                width: Adaptive.w(100),
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
                                     color: secondaryColor,
@@ -221,7 +223,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         SizedBox(
-                                          width: 295,
+                                          width: Adaptive.w(70),
                                           // width: MediaQuery.of(context).size.width,
                                           height: 80,
 

@@ -91,11 +91,10 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                       ),
                     ]),
                   ),
-                  
                   SizedBox(height: 50),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),
@@ -132,7 +131,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                   SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),
@@ -169,7 +168,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                   SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.all(10),
-                    height: 65,
+                    height: Adaptive.h(9),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.grey[200]),

@@ -58,9 +58,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
-                  onTap: () {
-                    
-                  },
+                  onTap: () {},
                   child: Icon(
                     Icons.delete,
                     size: 26.0,
@@ -96,7 +94,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                                       //body listview
                                       child: Container(
-                                        height: 20.h,
+                                        height: Adaptive.h(40),
                                         decoration: BoxDecoration(
                                             color: Colors.grey[200],
                                             borderRadius:
@@ -163,7 +161,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
-                                                    height: 50,
+                                                    height: Adaptive.h(20),
                                                     child: Text(
                                                       (snapshot.data[index]
                                                           ['data']['message']),

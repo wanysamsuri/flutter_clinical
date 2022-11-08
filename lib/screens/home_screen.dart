@@ -28,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     ApiService().fetchPanelList();
-    ApiService().fetchPanelList();
 
     super.initState();
   }
@@ -39,8 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            Image.asset('assets/medic_logo.png', width: 60, fit: BoxFit.cover),
         elevation: 0.0,
         flexibleSpace: ClipPath(
           // clipper: CustomShape(),
@@ -49,6 +46,23 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Color.fromARGB(255, 157, 228, 234),
           ),
         ),
+        title: Image.asset('assets/Clinical-Logo.png',
+            fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(24)),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ViewNotification()),
+                );
+              }),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -80,20 +94,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const Spacer(),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.notifications,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ViewNotification()),
-                              );
-                            },
-                          ),
+                          // IconButton(
+                          //   icon: const Icon(
+                          //     Icons.notifications,
+                          //     color: Colors.black,
+                          //   ),
+                          //   onPressed: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               const ViewNotification()),
+                          //     );
+                          //   },
+                          // ),
                         ],
                       ),
                       Spacer(),

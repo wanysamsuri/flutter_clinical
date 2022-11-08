@@ -8,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../customshape.dart';
 import 'appointment/choice_screen.dart';
+import 'test_screens.dart';
 
 class HealthStatusScreen extends StatefulWidget {
   const HealthStatusScreen({
@@ -52,7 +53,7 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.03,
+                  height: screenHeight * 0.01,
                 ),
                 Center(
                   child: const Text(
@@ -62,10 +63,39 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.01,
+                  height: screenHeight * 0.03,
+                ),
+                Container(
+                  width: Adaptive.w(30),
+                  //margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.sort),
+                          SizedBox(width: 20),
+                          Column(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Sort by'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.02,
+                  height: screenHeight * 0.04,
                 ),
                 GridView.builder(
                     shrinkWrap: true,
@@ -79,21 +109,28 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => ChoiceScreen(
-                          //               serviceName: healthStatus[index]
-                          //                   .serviceName
-                          //                   .toString(),
-                          //             )));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TestScreen(
+                                        serviceName: healthStatus[index]
+                                            .serviceName
+                                            .toString(),
+                                      )));
                         },
                         child: Container(
                           // margin: EdgeInsets.all(10),
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
+                            color: secondaryColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey, //New
+                                  blurRadius: 10.0,
+                                  offset: Offset(-5, -5))
+                            ],
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -105,6 +142,9 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                                       child:
                                           Icon(Icons.hourglass_empty_outlined),
                                     ),
+                              SizedBox(
+                                height: 20,
+                              ),
                               Text(
                                 healthStatus[index].serviceName.toString(),
                                 textAlign: TextAlign.center,
