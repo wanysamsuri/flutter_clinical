@@ -125,7 +125,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                             child: Container(
                                               padding:
                                                   EdgeInsets.all(Adaptive.h(2)),
-                                              height: Adaptive.h(10),
+                                              height: Adaptive.h(12),
                                               decoration: BoxDecoration(
                                                   color: secondaryColor,
                                                   borderRadius:
@@ -145,7 +145,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                         snapshot.data['data']
                                                             [index]['name'],
                                                         style: TextStyle(
-                                                            fontSize: 20,
+                                                            fontSize: 0.3.dp,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .bold),
@@ -167,7 +167,8 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 24,
+                                                                  fontSize:
+                                                                      0.3.dp,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),

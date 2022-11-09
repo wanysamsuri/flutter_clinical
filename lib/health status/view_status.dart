@@ -58,7 +58,7 @@ class _ViewStatusScreenState extends State<ViewStatusScreen> {
                             BoxShadow(
                                 color: Colors.grey, //New
                                 blurRadius: 10.0,
-                                offset: Offset(-5, -5))
+                                offset: Offset(-1, -1))
                           ],
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 20),
