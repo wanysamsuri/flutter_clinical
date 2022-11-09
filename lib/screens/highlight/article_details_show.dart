@@ -56,12 +56,12 @@ class _ArticleDetailsShowState extends State<ArticleDetailsShow> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              snapshot.data['title'],
-                              textAlign: TextAlign.justify,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            // Text(
+                            //   snapshot.data['title'],
+                            //   textAlign: TextAlign.justify,
+                            //   style:
+                            //       const TextStyle(fontWeight: FontWeight.bold),
+                            // ),
                             const SizedBox(
                               height: 10,
                             ),
@@ -179,11 +179,13 @@ class _ArticleDetailsShowState extends State<ArticleDetailsShow> {
                             const SizedBox(
                               height: 10,
                             ),
-                            // Text(
-                            //   snapshot.data['name'],
-                            //   style: const TextStyle(fontWeight: FontWeight.bold),
-                            //   textAlign: TextAlign.justify,
-                            // ),
+
+                            Text(
+                              snapshot.data['title'],
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                              textAlign: TextAlign.justify,
+                            ),
                             const SizedBox(
                               height: 10,
                             ),

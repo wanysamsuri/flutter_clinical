@@ -280,17 +280,27 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                   SizedBox(height: screenHeight * 0.02),
                                   Container(
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        customRadio("Doctor - Home Visit", 1),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        customRadio(
-                                            "Doctor - Video Consultation", 2),
-                                      ],
-                                    ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Container(
+                                                child: customRadio(
+                                                    "Doctor - Home Visit", 1),
+                                              ),
+                                              Container(
+                                                child: customRadio(
+                                                    "Doctor - Video Consultation",
+                                                    2),
+                                              ),
+                                              Container(
+                                                child: customRadio(
+                                                    "Nurse - Home Visit", 3),
+                                              ),
+                                            ],
+                                          ),
+                                        ]),
                                   )
 
                                   // ToggleButtons(
@@ -320,14 +330,6 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                 ],
                               ),
                             ),
-                            Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  customRadio("Nurse - Home Visit", 3),
-                                ],
-                              ),
-                            )
                           ]),
                     ),
                     SizedBox(

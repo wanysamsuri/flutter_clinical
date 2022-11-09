@@ -87,7 +87,7 @@ class _ConnectedDevicesScreensState extends State<ConnectedDevicesScreens> {
                                     shrinkWrap: true,
                                     physics: const BouncingScrollPhysics(),
                                     scrollDirection: Axis.vertical,
-                                    itemCount: 5,
+                                    itemCount: snapshot.data.length,
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: EdgeInsets.symmetric(
