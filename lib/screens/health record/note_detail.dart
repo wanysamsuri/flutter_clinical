@@ -41,13 +41,13 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
           centerTitle: true,
         ),
         body: Container(
-            padding: EdgeInsets.all(Adaptive.w(4)),
-            height: 170.h,
+            padding: EdgeInsets.all(Adaptive.w(2)),
+            // height: 170.h,
             margin: EdgeInsets.all(15),
             child: SingleChildScrollView(
                 child: Center(
                     child: Container(
-              height: 95.h,
+              // height: 95.h,
               // height: screenHeight * 0.9,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
@@ -321,8 +321,12 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
                                 builder: (context) => ViewPDF_prescription()));
                       },
                       child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.15),
+                          padding: EdgeInsets.only(
+                              right: Adaptive.w(20),
+                              left: Adaptive.w(20),
+                              bottom: Adaptive.w(10)),
+                          // EdgeInsets.symmetric(
+                          //     horizontal: screenWidth * 0.15),
                           child: Center(
                             child: Container(
                               height: screenHeight * 0.140,
