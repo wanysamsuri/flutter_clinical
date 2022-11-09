@@ -8,17 +8,17 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../customshape.dart';
-import '../services/api_service.dart';
+import '../../customshape.dart';
+import '../../services/api_service.dart';
 
-class FindClinicScreen extends StatefulWidget {
-  const FindClinicScreen({Key? key}) : super(key: key);
+class MoreInfoScreen extends StatefulWidget {
+  const MoreInfoScreen({Key? key}) : super(key: key);
 
   @override
-  State<FindClinicScreen> createState() => _FindClinicScreenState();
+  State<MoreInfoScreen> createState() => _MoreInfoScreenState();
 }
 
-class _FindClinicScreenState extends State<FindClinicScreen> {
+class _MoreInfoScreenState extends State<MoreInfoScreen> {
   Future? futurefetchPanels;
   int selected = -1;
   @override
@@ -160,7 +160,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                       child: Text(
                                                         snapshot.data['data']
                                                             [index]['address'],
-                                                        maxLines: 3,
+                                                        maxLines: 1,
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                         ),

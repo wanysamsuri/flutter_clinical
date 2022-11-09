@@ -62,7 +62,7 @@ class _ViewNotificationState extends State<ViewNotification> {
               },
             )),
         body: Container(
-          padding: EdgeInsets.only(top: Adaptive.w(2)),
+          padding: EdgeInsets.only(top: Adaptive.w(1)),
           height: 130.h,
           child: SafeArea(
             child: FutureBuilder(

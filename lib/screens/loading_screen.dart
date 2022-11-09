@@ -81,7 +81,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset(
-                  'assets/medic.png',
+                  'assets/Clinical-Logo-White.png',
                   width: 300,
                 ),
                 const CircularProgressIndicator(),

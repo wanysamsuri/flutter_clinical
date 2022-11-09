@@ -43,8 +43,10 @@ class _SignInState extends State<SignIn> {
                       Row(children: [
                         Container(
                           padding: const EdgeInsets.all(10),
-                          child: Image.asset('assets/medic.png',
-                              width: 100, height: 100, fit: BoxFit.fill),
+                          child: Image.asset('assets/Clinical-Logo-White.png',
+                              fit: BoxFit.fill,
+                              height: Adaptive.h(3),
+                              width: Adaptive.w(30)),
                         ),
                         const SizedBox(
                           width: 20,

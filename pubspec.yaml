@@ -64,7 +64,6 @@ dependencies:
   accordion: ^2.5.1
   geolocator: ^9.0.2
   geocoding: ^2.0.5
-  
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +71,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/medic_logo.png"
+  image_path: "assets/Clinical-Logo-White.png"
   min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -18,7 +18,8 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '';
 
-import 'find_clinic.dart';
+import 'find clinics/find_clinic.dart';
+import 'find clinics/more_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //   ),
         // ),
         title: Image.asset('assets/Clinical-Logo.png',
-            fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(24)),
+            fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(30)),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -80,61 +81,42 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 padding: EdgeInsets.all(Adaptive.w(5)),
-                height: Adaptive.h(26),
+                height: Adaptive.h(15),
                 decoration: const BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(40),
                         bottomRight: Radius.circular(40))),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "Hi, $sharedFullName!",
-                              style: TextStyle(
-                                  fontSize: 0.3.dp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const Spacer(),
-                          // IconButton(
-                          //   icon: const Icon(
-                          //     Icons.notifications,
-                          //     color: Colors.black,
-                          //   ),
-                          //   onPressed: () {
-                          //     Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) =>
-                          //               const ViewNotification()),
-                          //     );
-                          //   },
-                          // ),
-                        ],
-                      ),
-                      Spacer(),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: TextField(
-                          enabled: false,
-                          decoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 10),
-                              prefixIcon: Icon(Icons.search),
-                              labelText: 'Search',
-                              border: InputBorder.none),
-                        ),
-                      )
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hello,",
+                      style: TextStyle(
+                          fontSize: 0.3.dp, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "$sharedFullName!",
+                      style: TextStyle(
+                          fontSize: 0.3.dp, fontWeight: FontWeight.bold),
+                    ),
+                    // const Spacer(),
+                    // Spacer(),
+                    // Container(
+                    //   padding: EdgeInsets.symmetric(horizontal: 10),
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.white,
+                    //       borderRadius: BorderRadius.circular(20)),
+                    //   child: TextField(
+                    //     enabled: false,
+                    //     decoration: InputDecoration(
+                    //         contentPadding: EdgeInsets.only(left: 10),
+                    //         prefixIcon: Icon(Icons.search),
+                    //         labelText: 'Search',
+                    //         border: InputBorder.none),
+                    //   ),
+                    // )
+                  ],
                 ),
               ),
               SizedBox(
