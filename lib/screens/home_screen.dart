@@ -16,11 +16,8 @@ import 'package:flutter_clinic/services/api_service.dart';
 import 'package:gauges/main.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '';
 
 import 'find clinics/find_clinic.dart';
-import 'find clinics/more_info.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -154,10 +151,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MaterialPageRoute(builder: (context) {
                                       return AppointmentScreen();
                                     }));
-                                  } else if (index == 2) {
+                                  } else if (index == 2) { 
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return FindClinicScreen();
+                                      return FindClinicScreen(
+                                        
+
+                                      );
                                     }));
                                   } else if (index == 3) {
                                     Navigator.push(context,

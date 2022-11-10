@@ -81,7 +81,9 @@ class _MyAppState extends State<MyApp> {
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
             '/notification': ((context) => const NotificationScreen()),
+            
           },
+          
           home: const LoadingScreens());
     });
   }
