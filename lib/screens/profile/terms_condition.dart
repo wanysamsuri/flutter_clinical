@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,7 +21,7 @@ int selected = -1;
 class _TermsConditionScreenState extends State<TermsConditionScreen> {
   @override
   void initState() {
-    futurefetchFeedback = ApiService().fetchFAQ();
+    futurefetchFeedback = ApiService().fetchHighlight();
     super.initState();
   }
 
@@ -56,41 +58,111 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
             },
           ),
         ),
-        body: FutureBuilder(
-            future: futurefetchFeedback,
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return Container(
-                    padding: EdgeInsets.all(Adaptive.w(1)),
-                    height: Adaptive.h(100),
-                    child: SingleChildScrollView(
-                        child: Column(children: <Widget>[
-                      ListView.builder(
-                          // key: Key('builder ${selected.toString()}'),
-                          padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 5),
+        body: Container(
+          padding: EdgeInsets.all(Adaptive.w(2)),
+          height: 130.h,
+          child: SafeArea(
+            child: FutureBuilder(
+              future: ApiService().fetchHighlight(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    padding: EdgeInsets.all(Adaptive.w(2)),
+                    height: 130.h,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: 1,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 1.0, vertical: 10),
 
-                                //body listview
-                                child: Container(
-                                  height: Adaptive.h(5),
-                                  color: Colors.amber,
-                                  child: Container(
-                                    color: Colors.grey[400],
-                                    child:
-                                        Text(snapshot.data[index]['question ']),
-                                  ),
-                                ));
-                          })
-                    ])));
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            }));
+                                      //body listview
+                                      child: Container(
+                                        height: Adaptive.h(40),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey, //New
+                                                blurRadius: 10.0,
+                                                offset: Offset(-1, -1))
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 1,
+                                            ),
+                                            ListTile(
+                                              title: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, bottom: 5),
+                                                    child: Center(
+                                                      child: Text(
+                                                        (snapshot.data[index]
+                                                            ['title']),
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          // fontWeight:
+                                                          //     FontWeight.bold,
+                                                          color: Colors.black,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              // subtitle: Column(
+                                              //   crossAxisAlignment:
+                                              //       CrossAxisAlignment.start,
+                                              //   children: [
+                                              //     Padding(
+                                              //       padding:
+                                              //           const EdgeInsets.only(
+                                              //               bottom: 5.0),
+                                              //       child: Text(
+                                              //         (snapshot.data[index]
+                                              //             ['created_at']),
+                                              //         textAlign:
+                                              //             TextAlign.justify,
+                                              //         style: TextStyle(
+                                              //           fontSize: 12,
+                                              //           color: Colors.black,
+                                              //         ),
+                                              //       ),
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }))
+                        ]),
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          ),
+        ));
   }
 }
