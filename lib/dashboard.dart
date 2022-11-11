@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/find%20clinics/view_more.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/record_screen.dart';
@@ -22,7 +23,7 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   final _pageOptions = [
     const HomeScreen(),
-    const Appointment(),
+    const FindClinicScreen(),
     const PanelRecords(),
     const Profile(),
 

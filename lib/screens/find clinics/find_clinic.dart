@@ -12,8 +12,7 @@ import '../../customshape.dart';
 import '../../services/api_service.dart';
 
 class FindClinicScreen extends StatefulWidget {
-  const FindClinicScreen(Type locationPermission, permission, {Key? key})
-      : super(key: key);
+  const FindClinicScreen({Key? key}) : super(key: key);
 
   @override
   State<FindClinicScreen> createState() => _FindClinicScreenState();
