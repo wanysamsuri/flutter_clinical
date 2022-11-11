@@ -51,380 +51,369 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: screenHeight * 0.07,
-            backgroundColor: Colors.grey[50],
-            elevation: 0.0,
-            flexibleSpace: ClipPath(
-                // clipper: CustomShape(),
-                child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 157, 228, 234),
-            )),
-            title: const Text(
-              'Find Clinics',
-              style: TextStyle(color: Colors.black),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: screenHeight * 0.07,
+          backgroundColor: Colors.grey[50],
+          elevation: 0.0,
+          flexibleSpace: ClipPath(
+              // clipper: CustomShape(),
+              child: Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            color: Color.fromARGB(255, 157, 228, 234),
+          )),
+          title: const Text(
+            'Find Clinics',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+          leading: GestureDetector(
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
             ),
-            centerTitle: true,
-            leading: GestureDetector(
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            )),
-        body: Container(
-          padding: EdgeInsets.all(Adaptive.w(2)),
-          height: 130.h,
-          child: SafeArea(
-              child: FutureBuilder(
-                future: futurefetchPanels,
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return Container(
-                      padding: EdgeInsets.all(Adaptive.w(2)),
-                      height: 130.h,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: TextField(
-                                enabled: false,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 10),
-                                    prefixIcon: Icon(Icons.search),
-                                    labelText: 'Search',
-                                    border: InputBorder.none),
-                              ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          )),
+      body: Container(
+        padding: EdgeInsets.all(Adaptive.w(2)),
+        height: 130.h,
+        child: SafeArea(
+          child: FutureBuilder(
+            future: futurefetchPanels,
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  padding: EdgeInsets.all(Adaptive.w(2)),
+                  height: 130.h,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20)),
+                          child: TextField(
+                            enabled: false,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 10),
+                                prefixIcon: Icon(Icons.search),
+                                labelText: 'Search',
+                                border: InputBorder.none),
+                          ),
+                        ),
+                        // Container(
+                        //   padding: EdgeInsets.all(20),
+                        //   child: const Text(
+                        //     "Show in map",
+                        //     style: TextStyle(
+                        //         fontSize: 18,
+                        //         color: Colors.blue,
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
+                        SizedBox(
+                          height: Adaptive.h(2),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: const Text(
+                            "Nearby clinics are as below:",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              // fontWeight: FontWeight.bold
                             ),
-                            // Container(
-                            //   padding: EdgeInsets.all(20),
-                            //   child: const Text(
-                            //     "Show in map",
-                            //     style: TextStyle(
-                            //         fontSize: 18,
-                            //         color: Colors.blue,
-                            //         fontWeight: FontWeight.bold),
-                            //   ),
-                            // ),
-                            SizedBox(
-                              height: Adaptive.h(2),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20),
-                              child: const Text(
-                                "Nearby clinics are as below:",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  // fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: 3,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 1.0, vertical: 5),
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 1.0, vertical: 5),
 
-                                      //body listview
-                                      child: InkWell(
-                                        child: Container(
-                                          padding: EdgeInsets.all(Adaptive.h(2)),
-                                          height: Adaptive.h(10),
-                                          decoration: BoxDecoration(
-                                              color: secondaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: Column(
+                                  //body listview
+                                  child: InkWell(
+                                    child: Container(
+                                      padding: EdgeInsets.all(Adaptive.h(2)),
+                                      height: Adaptive.h(10),
+                                      decoration: BoxDecoration(
+                                          color: secondaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Container(
-                                                      child: Text(
-                                                    snapshot.data['data'][index]
-                                                        ['name'],
-                                                    style: TextStyle(
-                                                        fontSize: 0.29.dp,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  )),
-                                                  // SizedBox(
-                                                  //   width: Adaptive.w(10),
-                                                  // ),
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                          text: snapshot
-                                                              .data['data'][index]
-                                                                  ['distance']
-                                                              .toStringAsFixed(1),
-                                                          style: TextStyle(
-                                                              color: Colors.black,
-                                                              fontSize: 0.3.dp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                          children: <TextSpan>[
-                                                            TextSpan(
-                                                                text: ' km',
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold)),
-                                                          ]),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: Adaptive.h(1),
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    alignment: Alignment.center,
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                          text: snapshot
-                                                                  .data['data']
-                                                              [index]['city'],
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 0.25.dp,
-                                                          ),
-                                                          children: <TextSpan>[
-                                                            TextSpan(
-                                                                text: (', ')),
-                                                            TextSpan(
-                                                              text: snapshot.data[
-                                                                          'data']
-                                                                      [index]
-                                                                  ['postcode'],
-                                                            ),
-                                                          ]),
-                                                    ),
-                                                  ),
-                                                ],
+                                              Container(
+                                                  child: Text(
+                                                snapshot.data['data'][index]
+                                                    ['name'],
+                                                style: TextStyle(
+                                                    fontSize: 0.29.dp,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )),
+                                              // SizedBox(
+                                              //   width: Adaptive.w(10),
+                                              // ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: snapshot
+                                                          .data['data'][index]
+                                                              ['distance']
+                                                          .toStringAsFixed(1),
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 0.3.dp,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                            text: ' km',
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold)),
+                                                      ]),
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                              context: context,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.vertical(
-                                                          top: Radius.circular(
-                                                20,
-                                              ))),
-                                              builder: ((context) => Container(
-                                                    padding: EdgeInsets.all(
-                                                        Adaptive.h(2)),
-                                                    height: Adaptive.h(40),
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.grey[200],
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                20)),
-                                                    child: Column(
+                                          SizedBox(
+                                            height: Adaptive.h(1),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text:
+                                                          snapshot.data['data']
+                                                              [index]['city'],
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 0.25.dp,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(text: (', ')),
+                                                        TextSpan(
+                                                          text: snapshot.data[
+                                                                  'data'][index]
+                                                              ['postcode'],
+                                                        ),
+                                                      ]),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.vertical(
+                                                      top: Radius.circular(
+                                            20,
+                                          ))),
+                                          builder: ((context) => Container(
+                                                padding: EdgeInsets.all(
+                                                    Adaptive.h(2)),
+                                                height: Adaptive.h(40),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey[200],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment.start,
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Container(
-                                                                child: Text(
-                                                              snapshot.data[
-                                                                      'data']
-                                                                  [index]['name'],
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      0.29.dp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )),
-                                                            // SizedBox(
-                                                            //   width: Adaptive.w(10),
-                                                            // ),
-                                                            Container(
-                                                              alignment: Alignment
-                                                                  .center,
-                                                              child: RichText(
-                                                                text: TextSpan(
-                                                                    text: snapshot
-                                                                        .data[
-                                                                            'data']
-                                                                            [
-                                                                            index]
-                                                                            [
-                                                                            'distance']
-                                                                        .toStringAsFixed(
-                                                                            1),
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            0.3
-                                                                                .dp,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold),
-                                                                    children: <
-                                                                        TextSpan>[
-                                                                      TextSpan(
-                                                                          text:
-                                                                              ' km',
-                                                                          style: TextStyle(
-                                                                              fontWeight:
-                                                                                  FontWeight.bold)),
-                                                                    ]),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: Adaptive.h(1),
-                                                        ),
-                                                        Column(
-                                                          children: [
-                                                            Container(
-                                                                width: Adaptive.w(
-                                                                    90),
-                                                                child: Text(
-                                                                  snapshot.data[
-                                                                              'data']
-                                                                          [index]
-                                                                      ['address'],
-                                                                  maxLines: 5,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          0.25.dp),
-                                                                )),
-                                                            Container(
-                                                                width: Adaptive.w(
-                                                                    90),
-                                                                child: RichText(
-                                                                    text: TextSpan(
-                                                                        text: snapshot.data['data']
-                                                                                [
-                                                                                index]
-                                                                            [
-                                                                            'city'],
-                                                                        style: TextStyle(
-                                                                            fontSize: 0.25
-                                                                                .dp,
-                                                                            color: Colors
-                                                                                .black),
-                                                                        children: <
-                                                                            TextSpan>[
-                                                                      TextSpan(
-                                                                          text:
-                                                                              (', ')),
-                                                                      TextSpan(
-                                                                        text: snapshot.data['data']
-                                                                                [
-                                                                                index]
-                                                                            [
-                                                                            'postcode'],
-                                                                      ),
-                                                                    ]))),
-                                                            Container(
-                                                                width: Adaptive.w(
-                                                                    90),
-                                                                child: Text(
-                                                                  snapshot.data[
-                                                                              'data']
-                                                                          [index]
-                                                                      ['website'],
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .blue,
-                                                                      fontSize:
-                                                                          0.25.dp),
-                                                                )),
-                                                            SizedBox(
-                                                              height:
-                                                                  Adaptive.h(5),
-                                                            ),
-                                                            Text(locationMessage),
-                                                            InkWell(
-                                                              child: Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(10),
-                                                                // width: Adaptive.w(
-                                                                // 50),
-                                                                // height:
-                                                                //     Adaptive.h(5),
-                                                                decoration: BoxDecoration(
-                                                                    color:
-                                                                        primaryColor,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                20)),
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  'Get Location',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          18),
-                                                                )),
-                                                              ),
-                                                              onTap: () {
-                                                                getCurrentLocation();
-                                                              },
-                                                            ),
-                                                          ],
+                                                        Container(
+                                                            child: Text(
+                                                          snapshot.data['data']
+                                                              [index]['name'],
+                                                          style: TextStyle(
+                                                              fontSize: 0.29.dp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        )),
+                                                        // SizedBox(
+                                                        //   width: Adaptive.w(10),
+                                                        // ),
+                                                        Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: RichText(
+                                                            text: TextSpan(
+                                                                text: snapshot
+                                                                    .data['data']
+                                                                        [index][
+                                                                        'distance']
+                                                                    .toStringAsFixed(
+                                                                        1),
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        0.3.dp,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                                children: <
+                                                                    TextSpan>[
+                                                                  TextSpan(
+                                                                      text:
+                                                                          ' km',
+                                                                      style: TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold)),
+                                                                ]),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
-                                                  )));
-                                        },
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ]),
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                },
-              ),
-            ),
+                                                    SizedBox(
+                                                      height: Adaptive.h(1),
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Container(
+                                                            width:
+                                                                Adaptive.w(90),
+                                                            child: Text(
+                                                              snapshot.data[
+                                                                          'data']
+                                                                      [index]
+                                                                  ['address'],
+                                                              maxLines: 5,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      0.25.dp),
+                                                            )),
+                                                        Container(
+                                                            width:
+                                                                Adaptive.w(90),
+                                                            child: RichText(
+                                                                text: TextSpan(
+                                                                    text: snapshot.data['data']
+                                                                            [
+                                                                            index]
+                                                                        [
+                                                                        'city'],
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            0.25
+                                                                                .dp,
+                                                                        color: Colors
+                                                                            .black),
+                                                                    children: <
+                                                                        TextSpan>[
+                                                                  TextSpan(
+                                                                      text:
+                                                                          (', ')),
+                                                                  TextSpan(
+                                                                    text: snapshot.data['data']
+                                                                            [
+                                                                            index]
+                                                                        [
+                                                                        'postcode'],
+                                                                  ),
+                                                                ]))),
+                                                        Container(
+                                                            width:
+                                                                Adaptive.w(90),
+                                                            child: Text(
+                                                              snapshot.data[
+                                                                          'data']
+                                                                      [index]
+                                                                  ['website'],
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  fontSize:
+                                                                      0.25.dp),
+                                                            )),
+                                                        SizedBox(
+                                                          height: Adaptive.h(5),
+                                                        ),
+                                                        Text(locationMessage),
+                                                        InkWell(
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            // width: Adaptive.w(
+                                                            // 50),
+                                                            // height:
+                                                            //     Adaptive.h(5),
+                                                            decoration: BoxDecoration(
+                                                                color:
+                                                                    primaryColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20)),
+                                                            child: Center(
+                                                                child: Text(
+                                                              'Get Location',
+                                                              style: TextStyle(
+                                                                  fontSize: 18),
+                                                            )),
+                                                          ),
+                                                          onTap: () {
+                                                            getCurrentLocation();
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              )));
+                                    },
+                                  ),
+                                );
+                              }),
+                        ),
+                      ]),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
           ),
-        );
+        ),
+      ),
+    );
   }
 }
 

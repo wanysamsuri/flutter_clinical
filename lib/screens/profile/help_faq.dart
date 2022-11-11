@@ -3,6 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/models/help_faq_model.dart';
+import 'package:flutter_clinic/services/api_service.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HelpScreen extends StatefulWidget {
@@ -12,29 +14,14 @@ class HelpScreen extends StatefulWidget {
   State<HelpScreen> createState() => _HelpScreenState();
 }
 
-class _HelpScreenState extends State<HelpScreen> with TickerProviderStateMixin {
-  late List<GlobalKey> expansionTile;
-  int selected = -1;
-  final List<helpFAQ_Model> items = [
-    helpFAQ_Model(
-      title: 'This is message:',
-      subtitle: 'This is message:',
-    ),
-    helpFAQ_Model(
-      title: 'This is message',
-      subtitle: 'This is message:',
-    ),
-    helpFAQ_Model(
-      title: 'This is message',
-      subtitle:
-          'This is message:This is message:This is message:This is message:This is message:This is message:This is message:This is message:This is message:This is message:This is message:',
-    ),
-  ];
+Future? futurefetchFAQ;
+int selected = -1;
+
+class _HelpScreenState extends State<HelpScreen> {
   @override
   void initState() {
+    futurefetchFAQ = ApiService().fetchFAQ();
     super.initState();
-    expansionTile = List<GlobalKey<_HelpScreenState>>.generate(
-        items.length, (index) => GlobalKey());
   }
 
   @override
@@ -69,99 +56,48 @@ class _HelpScreenState extends State<HelpScreen> with TickerProviderStateMixin {
                 Navigator.pop(context);
               },
             )),
-        body: SafeArea(
-            child: Container(
-                padding: EdgeInsets.all(Adaptive.w(1)),
-                height: 100.h,
-                child: SingleChildScrollView(
-                    child: Column(children: <Widget>[
-                  ListView.builder(
-                      key: Key('builder ${selected.toString()}'),
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 1.0, vertical: 1.0),
+        body: Container(
+            child: FutureBuilder(
+                future: futurefetchFAQ,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return Container(
+                        padding: EdgeInsets.all(Adaptive.w(1)),
+                        height: Adaptive.h(100),
+                        child: SingleChildScrollView(
+                            child: Column(children: <Widget>[
+                          ListView.builder(
+                              // key: Key('builder ${selected.toString()}'),
+                              padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 0, vertical: 5),
 
-                            //body listview
+                                    //body listview
 
-                            child: Card(
-                                color: secondaryColor,
-                                shadowColor: primaryColor,
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Color(0xFFEEEEEE), width: 1),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: ExpansionTile(
-                                    key: Key(index.toString()),
-                                    initiallyExpanded: index == selected,
-                                    onExpansionChanged: (newState) {
-                                      if (newState) {
-                                        setState(() {
-                                          selected = index;
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selected = -1;
-                                        });
-                                      }
-                                    },
-                                    title: Center(
-                                        child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 15, bottom: 15.0),
-                                      child: Text(
-                                        items[index].title,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    )),
-                                    // subtitle: Padding(
-                                    //   padding:
-                                    //       const EdgeInsets.only(bottom: 10),
-                                    //   child: Column(
-                                    //       crossAxisAlignment:
-                                    //           CrossAxisAlignment.start,
-                                    //       children: <Widget>[
-                                    //         Text(
-                                    //           items[index].subtitle,
-                                    //           style: TextStyle(
-                                    //             fontSize: 16,
-                                    //             color: Colors.black,
-                                    //             fontWeight: FontWeight.bold,
-                                    //           ),
-                                    //         ),
-                                    //         SizedBox(
-                                    //           height: 5,
-                                    //         ),
-                                    //       ]),
-                                    // ),
+                                    child: GFAccordion(
+                                      collapsedTitleBackgroundColor:
+                                          secondaryColor,
+                                      expandedTitleBackgroundColor:
+                                          Colors.grey[300],
+                                      collapsedIcon: Icon(Icons.add),
+                                      expandedIcon: Icon(Icons.minimize),
+                                      title: snapshot.data[index]['question '],
 
-                                    //below
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 100,
-                                        // child: Text(items[index].patient),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          items[index].subtitle,
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 15.0),
-                                      )
-                                    ])));
-                      })
-                ])))));
+                                      // titleBorderColors.amber,
+                                      content: snapshot.data[index]['answer'],
+                                      textStyle: TextStyle(fontSize: 0.27.dp),
+                                      contentBackgroundColor: Colors.grey[100],
+                                    ));
+                              })
+                        ])));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                })));
   }
 }

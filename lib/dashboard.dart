@@ -23,7 +23,7 @@ class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
   final _pageOptions = [
     const HomeScreen(),
-    const FindClinicScreen(),
+    const Appointment(),
     const PanelRecords(),
     const Profile(),
 
