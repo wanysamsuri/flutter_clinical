@@ -146,7 +146,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                   child: InkWell(
                                     child: Container(
                                       padding: EdgeInsets.all(Adaptive.h(2)),
-                                      height: Adaptive.h(10),
+                                      height: Adaptive.h(12),
                                       decoration: BoxDecoration(
                                           color: secondaryColor,
                                           borderRadius:
