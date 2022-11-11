@@ -6,19 +6,39 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../customshape.dart';
 import '../../services/api_service.dart';
 
 class FindClinicScreen extends StatefulWidget {
-  const FindClinicScreen({Key? key}) : super(key: key);
+  const FindClinicScreen(Type locationPermission, permission, {Key? key})
+      : super(key: key);
 
   @override
   State<FindClinicScreen> createState() => _FindClinicScreenState();
 }
 
 class _FindClinicScreenState extends State<FindClinicScreen> {
+  late var lat;
+  late var long;
+  var locationMessage = "";
+  void getCurrentLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
+    var position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    var lastPosition = await Geolocator.getLastKnownPosition();
+    print(lastPosition);
+    lat = position.latitude;
+    long = position.longitude;
+    print('$lat, $long');
+
+    setState(() {
+      locationMessage = '$position';
+    });
+  }
+
   Future? futurefetchPanels;
   int selected = -1;
   @override
@@ -355,17 +375,18 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                               )),
                                                           SizedBox(
                                                             height:
-                                                                Adaptive.h(10),
+                                                                Adaptive.h(5),
                                                           ),
+                                                          Text(locationMessage),
                                                           InkWell(
                                                             child: Container(
                                                               padding:
                                                                   EdgeInsets
                                                                       .all(10),
-                                                              width: Adaptive.w(
-                                                                  50),
-                                                              height:
-                                                                  Adaptive.h(5),
+                                                              // width: Adaptive.w(
+                                                              // 50),
+                                                              // height:
+                                                              //     Adaptive.h(5),
                                                               decoration: BoxDecoration(
                                                                   color:
                                                                       primaryColor,
@@ -375,15 +396,14 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                               20)),
                                                               child: Center(
                                                                   child: Text(
-                                                                'Next',
+                                                                'Get Location',
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         18),
                                                               )),
                                                             ),
                                                             onTap: () {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              getCurrentLocation();
                                                             },
                                                           ),
                                                         ],
