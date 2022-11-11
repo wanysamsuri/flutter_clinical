@@ -14,10 +14,9 @@ import 'package:flutter_clinic/screens/notification/notification_main.dart';
 import 'package:flutter_clinic/screens/notification/view_noti.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:gauges/main.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '';
-
 import 'find clinics/find_clinic.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,6 +27,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late var lat;
+  late var long;
+  var locationMessage = "";
+  void getCurrentLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
+    var position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    var lastPosition = await Geolocator.getLastKnownPosition();
+    print(lastPosition);
+    lat = position.latitude;
+    long = position.longitude;
+    print('$lat, $long');
+
+    setState(() {
+      locationMessage = '$position';
+    });
+  }
   Future? fetchPanelList;
   Future? fetchHighlightIndex;
 
@@ -155,7 +172,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   } else if (index == 2) {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return FindClinicScreen();
+                                      return FindClinicScreen(
+                                        getCurrentLocation()
+                                      );
                                     }));
                                   } else if (index == 3) {
                                     Navigator.push(context,
