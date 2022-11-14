@@ -72,35 +72,31 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: 30,
+                height: Adaptive.h(1),
               ),
               Divider(thickness: 2),
               SizedBox(
-                height: 30,
+                height: Adaptive.h(1),
               ),
               Container(
                   // padding: EdgeInsets.all(20),
                   child: Column(children: [
-                ListView(shrinkWrap: true, children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey[200]),
-                      child: ListTile(
-                        onTap: () async {
-                          Get.toNamed('/profile');
-                        },
-                        leading: Icon(Icons.person),
-                        title: Text('User Profile'),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[200]),
+                    child: ListTile(
+                      onTap: () async {
+                        Get.toNamed('/profile');
+                      },
+                      leading: Icon(Icons.person),
+                      title: Text('User Profile'),
                     ),
                   ),
-                  // Divider(
-                  //   thickness: 2,
-                ]),
+                ),
 
                 //device
                 Padding(

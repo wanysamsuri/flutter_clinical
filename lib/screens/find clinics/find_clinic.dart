@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:ui';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -7,43 +8,111 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../customshape.dart';
 import '../../services/api_service.dart';
 
 class FindClinicScreen extends StatefulWidget {
-  const FindClinicScreen(void currentLocation, {Key? key}) : super(key: key);
+  const FindClinicScreen(void currentLocation,
+      // void currentLocation,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<FindClinicScreen> createState() => _FindClinicScreenState();
 }
 
+// late String? lat = '';
+// late String? long = '';
+String? lat = '';
+String? long = '';
+String? locationMessage = "";
+
 class _FindClinicScreenState extends State<FindClinicScreen> {
-  late var lat;
-  late var long;
-  var locationMessage = "";
+  // var lat;
+  // var long;
+
+  // var locationMessage = "";
+  // void getCurrentLocation() async {
+  //   LocationPermission permission;
+  //   permission = await Geolocator.requestPermission();
+  //   var position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   var lastPosition = await Geolocator.getLastKnownPosition();
+  //   print(lastPosition);
+  //   lat = position.latitude.toString();
+  //   long = position.longitude.toString();
+  //   print('$lat, $long');
+
+  //   setState(() {
+  //     lat = position.latitude.toString();
+  //     long = position.longitude.toString();
+  //     locationMessage = '$position';
+  //   });
+  // }
   void getCurrentLocation() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     var lastPosition = await Geolocator.getLastKnownPosition();
     print(lastPosition);
-    lat = position.latitude;
-    long = position.longitude;
+    await storage.setString('latitude', '${position.latitude.toString()}');
+    await storage.setString('longitude', '${position.longitude.toString()}');
+    lat = position.latitude.toString();
+    long = position.longitude.toString();
     print('$lat, $long');
 
     setState(() {
+      lat = position.latitude.toString();
+      long = position.longitude.toString();
       locationMessage = '$position';
     });
   }
+
+  // Future fetchPanels(
+  //     // String latitude, String longitude
+  //     ) async {
+  //   SharedPreferences storage = await SharedPreferences.getInstance();
+  //   getCurrentLocation();
+  //   final headerToken = storage.getString('token');
+  //   final latitude = storage.getString('latitude');
+  //   final longitude = storage.getString('longitude');
+  //   final endpointPanel = Uri.parse(
+  //     'https://staging.clinical.my/api/v1/panels?latitude=$latitude&longitude=$longitude',
+  //   );
+  //   final response = await http.get(
+  //     endpointPanel,
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Authorization': 'Bearer $headerToken'
+  //     },
+  //   );
+
+  //   if (response.statusCode == 200) {
+  //     // getCurrentLocation();
+  //     final responseBody = json.decode(response.body)['data'];
+  //     return responseBody;
+  //   } else if (response.statusCode == 401) {
+  //     await storage.clear();
+  //     Get.offAllNamed('/loading');
+  //   }
+
+  //   // final responseBody = json.decode(response.body)['data'];
+  //   // return responseBody;
+  // }
 
   Future? futurefetchPanels;
   int selected = -1;
   @override
   void initState() {
     // TODO: implement initState
-    futurefetchPanels = ApiService().fetchPanels('3.0555941', '101.4855596');
+    // getCurrentLocation();
+    futurefetchPanels = ApiService().fetchPanels(lat!,long!);
+    print('this is latitude : $lat');
     super.initState();
   }
 
@@ -366,7 +435,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                         SizedBox(
                                                           height: Adaptive.h(5),
                                                         ),
-                                                        Text(locationMessage),
+                                                        Text(locationMessage!),
                                                         InkWell(
                                                           child: Container(
                                                             padding:
@@ -391,7 +460,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                             )),
                                                           ),
                                                           onTap: () {
-                                                            getCurrentLocation();
+                                                            // getCurrentLocation();
                                                           },
                                                         ),
                                                       ],
@@ -417,86 +486,83 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
   }
 }
 
-
-                            //   Text(
-                            //     'Show in map',
-                            //     style: TextStyle(
-                            //         fontSize: 18,
-                            //         fontWeight: FontWeight.bold,
-                            //         color: Colors.blue),
-                            //   ),
-                            //   SizedBox(
-                            //     height: 30,
-                            //   ),
-                            //   Container(
-                            //     padding: EdgeInsets.symmetric(horizontal: 10),
-                            //     decoration: BoxDecoration(
-                            //       color: secondaryColor,
-                            //       // borderRadius: BorderRadius.circular(20)
-                            //     ),
-                            //     child: TextField(
-                            //       enabled: false,
-                            //       decoration: InputDecoration(
-                            //           contentPadding: EdgeInsets.only(left: 10),
-                            //           labelText: 'Poliklinik Dr Hanafi',
-                            //           labelStyle: TextStyle(color: Colors.black),
-                            //           border: InputBorder.none),
-                            //     ),
-                            //   ),
-                            //   SizedBox(
-                            //     height: 10,
-                            //   ),
-                            //   Container(
-                            //     padding: EdgeInsets.symmetric(horizontal: 10),
-                            //     decoration: BoxDecoration(
-                            //       color: secondaryColor,
-                            //       // borderRadius: BorderRadius.circular(20)
-                            //     ),
-                            //     child: TextField(
-                            //       enabled: false,
-                            //       decoration: InputDecoration(
-                            //           contentPadding: EdgeInsets.only(left: 10),
-                            //           labelText: 'Poliklinik Dr Hanafi',
-                            //           labelStyle: TextStyle(color: Colors.black),
-                            //           border: InputBorder.none),
-                            //     ),
-                            //   ),
-                            //   SizedBox(
-                            //     height: 10,
-                            //   ),
-                            //   Container(
-                            //     padding: EdgeInsets.symmetric(horizontal: 10),
-                            //     decoration: BoxDecoration(
-                            //       color: secondaryColor,
-                            //       // borderRadius: BorderRadius.circular(20)
-                            //     ),
-                            //     child: TextField(
-                            //       enabled: false,
-                            //       decoration: InputDecoration(
-                            //           contentPadding: EdgeInsets.only(left: 10),
-                            //           labelText: 'Poliklinik Dr Hanafi',
-                            //           labelStyle: TextStyle(color: Colors.black),
-                            //           border: InputBorder.none),
-                            //     ),
-                            //   ),
-                            //   SizedBox(
-                            //     height: 10,
-                            //   ),
-                            //   Container(
-                            //     padding: EdgeInsets.symmetric(horizontal: 10),
-                            //     decoration: BoxDecoration(
-                            //       color: secondaryColor,
-                            //       // borderRadius: BorderRadius.circular(20)
-                            //     ),
-                            //     child: TextField(
-                            //       enabled: false,
-                            //       decoration: InputDecoration(
-                            //           contentPadding: EdgeInsets.only(left: 10),
-                            //           labelText: 'Poliklinik Dr Hanafi',
-                            //           labelStyle: TextStyle(color: Colors.black),
-                            //           border: InputBorder.none),
-                            //     ),
-                            //   ),
-                            // ]))),
-                          
-
+//   Text(
+//     'Show in map',
+//     style: TextStyle(
+//         fontSize: 18,
+//         fontWeight: FontWeight.bold,
+//         color: Colors.blue),
+//   ),
+//   SizedBox(
+//     height: 30,
+//   ),
+//   Container(
+//     padding: EdgeInsets.symmetric(horizontal: 10),
+//     decoration: BoxDecoration(
+//       color: secondaryColor,
+//       // borderRadius: BorderRadius.circular(20)
+//     ),
+//     child: TextField(
+//       enabled: false,
+//       decoration: InputDecoration(
+//           contentPadding: EdgeInsets.only(left: 10),
+//           labelText: 'Poliklinik Dr Hanafi',
+//           labelStyle: TextStyle(color: Colors.black),
+//           border: InputBorder.none),
+//     ),
+//   ),
+//   SizedBox(
+//     height: 10,
+//   ),
+//   Container(
+//     padding: EdgeInsets.symmetric(horizontal: 10),
+//     decoration: BoxDecoration(
+//       color: secondaryColor,
+//       // borderRadius: BorderRadius.circular(20)
+//     ),
+//     child: TextField(
+//       enabled: false,
+//       decoration: InputDecoration(
+//           contentPadding: EdgeInsets.only(left: 10),
+//           labelText: 'Poliklinik Dr Hanafi',
+//           labelStyle: TextStyle(color: Colors.black),
+//           border: InputBorder.none),
+//     ),
+//   ),
+//   SizedBox(
+//     height: 10,
+//   ),
+//   Container(
+//     padding: EdgeInsets.symmetric(horizontal: 10),
+//     decoration: BoxDecoration(
+//       color: secondaryColor,
+//       // borderRadius: BorderRadius.circular(20)
+//     ),
+//     child: TextField(
+//       enabled: false,
+//       decoration: InputDecoration(
+//           contentPadding: EdgeInsets.only(left: 10),
+//           labelText: 'Poliklinik Dr Hanafi',
+//           labelStyle: TextStyle(color: Colors.black),
+//           border: InputBorder.none),
+//     ),
+//   ),
+//   SizedBox(
+//     height: 10,
+//   ),
+//   Container(
+//     padding: EdgeInsets.symmetric(horizontal: 10),
+//     decoration: BoxDecoration(
+//       color: secondaryColor,
+//       // borderRadius: BorderRadius.circular(20)
+//     ),
+//     child: TextField(
+//       enabled: false,
+//       decoration: InputDecoration(
+//           contentPadding: EdgeInsets.only(left: 10),
+//           labelText: 'Poliklinik Dr Hanafi',
+//           labelStyle: TextStyle(color: Colors.black),
+//           border: InputBorder.none),
+//     ),
+//   ),
+// ]))),

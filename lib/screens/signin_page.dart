@@ -108,6 +108,7 @@ class _SignInState extends State<SignIn> {
                                     TextFormField(
                                       obscureText: false,
                                       controller: nricController,
+                                      keyboardType: TextInputType.number,
                                       style: TextStyle(fontSize: 20),
                                       // keyboardType: TextInputType.number,
                                       decoration: InputDecoration(

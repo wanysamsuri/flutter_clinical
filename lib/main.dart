@@ -63,6 +63,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
+          title: 'Clinical',
           debugShowCheckedModeBanner: false,
           routes: {
             '/loading': ((context) => const LoadingScreens()),
@@ -81,9 +82,7 @@ class _MyAppState extends State<MyApp> {
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
             '/notification': ((context) => const NotificationScreen()),
-            
           },
-          
           home: const LoadingScreens());
     });
   }

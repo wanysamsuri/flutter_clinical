@@ -66,9 +66,9 @@ class _LoadingScreensState extends State<LoadingScreens> {
     }
   }
 
-  static const String oneSignalAppId = "f88df26b-2ffc-4811-babc-aaad1ead4c20";
+  static const String oneSignalAppId = "8ccd5fa1-7218-4f73-bfea-bd84b99bb016";
   void configOneSignel() {
-    OneSignal.shared.setAppId('f88df26b-2ffc-4811-babc-aaad1ead4c20');
+    OneSignal.shared.setAppId('8ccd5fa1-7218-4f73-bfea-bd84b99bb016');
   }
 
   @override

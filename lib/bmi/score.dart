@@ -36,7 +36,7 @@ class ScoreScreen extends StatelessWidget {
             color: Color.fromARGB(255, 157, 228, 234),
           )),
           title: const Text(
-            'Health Status',
+            'BMI',
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,

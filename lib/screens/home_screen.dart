@@ -27,9 +27,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late var lat;
-  late var long;
-  var locationMessage = "";
+  // late var lat;
+  // late var long;
+  // var locationMessage = "";
   void getCurrentLocation() async {
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
@@ -37,14 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
         desiredAccuracy: LocationAccuracy.high);
     var lastPosition = await Geolocator.getLastKnownPosition();
     print(lastPosition);
-    lat = position.latitude;
-    long = position.longitude;
+    lat = position.latitude.toString();
+    long = position.longitude.toString();
     print('$lat, $long');
 
     setState(() {
+      lat = position.latitude.toString();
+      long = position.longitude.toString();
       locationMessage = '$position';
     });
   }
+
   Future? fetchPanelList;
   Future? fetchHighlightIndex;
 
@@ -147,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: Adaptive.w(40),
+                            maxCrossAxisExtent: Adaptive.w(30),
                             mainAxisExtent: Adaptive.h(15),
                             // childAspectRatio: 5 / 4,
                             // crossAxisSpacing: 20,
@@ -156,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               GestureDetector(
                                 onTap: () {
@@ -167,20 +171,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                   } else if (index == 1) {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return AppointmentScreen();
+                                      // return AppointmentScreen();
+                                      return FindClinicScreen(
+                                          getCurrentLocation()
+                                          );
                                     }));
                                   } else if (index == 2) {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return FindClinicScreen(
-                                        getCurrentLocation()
-                                      );
-                                    }));
-                                  } else if (index == 3) {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
+                                      // return FindClinicScreen(
+                                      //     getCurrentLocation());
                                       return HealthStatusScreen();
                                     }));
+                                  } else if (index == 3) {
+                                    _showBottomSheet(context);
+                                    // Navigator.push(context,
+                                    //     MaterialPageRoute(builder: (context) {
+                                    //   return HealthStatusScreen();
+                                    // }));
                                   } else if (index == 4) {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
@@ -211,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Text(
                                 services[index].serviceName.toString(),
-                                style: TextStyle(fontSize: 0.246.dp),
+                                style: TextStyle(fontSize: 0.226.dp),
                               )
                             ],
                           );
