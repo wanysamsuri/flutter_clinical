@@ -41,7 +41,7 @@ class ApiService {
       storage.setString('userName', responseBody['user']['name']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
-      Get.to(()=>EmailVerification());
+      Get.to(() => EmailVerification());
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -377,24 +377,43 @@ class ApiService {
     // return responseBody;
   }
 
-  // Future fetchHighlight() async {
-  //   SharedPreferences storage = await SharedPreferences.getInstance();
+  Future postResetPassword(
+      String oldPass, String newPass, String newPassConfirm) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
-  //   final headerToken = storage.getString('token');
-  //   final endpointHighlight = Uri.parse('$baseUrl/highlight');
-  //   final response = await http.get(endpointHighlight, headers: {
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer $headerToken'
-  //   });
+    final headerToken = storage.getString('token');
 
-  //   if (response.statusCode == 200) {
-  //     final responseBody = json.decode(response.body)['data'];
-  //     return responseBody;
-  //   } else if (response.statusCode == 401) {
-  //     await storage.clear();
-  //     Get.offAllNamed('/loading');
-  //   }
+    final endpointHighlight = Uri.parse('$baseUrl/update-password');
+    final changePasswordBody = {
+      'old_password': oldPass,
+      'password': newPass,
+      'password_confirmation': newPassConfirm
+    };
+    final response = await http.post(endpointHighlight,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: changePasswordBody);
+    final responseBody = json.decode(response.body);
 
-  // final responseBody = json.decode(response.body)['data'];
-  // return responseBody;
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      Get.toNamed('/loading');
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+
+    // final responseBody = json.decode(response.body)['data'];
+    // return responseBody;
+  }
 }

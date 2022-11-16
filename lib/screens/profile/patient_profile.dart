@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/profile/edit_password.dart';
 import 'package:flutter_clinic/screens/profile/edit_profile.dart';
 import 'package:flutter_clinic/screens/profile/help_faq.dart';
 import 'package:flutter_clinic/screens/profile/profile_screen.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 
@@ -163,6 +165,57 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => EditPassword());
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: Adaptive.h(9),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey[200]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text(
+                              'Password:',
+                              style: TextStyle(
+                                letterSpacing: 5,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: Row(
+                              children: [
+                                Text(
+                                  '********',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.edit,
+                                  size: 17,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
