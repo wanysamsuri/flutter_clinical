@@ -144,8 +144,11 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                       child: Container(
                                                         padding:
                                                             EdgeInsets.all(10),
-                                                        child: Icon(Icons
-                                                            .health_and_safety),
+                                                        child: Image.asset(
+                                                          'assets/clinical_my.png',
+                                                          width: 40,
+                                                          height: 40,
+                                                        ),
                                                       ),
                                                     ),
                                                     Center(

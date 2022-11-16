@@ -257,9 +257,7 @@ class ApiService {
     return json.decode(response.body);
   }
 
-  Future fetchHighlightIndex() async {
-
-  }
+  Future fetchHighlightIndex() async {}
   Future fetchFAQ() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
@@ -375,6 +373,42 @@ class ApiService {
 
     // final responseBody = json.decode(response.body)['data'];
     // return responseBody;
+  }
+
+  Future userFeedback(
+    // String email,
+    String message,
+  ) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+
+    final endpointFeedback = Uri.parse('$baseUrl/feedbacks');
+
+    final body = {
+      // 'email': email,
+      'message': message,
+    };
+
+    final response = await http.post(endpointFeedback, body: body);
+    print(response.statusCode);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      storage.setString('token', responseBody['token']);
+      // Get.snackbar('$loginUserName', '$headerToken');
+      Get.toNamed('/loading');
+    } else {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+
+    return json.decode(response.body);
   }
 
   // Future fetchHighlight() async {

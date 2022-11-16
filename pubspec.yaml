@@ -66,6 +66,8 @@ dependencies:
   geocoding: ^2.0.5
   getwidget: ^1.1.0
   permission_handler: ^10.2.0
+  flutter_rating_stars: ^1.0.3+4
+  dropdown_button2: ^1.8.9
 
 dev_dependencies:
   flutter_test:
