@@ -90,12 +90,12 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
                                           color: Colors.grey[200],
                                           borderRadius:
                                               BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey, //New
-                                                blurRadius: 10.0,
-                                                offset: Offset(-1, -1))
-                                          ],
+                                          // boxShadow: [
+                                          //   BoxShadow(
+                                          //       color: Colors.grey, //New
+                                          //       blurRadius: 10.0,
+                                          //       offset: Offset(-1, -1))
+                                          // ],
                                         ),
                                         child: Column(
                                           children: [

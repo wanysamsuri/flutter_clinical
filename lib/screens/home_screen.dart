@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
+import 'package:flutter_clinic/health%20status/health_test.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
@@ -173,15 +174,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MaterialPageRoute(builder: (context) {
                                       // return AppointmentScreen();
                                       return FindClinicScreen(
-                                          getCurrentLocation()
-                                          );
+                                          getCurrentLocation());
                                     }));
                                   } else if (index == 2) {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
                                       // return FindClinicScreen(
                                       //     getCurrentLocation());
-                                      return HealthStatusScreen();
+                                      return HealthTestScreen();
                                     }));
                                   } else if (index == 3) {
                                     _showBottomSheet(context);
