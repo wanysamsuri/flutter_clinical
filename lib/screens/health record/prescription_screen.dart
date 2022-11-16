@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/empty_state.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
-import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:intl/intl.dart';

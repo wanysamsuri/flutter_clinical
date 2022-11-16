@@ -83,7 +83,7 @@ class _HelpScreenState extends State<HelpScreen> {
                                       collapsedTitleBackgroundColor:
                                           secondaryColor,
                                       expandedTitleBackgroundColor:
-                                          Colors.grey[300],
+                                          Color.fromARGB(255, 158, 158, 158),
                                       collapsedIcon: Icon(Icons.add),
                                       expandedIcon: Icon(Icons.minimize),
                                       title: snapshot.data[index]['question '],

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
@@ -39,7 +40,8 @@ class ApiService {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
       // Get.snackbar('$loginUserName', '$headerToken');
-      Get.toNamed('/loading');
+      // Get.toNamed('/loading');
+      Get.to(()=>EmailVerification());
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -257,9 +259,7 @@ class ApiService {
     return json.decode(response.body);
   }
 
-  Future fetchHighlightIndex() async {
-
-  }
+  Future fetchHighlightIndex() async {}
   Future fetchFAQ() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 

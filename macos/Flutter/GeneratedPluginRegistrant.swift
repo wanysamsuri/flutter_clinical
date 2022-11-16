@@ -5,13 +5,13 @@
 import FlutterMacOS
 import Foundation
 
-import device_info_plus_macos
+import device_info_plus
 import geolocator_apple
 import path_provider_macos
 import share_plus
 import shared_preferences_macos
 import sqflite
-import syncfusion_flutter_pdfviewer_macos
+import syncfusion_pdfviewer_macos
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

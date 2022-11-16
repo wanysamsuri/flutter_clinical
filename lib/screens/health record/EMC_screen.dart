@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_clinic/models/EMC_model.dart';
 import 'package:flutter_clinic/models/data_model.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription2.dart';
-import 'package:flutter_clinic/screens/signin_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:skeleton_text/skeleton_text.dart';

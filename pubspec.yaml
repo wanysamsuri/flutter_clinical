@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_pdfviewer: ^19.1.69-beta
+  syncfusion_flutter_pdfviewer: ^20.3.56
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,7 +39,7 @@ dependencies:
   onesignal_flutter: ^3.4.1
   shared_preferences: ^2.0.15
   carousel_slider: ^4.1.1
-  device_info_plus: ^4.1.2
+  device_info_plus: ^8.0.0
   http: ^0.13.5
   get: ^4.6.5
   sizer: ^2.0.15
@@ -64,8 +64,11 @@ dependencies:
   accordion: ^2.5.1
   geolocator: ^9.0.2
   geocoding: ^2.0.5
-  getwidget: ^1.1.0
+  getwidget: ^3.0.1
   permission_handler: ^10.2.0
+  rounded_loading_button: ^2.1.0
+  pin_code_fields: ^7.4.0
+  lottie: ^2.0.0
 
 dev_dependencies:
   flutter_test:
