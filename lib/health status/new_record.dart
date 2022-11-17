@@ -21,12 +21,18 @@ class NewRecordScreen extends StatefulWidget {
 }
 
 class _NewRecordScreenState extends State<NewRecordScreen> {
+  DateTime _dateTime = DateTime.now();
   void _showDatePicker() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2020),
-        lastDate: DateTime(2030));
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2020),
+            lastDate: DateTime(2030))
+        .then((value) {
+      setState(() {
+        _dateTime = value!;
+      });
+    });
   }
 
   String dropdownvalue = 'Choose';
@@ -113,17 +119,20 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  child: MaterialButton(
-                    onPressed: () {
-                      _showDatePicker;
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Choose Date'),
+                child: Column(
+                  children: [
+                    // Text(_dateTime.toString()),
+                    Container(
+                      child: MaterialButton(
+                        onPressed: _showDatePicker,
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text('Choose Date'),
+                        ),
+                        color: primaryColor,
+                      ),
                     ),
-                    color: primaryColor,
-                  ),
+                  ],
                 ),
               )
             ]))),
