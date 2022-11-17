@@ -377,7 +377,7 @@ class ApiService {
     // return responseBody;
   }
 
-  Future postResetPassword(
+  Future postUpdatePassword(
       String oldPass, String newPass, String newPassConfirm) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
@@ -406,8 +406,8 @@ class ApiService {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-
-      Get.toNamed('/loading');
+      Get.back();
+      // Get.toNamed('/loading');
     } else if (response.statusCode == 401) {
       await storage.clear();
       Get.offAllNamed('/loading');
@@ -415,5 +415,55 @@ class ApiService {
 
     // final responseBody = json.decode(response.body)['data'];
     // return responseBody;
+  }
+
+  Future postResetPassword(String email) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointResetPassword = Uri.parse('$baseUrl/password/reset');
+    final resetPasswordBody = {
+      'email': email,
+    };
+    final response = await http.post(endpointResetPassword,
+        headers: {
+          'Accept': 'application/json',
+          // 'Authorization': 'Bearer $headerToken'
+        },
+        body: resetPasswordBody);
+    final responseBody = json.decode(response.body);
+    print(response.statusCode);
+
+    if (response.statusCode == 201) {
+      print(responseBody['message']);
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Color.fromRGBO(255, 255, 255, 1),
+          fontSize: 16.0);
+      return responseBody;
+
+      // Get.toNamed('/loading');
+    } else if (response.statusCode == 401) {
+      print(responseBody['message']);
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Color.fromRGBO(255, 255, 255, 1),
+          fontSize: 16.0);
+      // await storage.clear();
+      // Get.offAllNamed('/loading');
+    } else {
+      print('tak tau apa jadi');
+    }
+
+    // final responseBody = json.decode(response.body)['data'];
   }
 }

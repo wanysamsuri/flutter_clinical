@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/dashboard.dart';
+import 'package:flutter_clinic/screens/auth/reset_password.dart';
 
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
@@ -162,18 +163,29 @@ class _SignInState extends State<SignIn> {
                                           }
                                         }),
                                     const SizedBox(height: 5),
-                                    Container(
-                                        padding: EdgeInsets.only(
-                                            left: Adaptive.w(31)),
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.of(context).pushNamed('');
-                                          },
-                                          child: const Text('Forgot Password',
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                              )),
-                                        )),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.to(()=>ResetPasswordScreen());
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            const Text('Forgot Password?',
+                                                style: TextStyle(
+                                                  color: Colors.blue,
+                                                )),
+                                            SizedBox(width: Adaptive.w(1)),
+                                            const Text('Reset Here',
+                                                style: TextStyle(
+                                                  color: Colors.red,
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                     SizedBox(height: Adaptive.h(3)),
                                     Center(
                                       child: Container(
