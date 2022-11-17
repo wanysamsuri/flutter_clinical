@@ -96,7 +96,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                             ),
                           )),
                           SizedBox(
-                            height: Adaptive.h(3),
+                            height: Adaptive.h(1),
                           ),
                           Column(
                             children: [
