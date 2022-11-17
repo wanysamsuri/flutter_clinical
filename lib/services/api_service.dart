@@ -396,25 +396,21 @@ class ApiService {
         },
         body: changePasswordBody);
     final responseBody = json.decode(response.body);
-
     if (response.statusCode == 200) {
+      print(responseBody['message']);
       Fluttertoast.showToast(
           msg: (responseBody['message']),
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
-          textColor: Colors.white,
+          textColor: Color.fromRGBO(255, 255, 255, 1),
           fontSize: 16.0);
-      Get.back();
-      // Get.toNamed('/loading');
-    } else if (response.statusCode == 401) {
+      return responseBody;
+    }else{
       await storage.clear();
       Get.offAllNamed('/loading');
     }
-
-    // final responseBody = json.decode(response.body)['data'];
-    // return responseBody;
   }
 
   Future postResetPassword(String email) async {
@@ -450,20 +446,64 @@ class ApiService {
       // Get.toNamed('/loading');
     } else if (response.statusCode == 401) {
       print(responseBody['message']);
+    }
+    // } else {
+    //   Fluttertoast.showToast(
+    //       msg: (responseBody['message']),
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Color.fromRGBO(255, 255, 255, 1),
+    //       fontSize: 16.0);
+    //   // await storage.clear();
+    //   // Get.offAllNamed('/loading');
+    // }
+    else {
+      print('tak tau apa jadi');
+    }
+
+    // final responseBody = json.decode(response.body)['data'];
+  }
+  //         textColor: Colors.white,
+  //         fontSize: 16.0);
+  //   }
+
+  //   return json.decode(response.body);
+  // }
+
+  //feedback
+
+  Future userFeedback(
+    String feedbackMessage,
+  ) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    final feedbackMessage = storage.getString('feedback');
+
+    final endpointFeedback = Uri.parse('$baseUrl/feedbacks');
+
+    final body = {
+      'message': feedbackMessage,
+    };
+
+    final response = await http.post(endpointFeedback, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    print(response.statusCode);
+    print(feedbackMessage);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
-          textColor: Color.fromRGBO(255, 255, 255, 1),
+          textColor: Colors.white,
           fontSize: 16.0);
-      // await storage.clear();
-      // Get.offAllNamed('/loading');
-    } else {
-      print('tak tau apa jadi');
     }
-
-    // final responseBody = json.decode(response.body)['data'];
   }
 }
