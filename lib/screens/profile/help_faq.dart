@@ -79,20 +79,37 @@ class _HelpScreenState extends State<HelpScreen> {
 
                                     //body listview
 
-                                    child: GFAccordion(
-                                      collapsedTitleBackgroundColor:
-                                          secondaryColor,
-                                      expandedTitleBackgroundColor:
-                                          Colors.grey[300],
-                                      collapsedIcon: Icon(Icons.add),
-                                      expandedIcon: Icon(Icons.minimize),
-                                      title: snapshot.data[index]['question '],
+                                    child: Card(
+                                      child: ExpansionTile(
+                                        leading: Icon(Icons.question_mark),
+                                        title: Container(
+                                          child: Text(
+                                            snapshot.data[index]['question '],
+                                          ),
+                                        ),
+                                        children: [
+                                          ListTile(
+                                            title: Text(
+                                                snapshot.data[index]['answer']),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                    // GFAccordion(
+                                    //   collapsedTitleBackgroundColor:
+                                    //       secondaryColor,
+                                    //   expandedTitleBackgroundColor:
+                                    //       Colors.grey[300],
+                                    //   collapsedIcon: Icon(Icons.add),
+                                    //   expandedIcon: Icon(Icons.minimize),
+                                    //   title: snapshot.data[index]['question '],
 
-                                      // titleBorderColors.amber,
-                                      content: snapshot.data[index]['answer'],
-                                      textStyle: TextStyle(fontSize: 0.27.dp),
-                                      contentBackgroundColor: Colors.grey[100],
-                                    ));
+                                    //   // titleBorderColors.amber,
+                                    //   content: snapshot.data[index]['answer'],
+                                    //   textStyle: TextStyle(fontSize: 0.27.dp),
+                                    //   contentBackgroundColor: Colors.grey[100],
+                                    // )
+                                    );
                               })
                         ])));
                   } else {

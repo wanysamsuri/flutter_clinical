@@ -18,7 +18,7 @@ class FeedbackScreen extends StatefulWidget {
 }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
-  TextEditingController message = TextEditingController();
+  TextEditingController _messageController = TextEditingController();
   String dropdownvalue = 'Feedback';
 
   // List of items
@@ -165,11 +165,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       height: Adaptive.h(3),
                     ),
                     TextFormField(
+                      controller: _messageController,
                       maxLines: 5,
                       minLines: 1,
                       keyboardType: TextInputType.multiline,
                       style: TextStyle(fontSize: 0.25.dp),
-                      controller: message,
                       decoration: InputDecoration(
                         hintText: "Type your message here",
                         contentPadding:
@@ -183,22 +183,24 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       height: Adaptive.h(3),
                     ),
                     Container(
-                        height: Adaptive.h(5),
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              ApiService().userFeedback(message.text);
-                            },
-                            style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 40.0, vertical: 10.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0)),
-                                primary: primaryColor),
-                            child: Text(
-                              'SUBMIT',
-                              style: TextStyle(color: Colors.black),
-                            ))),
+                      height: Adaptive.h(5),
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          ApiService().userFeedback(_messageController.text);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40.0, vertical: 10.0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0)),
+                            primary: primaryColor),
+                        child: Text(
+                          'SUBMIT',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -375,28 +375,38 @@ class ApiService {
     // return responseBody;
   }
 
+  //feedback
+
   Future userFeedback(
-    // String email,
-    String message,
+    String feedbackMessage,
   ) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
+    final feedbackMessage = storage.getString('feedback');
 
     final endpointFeedback = Uri.parse('$baseUrl/feedbacks');
 
     final body = {
-      // 'email': email,
-      'message': message,
+      'message': feedbackMessage,
     };
 
-    final response = await http.post(endpointFeedback, body: body);
+    final response = await http.post(endpointFeedback, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
     print(response.statusCode);
+    print(feedbackMessage);
     final responseBody = json.decode(response.body);
 
     if (response.statusCode == 200) {
-      storage.setString('token', responseBody['token']);
-      // Get.snackbar('$loginUserName', '$headerToken');
-      Get.toNamed('/loading');
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -410,6 +420,26 @@ class ApiService {
 
     return json.decode(response.body);
   }
+
+  //   if (response.statusCode == 200) {
+  //     print(response.body);
+  //     // storage.setString('token', responseBody['token']);
+  //     // storage.setString('message', responseBody['message']);
+  //     // Get.snackbar('$loginUserName', '$headerToken');
+  //     // Get.toNamed('/loading');
+  //   } else {
+  //     Fluttertoast.showToast(
+  //         msg: ('Success'),
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.red,
+  //         textColor: Colors.white,
+  //         fontSize: 16.0);
+  //   }
+
+  //   return json.decode(response.body);
+  // }
 
   // Future fetchHighlight() async {
   //   SharedPreferences storage = await SharedPreferences.getInstance();
