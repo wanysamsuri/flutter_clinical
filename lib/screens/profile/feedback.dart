@@ -25,7 +25,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   var items = [
     'Feedback',
     'Complaint',
-  ];
+  ]; 
+
+  //star
   double value = 5;
   @override
   Widget build(BuildContext context) {

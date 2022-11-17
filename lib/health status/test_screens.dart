@@ -98,7 +98,7 @@ class _TestScreenState extends State<TestScreen> {
                                   itemBuilder: (context, index) {
                                     return Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 1.0, vertical: 5),
+                                            horizontal: 5.0, vertical: 10),
 
                                         //body listview
                                         child: InkWell(
@@ -113,7 +113,7 @@ class _TestScreenState extends State<TestScreen> {
                                                 boxShadow: [
                                                   BoxShadow(
                                                       color: Colors.grey, //New
-                                                      blurRadius: 10.0,
+                                                      blurRadius: 5.0,
                                                       offset: Offset(-1, -1))
                                                 ]),
                                             child: Column(
@@ -146,7 +146,6 @@ class _TestScreenState extends State<TestScreen> {
                                               ],
                                             ),
                                           ),
-                                          
                                           onTap: () {
                                             Navigator.push(
                                                 context,

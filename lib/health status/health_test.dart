@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
+import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/health%20status/test_screens.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/models/health_choice.dart';
@@ -179,7 +180,13 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                 ),
                                               ),
                                             ),
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NewRecordScreen()));
+                                            },
                                           ),
                                         );
                                       })),
@@ -252,7 +259,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                       boxShadow: [
                                         BoxShadow(
                                             color: Colors.grey, //New
-                                            blurRadius: 10.0,
+                                            blurRadius: 5.0,
                                             offset: Offset(-0.1, -0.1))
                                       ]),
                                   child: Column(
@@ -346,8 +353,8 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                       boxShadow: [
                                         BoxShadow(
                                             color: Colors.grey, //New
-                                            blurRadius: 10.0,
-                                            offset: Offset(-0.5, -0.5))
+                                            blurRadius: 5.0,
+                                            offset: Offset(-0.1, -0.1))
                                       ]),
                                   child: Column(
                                     crossAxisAlignment:
@@ -379,7 +386,14 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                   ),
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => TestScreen(
+                                              serviceName: '',
+                                            )));
+                              },
                             ),
                           );
                         })),
