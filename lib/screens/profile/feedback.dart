@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/profile/terms_condition.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+// import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../services/api_service.dart';

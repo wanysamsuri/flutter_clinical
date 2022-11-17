@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:get/get.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,6 +61,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
     } else {
       print('token if not null : $sharedToken');
       print('token if not null, mounted?: $mounted');
+      // Get.off(()=>EmailVerification());
       Get.offAllNamed('/dashboard');
       // Navigator.pushNamedAndRemoveUntil(
       //     context, '/dashboard', (route) => false);

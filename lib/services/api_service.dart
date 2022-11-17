@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
@@ -39,7 +40,8 @@ class ApiService {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
       // Get.snackbar('$loginUserName', '$headerToken');
-      Get.toNamed('/loading');
+      // Get.toNamed('/loading');
+      Get.to(() => EmailVerification());
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -375,6 +377,101 @@ class ApiService {
     // return responseBody;
   }
 
+  Future postUpdatePassword(
+      String oldPass, String newPass, String newPassConfirm) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointHighlight = Uri.parse('$baseUrl/update-password');
+    final changePasswordBody = {
+      'old_password': oldPass,
+      'password': newPass,
+      'password_confirmation': newPassConfirm
+    };
+    final response = await http.post(endpointHighlight,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: changePasswordBody);
+    final responseBody = json.decode(response.body);
+    if (response.statusCode == 200) {
+      print(responseBody['message']);
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Color.fromRGBO(255, 255, 255, 1),
+          fontSize: 16.0);
+      return responseBody;
+    }else{
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
+  Future postResetPassword(String email) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointResetPassword = Uri.parse('$baseUrl/password/reset');
+    final resetPasswordBody = {
+      'email': email,
+    };
+    final response = await http.post(endpointResetPassword,
+        headers: {
+          'Accept': 'application/json',
+          // 'Authorization': 'Bearer $headerToken'
+        },
+        body: resetPasswordBody);
+    final responseBody = json.decode(response.body);
+    print(response.statusCode);
+
+    if (response.statusCode == 201) {
+      print(responseBody['message']);
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Color.fromRGBO(255, 255, 255, 1),
+          fontSize: 16.0);
+      return responseBody;
+
+      // Get.toNamed('/loading');
+    } else if (response.statusCode == 401) {
+      print(responseBody['message']);
+    }
+    // } else {
+    //   Fluttertoast.showToast(
+    //       msg: (responseBody['message']),
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Color.fromRGBO(255, 255, 255, 1),
+    //       fontSize: 16.0);
+    //   // await storage.clear();
+    //   // Get.offAllNamed('/loading');
+    // }
+    else {
+      print('tak tau apa jadi');
+    }
+
+    // final responseBody = json.decode(response.body)['data'];
+  }
+  //         textColor: Colors.white,
+  //         fontSize: 16.0);
+  //   }
+
+  //   return json.decode(response.body);
+  // }
+
   //feedback
 
   Future userFeedback(
@@ -407,58 +504,6 @@ class ApiService {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-    } else {
-      Fluttertoast.showToast(
-          msg: (responseBody['message']),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
     }
-
-    return json.decode(response.body);
   }
-
-  //   if (response.statusCode == 200) {
-  //     print(response.body);
-  //     // storage.setString('token', responseBody['token']);
-  //     // storage.setString('message', responseBody['message']);
-  //     // Get.snackbar('$loginUserName', '$headerToken');
-  //     // Get.toNamed('/loading');
-  //   } else {
-  //     Fluttertoast.showToast(
-  //         msg: ('Success'),
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //         fontSize: 16.0);
-  //   }
-
-  //   return json.decode(response.body);
-  // }
-
-  // Future fetchHighlight() async {
-  //   SharedPreferences storage = await SharedPreferences.getInstance();
-
-  //   final headerToken = storage.getString('token');
-  //   final endpointHighlight = Uri.parse('$baseUrl/highlight');
-  //   final response = await http.get(endpointHighlight, headers: {
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer $headerToken'
-  //   });
-
-  //   if (response.statusCode == 200) {
-  //     final responseBody = json.decode(response.body)['data'];
-  //     return responseBody;
-  //   } else if (response.statusCode == 401) {
-  //     await storage.clear();
-  //     Get.offAllNamed('/loading');
-  //   }
-
-  // final responseBody = json.decode(response.body)['data'];
-  // return responseBody;
 }
