@@ -132,12 +132,20 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   children: [
                     Container(
                       padding: EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(color: Colors.grey[200]),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          border: Border.all(
+                            color: Colors.grey,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(12)),
                       width: MediaQuery.of(context).size.width,
                       child: DropdownButton(
                         value: dropdownvalue,
                         dropdownColor: Colors.grey[200],
-                        icon: const Icon(Icons.keyboard_arrow_down),
+                        icon: const Icon(Icons.arrow_drop_down),
+                        isExpanded: true,
+                        underline: SizedBox(),
                         items: items.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -155,11 +163,16 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       height: Adaptive.h(3),
                     ),
                     TextField(
+                      style: TextStyle(fontSize: 0.25.dp),
                       controller: message,
                       decoration: InputDecoration(
-                          labelText: "Type your feedback here",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10))),
+                        labelText: "Type your feedback here",
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: Adaptive.h(3),
