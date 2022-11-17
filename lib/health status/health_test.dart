@@ -70,6 +70,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
           ),
           onTap: () {
             showModalBottomSheet(
+                // isScrollControlled: true,
                 context: context,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
@@ -78,7 +79,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                 ))),
                 builder: ((context) => Container(
                       padding: EdgeInsets.all(Adaptive.h(2)),
-                      // height: Adaptive.h(50),
+                      // height: Adaptive.h(80),
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20)),
@@ -121,7 +122,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                           child: InkWell(
                                             child: Center(
                                               child: Container(
-                                                padding: EdgeInsets.all(10),
+                                                padding: EdgeInsets.all(5),
                                                 height: Adaptive.h(15),
                                                 width: Adaptive.w(40),
                                                 decoration: BoxDecoration(
