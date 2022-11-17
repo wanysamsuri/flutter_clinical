@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -162,13 +164,16 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     SizedBox(
                       height: Adaptive.h(3),
                     ),
-                    TextField(
+                    TextFormField(
+                      maxLines: 5,
+                      minLines: 1,
+                      keyboardType: TextInputType.multiline,
                       style: TextStyle(fontSize: 0.25.dp),
                       controller: message,
                       decoration: InputDecoration(
-                        labelText: "Type your feedback here",
+                        hintText: "Type your message here",
                         contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -184,7 +189,16 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                             onPressed: () {
                               ApiService().userFeedback(message.text);
                             },
-                            child: Text('SUBMIT'))),
+                            style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 40.0, vertical: 10.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0)),
+                                primary: primaryColor),
+                            child: Text(
+                              'SUBMIT',
+                              style: TextStyle(color: Colors.black),
+                            ))),
                   ],
                 ),
               ),
