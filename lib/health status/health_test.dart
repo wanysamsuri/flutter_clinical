@@ -80,7 +80,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                 ))),
                 builder: ((context) => Container(
                       padding: EdgeInsets.all(Adaptive.h(2)),
-                      height: Adaptive.h(60),
+                      height: Adaptive.h(50),
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20)),
@@ -117,7 +117,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                       itemBuilder: (context, index) {
                                         return Padding(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: 4.0, vertical: 1),
+                                              horizontal: 4.0, vertical: 4),
 
                                           //body listview
                                           child: InkWell(
