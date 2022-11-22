@@ -91,6 +91,7 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
             ),
             onTap: () {
               Navigator.pop(context);
+              Navigator.pop(context);
             },
           )),
       body: SafeArea(
@@ -190,7 +191,7 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
                             onPressed: _showTimePicker,
                             child: Padding(
                               padding: EdgeInsets.all(10),
-                              child: Text('Choose Time'),
+                              child: Text('Select Time'),
                             ),
                             color: primaryColor,
                           ),

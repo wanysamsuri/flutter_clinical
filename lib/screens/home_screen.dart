@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/connected/permission.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
@@ -631,13 +632,17 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Strava',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PermissionScreen()));
+                      ;
                     },
                   ),
                   InkWell(

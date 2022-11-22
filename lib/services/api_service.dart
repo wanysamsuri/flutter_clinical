@@ -418,8 +418,7 @@ class ApiService {
         Get.back();
         return responseBody;
       }
-    } 
-    else {
+    } else {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
@@ -504,7 +503,7 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
     print(response.statusCode);
-    print(feedbackMessage);
+    print(body);
     final responseBody = json.decode(response.body);
 
     if (response.statusCode == 200) {
