@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -398,16 +397,29 @@ class ApiService {
     final responseBody = json.decode(response.body);
     if (response.statusCode == 200) {
       print(responseBody['message']);
-      Fluttertoast.showToast(
-          msg: (responseBody['message']),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Color.fromRGBO(255, 255, 255, 1),
-          fontSize: 16.0);
-      return responseBody;
-    }else{
+      if (responseBody['success'] == false) {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+        Get.back();
+        return responseBody;
+      }
+    } 
+    else {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
