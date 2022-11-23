@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/connected/strava_profile.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -48,6 +49,67 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
+            },
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: primaryColor,
+          child: InkWell(
+            child: Container(
+              height: Adaptive.h(6),
+              color: Colors.transparent,
+              child: Container(
+                color: primaryColor,
+                child: Center(
+                  child: Text(
+                    'NEXT',
+                    style: TextStyle(
+                      fontSize: 0.27.dp,
+                      // fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        backgroundColor: Colors.orange[50],
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        title: Container(
+                          child: Center(
+                              child: Container(
+                                  height: Adaptive.h(2),
+                                  // width: Adaptive.w(40),
+                                  // color: Colors.orange,
+                                  child: Text('STRAVA'))),
+                        ),
+                        content: Icon(Icons.ads_click),
+                        actions: [
+                          Center(
+                            child: MaterialButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              StravaProfileScreen(
+                                                  serviceName: '')));
+                                },
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Next',
+                                      style: TextStyle(color: Colors.green),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ],
+                      ));
             },
           ),
         ),
@@ -208,37 +270,6 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
               SizedBox(
                 height: Adaptive.h(5),
               ),
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(Adaptive.h(2)),
-                  child: InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(Adaptive.h(2)),
-                      height: Adaptive.h(6),
-                      width: Adaptive.w(50),
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       color: Colors.grey, //New
-                        //       blurRadius: 5.0,
-                        //       offset: Offset(-1, -1))
-                        // ]
-                      ),
-                      child: Container(
-                          child: Center(
-                        child: Text(
-                          'NEXT',
-                          style: TextStyle(
-                              fontSize: 0.27.dp, fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-              )
             ])))));
   }
 }

@@ -519,4 +519,27 @@ class ApiService {
           fontSize: 16.0);
     }
   }
+
+   Future fetchUserStrava() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointUserStrava = Uri.parse('$baseUrl/notifications');
+    final response = await http.get(endpointUserStrava, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+    // final responseBody = json.decode(response.body)['data'];
+
+    // final responseBody = json.decode(response.body)['data'];
+
+    // return responseBody;
+  }
 }
