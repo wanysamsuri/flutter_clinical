@@ -2,52 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 
 class HealthStatus {
-  IconData? icon;
+  String? image;
   String? serviceName;
   Function? navigator;
-  HealthStatus({this.icon, this.serviceName, this.navigator});
+  HealthStatus({this.image, this.serviceName, this.navigator});
 }
 
 List<HealthStatus> healthStatus = [
   HealthStatus(
       serviceName: 'BLOOD PRESSURE',
-      icon: Icons.medication,
+      image: 'assets/blood_pressure.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
       serviceName: 'TEMPERATURE',
-      icon: Icons.medication,
+      image: 'assets/thermometer.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
       serviceName: 'WEIGHT & HEIGHT',
-      icon: Icons.medication,
+      image: 'assets/height.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
       serviceName: 'MEDICAL HISTORY',
-      icon: Icons.medication,
+      image: 'assets/questions.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
       serviceName: 'SURGICAL HISTORY',
-      icon: Icons.medication,
+      image: 'assets/surgery-room.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
       serviceName: 'ALLERGIC REACTION',
-      icon: Icons.medication,
+      image: 'assets/dust.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthStatus(
-      serviceName: 'SUGAR LEVEL',
-      icon: Icons.medication,
+      serviceName: 'SUGAR BLOOD LEVEL',
+      image: 'assets/sugar-blood-level.png',
       navigator: (context) {
         Navigator.pop(context);
       }),

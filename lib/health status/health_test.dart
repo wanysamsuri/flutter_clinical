@@ -148,7 +148,9 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                         padding:
                                                             EdgeInsets.all(10),
                                                         child: Image.asset(
-                                                          'assets/clinical_my.png',
+                                                          healthStatus[index]
+                                                              .image
+                                                              .toString(),
                                                           width: 40,
                                                           height: 40,
                                                         ),

@@ -82,7 +82,7 @@ class PermissionScreen extends StatelessWidget {
                               children: [
                                 Container(
                                   width: Adaptive.w(30),
-                                  child: Image.asset('assets/clinical_my.png',
+                                  child: Image.asset('assets/strava.png',
                                       // fit: BoxFit.fill,
                                       height: Adaptive.h(8),
                                       width: Adaptive.w(30)),
@@ -184,11 +184,13 @@ class PermissionScreen extends StatelessWidget {
                   child: SafeArea(
                       child: Center(
                     child: Container(
-                      padding: EdgeInsets.all(Adaptive.w(2)),
+                      // padding: EdgeInsets.all(Adaptive.w(2)),
                       child: Container(
+                        padding: EdgeInsets.all(Adaptive.h(2)),
                         color: Colors.amber,
-                        height: Adaptive.h(5),
-                        child: Text('checkbox'),
+                        height: Adaptive.h(6),
+                        child: Text(
+                            'I have read and agree with terms & conditions'),
                       ),
                     ),
                   )))
