@@ -6,8 +6,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../services/api_service.dart';
 
-class PermissionScreen extends StatelessWidget {
-  // const PermissionScreen({super.key});
+class StravaPermissionScreen extends StatelessWidget {
+  // const StravaPermissionScreen({super.key});
   bool value = false;
 
   @override
@@ -187,13 +187,13 @@ class PermissionScreen extends StatelessWidget {
                       // padding: EdgeInsets.all(Adaptive.w(2)),
                       child: Container(
                         padding: EdgeInsets.all(Adaptive.h(2)),
-                        color: Colors.amber,
+                        color: secondaryColor,
                         height: Adaptive.h(6),
                         child: Text(
                             'I have read and agree with terms & conditions'),
                       ),
                     ),
-                  )))
+                  ))),
             ])))));
   }
 }

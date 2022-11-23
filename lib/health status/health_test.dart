@@ -276,8 +276,13 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                         Center(
                                           child: Container(
                                             padding: EdgeInsets.all(10),
-                                            child:
-                                                Icon(Icons.health_and_safety),
+                                            child: Image.asset(
+                                              healthStatus[index]
+                                                  .image
+                                                  .toString(),
+                                              width: 40,
+                                              height: 40,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -366,28 +371,37 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(children: [
-                                        Center(
-                                          child: Container(
-                                            padding: EdgeInsets.all(10),
-                                            child:
-                                                Icon(Icons.health_and_safety),
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(left: 5),
-                                          child: Text(
-                                            healthChoice[index]
-                                                .serviceName
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black,
+                                      Center(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              child: Image.asset(
+                                                healthChoice[index]
+                                                    .image
+                                                    .toString(),
+                                                width: 40,
+                                                height: 40,
+                                              ),
                                             ),
-                                          ),
+                                            SizedBox(
+                                              height: Adaptive.h(1),
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                healthChoice[index]
+                                                    .serviceName
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ]),
+                                      ),
                                     ],
                                   ),
                                 ),

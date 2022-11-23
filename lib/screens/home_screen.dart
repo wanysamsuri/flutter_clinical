@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clinic/connected/permission.dart';
+import 'package:flutter_clinic/connected/strava_permission.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
@@ -641,7 +641,7 @@ void _showBottomSheet(BuildContext context) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PermissionScreen()));
+                              builder: (context) => StravaPermissionScreen()));
                       ;
                     },
                   ),
