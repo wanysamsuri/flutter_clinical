@@ -90,7 +90,12 @@ class _HelpScreenState extends State<HelpScreen> {
                                         children: [
                                           ListTile(
                                             title: Text(
-                                                snapshot.data[index]['answer']),
+                                              snapshot.data[index]['answer'],
+                                              textAlign: TextAlign.justify,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: Adaptive.h(1),
                                           )
                                         ],
                                       ),

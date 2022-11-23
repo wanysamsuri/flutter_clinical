@@ -19,6 +19,7 @@ import 'package:gauges/main.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../connected/salixium_permission.dart';
 import 'find clinics/find_clinic.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -654,13 +655,17 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Temperature',
+                          'Salixium',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SalixiumPermissionScreen()));
                     },
                   ),
                 ],

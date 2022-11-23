@@ -8,13 +8,14 @@ import '../health status/view_status.dart';
 import '../screens/profile/profile_screen.dart';
 import '../services/api_service.dart';
 
-class StravaPermissionScreen extends StatefulWidget {
+class SalixiumPermissionScreen extends StatefulWidget {
   @override
-  State<StravaPermissionScreen> createState() => _StravaPermissionScreenState();
+  State<SalixiumPermissionScreen> createState() =>
+      _SalixiumPermissionScreenState();
 }
 
-class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
-  // const StravaPermissionScreen({super.key});
+class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
+  // const SalixiumPermissionScreen({super.key});
   bool value = false;
 
   @override
@@ -78,7 +79,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                             Container(
                               width: Adaptive.w(55),
                               child: Text(
-                                "STRAVA",
+                                "SALIXIUM",
                                 style: TextStyle(
                                     fontSize: 0.4.dp,
                                     fontWeight: FontWeight.bold),
@@ -89,7 +90,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                               children: [
                                 Container(
                                   width: Adaptive.w(30),
-                                  child: Image.asset('assets/strava.png',
+                                  child: Image.asset('assets/salixium.png',
                                       // fit: BoxFit.fill,
                                       height: Adaptive.h(8),
                                       width: Adaptive.w(30)),

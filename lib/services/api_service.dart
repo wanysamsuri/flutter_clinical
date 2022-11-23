@@ -490,7 +490,7 @@ class ApiService {
   ) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
-    final feedbackMessage = storage.getString('feedback');
+    // final feedbackMessage = storage.getString('feedback');
 
     final endpointFeedback = Uri.parse('$baseUrl/feedbacks');
 
@@ -498,10 +498,12 @@ class ApiService {
       'message': feedbackMessage,
     };
 
-    final response = await http.post(endpointFeedback, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $headerToken'
-    });
+    final response = await http.post(endpointFeedback,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: body);
     print(response.statusCode);
     print(body);
     final responseBody = json.decode(response.body);
