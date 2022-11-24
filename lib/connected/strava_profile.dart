@@ -46,9 +46,10 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
             ),
             onTap: () {
               Navigator.pop(context);
+              Navigator.pop(context);
             },
           )),
-          body: Container(),
+      body: Container(),
     );
   }
 }

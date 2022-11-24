@@ -174,7 +174,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                       if (snapshot.hasData) {
                         return Container(
                           padding: EdgeInsets.all(Adaptive.w(2)),
-                          height: 10.h,
+                          // height: 30.h,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -221,7 +221,10 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                 ),
                                               ),
                                               Container(
-                                                padding: EdgeInsets.all(15),
+                                                padding: EdgeInsets.only(
+                                                    left: 15,
+                                                    right: 15,
+                                                    bottom: 15),
                                                 child: Text(
                                                   'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
                                                   textAlign: TextAlign.justify,
