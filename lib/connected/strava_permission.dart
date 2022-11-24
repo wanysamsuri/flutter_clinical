@@ -291,26 +291,29 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                   ),
                 ),
               ),
-              Container(
-                  // padding: EdgeInsets.all(Adaptive.w(2)),
-                  // height: 100.h,
-                  child: Container(
-                padding: EdgeInsets.all(Adaptive.h(2)),
-                // color: secondaryColor,
-                height: Adaptive.h(6),
-                child: Row(
-                  children: [
-                    Checkbox(
-                        value: value,
-                        onChanged: (val) {
-                          setState(() {
-                            value = val!;
-                          });
-                        }),
-                    Text('I have read and agree with terms & conditions'),
-                  ],
-                ),
-              )),
+              SizedBox(
+                height: Adaptive.h(40),
+                child: Container(
+                    // padding: EdgeInsets.all(Adaptive.w(2)),
+                    // height: 100.h,
+                    child: Container(
+                  padding: EdgeInsets.all(Adaptive.h(2)),
+                  // color: secondaryColor,
+                  height: Adaptive.h(6),
+                  child: Row(
+                    children: [
+                      Checkbox(
+                          value: value,
+                          onChanged: (val) {
+                            setState(() {
+                              value = val!;
+                            });
+                          }),
+                      Text('I have read and agree with terms & conditions'),
+                    ],
+                  ),
+                )),
+              ),
               SizedBox(
                 height: Adaptive.h(5),
               ),

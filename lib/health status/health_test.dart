@@ -102,6 +102,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                           Column(
                             children: [
                               Container(
+                                  // height: Adaptive.h(20),
                                   padding: EdgeInsets.only(
                                     left: Adaptive.w(0),
                                     right: Adaptive.w(0),
@@ -124,7 +125,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                             child: Center(
                                               child: Container(
                                                 padding: EdgeInsets.all(5),
-                                                height: Adaptive.h(15),
+                                                // height: Adaptive.h(15),
                                                 width: Adaptive.w(40),
                                                 decoration: BoxDecoration(
                                                     borderRadius:
@@ -158,6 +159,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                     ),
                                                     Center(
                                                       child: Container(
+                                                        // width: Adaptive.w(20),
                                                         // padding:
                                                         //     EdgeInsets.only(
                                                         //         left: 5),
@@ -171,7 +173,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                             style: TextStyle(
                                                               fontSize:
                                                                   Adaptive.dp(
-                                                                      0.21),
+                                                                      0.2),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
