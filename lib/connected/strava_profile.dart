@@ -180,6 +180,7 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                 if (snapshot.hasData) {
                                   return ListView.builder(
                                       shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
                                       // gridDelegate:
                                       //     SliverGridDelegateWithFixedCrossAxisCount(
                                       //         crossAxisCount: 2),
@@ -202,55 +203,152 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                           child: Container(
-                                            height: Adaptive.h(5),
+                                            height: Adaptive.h(10),
                                             width: Adaptive.w(20),
                                             child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Container(
-                                                  child: Text(
-                                                    snapshot.data[index]['name']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Container(
+                                                      child: Text(
+                                                        'Activity:',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        snapshot.data[index]
+                                                                ['name']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Type:',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        snapshot.data[index]
+                                                                ['type']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Container(
-                                                  child: Text(
-                                                    snapshot.data[index]['type']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: Text(
-                                                    snapshot.data[index]
-                                                            ['distance']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: Text(
-                                                    snapshot.data[index]
-                                                            ['moving_time']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Container(
+                                                      child: Text(
+                                                        'Distance:',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        snapshot.data[index]
+                                                                ['distance']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Moving Time:',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        snapshot.data[index]
+                                                                ['moving_time']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Elapsed Time:',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        snapshot.data[index]
+                                                                ['elapsed_time']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
