@@ -203,30 +203,14 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                           child: Container(
-                                            height: Adaptive.h(10),
+                                            height: Adaptive.h(15),
                                             width: Adaptive.w(20),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
                                                   children: [
-                                                    Container(
-                                                      child: Text(
-                                                        'Activity:',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
                                                     Container(
                                                       child: Text(
                                                         snapshot.data[index]
@@ -236,21 +220,27 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: TextStyle(
+                                                            fontSize: 17,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .bold),
                                                       ),
                                                     ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: Adaptive.h(1),
+                                                ),
+                                                Row(
+                                                  children: [
                                                     Container(
-                                                      child: Text(
-                                                        'Type:',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                      child: Icon(
+                                                        Icons.route_rounded,
+                                                        size: 20,
                                                       ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
                                                     ),
                                                     Container(
                                                       child: Text(
@@ -260,44 +250,21 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                                             .toUpperCase(),
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                        // style: TextStyle(
+                                                        //     fontWeight:
+                                                        //         FontWeight.bold),
                                                       ),
                                                     ),
                                                   ],
                                                 ),
+                                                SizedBox(
+                                                  height: 2,
+                                                ),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .spaceEvenly,
+                                                          .spaceBetween,
                                                   children: [
-                                                    Container(
-                                                      child: Text(
-                                                        'Distance:',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      child: Text(
-                                                        snapshot.data[index]
-                                                                ['distance']
-                                                            .toString()
-                                                            .toUpperCase(),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
                                                     Container(
                                                       child: Text(
                                                         'Moving Time:',
@@ -322,6 +289,13 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                                                 FontWeight
                                                                     .bold),
                                                       ),
+                                                    ),
+                                                    VerticalDivider(
+                                                      color: Colors.black,
+                                                      thickness: 2,
+                                                      indent: 5,
+                                                      endIndent: 5,
+                                                      width: 20,
                                                     ),
                                                     Container(
                                                       child: Text(
@@ -349,6 +323,30 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
                                                       ),
                                                     ),
                                                   ],
+                                                ),
+                                                SizedBox(
+                                                  height: 3,
+                                                ),
+                                                Container(
+                                                  child: Text(
+                                                    'Elev. Gain:',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  child: Text(
+                                                    snapshot.data[index][
+                                                            'total_elevation_gain']
+                                                        .toString()
+                                                        .toUpperCase(),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
                                                 ),
                                               ],
                                             ),
