@@ -254,7 +254,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                   'Thousands of amazing developers from all over the world are making apps for Strava. Far more athletes are using those apps to augment their Strava experience. ',
                                                   textAlign: TextAlign.justify,
                                                   style: TextStyle(
-                                                    fontSize: 0.25.dp,
+                                                    fontSize: 17,
                                                     // fontWeight:
                                                     //     FontWeight.bold,
                                                     color: Colors.black,
@@ -270,7 +270,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                   'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
                                                   textAlign: TextAlign.justify,
                                                   style: TextStyle(
-                                                    fontSize: 0.25.dp,
+                                                    fontSize: 17,
                                                     // fontWeight:
                                                     //     FontWeight.bold,
                                                     color: Colors.black,

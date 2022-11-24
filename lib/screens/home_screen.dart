@@ -104,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: EdgeInsets.all(Adaptive.w(5)),
                 height: Adaptive.h(15),
+                width: Adaptive.w(100),
                 decoration: const BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.only(
@@ -114,13 +115,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "Hello,",
-                      style: TextStyle(
-                          fontSize: 0.3.dp, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "$sharedFullName!",
-                      style: TextStyle(
-                          fontSize: 0.3.dp, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     // const Spacer(),
                     // Spacer(),

@@ -536,10 +536,23 @@ class ApiService {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
-    // final responseBody = json.decode(response.body)['data'];
+  }
 
-    // final responseBody = json.decode(response.body)['data'];
+  Future fetchStravaActivity() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
-    // return responseBody;
+    final headerToken = storage.getString('token');
+    final endpointActivity = Uri.parse('$baseUrl/stravas/sync-activities');
+    final response = await http.get(endpointActivity, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
   }
 }
