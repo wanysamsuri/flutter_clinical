@@ -52,67 +52,108 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
             },
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: primaryColor,
-          child: InkWell(
-            child: Container(
-              height: Adaptive.h(6),
-              color: Colors.transparent,
-              child: Container(
-                color: primaryColor,
-                child: Center(
-                  child: Text(
-                    'NEXT',
-                    style: TextStyle(
-                      fontSize: 0.27.dp,
-                      // fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        backgroundColor: Colors.orange[50],
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        title: Container(
+        bottomNavigationBar: FutureBuilder(
+            future: ApiService().fetchUserStrava(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  child: BottomAppBar(
+                    color: primaryColor,
+                    child: InkWell(
+                      child: Container(
+                        height: Adaptive.h(6),
+                        color: Colors.transparent,
+                        child: Container(
+                          color: primaryColor,
                           child: Center(
-                              child: Container(
-                                  height: Adaptive.h(2),
-                                  // width: Adaptive.w(40),
-                                  // color: Colors.orange,
-                                  child: Text('STRAVA'))),
+                            child: Text(
+                              'NEXT',
+                              style: TextStyle(
+                                fontSize: 0.27.dp,
+                                // fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
                         ),
-                        content: Icon(Icons.ads_click),
-                        actions: [
-                          Center(
-                            child: MaterialButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              StravaProfileScreen(
-                                                  serviceName: '')));
-                                },
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Next',
-                                      style: TextStyle(color: Colors.green),
+                      ),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.orange[50],
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  title: Icon(Icons.ads_click),
+                                  // content: Text('STRAVA'),
+                                  actions: [
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  // ApiService()
+                                                  //     .fetchUserStrava();
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              StravaProfileScreen(
+                                                                  serviceName:
+                                                                      '')));
+                                                },
+                                                child: Text(
+                                                  'CONTINUE',
+                                                  style: TextStyle(
+                                                      color: Colors.green),
+                                                )),
+                                          ),
+                                          Container(
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'TEST',
+                                                      style: TextStyle(
+                                                          color: Colors.green),
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
+                                          Container(
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'TEST',
+                                                      style: TextStyle(
+                                                          color: Colors.green),
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
-                                )),
-                          ),
-                        ],
-                      ));
-            },
-          ),
-        ),
+                                ));
+                      },
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(

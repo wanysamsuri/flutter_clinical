@@ -52,6 +52,67 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
             },
           ),
         ),
+        bottomNavigationBar: BottomAppBar(
+          color: primaryColor,
+          child: InkWell(
+            child: Container(
+              height: Adaptive.h(6),
+              color: Colors.transparent,
+              child: Container(
+                color: primaryColor,
+                child: Center(
+                  child: Text(
+                    'NEXT',
+                    style: TextStyle(
+                      fontSize: 0.27.dp,
+                      // fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            onTap: () {
+              // showDialog(
+              //     context: context,
+              //     builder: (context) => AlertDialog(
+              //           backgroundColor: Colors.orange[50],
+              //           shape: RoundedRectangleBorder(
+              //               borderRadius:
+              //                   BorderRadius.all(Radius.circular(20))),
+              //           title: Container(
+              //             child: Center(
+              //                 child: Container(
+              //                     height: Adaptive.h(2),
+              //                     // width: Adaptive.w(40),
+              //                     // color: Colors.orange,
+              //                     child: Text('STRAVA'))),
+              //           ),
+              //           content: Icon(Icons.ads_click),
+              //           actions: [
+              //             Center(
+              //               child: MaterialButton(
+              //                   onPressed: () {
+              //                     Navigator.push(
+              //                         context,
+              //                         MaterialPageRoute(
+              //                             builder: (context) =>
+              //                                 StravaProfileScreen(
+              //                                     serviceName: '')));
+              //                   },
+              //                   child: Column(
+              //                     children: [
+              //                       Text(
+              //                         'Next',
+              //                         style: TextStyle(color: Colors.green),
+              //                       ),
+              //                     ],
+              //                   )),
+              //             ),
+              //           ],
+              //         ));
+            },
+          ),
+        ),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(
@@ -113,7 +174,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                       if (snapshot.hasData) {
                         return Container(
                           padding: EdgeInsets.all(Adaptive.w(2)),
-                          height: 10.h,
+                          // height: 30.h,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -160,7 +221,10 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                                 ),
                                               ),
                                               Container(
-                                                padding: EdgeInsets.all(15),
+                                                padding: EdgeInsets.only(
+                                                    left: 15,
+                                                    right: 15,
+                                                    bottom: 15),
                                                 child: Text(
                                                   'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
                                                   textAlign: TextAlign.justify,
@@ -209,37 +273,6 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
               SizedBox(
                 height: Adaptive.h(5),
               ),
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(Adaptive.h(2)),
-                  child: InkWell(
-                    child: Container(
-                      padding: EdgeInsets.all(Adaptive.h(2)),
-                      height: Adaptive.h(6),
-                      width: Adaptive.w(50),
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       color: Colors.grey, //New
-                        //       blurRadius: 5.0,
-                        //       offset: Offset(-1, -1))
-                        // ]
-                      ),
-                      child: Container(
-                          child: Center(
-                        child: Text(
-                          'NEXT',
-                          style: TextStyle(
-                              fontSize: 0.27.dp, fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-              )
             ])))));
   }
 }

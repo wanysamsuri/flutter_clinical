@@ -171,7 +171,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                             style: TextStyle(
                                                               fontSize:
                                                                   Adaptive.dp(
-                                                                      0.22),
+                                                                      0.21),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
@@ -213,7 +213,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
               children: [
                 Container(
                   padding: EdgeInsets.all(Adaptive.w(5)),
-                  height: Adaptive.h(12),
+                  height: Adaptive.h(15),
                   width: Adaptive.w(100),
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 157, 228, 234),

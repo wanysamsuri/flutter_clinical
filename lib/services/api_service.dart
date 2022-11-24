@@ -520,11 +520,11 @@ class ApiService {
     }
   }
 
-   Future fetchUserStrava() async {
+  Future fetchUserStrava() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
-    final endpointUserStrava = Uri.parse('$baseUrl/notifications');
+    final endpointUserStrava = Uri.parse('$baseUrl/stravas/profile');
     final response = await http.get(endpointUserStrava, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'

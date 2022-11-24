@@ -2,9 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/connected/strava_activitiy.dart';
 import 'package:flutter_clinic/health%20status/view_status.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../screens/profile/edit_password.dart';
+import '../screens/profile/edit_profile.dart';
+import '../services/api_service.dart';
 
 class StravaProfileScreen extends StatefulWidget {
   const StravaProfileScreen({Key? key, required String serviceName})
@@ -49,7 +56,117 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
               Navigator.pop(context);
             },
           )),
-      body: Container(),
+      body: FutureBuilder(
+          future: ApiService().fetchUserStrava(),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                padding: EdgeInsets.only(left: 16, right: 16),
+                child: ListView(children: [
+                  SizedBox(height: 20),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: Stack(children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: screenWidth * 0.03,
+                          ),
+                          Align(
+                            child: Container(
+                              height: Adaptive.h(10),
+                              width: Adaptive.w(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          snapshot.data['profile']))),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]),
+                  ),
+                  SizedBox(height: 50),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    // height: Adaptive.h(9),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey[200]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            'Hello,',
+                            style: TextStyle(
+                              letterSpacing: 5,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Center(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text(
+                              snapshot.data['username'],
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: Adaptive.h(2)),
+                  Container(
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(130, 45),
+                          primary: Color.fromARGB(255, 157, 228, 234),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      StravaActivityScreen(serviceName: '')));
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Divider(
+                    thickness: 2,
+                  ),
+                  
+                ]),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }

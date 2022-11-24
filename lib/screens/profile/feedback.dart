@@ -26,7 +26,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   var items = [
     'Feedback',
     'Complaint',
-  ]; 
+  ];
 
   //star
   double value = 5;
@@ -71,7 +71,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         children: [
               Container(
                 padding: EdgeInsets.all(Adaptive.w(5)),
-                height: Adaptive.h(12),
+                height: Adaptive.h(15),
                 width: Adaptive.w(100),
                 decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 157, 228, 234),

@@ -86,7 +86,7 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
                               child: Text(
                                 "TERMS & CONDITIONS",
                                 style: TextStyle(
-                                    fontSize: 0.4.dp,
+                                    fontSize: 0.3.dp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
