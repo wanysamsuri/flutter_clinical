@@ -104,7 +104,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                                       '')));
                                                 },
                                                 child: Text(
-                                                  'CONTINUE',
+                                                  'Continue',
                                                   style: TextStyle(
                                                       color: Colors.green),
                                                 )),
@@ -117,24 +117,9 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                 child: Column(
                                                   children: [
                                                     Text(
-                                                      'TEST',
+                                                      'Cancel',
                                                       style: TextStyle(
-                                                          color: Colors.green),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ),
-                                          Container(
-                                            child: MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'TEST',
-                                                      style: TextStyle(
-                                                          color: Colors.green),
+                                                          color: Colors.red),
                                                     ),
                                                   ],
                                                 )),
@@ -207,7 +192,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                       ])),
               Container(
                 padding: EdgeInsets.all(Adaptive.w(2)),
-                height: 40.h,
+                // height: Adaptive.h(20),
                 child: SafeArea(
                   child: FutureBuilder(
                     future: ApiService().fetchHighlight(),
@@ -215,7 +200,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                       if (snapshot.hasData) {
                         return Container(
                           padding: EdgeInsets.all(Adaptive.w(2)),
-                          // height: 30.h,
+                          // height: Adaptive.h(30),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -231,7 +216,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
 
                                         //body listview
                                         child: Container(
-                                          height: Adaptive.h(30),
+                                          // height: Adaptive.h(40),
                                           decoration: BoxDecoration(
                                             color: Colors.grey[200],
                                             borderRadius:
