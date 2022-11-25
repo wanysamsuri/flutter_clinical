@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/connected/salixium_main.dart';
+import 'package:flutter_clinic/connected/strava_main.dart';
+import 'package:flutter_clinic/connected/strava_profile.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -15,7 +18,7 @@ class SalixiumPermissionScreen extends StatefulWidget {
 }
 
 class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
-  // const SalixiumPermissionScreen({super.key});
+  // const StravaPermissionScreen({super.key});
   bool value = false;
 
   @override
@@ -52,67 +55,93 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
             },
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: primaryColor,
-          child: InkWell(
-            child: Container(
-              height: Adaptive.h(6),
-              color: Colors.transparent,
-              child: Container(
-                color: primaryColor,
-                child: Center(
-                  child: Text(
-                    'NEXT',
-                    style: TextStyle(
-                      fontSize: 0.27.dp,
-                      // fontWeight: FontWeight.bold
+        bottomNavigationBar: FutureBuilder(
+            future: ApiService().fetchUserStrava(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  child: BottomAppBar(
+                    color: primaryColor,
+                    child: InkWell(
+                      child: Container(
+                        height: Adaptive.h(6),
+                        color: Colors.transparent,
+                        child: Container(
+                          color: primaryColor,
+                          child: Center(
+                            child: Text(
+                              'NEXT',
+                              style: TextStyle(
+                                fontSize: 0.27.dp,
+                                // fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.orange[50],
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  title: Icon(Icons.ads_click),
+                                  // content: Text('STRAVA'),
+                                  actions: [
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  // ApiService()
+                                                  //     .fetchUserStrava();
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              SalixiumMainScreen(
+                                                                  serviceName:
+                                                                      '')));
+                                                },
+                                                child: Text(
+                                                  'Continue',
+                                                  style: TextStyle(
+                                                      color: Colors.green),
+                                                )),
+                                          ),
+                                          Container(
+                                            child: MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'Cancel',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ));
+                      },
                     ),
                   ),
-                ),
-              ),
-            ),
-            onTap: () {
-              // showDialog(
-              //     context: context,
-              //     builder: (context) => AlertDialog(
-              //           backgroundColor: Colors.orange[50],
-              //           shape: RoundedRectangleBorder(
-              //               borderRadius:
-              //                   BorderRadius.all(Radius.circular(20))),
-              //           title: Container(
-              //             child: Center(
-              //                 child: Container(
-              //                     height: Adaptive.h(2),
-              //                     // width: Adaptive.w(40),
-              //                     // color: Colors.orange,
-              //                     child: Text('STRAVA'))),
-              //           ),
-              //           content: Icon(Icons.ads_click),
-              //           actions: [
-              //             Center(
-              //               child: MaterialButton(
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) =>
-              //                                 StravaProfileScreen(
-              //                                     serviceName: '')));
-              //                   },
-              //                   child: Column(
-              //                     children: [
-              //                       Text(
-              //                         'Next',
-              //                         style: TextStyle(color: Colors.green),
-              //                       ),
-              //                     ],
-              //                   )),
-              //             ),
-              //           ],
-              //         ));
-            },
-          ),
-        ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(
@@ -166,7 +195,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                       ])),
               Container(
                 padding: EdgeInsets.all(Adaptive.w(2)),
-                height: 40.h,
+                // height: Adaptive.h(20),
                 child: SafeArea(
                   child: FutureBuilder(
                     future: ApiService().fetchHighlight(),
@@ -174,7 +203,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                       if (snapshot.hasData) {
                         return Container(
                           padding: EdgeInsets.all(Adaptive.w(2)),
-                          // height: 30.h,
+                          // height: Adaptive.h(30),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -190,7 +219,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
 
                                         //body listview
                                         child: Container(
-                                          height: Adaptive.h(30),
+                                          // height: Adaptive.h(40),
                                           decoration: BoxDecoration(
                                             color: Colors.grey[200],
                                             borderRadius:
@@ -213,7 +242,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                                   'Thousands of amazing developers from all over the world are making apps for Strava. Far more athletes are using those apps to augment their Strava experience. ',
                                                   textAlign: TextAlign.justify,
                                                   style: TextStyle(
-                                                    fontSize: 0.25.dp,
+                                                    fontSize: 17,
                                                     // fontWeight:
                                                     //     FontWeight.bold,
                                                     color: Colors.black,
@@ -229,7 +258,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                                   'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
                                                   textAlign: TextAlign.justify,
                                                   style: TextStyle(
-                                                    fontSize: 0.25.dp,
+                                                    fontSize: 17,
                                                     // fontWeight:
                                                     //     FontWeight.bold,
                                                     color: Colors.black,
@@ -250,26 +279,29 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                   ),
                 ),
               ),
-              Container(
-                  // padding: EdgeInsets.all(Adaptive.w(2)),
-                  // height: 100.h,
-                  child: Container(
-                padding: EdgeInsets.all(Adaptive.h(2)),
-                // color: secondaryColor,
-                height: Adaptive.h(6),
-                child: Row(
-                  children: [
-                    Checkbox(
-                        value: value,
-                        onChanged: (val) {
-                          setState(() {
-                            value = val!;
-                          });
-                        }),
-                    Text('I have read and agree with terms & conditions'),
-                  ],
-                ),
-              )),
+              SizedBox(
+                height: Adaptive.h(10),
+                child: Container(
+                    // padding: EdgeInsets.all(Adaptive.w(2)),
+                    // height: 100.h,
+                    child: Container(
+                  padding: EdgeInsets.all(Adaptive.h(2)),
+                  // color: secondaryColor,
+                  height: Adaptive.h(6),
+                  child: Row(
+                    children: [
+                      Checkbox(
+                          value: value,
+                          onChanged: (val) {
+                            setState(() {
+                              value = val!;
+                            });
+                          }),
+                      Text('I have read and agree with terms & conditions'),
+                    ],
+                  ),
+                )),
+              ),
               SizedBox(
                 height: Adaptive.h(5),
               ),

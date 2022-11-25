@@ -10,15 +10,15 @@ import 'package:flutter_clinic/screens/appointment/new_appointment_record.dart';
 import '../../customshape.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class StravaMainScreen extends StatefulWidget {
-  const StravaMainScreen({Key? key, required String serviceName})
+class SalixiumMainScreen extends StatefulWidget {
+  const SalixiumMainScreen({Key? key, required String serviceName})
       : super(key: key);
 
   @override
-  State<StravaMainScreen> createState() => _StravaMainScreenState();
+  State<SalixiumMainScreen> createState() => _SalixiumMainScreenState();
 }
 
-class _StravaMainScreenState extends State<StravaMainScreen> {
+class _SalixiumMainScreenState extends State<SalixiumMainScreen> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -39,7 +39,7 @@ class _StravaMainScreenState extends State<StravaMainScreen> {
               color: Color.fromARGB(255, 157, 228, 234),
             )),
             title: const Text(
-              'STRAVA',
+              'SALIXIUM',
               style: TextStyle(color: Colors.black),
             ),
             centerTitle: true,

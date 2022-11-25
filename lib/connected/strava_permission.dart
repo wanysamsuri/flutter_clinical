@@ -278,7 +278,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                 ),
               ),
               SizedBox(
-                height: Adaptive.h(40),
+                height: Adaptive.h(10),
                 child: Container(
                     // padding: EdgeInsets.all(Adaptive.w(2)),
                     // height: 100.h,
