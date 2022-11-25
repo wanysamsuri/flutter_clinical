@@ -289,11 +289,9 @@ class _StravaActivityScreenState extends State<StravaActivityScreen> {
                                               Container(
                                                 child: Icon(
                                                   Icons.thumb_up,
+                                                  color: Colors.grey[500],
                                                   size: 20,
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 10,
                                               ),
                                               Container(
                                                 child: Text(
@@ -309,6 +307,7 @@ class _StravaActivityScreenState extends State<StravaActivityScreen> {
                                               Container(
                                                 child: Icon(
                                                   Icons.comment_outlined,
+                                                  color: Colors.grey[500],
                                                   size: 20,
                                                 ),
                                               ),
