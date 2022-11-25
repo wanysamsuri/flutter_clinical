@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clinic/connected/salixium_main.dart';
+import 'package:flutter_clinic/connected/salixium_profile.dart';
 import 'package:flutter_clinic/connected/strava_main.dart';
 import 'package:flutter_clinic/connected/strava_profile.dart';
 import 'package:flutter_clinic/constant.dart';
@@ -102,7 +102,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              SalixiumMainScreen(
+                                                              SalixiumProfileScreen(
                                                                   serviceName:
                                                                       '')));
                                                 },

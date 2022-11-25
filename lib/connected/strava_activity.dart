@@ -209,9 +209,8 @@ class _StravaActivityScreenState extends State<StravaActivityScreen> {
                                               ),
                                             ],
                                           ),
-                                          Divider(
-                                            thickness: 2,
-                                            // color: Colors.black,
+                                          SizedBox(
+                                            height: 10,
                                           ),
                                           Row(
                                             mainAxisAlignment:
