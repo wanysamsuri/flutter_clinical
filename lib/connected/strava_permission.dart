@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/connected/strava_main.dart';
 import 'package:flutter_clinic/connected/strava_profile.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -99,7 +100,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              StravaProfileScreen(
+                                                              StravaMainScreen(
                                                                   serviceName:
                                                                       '')));
                                                 },
