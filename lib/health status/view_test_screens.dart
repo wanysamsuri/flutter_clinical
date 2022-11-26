@@ -90,110 +90,153 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                                   // gridDelegate:
                                   //     SliverGridDelegateWithFixedCrossAxisCount(
                                   //         crossAxisCount: 2),
-                                  itemCount: snapshot.data.length,
+                                  itemCount: 1,
                                   itemBuilder: (context, index) {
                                     return Container(
-                                      margin: EdgeInsets.all(10),
-                                      padding: EdgeInsets.only(
-                                          right: 20,
-                                          left: 20,
-                                          top: 10,
-                                          bottom: 20),
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey[300],
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Stack(children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              height: Adaptive.h(2),
-                                            ),
-                                            Container(
-                                              // color: Colors.amber,
-                                              child: Text(
-                                                'Test Result',
-                                                // overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-
-                                              // SizedBox(
-                                              //   height: Adaptive.h(1),
-                                              // ),
-                                            ),
-                                            SizedBox(
-                                              height: Adaptive.h(1),
-                                            ),
-                                            Divider(
-                                              thickness: 2,
-                                            ),
-                                            SizedBox(
-                                              height: Adaptive.h(1),
-                                            ),
-                                            Row(
+                                        margin: EdgeInsets.all(10),
+                                        padding: EdgeInsets.only(
+                                            right: 20,
+                                            left: 20,
+                                            top: 10,
+                                            bottom: 20),
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[300],
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Stack(children: [
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
+                                                SizedBox(
+                                                  height: Adaptive.h(2),
+                                                ),
                                                 Container(
-                                                  // width: 40,
                                                   // color: Colors.amber,
                                                   child: Text(
-                                                    'Name:',
+                                                    'Test Result',
                                                     // overflow: TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
-                                                        // fontSize: 20,
+                                                        fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
+
+                                                  // SizedBox(
+                                                  //   height: Adaptive.h(1),
+                                                  // ),
                                                 ),
                                                 SizedBox(
-                                                  width: Adaptive.w(1),
+                                                  height: Adaptive.h(1),
                                                 ),
-                                                Container(
-                                                  // color: Colors.amber,
-                                                  child: Flexible(
-                                                    child: Text(
-                                                      'test',
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          // fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                Divider(
+                                                  thickness: 2,
+                                                ),
+                                                SizedBox(
+                                                  height: Adaptive.h(1),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      // width: 40,
+                                                      // color: Colors.amber,
+                                                      child: Text(
+                                                        'Name:',
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                            // fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                     ),
-                                                  ),
+                                                    SizedBox(
+                                                      width: Adaptive.w(1),
+                                                    ),
+                                                    Container(
+                                                      // color: Colors.amber,
+                                                      child: Flexible(
+                                                        child: Text(
+                                                          'test',
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          maxLines: 3,
+                                                          style: TextStyle(
+                                                              // fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: Adaptive.h(1),
-                                            ),
-                                            Divider(
-                                              thickness: 2,
-                                            ),
-                                            SizedBox(
-                                              height: Adaptive.h(1),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.all(10),
-                                              // color: Colors.white,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                            ),
-                                          ],
-                                        ),
-                                      ]),
-                                    );
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      // width: 40,
+                                                      // color: Colors.amber,
+                                                      child: Text(
+                                                        'Type:',
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                            // fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: Adaptive.w(1),
+                                                    ),
+                                                    Container(
+                                                      // color: Colors.amber,
+                                                      child: Flexible(
+                                                        child: Text(
+                                                          'test',
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          maxLines: 3,
+                                                          style: TextStyle(
+                                                              // fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                    // SizedBox(
+                                                    //   height: Adaptive.h(1),
+                                                    // ),
+                                                    // Divider(
+                                                    //   thickness: 2,
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   height: Adaptive.h(1),
+                                                    // ),
+                                                    // Container(
+                                                    //   padding: EdgeInsets.all(10),
+                                                    //   // color: Colors.white,
+                                                    //   decoration: BoxDecoration(
+                                                    //       color: Colors.white,
+                                                    //       borderRadius:
+                                                    //           BorderRadius.circular(
+                                                    //               10)),
+                                                    // ),
+                                                  ],
+                                                ),
+                                              ]),
+                                        ]));
                                   });
                             } else {
                               return Center(child: CircularProgressIndicator());
