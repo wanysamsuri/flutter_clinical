@@ -56,6 +56,7 @@ class _StravaMainScreenState extends State<StravaMainScreen> {
               },
             )),
         body: Container(
+          // height: Adaptive.h(40),
           // color: Colors.amber ,
           child: Padding(
             padding: EdgeInsets.all(Adaptive.w(2)),
@@ -81,7 +82,7 @@ class _StravaMainScreenState extends State<StravaMainScreen> {
                   StravaProfileScreen(
                     serviceName: '',
                   ),
-                ]))
+                ])),
               ],
             ),
           ),

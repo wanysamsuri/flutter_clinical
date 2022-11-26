@@ -15,15 +15,15 @@ import '../screens/profile/edit_password.dart';
 import '../screens/profile/edit_profile.dart';
 import '../services/api_service.dart';
 
-class StravaActivityScreen extends StatefulWidget {
-  const StravaActivityScreen({Key? key, required String serviceName})
+class SalixiumScreen extends StatefulWidget {
+  const SalixiumScreen({Key? key, required String serviceName})
       : super(key: key);
 
   @override
-  State<StravaActivityScreen> createState() => _StravaActivityScreenState();
+  State<SalixiumScreen> createState() => _SalixiumScreenState();
 }
 
-class _StravaActivityScreenState extends State<StravaActivityScreen> {
+class _SalixiumScreenState extends State<SalixiumScreen> {
   Future? futureFetchStravaActivity;
   @override
   void initState() {

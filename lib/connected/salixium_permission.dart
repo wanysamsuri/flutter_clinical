@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clinic/connected/salixium_profile.dart';
+import 'package:flutter_clinic/connected/salixium_screen.dart';
 import 'package:flutter_clinic/connected/strava_main.dart';
 import 'package:flutter_clinic/connected/strava_profile.dart';
 import 'package:flutter_clinic/constant.dart';
@@ -56,7 +56,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
           ),
         ),
         bottomNavigationBar: FutureBuilder(
-            future: ApiService().fetchUserStrava(),
+            future: ApiService().fetchSalixium(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Container(
@@ -102,7 +102,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              SalixiumProfileScreen(
+                                                              SalixiumScreen(
                                                                   serviceName:
                                                                       '')));
                                                 },
@@ -171,8 +171,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                               child: Text(
                                 "SALIXIUM",
                                 style: TextStyle(
-                                    fontSize: 0.4.dp,
-                                    fontWeight: FontWeight.bold),
+                                    fontSize: 30, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Column(
