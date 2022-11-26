@@ -102,39 +102,8 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
               Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(12)),
-                  width: MediaQuery.of(context).size.width,
-                  child: DropdownButton(
-                    value: dropdownvalue,
-                    dropdownColor: Colors.grey[200],
-                    icon: const Icon(Icons.arrow_drop_down),
-                    isExpanded: true,
-                    underline: SizedBox(),
-                    items: items.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownvalue = newValue!;
-                      });
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
                 child: Column(
                   children: [
                     TextField(
