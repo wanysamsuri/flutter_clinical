@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
-import 'package:flutter_clinic/health%20status/test_screens.dart';
+import 'package:flutter_clinic/health%20status/view_test_screens.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/models/health_choice.dart';
 import 'package:flutter_clinic/models/health_status_model.dart';
