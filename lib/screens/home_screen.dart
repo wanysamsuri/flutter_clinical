@@ -33,23 +33,23 @@ class _HomeScreenState extends State<HomeScreen> {
   // late var lat;
   // late var long;
   // var locationMessage = "";
-  void getCurrentLocation() async {
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
-    var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
-    print(lastPosition);
-    lat = position.latitude.toString();
-    long = position.longitude.toString();
-    print('$lat, $long');
+  // void getCurrentLocation() async {
+  //   LocationPermission permission;
+  //   permission = await Geolocator.requestPermission();
+  //   var position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   var lastPosition = await Geolocator.getLastKnownPosition();
+  //   print(lastPosition);
+  //   lat = position.latitude.toString();
+  //   long = position.longitude.toString();
+  //   print('$lat, $long');
 
-    setState(() {
-      lat = position.latitude.toString();
-      long = position.longitude.toString();
-      locationMessage = '$position';
-    });
-  }
+  //   setState(() {
+  //     lat = position.latitude.toString();
+  //     long = position.longitude.toString();
+  //     locationMessage = '$position';
+  //   });
+  // }
 
   Future? fetchPanelList;
   Future? fetchHighlightIndex;
@@ -177,7 +177,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MaterialPageRoute(builder: (context) {
                                       // return AppointmentScreen();
                                       return FindClinicScreen(
-                                          getCurrentLocation());
+                                          // getCurrentLocation()
+                                          );
                                     }));
                                   } else if (index == 2) {
                                     Navigator.push(context,

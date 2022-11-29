@@ -15,7 +15,8 @@ import '../../customshape.dart';
 import '../../services/api_service.dart';
 
 class FindClinicScreen extends StatefulWidget {
-  const FindClinicScreen(void currentLocation,
+  const FindClinicScreen(
+      // void currentLocation,
       // void currentLocation,
       {Key? key})
       : super(key: key);
@@ -26,9 +27,9 @@ class FindClinicScreen extends StatefulWidget {
 
 // late String? lat = '';
 // late String? long = '';
-String? lat = '';
-String? long = '';
-String? locationMessage = "";
+late String? lat = '';
+late String? long = '';
+late String? locationMessage = '';
 
 class _FindClinicScreenState extends State<FindClinicScreen> {
   // var lat;
@@ -52,13 +53,14 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
   //     locationMessage = '$position';
   //   });
   // }
-  void getCurrentLocation() async {
+  getCurrentLocation() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
+    // LocationPermission permission;
+    // permission =
+    await Geolocator.requestPermission();
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
+    var lastPosition = Geolocator.getLastKnownPosition();
     print(lastPosition);
     await storage.setString('latitude', '${position.latitude.toString()}');
     await storage.setString('longitude', '${position.longitude.toString()}');
@@ -66,11 +68,11 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
     long = position.longitude.toString();
     print('$lat, $long');
 
-    setState(() {
-      lat = position.latitude.toString();
-      long = position.longitude.toString();
-      locationMessage = '$position';
-    });
+    // setState(() {
+    //   lat = position.latitude.toString();
+    //   long = position.longitude.toString();
+    //   locationMessage = '$position';
+    // });
   }
 
   // Future fetchPanels(
@@ -110,9 +112,12 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    // getCurrentLocation();
-    futurefetchPanels = ApiService().fetchPanels(lat!,long!);
-    print('this is latitude : $lat');
+    getCurrentLocation();
+    setState(() {
+      futurefetchPanels = ApiService().fetchPanels();
+      print('this is latitude : $lat');
+    });
+
     super.initState();
   }
 
