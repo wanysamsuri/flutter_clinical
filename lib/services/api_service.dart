@@ -725,5 +725,48 @@ class ApiService {
     }
   }
 
+  Future userRegister(
+    String name,
+    String nric,
+    String email,
+    String phone,
+    String password,
+  ) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    // final feedbackMessage = storage.getString('feedback');
+
+    final endpointRegister = Uri.parse('$baseUrl/register');
+
+    final body = {
+      'name': name,
+      'nric': nric,
+      'email': email,
+      'phone': phone,
+      'password': password,
+    };
+
+    final response = await http.post(endpointRegister,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: body);
+    print(response.statusCode);
+    print(body);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
 
 }
