@@ -578,8 +578,8 @@ class ApiService {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
-    final endpointSync = Uri.parse('$baseUrl/salixium');
-    final response = await http.get(endpointSync, headers: {
+    final endpointSalixium = Uri.parse('$baseUrl/salixium');
+    final response = await http.get(endpointSalixium, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
@@ -591,6 +591,55 @@ class ApiService {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
+  }
+
+  Future fetchSalixiumSync() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointSalixiumSync = Uri.parse('$baseUrl/salixium/sync');
+    final response = await http.get(endpointSalixiumSync, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    final responseBody = json.decode(response.body);
+
+    // if
+    // (response.statusCode == 200) {
+    //   // final responseBody = json.decode(response.body);
+    //   Fluttertoast.showToast(
+    //       msg: (responseBody['message']),
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0);
+    // } else
+    if (response.statusCode == 401) {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+    // else {
+    //   // final responseBody = json.decode(response.body);
+    //   Fluttertoast.showToast(
+    //       msg: (responseBody['message']),
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0);
+    // }
+    return responseBody;
   }
 
   Future fetchSelfTest() async {

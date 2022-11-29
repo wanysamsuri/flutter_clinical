@@ -90,44 +90,46 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                                   title: Icon(Icons.ads_click),
                                   // content: Text('STRAVA'),
                                   actions: [
-                                    Center(
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            child: MaterialButton(
-                                                onPressed: () {
-                                                  // ApiService()
-                                                  //     .fetchUserStrava();
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SalixiumScreen(
-                                                                  serviceName:
-                                                                      '')));
-                                                },
-                                                child: Text(
-                                                  'Continue',
-                                                  style: TextStyle(
-                                                      color: Colors.green),
-                                                )),
-                                          ),
-                                          Container(
-                                            child: MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'Cancel',
-                                                      style: TextStyle(
-                                                          color: Colors.red),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ),
-                                        ],
+                                    SafeArea(
+                                      child: Center(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: MaterialButton(
+                                                  onPressed: () {
+                                                    // ApiService()
+                                                    //     .fetchUserStrava();
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                SalixiumScreen(
+                                                                    serviceName:
+                                                                        '')));
+                                                  },
+                                                  child: Text(
+                                                    'Continue',
+                                                    style: TextStyle(
+                                                        color: Colors.green),
+                                                  )),
+                                            ),
+                                            Container(
+                                              child: MaterialButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        'Cancel',
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

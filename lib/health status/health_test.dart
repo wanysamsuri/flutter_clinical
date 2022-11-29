@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/new_record.dart';
-import 'package:flutter_clinic/health%20status/view_test_screens.dart';
+import 'package:flutter_clinic/health%20status/view_self_test_screens.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/models/health_choice.dart';
 import 'package:flutter_clinic/models/health_status_model.dart';
@@ -57,153 +57,179 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: primaryColor,
-        child: InkWell(
-          child: Container(
-            height: Adaptive.h(6),
-            color: Colors.transparent,
-            child: Container(
-              color: primaryColor,
-              child: Center(
-                  child:
-                      Text('Add New Record', style: TextStyle(fontSize: 18))),
-            ),
-          ),
-          onTap: () {
-            showModalBottomSheet(
-                // isScrollControlled: true,
-                context: context,
-                isScrollControlled: true,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(
-                  20,
-                ))),
-                builder: ((context) => Container(
-                      padding: EdgeInsets.all(Adaptive.h(2)),
-                      height: Adaptive.h(55),
-                      decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                              child: Center(
-                            child: Text(
-                              'Add New Record',
-                              style: TextStyle(
-                                  fontSize: 0.26.dp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )),
-                          SizedBox(
-                            height: Adaptive.h(3),
-                          ),
-                          Column(
+        child: Row(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              child: Container(
+                height: Adaptive.h(6),
+                color: Colors.transparent,
+                child: Container(
+                  color: primaryColor,
+                  child: Center(
+                      child: Text('Add New Record',
+                          style: TextStyle(fontSize: 18))),
+                ),
+              ),
+              onTap: () {
+                showModalBottomSheet(
+                    // isScrollControlled: true,
+                    context: context,
+                    isScrollControlled: true,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(
+                      20,
+                    ))),
+                    builder: ((context) => Container(
+                          padding: EdgeInsets.all(Adaptive.h(2)),
+                          height: Adaptive.h(55),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  // height: Adaptive.h(20),
-                                  padding: EdgeInsets.only(
-                                    left: Adaptive.w(0),
-                                    right: Adaptive.w(0),
-                                  ),
-                                  child: GridView.builder(
-                                      shrinkWrap: true,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 3,
-                                              mainAxisSpacing: 5,
-                                              crossAxisSpacing: 10),
-                                      itemCount: healthStatus.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 4.0, vertical: 4),
+                                  child: Center(
+                                child: Text(
+                                  'Add New Record',
+                                  style: TextStyle(
+                                      fontSize: 0.26.dp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )),
+                              SizedBox(
+                                height: Adaptive.h(3),
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                      // height: Adaptive.h(20),
+                                      padding: EdgeInsets.only(
+                                        left: Adaptive.w(0),
+                                        right: Adaptive.w(0),
+                                      ),
+                                      child: GridView.builder(
+                                          shrinkWrap: true,
+                                          gridDelegate:
+                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  mainAxisSpacing: 5,
+                                                  crossAxisSpacing: 10),
+                                          itemCount: healthStatus.length,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 4.0, vertical: 4),
 
-                                          //body listview
-                                          child: InkWell(
-                                            child: Center(
-                                              child: Container(
-                                                padding: EdgeInsets.all(5),
-                                                // height: Adaptive.h(15),
-                                                width: Adaptive.w(40),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                    color: Colors.grey[200],
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          color:
-                                                              Colors.grey, //New
-                                                          blurRadius: 10.0,
-                                                          offset: Offset(
-                                                              -0.5, -0.5))
-                                                    ]),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Center(
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        child: Image.asset(
-                                                          healthStatus[index]
-                                                              .image
-                                                              .toString(),
-                                                          width: 40,
-                                                          height: 40,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Center(
-                                                      child: Container(
-                                                        // width: Adaptive.w(20),
-                                                        // padding:
-                                                        //     EdgeInsets.only(
-                                                        //         left: 5),
-                                                        child: Center(
-                                                          child: Text(
-                                                            healthStatus[index]
-                                                                .serviceName
-                                                                .toString(),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  Adaptive.dp(
-                                                                      0.2),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color:
-                                                                  Colors.black,
+                                              //body listview
+                                              child: InkWell(
+                                                child: Center(
+                                                  child: Container(
+                                                    padding: EdgeInsets.all(5),
+                                                    // height: Adaptive.h(15),
+                                                    width: Adaptive.w(40),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        color: Colors.grey[200],
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                              color: Colors
+                                                                  .grey, //New
+                                                              blurRadius: 10.0,
+                                                              offset: Offset(
+                                                                  -0.5, -0.5))
+                                                        ]),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Center(
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Image.asset(
+                                                              healthStatus[
+                                                                      index]
+                                                                  .image
+                                                                  .toString(),
+                                                              width: 40,
+                                                              height: 40,
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
+                                                        Center(
+                                                          child: Container(
+                                                            // width: Adaptive.w(20),
+                                                            // padding:
+                                                            //     EdgeInsets.only(
+                                                            //         left: 5),
+                                                            child: Center(
+                                                              child: Text(
+                                                                healthStatus[
+                                                                        index]
+                                                                    .serviceName
+                                                                    .toString(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize:
+                                                                      Adaptive.dp(
+                                                                          0.2),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              NewRecordScreen()));
+                                                },
                                               ),
-                                            ),
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          NewRecordScreen()));
-                                            },
-                                          ),
-                                        );
-                                      })),
+                                            );
+                                          })),
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    )));
-          },
+                        )));
+              },
+            ),
+            InkWell(
+              child: Text(
+                'View Self Test Result',
+                style: TextStyle(fontSize: 0.26.dp),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewTestScreen(
+                              serviceName: '',
+                            )));
+              },
+            )
+          ],
         ),
       ),
       body: SafeArea(

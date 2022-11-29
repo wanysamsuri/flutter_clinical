@@ -8,7 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../customshape.dart';
 import '../screens/appointment/choice_screen.dart';
-import 'view_test_screens.dart';
+import 'view_self_test_screens.dart';
 
 class HealthStatusScreen extends StatefulWidget {
   const HealthStatusScreen({

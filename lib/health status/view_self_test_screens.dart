@@ -68,7 +68,7 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
             },
           )),
       body: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.all(5),
         child: Container(
           child: SafeArea(
             child: SingleChildScrollView(
@@ -90,7 +90,7 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                                   // gridDelegate:
                                   //     SliverGridDelegateWithFixedCrossAxisCount(
                                   //         crossAxisCount: 2),
-                                  itemCount: 1,
+                                  itemCount: snapshot.data['data'].length,
                                   itemBuilder: (context, index) {
                                     return Container(
                                         margin: EdgeInsets.all(10),
@@ -158,20 +158,19 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                                                     ),
                                                     Container(
                                                       // color: Colors.amber,
-                                                      child: Flexible(
-                                                        child: Text(
-                                                          'test',
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          maxLines: 3,
-                                                          style: TextStyle(
-                                                              // fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
+                                                      child: Text(
+                                                        snapshot.data['data']
+                                                            [index]['name'],
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        maxLines: 3,
+                                                        style: TextStyle(
+                                                            // fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ),
                                                   ],
@@ -200,7 +199,8 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                                                       // color: Colors.amber,
                                                       child: Flexible(
                                                         child: Text(
-                                                          'test',
+                                                          snapshot.data['data']
+                                                              [index]['type'],
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           textAlign:
@@ -214,25 +214,89 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                                                         ),
                                                       ),
                                                     ),
-
-                                                    // SizedBox(
-                                                    //   height: Adaptive.h(1),
-                                                    // ),
-                                                    // Divider(
-                                                    //   thickness: 2,
-                                                    // ),
-                                                    // SizedBox(
-                                                    //   height: Adaptive.h(1),
-                                                    // ),
-                                                    // Container(
-                                                    //   padding: EdgeInsets.all(10),
-                                                    //   // color: Colors.white,
-                                                    //   decoration: BoxDecoration(
-                                                    //       color: Colors.white,
-                                                    //       borderRadius:
-                                                    //           BorderRadius.circular(
-                                                    //               10)),
-                                                    // ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      // width: 40,
+                                                      // color: Colors.amber,
+                                                      child: Text(
+                                                        'Result:',
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                            // fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: Adaptive.w(1),
+                                                    ),
+                                                    Container(
+                                                      // color: Colors.amber,
+                                                      child: Flexible(
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                              [index]['result'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          maxLines: 3,
+                                                          style: TextStyle(
+                                                              // fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      // width: 40,
+                                                      // color: Colors.amber,
+                                                      child: Text(
+                                                        'Remarks:',
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                            // fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: Adaptive.w(1),
+                                                    ),
+                                                    Container(
+                                                      // color: Colors.amber,
+                                                      child: Flexible(
+                                                        child: Text(
+                                                          snapshot.data['data']
+                                                                  [index]
+                                                              ['remarks'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          maxLines: 3,
+                                                          style: TextStyle(
+                                                              // fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ]),
