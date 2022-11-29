@@ -55,7 +55,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
     if (sharedToken == null) {
       print('token if null : $sharedToken');
       print('token if null, mounted?: $mounted');
-      Get.offAllNamed('/signin_page');
+      Get.offAllNamed('/welcome');
       // Navigator.pushNamedAndRemoveUntil(
       //     context, '/signin_page', (route) => false);
     } else {
