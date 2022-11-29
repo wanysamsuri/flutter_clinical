@@ -660,4 +660,45 @@ class ApiService {
       Get.offAllNamed('/loading');
     }
   }
+
+  Future userTestResult(
+    String name,
+    String type,
+    String result,
+    String remarks,
+  ) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    final headerToken = storage.getString('token');
+    // final feedbackMessage = storage.getString('feedback');
+
+    final endpointTestResult = Uri.parse('$baseUrl/tests');
+
+    final body = {
+      'name': name,
+      'type': type,
+      'result': result,
+      'remarks': remarks,
+    };
+
+    final response = await http.post(endpointTestResult,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: body);
+    print(response.statusCode);
+    print(body);
+    final responseBody = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: (responseBody['message']),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
 }

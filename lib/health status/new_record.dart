@@ -11,10 +11,12 @@ import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/models/health_choice.dart';
 import 'package:flutter_clinic/models/health_status_model.dart';
 import 'package:flutter_clinic/screens/appointment/choice_screen.dart';
+import 'package:flutter_clinic/screens/profile/help_faq.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../screens/notification/view_noti.dart';
+import '../services/api_service.dart';
 
 class NewRecordScreen extends StatefulWidget {
   const NewRecordScreen({super.key});
@@ -24,6 +26,11 @@ class NewRecordScreen extends StatefulWidget {
 }
 
 class _NewRecordScreenState extends State<NewRecordScreen> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _typeController = TextEditingController();
+  TextEditingController _resultController = TextEditingController();
+  TextEditingController _remarksController = TextEditingController();
+
   TimeOfDay _timeOfDay = TimeOfDay(hour: 12, minute: 00);
   void _showTimePicker() {
     showTimePicker(
@@ -31,7 +38,7 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
       initialTime: TimeOfDay.now(),
     ).then((value) {
       setState(() {
-        _timeOfDay = value!;
+        _timeOfDay = value ?? TimeOfDay.now();
       });
     });
   }
@@ -45,7 +52,7 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
   //           lastDate: DateTime(2030))
   //       .then((value) {
   //     setState(() {
-  //       _date.text = DateFormat('yyyy-MM-dd').format(_dateTime);
+  //       _date.text = DateFormat('dd-MM-yyyy').format(_dateTime);
   //     });
   //   });
   // }
@@ -101,31 +108,73 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+              SizedBox(
+                height: Adaptive.h(2),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
                 child: Column(
                   children: [
-                    TextField(
-                        controller: _date,
-                        decoration: InputDecoration(
-                            icon: Icon(Icons.calendar_today_rounded),
-                            labelText: "Select Date"),
-                        onTap: () async {
-                          DateTime? pickeddate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(20240));
-                          if (pickeddate != null) {
-                            setState(() {
-                              _date.text =
-                                  DateFormat('yyyy-MM-dd').format(pickeddate);
-                            });
-                          }
-                        }),
                     SizedBox(
-                      height: Adaptive.h(4),
+                      height: Adaptive.h(1),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: Adaptive.w(30),
+                          height: Adaptive.h(5),
+                          // color: primaryColor,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: primaryColor)),
+                          // decoration: BoxDecoration(
+                          //     border: Border(
+                          //         bottom: BorderSide(
+                          //             width: 1, color: Colors.grey))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                  child: Icon(Icons.calendar_today_rounded)),
+                              Container(
+                                child: Text(
+                                  _date.text,
+                                  // .format(context).toString(),
+                                  style: TextStyle(
+                                    fontSize: 0.25.dp,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: MaterialButton(
+                            onPressed: () async {
+                              DateTime? pickeddate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(20240));
+                              if (pickeddate != null) {
+                                setState(() {
+                                  _date.text = DateFormat('dd-MM-yyyy')
+                                      .format(pickeddate);
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text('Select Date'),
+                            ),
+                            color: primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(2),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -167,6 +216,85 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: Adaptive.h(2),
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(2),
+                    ),
+                    Text(''),
+                    TextFormField(
+                      controller: _nameController,
+                      maxLines: 5,
+                      minLines: 1,
+                      keyboardType: TextInputType.multiline,
+                      style: TextStyle(fontSize: 0.25.dp),
+                      decoration: InputDecoration(
+                        hintText: "Name",
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(2),
+                    ),
+                    TextFormField(
+                      controller: _typeController,
+                      maxLines: 5,
+                      minLines: 1,
+                      keyboardType: TextInputType.multiline,
+                      style: TextStyle(fontSize: 0.25.dp),
+                      decoration: InputDecoration(
+                        hintText: "Type",
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(2),
+                    ),
+                    TextFormField(
+                      controller: _resultController,
+                      maxLines: 5,
+                      minLines: 1,
+                      keyboardType: TextInputType.multiline,
+                      style: TextStyle(fontSize: 0.25.dp),
+                      decoration: InputDecoration(
+                        hintText: "Result",
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(2),
+                    ),
+                    TextFormField(
+                      controller: _remarksController,
+                      maxLines: 5,
+                      minLines: 1,
+                      keyboardType: TextInputType.multiline,
+                      style: TextStyle(fontSize: 0.25.dp),
+                      decoration: InputDecoration(
+                        hintText: "Remarks",
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -178,9 +306,12 @@ class _NewRecordScreenState extends State<NewRecordScreen> {
                   height: Adaptive.h(5),
                   width: Adaptive.w(60),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                    onPressed: () async {
+                      ApiService().userTestResult(
+                          _nameController.text,
+                          _typeController.text,
+                          _resultController.text,
+                          _remarksController.text);
                     },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
