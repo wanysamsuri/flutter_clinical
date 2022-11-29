@@ -6,6 +6,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/health%20status/view_self_test_screens.dart';
+import 'package:flutter_clinic/health%20status/view_test_screen.dart';
 import 'package:flutter_clinic/models/appointment_service.dart';
 import 'package:flutter_clinic/models/health_choice.dart';
 import 'package:flutter_clinic/models/health_status_model.dart';
@@ -224,7 +225,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ViewTestScreen(
+                        builder: (context) => ViewSelfTestScreen(
                               serviceName: '',
                             )));
               },
@@ -439,7 +440,8 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ViewTestScreen(
+                                        builder: (context) =>
+                                            ViewSelfTestScreen(
                                               serviceName: '',
                                             )));
                               },

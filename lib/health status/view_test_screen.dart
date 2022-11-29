@@ -17,20 +17,20 @@ import '../screens/profile/edit_password.dart';
 import '../screens/profile/edit_profile.dart';
 import '../services/api_service.dart';
 
-class ViewSelfTestScreen extends StatefulWidget {
-  const ViewSelfTestScreen({Key? key, required String serviceName})
+class ViewTestScreen extends StatefulWidget {
+  const ViewTestScreen({Key? key, required String serviceName})
       : super(key: key);
 
   @override
-  State<ViewSelfTestScreen> createState() => _ViewSelfTestScreenState();
+  State<ViewTestScreen> createState() => _ViewTestScreenState();
 }
 
-class _ViewSelfTestScreenState extends State<ViewSelfTestScreen> {
-  Future? futureSelfTest;
+class _ViewTestScreenState extends State<ViewTestScreen> {
+  Future? futureClinicTest;
   @override
   void initState() {
     // TODO: implement initState
-    futureSelfTest = ApiService().fetchSelfTest();
+    futureClinicTest = ApiService().fetchClinicTest();
     super.initState();
   }
 
@@ -54,7 +54,7 @@ class _ViewSelfTestScreenState extends State<ViewSelfTestScreen> {
             color: Color.fromARGB(255, 157, 228, 234),
           )),
           title: const Text(
-            'View Self Test',
+            'View Test',
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
@@ -81,7 +81,7 @@ class _ViewSelfTestScreenState extends State<ViewSelfTestScreen> {
                   children: [
                     Container(
                       child: FutureBuilder(
-                          future: futureSelfTest,
+                          future: futureClinicTest,
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.hasData) {
                               return ListView.builder(

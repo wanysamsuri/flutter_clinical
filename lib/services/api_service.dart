@@ -665,6 +665,25 @@ class ApiService {
     }
   }
 
+  Future fetchClinicTest() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+    final endpointSelfTest = Uri.parse('$baseUrl/tests');
+    final response = await http.get(endpointSelfTest, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
   Future userTestResult(
     String name,
     String type,
@@ -705,4 +724,6 @@ class ApiService {
           fontSize: 16.0);
     }
   }
+
+
 }

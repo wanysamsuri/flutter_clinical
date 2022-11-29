@@ -112,7 +112,7 @@ class _HealthStatusScreenState extends State<HealthStatusScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ViewTestScreen(
+                                  builder: (context) => ViewSelfTestScreen(
                                         serviceName: healthStatus[index]
                                             .serviceName
                                             .toString(),
