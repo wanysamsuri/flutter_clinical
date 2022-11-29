@@ -350,8 +350,12 @@ class ApiService {
     }
   }
 
-  Future fetchPanels(String latitude, String longitude) async {
+  Future fetchPanels(
+      // String latitude, String longitude
+      ) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
+    final latitude = await storage.getString('latitude');
+    final longitude = await storage.getString('longitude');
     final headerToken = storage.getString('token');
     final endpointPanel = Uri.parse(
       '$baseUrl/panels?latitude=$latitude&longitude=$longitude',
