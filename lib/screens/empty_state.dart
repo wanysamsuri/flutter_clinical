@@ -12,6 +12,8 @@ class EmptyStatePage extends StatefulWidget {
 class _EmptyStatePageState extends State<EmptyStatePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Image.asset('assets/empty_state_image.png'),);
+    return Container(child: Image.asset('assets/empty_state_image.png',
+    
+    ),);
   }
 }

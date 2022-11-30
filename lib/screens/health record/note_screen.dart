@@ -276,7 +276,8 @@ class _NoteState extends State<Note> {
                         } else {
                           return Center(child: CircularProgressIndicator());
                         }
-                      })
+                      }
+                      )
                   // Container(
                   //     child: ListView(
                   //         shrinkWrap: true,
