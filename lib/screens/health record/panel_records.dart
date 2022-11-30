@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/record_screen.dart';
+import 'package:flutter_clinic/screens/empty_state.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

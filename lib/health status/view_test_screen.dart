@@ -83,7 +83,8 @@ class _ViewTestScreenState extends State<ViewTestScreen> {
                       child: FutureBuilder(
                           future: futureClinicTest,
                           builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
+                            if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                               return ListView.builder(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
