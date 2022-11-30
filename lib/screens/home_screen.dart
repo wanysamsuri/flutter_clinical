@@ -19,6 +19,7 @@ import 'package:gauges/main.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../connected/salixium_permission.dart';
 import 'find clinics/find_clinic.dart';
 
@@ -50,6 +51,33 @@ class _HomeScreenState extends State<HomeScreen> {
   //     locationMessage = '$position';
   //   });
   // }
+  // getCurrentLocation() async {
+  //   SharedPreferences storage = await SharedPreferences.getInstance();
+  //   LocationPermission permission;
+  //   permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.deniedForever) {
+  //       return Future.error('Location Not Available');
+  //     }
+  //   }
+  //   var position = await Geolocator.getCurrentPosition();
+  //   // desiredAccuracy: LocationAccuracy.high);
+  //   var lastPosition = Geolocator.getLastKnownPosition();
+  //   print(lastPosition);
+  //   await storage.setString('latitude', position.latitude.toString());
+  //   await storage.setString('longitude', position.longitude.toString());
+  //   print('Latitude from home : ${storage.getString('latitude')}');
+  //   // lat = position.latitude.toString();
+  //   // long = position.longitude.toString();
+  //   // print('$lat, $long');
+
+  //   // setState(() {
+  //   //   lat = position.latitude.toString();
+  //   //   long = position.longitude.toString();
+  //   //   locationMessage = '$position';
+  //   // });
+  // }
 
   Future? fetchPanelList;
   Future? fetchHighlightIndex;
@@ -59,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     fetchHighlightIndex = ApiService().fetchHighlight();
     fetchPanelList = ApiService().fetchPanelList();
+    // getCurrentLocation();
     super.initState();
   }
 

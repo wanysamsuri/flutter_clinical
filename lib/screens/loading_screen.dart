@@ -26,12 +26,13 @@ class _LoadingScreensState extends State<LoadingScreens> {
   @override
   void initState() {
     super.initState();
+    getModelDetails();
     setState(() {
       Future.delayed(Duration(seconds: 2), () {
         _loadUserInfo();
       });
       initPlatformState();
-      getModelDetails();
+
       // configOneSignel();
     });
   }
@@ -147,11 +148,11 @@ class _LoadingScreensState extends State<LoadingScreens> {
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-    SharedPreferences sprefs = await SharedPreferences.getInstance();
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
     final status = await OneSignal.shared.getDeviceState();
     String? osUserID = status?.userId;
-    await sprefs.setString('playerIdOneSignal', osUserID ?? '');
+    await storage.setString('playerIdOneSignal', osUserID ?? '');
     print('Player ID: ' '$osUserID');
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
