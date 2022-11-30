@@ -67,6 +67,10 @@ class _WelcomeState extends State<Welcome> {
                     decoration: BoxDecoration(
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(10),
+                      // border: Border.all(
+                      //   color: Colors.black,
+                      //   width: 0.5,
+                      // ),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
@@ -85,14 +89,18 @@ class _WelcomeState extends State<Welcome> {
                       ),
                     )),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                     // width: 150,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
+                      // border: Border.all(
+                      //   color: Colors.black,
+                      //   width: 0.5,
+                      // ),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
