@@ -85,7 +85,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                     ))),
                     builder: ((context) => Container(
                           padding: EdgeInsets.all(Adaptive.h(2)),
-                          height: Adaptive.h(55),
+                          height: 500,
                           decoration: BoxDecoration(
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(20)),
@@ -286,7 +286,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                               child: Center(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  height: Adaptive.h(10),
+                                  // height: Adaptive.h(10),
                                   width: Adaptive.w(90),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),

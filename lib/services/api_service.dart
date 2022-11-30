@@ -743,17 +743,11 @@ class ApiService {
     }
   }
 
-  Future userRegister(
-    String name,
-    String nric,
-    String email,
-    String phone,
-    String password,
-  ) async {
+  Future userRegister(String name, String nric, String email, String phone,
+      String password, String deviceName, String playerId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
-    // final feedbackMessage = storage.getString('feedback');
-
+    final refisterUserName = storage.getString('userName');
     final endpointRegister = Uri.parse('$baseUrl/register');
 
     final body = {
@@ -762,19 +756,25 @@ class ApiService {
       'email': email,
       'phone': phone,
       'password': password,
+      'device_name': deviceName,
+      'player_id': playerId
     };
 
-    final response = await http.post(endpointRegister,
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $headerToken'
-        },
-        body: body);
+    final response = await http.post(endpointRegister, body: body);
+
     print(response.statusCode);
-    print(body);
+    // print(body);
     final responseBody = json.decode(response.body);
 
     if (response.statusCode == 200) {
+      msg:
+      (responseBody['message']);
+      storage.setString('token', responseBody['token']['token']);
+      storage.setString('userName', responseBody['user']['name']);
+      // Get.snackbar('$loginUserName', '$headerToken');
+      // Get.toNamed('/loading');
+      Get.to(() => EmailVerification());
+    } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
           toastLength: Toast.LENGTH_SHORT,
@@ -784,5 +784,7 @@ class ApiService {
           textColor: Colors.white,
           fontSize: 16.0);
     }
+
+    return json.decode(response.body);
   }
 }

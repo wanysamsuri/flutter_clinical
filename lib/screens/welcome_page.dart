@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/constant.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -19,12 +21,12 @@ class _WelcomeState extends State<Welcome> {
           padding: EdgeInsets.symmetric(horizontal: 50),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: 30),
+            SizedBox(height: Adaptive.h(20)),
             Center(
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: Image(
-                  image: AssetImage("assets/medic.png"),
+                  image: AssetImage("assets/Clinical-Logo-White.png"),
                 ),
               ),
             ),
@@ -57,68 +59,80 @@ class _WelcomeState extends State<Welcome> {
               ),
             ),
             SizedBox(height: 100),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                  width: 150,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 3, 205, 219),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/signup_page');
-                    },
-                    child: Center(
-                      child: Text('Sign Up', style: TextStyle(fontSize: 20)),
+            Column(
+              children: [
+                Container(
+                    // width: 150,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                      // border: Border.all(
+                      //   color: Colors.black,
+                      //   width: 0.5,
+                      // ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                  )),
-              SizedBox(
-                width: 20,
-              ),
-              Container(
-                  width: 150,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 3, 205, 219),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 6.0,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/signin_page');
+                      },
+                      child: Center(
+                        child: Text('I already have an account',
+                            style: TextStyle(fontSize: 18)),
                       ),
-                    ],
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/signin_page');
-                    },
-                    child: Center(
-                      child: Text('Sign In', style: TextStyle(fontSize: 20)),
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    // width: 150,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10),
+                      // border: Border.all(
+                      //   color: Colors.black,
+                      //   width: 0.5,
+                      // ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                  )),
-            ]),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/signup_page');
+                      },
+                      child: Center(
+                        child: Text("I don't have any account",
+                            style: TextStyle(fontSize: 18)),
+                      ),
+                    )),
+              ],
+            ),
             SizedBox(
               height: 30,
             ),
-            Container(
-                child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/dashboard');
-              },
-              child: Center(
-                child: Text('Continue as guest',
-                    style: TextStyle(color: Colors.blue, fontSize: 20)),
-              ),
-            )),
+            // Container(
+            //     child: InkWell(
+            //   onTap: () {
+            //     Navigator.of(context).pushNamed('/dashboard');
+            //   },
+            //   child: Center(
+            //     child: Text('Continue as guest',
+            //         style: TextStyle(color: Colors.blue, fontSize: 20)),
+            //   ),
+            // )),
           ]),
         ),
       ),
