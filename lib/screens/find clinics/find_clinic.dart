@@ -27,11 +27,11 @@ class FindClinicScreen extends StatefulWidget {
 
 // late String? lat = '';
 // late String? long = '';
-late String? lat = '';
-late String? long = '';
-late String? locationMessage = '';
 
 class _FindClinicScreenState extends State<FindClinicScreen> {
+  late String? lat = '';
+  late String? long = '';
+  late String? locationMessage = '';
   // var lat;
   // var long;
 
@@ -55,18 +55,23 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
   // }
   getCurrentLocation() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
-    // LocationPermission permission;
-    // permission =
-    await Geolocator.requestPermission();
-    var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error('Location Not Available');
+      }
+    }
+    var position = await Geolocator.getCurrentPosition();
+    // desiredAccuracy: LocationAccuracy.high);
     var lastPosition = Geolocator.getLastKnownPosition();
     print(lastPosition);
-    await storage.setString('latitude', '${position.latitude.toString()}');
-    await storage.setString('longitude', '${position.longitude.toString()}');
-    lat = position.latitude.toString();
-    long = position.longitude.toString();
-    print('$lat, $long');
+    storage.setString('latitude', position.latitude.toString());
+    storage.setString('longitude', position.longitude.toString());
+    // lat = position.latitude.toString();
+    // long = position.longitude.toString();
+    // print('$lat, $long');
 
     // setState(() {
     //   lat = position.latitude.toString();
@@ -109,16 +114,13 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
 
   Future? futurefetchPanels;
   int selected = -1;
+
   @override
   void initState() {
     // TODO: implement initState
-    getCurrentLocation();
-    setState(() {
-      futurefetchPanels = ApiService().fetchPanels();
-      print('this is latitude : $lat');
-    });
-
     super.initState();
+    getCurrentLocation();
+    futurefetchPanels = ApiService().fetchPanels();
   }
 
   Widget build(BuildContext context) {

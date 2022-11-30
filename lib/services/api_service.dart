@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/route_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -20,7 +21,6 @@ class ApiService {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
     final loginUserName = storage.getString('userName');
-
     final endpointLogin = Uri.parse('$baseUrl/login-nric');
 
     final body = {
@@ -31,7 +31,11 @@ class ApiService {
       'player_id': playerId
     };
 
-    final response = await http.post(endpointLogin, body: body);
+    final response = await http.post(endpointLogin,
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: body);
     print(response.statusCode);
     final responseBody = json.decode(response.body);
 
@@ -40,7 +44,8 @@ class ApiService {
       storage.setString('userName', responseBody['user']['name']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
-      Get.to(() => EmailVerification());
+      Get.offAll(() => LoadingScreens());
+      // Get.to(() => EmailVerification());
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
@@ -354,6 +359,19 @@ class ApiService {
       // String latitude, String longitude
       ) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error('Location Not Available');
+      }
+    }
+    var position = await Geolocator.getCurrentPosition();
+    // desiredAccuracy: LocationAccuracy.high);
+    var lastPosition = Geolocator.getLastKnownPosition();
+    print(lastPosition);
+    storage.setString('latitude', position.latitude.toString());
+    storage.setString('longitude', position.longitude.toString());
     final latitude = await storage.getString('latitude');
     final longitude = await storage.getString('longitude');
     final headerToken = storage.getString('token');
@@ -767,6 +785,4 @@ class ApiService {
           fontSize: 16.0);
     }
   }
-
-
 }
