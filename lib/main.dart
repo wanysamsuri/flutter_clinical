@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/appointment/queue_new.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
 import 'package:flutter_clinic/screens/auth/signin_page.dart';
 import 'package:flutter_clinic/screens/auth/signup_page.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
@@ -82,6 +83,7 @@ class _MyAppState extends State<MyApp> {
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
             '/notification': ((context) => const NotificationScreen()),
+            '/kyc_email': ((context) => const EmailVerification()),
           },
           home: const LoadingScreens());
     });

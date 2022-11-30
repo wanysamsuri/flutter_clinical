@@ -117,6 +117,24 @@ class _ProfileState extends State<Profile> {
                         title: Text('Connected Device'),
                       ),
                     )),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[200]),
+                      child: ListTile(
+                        onTap: () async {
+                          // SharedPreferences storage =
+                          //     await SharedPreferences.getInstance();
+                          // storage.clear();
+                          Get.toNamed('/kyc_email');
+                        },
+                        leading: Icon(Icons.scanner),
+                        title: Text('Verification'),
+                      ),
+                    )),
 
                 Padding(
                     padding: const EdgeInsets.symmetric(

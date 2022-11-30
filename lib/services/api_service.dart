@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/screens/auth/kyc_email.dart';
+import 'package:flutter_clinic/screens/auth/signin_page.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -779,7 +780,7 @@ class ApiService {
       storage.setString('userName', responseBody['user']['name']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
-      Get.to(() => EmailVerification());
+      Get.off(() => SignIn());
     } else {
       Fluttertoast.showToast(
           msg: (responseBody['message']),
