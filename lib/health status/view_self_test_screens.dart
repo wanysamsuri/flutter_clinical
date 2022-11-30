@@ -13,6 +13,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../constant.dart';
 import '../record_screen.dart';
+import '../screens/empty_state_screen.dart';
 import '../screens/profile/edit_password.dart';
 import '../screens/profile/edit_profile.dart';
 import '../services/api_service.dart';
@@ -83,225 +84,264 @@ class _ViewSelfTestScreenState extends State<ViewSelfTestScreen> {
                       child: FutureBuilder(
                           future: futureSelfTest,
                           builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // gridDelegate:
-                                  //     SliverGridDelegateWithFixedCrossAxisCount(
-                                  //         crossAxisCount: 2),
-                                  itemCount: snapshot.data['data'].length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                        margin: EdgeInsets.all(10),
-                                        padding: EdgeInsets.only(
-                                            right: 20,
-                                            left: 20,
-                                            top: 10,
-                                            bottom: 20),
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[300],
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Stack(children: [
-                                          Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: Adaptive.h(2),
-                                                ),
-                                                Container(
-                                                  // color: Colors.amber,
-                                                  child: Text(
-                                                    'Test Result',
-                                                    // overflow: TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.hasData) {
+                                List testList = snapshot.data['data'];
+                                return (testList.isNotEmpty)
+                                    ? ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        // gridDelegate:
+                                        //     SliverGridDelegateWithFixedCrossAxisCount(
+                                        //         crossAxisCount: 2),
+                                        itemCount: snapshot.data['data'].length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                              margin: EdgeInsets.all(10),
+                                              padding: EdgeInsets.only(
+                                                  right: 20,
+                                                  left: 20,
+                                                  top: 10,
+                                                  bottom: 20),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey[300],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: Stack(children: [
+                                                Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        height: Adaptive.h(2),
+                                                      ),
+                                                      Container(
+                                                        // color: Colors.amber,
+                                                        child: Text(
+                                                          'Test Result',
+                                                          // overflow: TextOverflow.ellipsis,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
 
-                                                  // SizedBox(
-                                                  //   height: Adaptive.h(1),
-                                                  // ),
-                                                ),
-                                                SizedBox(
-                                                  height: Adaptive.h(1),
-                                                ),
-                                                Divider(
-                                                  thickness: 2,
-                                                ),
-                                                SizedBox(
-                                                  height: Adaptive.h(1),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      // width: 40,
-                                                      // color: Colors.amber,
-                                                      child: Text(
-                                                        'Name:',
-                                                        // overflow: TextOverflow.ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            // fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                        // SizedBox(
+                                                        //   height: Adaptive.h(1),
+                                                        // ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: Adaptive.w(1),
-                                                    ),
-                                                    Container(
-                                                      // color: Colors.amber,
-                                                      child: Text(
-                                                        snapshot.data['data']
-                                                            [index]['name'],
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        maxLines: 3,
-                                                        style: TextStyle(
-                                                            // fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                      SizedBox(
+                                                        height: Adaptive.h(1),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      // width: 40,
-                                                      // color: Colors.amber,
-                                                      child: Text(
-                                                        'Type:',
-                                                        // overflow: TextOverflow.ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            // fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                      Divider(
+                                                        thickness: 2,
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: Adaptive.w(1),
-                                                    ),
-                                                    Container(
-                                                      // color: Colors.amber,
-                                                      child: Flexible(
-                                                        child: Text(
-                                                          snapshot.data['data']
-                                                              [index]['type'],
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          maxLines: 3,
-                                                          style: TextStyle(
-                                                              // fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
+                                                      SizedBox(
+                                                        height: Adaptive.h(1),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      // width: 40,
-                                                      // color: Colors.amber,
-                                                      child: Text(
-                                                        'Result:',
-                                                        // overflow: TextOverflow.ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            // fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            // width: 40,
+                                                            // color: Colors.amber,
+                                                            child: Text(
+                                                              'Name:',
+                                                              // overflow: TextOverflow.ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  // fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                Adaptive.w(1),
+                                                          ),
+                                                          Container(
+                                                            // color: Colors.amber,
+                                                            child: Text(
+                                                              snapshot.data[
+                                                                          'data']
+                                                                      [index]
+                                                                  ['name'],
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              maxLines: 3,
+                                                              style: TextStyle(
+                                                                  // fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: Adaptive.w(1),
-                                                    ),
-                                                    Container(
-                                                      // color: Colors.amber,
-                                                      child: Flexible(
-                                                        child: Text(
-                                                          snapshot.data['data']
-                                                              [index]['result'],
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          maxLines: 3,
-                                                          style: TextStyle(
-                                                              // fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            // width: 40,
+                                                            // color: Colors.amber,
+                                                            child: Text(
+                                                              'Type:',
+                                                              // overflow: TextOverflow.ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  // fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                Adaptive.w(1),
+                                                          ),
+                                                          Container(
+                                                            // color: Colors.amber,
+                                                            child: Flexible(
+                                                              child: Text(
+                                                                snapshot.data[
+                                                                            'data']
+                                                                        [index]
+                                                                    ['type'],
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                maxLines: 3,
+                                                                style: TextStyle(
+                                                                    // fontSize: 20,
+                                                                    fontWeight: FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      // width: 40,
-                                                      // color: Colors.amber,
-                                                      child: Text(
-                                                        'Remarks:',
-                                                        // overflow: TextOverflow.ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            // fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            // width: 40,
+                                                            // color: Colors.amber,
+                                                            child: Text(
+                                                              'Result:',
+                                                              // overflow: TextOverflow.ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  // fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                Adaptive.w(1),
+                                                          ),
+                                                          Container(
+                                                            // color: Colors.amber,
+                                                            child: Flexible(
+                                                              child: Text(
+                                                                snapshot.data[
+                                                                            'data']
+                                                                        [index]
+                                                                    ['result'],
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                maxLines: 3,
+                                                                style: TextStyle(
+                                                                    // fontSize: 20,
+                                                                    fontWeight: FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: Adaptive.w(1),
-                                                    ),
-                                                    Container(
-                                                      // color: Colors.amber,
-                                                      child: Flexible(
-                                                        child: Text(
-                                                          snapshot.data['data']
-                                                                  [index]
-                                                              ['remarks'],
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          maxLines: 3,
-                                                          style: TextStyle(
-                                                              // fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            // width: 40,
+                                                            // color: Colors.amber,
+                                                            child: Text(
+                                                              'Remarks:',
+                                                              // overflow: TextOverflow.ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  // fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                Adaptive.w(1),
+                                                          ),
+                                                          Container(
+                                                            // color: Colors.amber,
+                                                            child: Flexible(
+                                                              child: Text(
+                                                                snapshot.data[
+                                                                            'data']
+                                                                        [index]
+                                                                    ['remarks'],
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                maxLines: 3,
+                                                                style: TextStyle(
+                                                                    // fontSize: 20,
+                                                                    fontWeight: FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ]),
-                                        ]));
-                                  });
+                                                    ]),
+                                              ]));
+                                        })
+                                    : Center(
+                                        child: EmptyStateScreen(),
+                                      );
+                              } else if (snapshot.hasError) {
+                                print('has error');
+                                return Center(
+                                  child: Text('error'),
+                                );
+                              } else {
+                                print('Empty');
+                                return Center(
+                                  child: Text('Empty'),
+                                );
+                              }
                             } else {
                               return Center(child: CircularProgressIndicator());
                             }

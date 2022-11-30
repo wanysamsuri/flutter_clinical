@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
+import 'package:flutter_clinic/screens/health%20record/empty_state.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/noti_screens.dart';
@@ -68,102 +69,134 @@ class _ViewNotificationState extends State<ViewNotification> {
             child: FutureBuilder(
               future: ApiService().fetchNotification(),
               builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  return Container(
-                    padding: EdgeInsets.all(Adaptive.w(3)),
-                    height: 130.h,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 0, vertical: 2.0),
+                if (snapshot.connectionState == ConnectionState.done) {
+                  List notiList = snapshot.data;
+                  if (snapshot.hasData) {
+                    return (notiList.isNotEmpty)
+                        ? Container(
+                            padding: EdgeInsets.all(Adaptive.w(3)),
+                            height: 130.h,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                      child: ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: snapshot.data.length,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 0, vertical: 2.0),
 
-                                      //body listview
-                                      child: Container(
-                                        height: 12.h,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 1,
-                                            ),
-                                            ListTile(
-                                              onTap: () async {
-                                                Get.toNamed('/notification');
-                                              },
-                                              title: Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10,
-                                                            bottom: 10),
-                                                    child: Center(
-                                                      child: Text(
-                                                        (snapshot.data[index]
-                                                                ['data']
-                                                            ['message']),
-                                                        textAlign:
-                                                            TextAlign.justify,
-                                                        maxLines: 1,
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black,
+                                              //body listview
+                                              child: Container(
+                                                height: 12.h,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey[200],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 1,
+                                                    ),
+                                                    ListTile(
+                                                      onTap: () async {
+                                                        Get.toNamed(
+                                                            '/notification');
+                                                      },
+                                                      title: Column(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 10,
+                                                                    bottom: 10),
+                                                            child: Center(
+                                                              child: Text(
+                                                                (snapshot.data[
+                                                                            index]
+                                                                        ['data']
+                                                                    [
+                                                                    'message']),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .justify,
+                                                                maxLines: 1,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      subtitle: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                bottom: 15.0),
+                                                        child: Text(
+                                                          (snapshot.data[index]
+                                                                  ['data']
+                                                              ['message']),
+                                                          textAlign:
+                                                              TextAlign.justify,
+                                                          maxLines: 1,
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Colors.black,
+                                                          ),
                                                         ),
                                                       ),
+                                                      trailing: IconButton(
+                                                        icon: Icon(Icons
+                                                            .navigate_next_sharp),
+                                                        onPressed: () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const NotificationScreen()),
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              subtitle: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 15.0),
-                                                child: Text(
-                                                  (snapshot.data[index]['data']
-                                                      ['message']),
-                                                  textAlign: TextAlign.justify,
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.black,
-                                                  ),
+                                                  ],
                                                 ),
                                               ),
-                                              trailing: IconButton(
-                                                icon: Icon(
-                                                    Icons.navigate_next_sharp),
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const NotificationScreen()),
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }))
-                        ]),
-                  );
+                                            );
+                                          }))
+                                ]),
+                          )
+                        : Center(
+                            child: EmptyStateScreen(),
+                          );
+                  } else if (snapshot.hasError) {
+                    print('has error');
+                    return Center(
+                      child: Text('error'),
+                    );
+                  } else {
+                    print('Empty');
+                    return Center(
+                      child: Text('Empty'),
+                    );
+                  }
                 } else {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator());
                 }
               },
             ),

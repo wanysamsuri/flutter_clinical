@@ -747,7 +747,7 @@ class ApiService {
       String password, String deviceName, String playerId) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
     final headerToken = storage.getString('token');
-    final refisterUserName = storage.getString('userName');
+    final registerUserName = storage.getString('userName');
     final endpointRegister = Uri.parse('$baseUrl/register');
 
     final body = {
@@ -760,11 +760,17 @@ class ApiService {
       'player_id': playerId
     };
 
-    final response = await http.post(endpointRegister, body: body);
+    final response = await http.post(endpointRegister, body: body, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    ;
 
     print(response.statusCode);
     // print(body);
-    final responseBody = json.decode(response.body);
+    final responseBody = json.decode(
+      response.body,
+    );
 
     if (response.statusCode == 200) {
       msg:
