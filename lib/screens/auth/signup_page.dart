@@ -210,9 +210,10 @@ class _SignUpState extends State<SignUp> {
                                       _emailController.text,
                                       _phoneController.text,
                                       _passwordController.text,
-                                    );
-                                    Navigator.of(context)
-                                        .pushNamed('/dashboard');
+                                      sharedDeviceName!,
+                                      sharedPlayerIdOneSignal!);
+                                    // Navigator.of(context)
+                                    //     .pushNamed('/dashboard');
                                   }
                                 },
                                 child: Center(
