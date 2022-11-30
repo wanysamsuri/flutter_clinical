@@ -51,59 +51,7 @@ class _PanelRecordsState extends State<PanelRecords> {
             child: FutureBuilder(
                 future: futureFetchPanelList,
                 builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      padding: EdgeInsets.all(0),
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 15,
-                      ),
-                      itemBuilder: (context, index) {
-                        return Card(
-                          color: Colors.white,
-                          shadowColor: Colors.grey[300],
-                          elevation: 3.0,
-                          // margin: EdgeInsets.all(30),
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  color: Color(0xFFEEEEEE), width: 1),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: SkeletonAnimation(
-                              shimmerDuration: 500,
-                              child: Container(
-                                padding: EdgeInsets.all(30),
-                                // color: Colors.grey,
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 10,
-                                        width: 100,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Container(
-                                        height: 10,
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )),
-                        );
-                      },
-                    );
-                  } else if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       List panelList = snapshot.data;
                       print('has data');
