@@ -107,12 +107,20 @@ class _ViewNotificationState extends State<ViewNotification> {
                                                     ListTile(
                                                       onTap: () async {
                                                         Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context)=>NotificationScreen()));
-                                                        Get.toNamed(
-                                                            '/notification');
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  NotificationScreen(
+                                                                    id: snapshot
+                                                                        .data[
+                                                                            index]
+                                                                            [
+                                                                            'id']
+                                                                        .toString(),
+                                                                  )),
+                                                        );
+                                                        print(snapshot
+                                                            .data[index]['id']);
                                                       },
                                                       title: Column(
                                                         children: [
@@ -169,13 +177,11 @@ class _ViewNotificationState extends State<ViewNotification> {
                                                         icon: Icon(Icons
                                                             .navigate_next_sharp),
                                                         onPressed: () {
-                                                          Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const NotificationScreen()),
-                                                          );
+                                                          // ApiService()
+                                                          //     .fetchNotificationById(
+                                                          //         snapshot.data[
+                                                          //                 index]
+                                                          //             ['id']);
                                                         },
                                                       ),
                                                     ),

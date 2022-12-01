@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
             '/queue_new': ((context) => const QueueNew()),
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
-            '/notification': ((context) => const NotificationScreen()),
+            // '/notification': ((context) =>  NotificationScreen()),
             '/kyc_email': ((context) => const EmailVerification()),
           },
           home: const LoadingScreens());

@@ -9,7 +9,8 @@ import '../../services/api_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({Key? key}) : super(key: key);
+  NotificationScreen({Key? key, required this.id}) : super(key: key);
+  String id;
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -17,13 +18,13 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   TextEditingController nameController = TextEditingController();
-  Future? futureNotification;
-  int selected = -1;
-  @override
-  void initState() {
-    super.initState();
-    futureNotification = ApiService().fetchNotification();
-  }
+  // Future? futureNotification;
+  // int selected = -1;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   futureNotification = ApiService().fetchNotification();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           height: 130.h,
           child: SafeArea(
             child: FutureBuilder(
-              future: ApiService().fetchNotification(),
+              future: ApiService().fetchNotificationById(widget.id),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   return Container(
@@ -115,7 +116,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                             top: 10, bottom: 5),
                                                     child: Center(
                                                       child: Text(
-                                                        (snapshot.data[index]
+                                                        (snapshot.data
                                                                 ['data']
                                                             ['message']),
                                                         textAlign:
@@ -140,7 +141,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                         const EdgeInsets.only(
                                                             bottom: 5.0),
                                                     child: Text(
-                                                      (snapshot.data[index]
+                                                      (snapshot.data
                                                           ['created_at']),
                                                       textAlign:
                                                           TextAlign.justify,
@@ -163,8 +164,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                   Container(
                                                     height: Adaptive.h(20),
                                                     child: Text(
-                                                      (snapshot.data[index]
-                                                          ['data']['message']),
+                                                      (snapshot.data['data']['message']),
                                                       textAlign:
                                                           TextAlign.justify,
                                                       style: TextStyle(

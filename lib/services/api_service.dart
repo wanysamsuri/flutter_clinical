@@ -212,11 +212,26 @@ class ApiService {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
-    // final responseBody = json.decode(response.body)['data'];
+    
+  }
 
-    // final responseBody = json.decode(response.body)['data'];
+  Future fetchNotificationById(String id) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
 
-    // return responseBody;
+    final headerToken = storage.getString('token');
+    final endpointMessageId = Uri.parse('$baseUrl/notifications/$id');
+    final response = await http.get(endpointMessageId, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body)['data'];
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+    
   }
 
   Future deleteDevice(String deviceId) async {

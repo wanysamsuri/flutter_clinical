@@ -51,7 +51,33 @@ class _PanelRecordsState extends State<PanelRecords> {
             child: FutureBuilder(
                 future: futureFetchPanelList,
                 builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 120,
+                      child: SkeletonAnimation(
+                          shimmerDuration: 500,
+                          child: Container(
+                            height: 120,
+                            padding: EdgeInsets.all(30),
+                            // color: Colors.grey,
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
+                                  
+                                ],
+                              ),
+                            ),
+                          )),
+                    );
+                  } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       List panelList = snapshot.data;
                       print('has data');
@@ -103,7 +129,7 @@ class _PanelRecordsState extends State<PanelRecords> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
