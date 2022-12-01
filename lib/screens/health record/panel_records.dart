@@ -51,7 +51,24 @@ class _PanelRecordsState extends State<PanelRecords> {
             child: FutureBuilder(
                 future: futureFetchPanelList,
                 builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SkeletonAnimation(
+                        shimmerDuration: 500,
+                        child: Container(
+                          padding: EdgeInsets.all(30),
+                          // color: Colors.grey,
+                          child: Center(
+                              child: GridView.builder(
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2),
+                                  itemCount: 4,
+                                  itemBuilder: (context, index) {
+                                    return Container();
+                                  })),
+                        ));
+                  } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       List panelList = snapshot.data;
                       print('has data');
