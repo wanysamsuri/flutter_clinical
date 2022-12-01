@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/auth/kyc_otp.dart';
+import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -90,25 +91,27 @@ class _EmailVerificationState extends State<EmailVerification> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: (selected == false)
-                        ? TextButton(
-                            onPressed: () {
-                              setState(() {
-                                // APIService().fetchEmailOTP();
-                                selected = true;
-                              });
-                            },
-                            child: Text('Get Code'))
-                        : RichText(
-                            maxLines: 3,
-                            textScaleFactor: 1.05,
-                            text: TextSpan(
-                                text:
-                                    "Enter the code sent to ******@gmail.com. Request resend code if you didn;t get the code within 3 minutes.",
-                                style: const TextStyle(
-                                    color: Colors.black54, fontSize: 15)),
-                            textAlign: TextAlign.center,
-                          ),
+                    child:
+                        // (selected == false)
+                        //     ? TextButton(
+                        //         onPressed: () {
+                        //           setState(() {
+                        //             // APIService().fetchEmailOTP();
+                        //             selected = true;
+                        //           });
+                        //         },
+                        //         child: Text('Get Code'))
+                        //     :
+                        RichText(
+                      maxLines: 3,
+                      textScaleFactor: 1.05,
+                      text: TextSpan(
+                          text:
+                              "Enter the code sent to $sharedEmail. Request resend code if you didn;t get the code within 3 minutes.",
+                          style: const TextStyle(
+                              color: Colors.black54, fontSize: 15)),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(10.0),

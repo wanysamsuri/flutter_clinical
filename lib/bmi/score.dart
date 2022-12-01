@@ -112,7 +112,7 @@ class ScoreScreen extends StatelessWidget {
                         ElevatedButton(
                             onPressed: () {
                               Share.share(
-                                  "Your BMI is ${bmiScore.toStringAsFixed(1)} at age $age");
+                                  "Your BMI is ${bmiScore.toStringAsFixed(1)}");
                             },
                             child: const Text("Share")),
                       ],

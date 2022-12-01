@@ -43,6 +43,8 @@ class ApiService {
     if (response.statusCode == 200) {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
+      storage.setString('userEmail', responseBody['user']['email']);
+      storage.setString('userPhoneNumber', responseBody['user']['phone']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
       Get.offAll(() => LoadingScreens());
@@ -793,5 +795,47 @@ class ApiService {
     }
 
     return json.decode(response.body);
+  }
+
+  Future fetchSmsOtp(String orderId) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/send-sms-otp');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
+  Future verifySmsOtp(String otp) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/verify-sms-otp');
+
+    final verifyBody = {
+      'otp': otp
+    };
+    final response = await http.post(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken',
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
   }
 }

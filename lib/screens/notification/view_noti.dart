@@ -106,6 +106,11 @@ class _ViewNotificationState extends State<ViewNotification> {
                                                     ),
                                                     ListTile(
                                                       onTap: () async {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context)=>NotificationScreen()));
                                                         Get.toNamed(
                                                             '/notification');
                                                       },
