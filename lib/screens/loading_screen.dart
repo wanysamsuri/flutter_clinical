@@ -44,9 +44,9 @@ class _LoadingScreensState extends State<LoadingScreens> {
     sharedToken = storage.getString('token');
     sharedFullName = storage.getString('userName');
     sharedDeviceName = storage.getString('modelPhone');
-    sharedEmail = storage.getString('_userEmail');
+    sharedEmail = storage.getString('userEmail');
     sharedNric = storage.getString('_userNric');
-    sharedPhoneNum = storage.getString('_userPhoneNumber');
+    sharedPhoneNum = storage.getString('userPhoneNumber');
     sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
 
     print('this is from loading device name : $sharedDeviceName');

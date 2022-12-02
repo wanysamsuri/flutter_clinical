@@ -43,6 +43,8 @@ class ApiService {
     if (response.statusCode == 200) {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
+      storage.setString('userEmail', responseBody['user']['email']);
+      storage.setString('userPhoneNumber', responseBody['user']['phone']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
       Get.offAll(() => LoadingScreens());
@@ -462,6 +464,53 @@ class ApiService {
     }
   }
 
+  Future postUpdatePhoneNumber(
+      String phoneNum) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointHighlight = Uri.parse('$baseUrl/update-profile');
+    final changePasswordBody = {
+      'phone': phoneNum,
+      
+    };
+    final response = await http.post(endpointHighlight,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: changePasswordBody);
+    final responseBody = json.decode(response.body);
+    if (response.statusCode == 200) {
+      print(responseBody['message']);
+      if (responseBody['success'] == false) {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+        Get.back();
+        return responseBody;
+      }
+    } else {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
   Future postResetPassword(String email) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
@@ -808,5 +857,47 @@ class ApiService {
     }
 
     return json.decode(response.body);
+  }
+
+  Future fetchSmsOtp(String orderId) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/send-sms-otp');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
+  Future verifySmsOtp(String otp) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/verify-sms-otp');
+
+    final verifyBody = {
+      'otp': otp
+    };
+    final response = await http.post(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken',
+    });
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+      return responseBody;
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
   }
 }

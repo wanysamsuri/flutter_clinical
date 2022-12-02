@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/customshape.dart';
 import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
+import 'package:flutter_clinic/screens/health%20record/refferal_letter_index.dart';
+import 'package:flutter_clinic/screens/health%20record/e-mc_index.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/refer_letter_screen.dart';
@@ -110,8 +112,12 @@ class _HealthRecordState extends State<HealthRecord>
                   Prescription(
                     orderId: widget.orderId,
                   ),
-                  ReferLetter(),
-                  ReferLetter()
+                  EMCScreen(
+                    orderId: widget.orderId,
+                  ),
+                  ReferralLetterScreen(
+                    orderId: widget.orderId,
+                  ),
                 ]),
               )
             ],
