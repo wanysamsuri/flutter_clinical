@@ -8,6 +8,7 @@ import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/notification/noti_screens.dart';
 import 'package:get/route_manager.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 import '../../customshape.dart';
 import '../../services/api_service.dart';
@@ -69,7 +70,52 @@ class _ViewNotificationState extends State<ViewNotification> {
             child: FutureBuilder(
               future: ApiService().fetchNotification(),
               builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: 10,
+                    padding: EdgeInsets.all(0),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: 5,
+                    ),
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: Colors.white,
+                        shadowColor: Colors.grey[300],
+                        elevation: 3.0,
+                        // margin: EdgeInsets.all(30),
+                        shape: RoundedRectangleBorder(
+                            side:
+                                BorderSide(color: Color(0xFFEEEEEE), width: 1),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: SkeletonAnimation(
+                            shimmerDuration: 500,
+                            child: Container(
+                              height: 120,
+                              padding: EdgeInsets.all(30),
+                              // color: Colors.grey,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    // width: 200,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  )
+                                ],
+                              ),
+                            )),
+                      );
+                    },
+                  );
+                } else if (snapshot.connectionState == ConnectionState.done) {
                   List notiList = snapshot.data;
                   if (snapshot.hasData) {
                     return (notiList.isNotEmpty)

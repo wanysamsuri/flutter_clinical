@@ -209,16 +209,6 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Container(
-                                  height: 10,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(10)),
-                                ),
                               ],
                             ),
                           )),
