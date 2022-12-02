@@ -19,6 +19,12 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
+  void initState() {
+    ApiService().fetchPanelList();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
@@ -66,38 +72,31 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: 30,
+                height: Adaptive.h(1),
               ),
               Divider(thickness: 2),
               SizedBox(
-                height: 30,
+                height: Adaptive.h(1),
               ),
               Container(
                   // padding: EdgeInsets.all(20),
                   child: Column(children: [
-                ListView(shrinkWrap: true, children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey[200]),
-                      child: ListTile(
-                        onTap: () async {
-                          // SharedPreferences storage =
-                          //     await SharedPreferences.getInstance();
-                          // storage.clear();
-                          Get.toNamed('/profile');
-                        },
-                        leading: Icon(Icons.person),
-                        title: Text('Patient Profile'),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[200]),
+                    child: ListTile(
+                      onTap: () async {
+                        Get.toNamed('/profile');
+                      },
+                      leading: Icon(Icons.person),
+                      title: Text('User Profile'),
                     ),
                   ),
-                  // Divider(
-                  //   thickness: 2,
-                ]),
+                ),
 
                 //device
                 Padding(
@@ -116,6 +115,24 @@ class _ProfileState extends State<Profile> {
                         },
                         leading: Icon(Icons.phone_android),
                         title: Text('Connected Device'),
+                      ),
+                    )),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[200]),
+                      child: ListTile(
+                        onTap: () async {
+                          // SharedPreferences storage =
+                          //     await SharedPreferences.getInstance();
+                          // storage.clear();
+                          Get.toNamed('/kyc_email');
+                        },
+                        leading: Icon(Icons.scanner),
+                        title: Text('Verification'),
                       ),
                     )),
 
@@ -178,7 +195,7 @@ class _ProfileState extends State<Profile> {
                           Get.toNamed('/help');
                         },
                         leading: Icon(Icons.help),
-                        title: Text('Help'),
+                        title: Text('FAQ'),
                       ))),
               Padding(
                   padding: const EdgeInsets.symmetric(
@@ -195,39 +212,38 @@ class _ProfileState extends State<Profile> {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  title: Text('Are you sure want to logout?'),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  title: Center(
+                                      child:
+                                          Text('Are you sure want to logout?')),
                                   actions: [
                                     TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text(
-                                          'No',
-                                          style: TextStyle(color: Colors.red),
-                                        )),
-                                    Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey[300],
-                                          border:
-                                              Border.all(color: Colors.green),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: TextButton(
-                                          onPressed: () {
-                                            ApiService().userLogout();
-                                          },
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(
-                                              color: Colors.green,
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              'No',
+                                              style:
+                                                  TextStyle(color: Colors.red),
                                             ),
-                                          )),
-                                    )
+                                          ],
+                                        )),
+                                    TextButton(
+                                        onPressed: () {
+                                          ApiService().userLogout();
+                                        },
+                                        child: Text(
+                                          'Yes',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                          ),
+                                        ))
                                   ],
                                 ));
-
-                        // Get.toNamed('/loading');
                       },
                       leading: Icon(
                         Icons.logout,

@@ -1,27 +1,33 @@
 import 'dart:collection';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/appointment/queue_new.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
+import 'package:flutter_clinic/screens/auth/signin_page.dart';
+import 'package:flutter_clinic/screens/auth/signup_page.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
 import 'package:flutter_clinic/screens/notification/no_noti_screens.dart';
+import 'package:flutter_clinic/screens/notification/noti_screens.dart';
 import 'package:flutter_clinic/screens/profile/connected_device.dart';
 import 'package:flutter_clinic/screens/profile/feedback.dart';
-import 'package:flutter_clinic/screens/profile/help.dart';
+import 'package:flutter_clinic/screens/profile/help_faq.dart';
 import 'package:flutter_clinic/screens/profile/patient_profile.dart';
 import 'package:flutter_clinic/screens/profile/terms_condition.dart';
-import 'package:flutter_clinic/screens/signin_page.dart';
-import 'package:flutter_clinic/screens/signup_page.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
 import 'package:flutter_clinic/dashboard.dart';
+import 'package:flutter_clinic/services/api_service.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -39,9 +45,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
+    initPlatformState();
     super.initState();
 
-    initPlatformState();
     // configOneSignal();
   }
 
@@ -58,6 +64,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
+          title: 'Clinical',
           debugShowCheckedModeBanner: false,
           routes: {
             '/loading': ((context) => const LoadingScreens()),
@@ -75,12 +82,34 @@ class _MyAppState extends State<MyApp> {
             '/queue_new': ((context) => const QueueNew()),
             '/noNoti': ((context) => const NoNotiScreens()),
             '/device': ((context) => const ConnectedDevicesScreens()),
+            // '/notification': ((context) =>  NotificationScreen()),
+            '/kyc_email': ((context) => const EmailVerification()),
           },
           home: const LoadingScreens());
     });
   }
 
   Future<void> initPlatformState() async {
+    final baseUrl = 'https://staging.clinical.my/api/v1';
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointPanelRecords = Uri.parse('$baseUrl/patient-records');
+    final response = await http.get(endpointPanelRecords, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $headerToken'
+    });
+    if (response.statusCode == 200) {
+      print('Okay good');
+    } else if (response.statusCode == 401) {
+      await storage.clear();
+      print('token cleared!');
+      Get.offAllNamed('/loading');
+    }
+
+    // final responseBody = json.decode(response.body)['data']['data'];
+
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);

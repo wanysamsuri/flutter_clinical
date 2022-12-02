@@ -29,7 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_pdfviewer: ^19.1.69-beta
+  syncfusion_flutter_pdfviewer: ^20.3.56
+  intl: ^0.17.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,7 +40,7 @@ dependencies:
   onesignal_flutter: ^3.4.1
   shared_preferences: ^2.0.15
   carousel_slider: ^4.1.1
-  device_info_plus: ^4.1.2
+  device_info_plus: ^8.0.0
   http: ^0.13.5
   get: ^4.6.5
   sizer: ^2.0.15
@@ -53,7 +54,29 @@ dependencies:
   username_validator: ^0.1.1
   rename: ^2.0.1
   url_launcher: ^6.1.6
-  
+  flutter_3d_choice_chip: ^0.1.4
+  swipebuttonflutter: ^1.0.0
+  gauges: ^1.0.0
+  pretty_gauge: ^1.0.1
+  share_plus: ^6.0.1
+  swipeable_button_view: ^0.0.2
+  page_transition: ^2.0.9
+  cached_network_image: ^3.2.2
+  accordion: ^2.5.1
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  getwidget: ^3.0.1
+  permission_handler: ^10.2.0
+  rounded_loading_button: ^2.1.0
+  pin_code_fields: ^7.4.0
+  lottie: ^2.0.0
+  form_field_validator: ^1.1.0
+  flutter_rating_stars: ^1.0.3+4
+  dropdown_button2: ^1.8.9
+  date_time_picker: ^2.1.0
+  device_info_plus_web: ^0.0.1
+  syncfusion_flutter_pdfviewer_web: ^19.4.56-beta
+  clickable_list_wheel_view: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +84,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/medic_logo.png"
+  image_path: "assets/clinical_my.png"
   min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -10,17 +10,17 @@ class Service {
 
 List<Service> services = [
   Service(
-      serviceName: 'Health Status',
-      icon: Icons.health_and_safety,
+      serviceName: 'Body Mass Index',
+      icon: Icons.scale,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Book Appointment',
-      icon: Icons.edit_calendar,
-      navigator: () {
-        print('object');
-      }),
+  // Service(
+  //     serviceName: 'Book Appointment',
+  //     icon: Icons.edit_calendar,
+  //     navigator: () {
+  //       print('object');
+  //     }),
   Service(
       serviceName: 'Find Clinic',
       icon: Icons.search,
@@ -28,21 +28,34 @@ List<Service> services = [
         Navigator.pop(context);
       }),
   Service(
-      serviceName: 'Teleconsulation',
-      icon: Icons.co_present,
+      serviceName: 'Health Status',
+      icon: Icons.bloodtype,
       navigator: (context) {
         Navigator.pop(context);
       }),
+  // Service(
+  //     serviceName: 'Tutorial',
+  //     icon: Icons.tungsten_outlined,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
   Service(
-      serviceName: 'Coming Soon',
-      icon: Icons.not_interested,
+      serviceName: 'More',
+      icon: Icons.more_horiz,
       navigator: (context) {
         Navigator.pop(context);
       }),
-  Service(
-      serviceName: 'Coming Soon',
-      icon: Icons.not_interested,
-      navigator: (context) {
-        Navigator.pop(context);
-      }),
+
+  // Service(
+  //     serviceName: 'Coming Soon',
+  //     icon: Icons.not_interested,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
+  // Service(
+  //     serviceName: 'Coming Soon',
+  //     icon: Icons.not_interested,
+  //     navigator: (context) {
+  //       Navigator.pop(context);
+  //     }),
 ];

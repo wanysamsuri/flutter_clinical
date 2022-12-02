@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clinic/screens/auth/kyc_email.dart';
+import 'package:get/get.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +13,8 @@ String? sharedDeviceName;
 String? sharedEmail;
 String? sharedNric;
 String? sharedPhoneNum;
+String? sharedToken;
+String? sharedPlayerIdOneSignal;
 
 class LoadingScreens extends StatefulWidget {
   const LoadingScreens({Key? key}) : super(key: key);
@@ -22,12 +26,13 @@ class _LoadingScreensState extends State<LoadingScreens> {
   @override
   void initState() {
     super.initState();
+    getModelDetails();
     setState(() {
       Future.delayed(Duration(seconds: 2), () {
         _loadUserInfo();
       });
-      // initPlatformState();
-      getModelDetails();
+      initPlatformState();
+
       // configOneSignel();
     });
   }
@@ -36,30 +41,37 @@ class _LoadingScreensState extends State<LoadingScreens> {
     SharedPreferences storage = await SharedPreferences.getInstance();
     // storage.clear();
     await storage.reload();
-    final sharedToken = storage.getString('token');
+    sharedToken = storage.getString('token');
     sharedFullName = storage.getString('userName');
     sharedDeviceName = storage.getString('modelPhone');
-    sharedEmail = storage.getString('_userEmail');
+    sharedEmail = storage.getString('userEmail');
     sharedNric = storage.getString('_userNric');
-    sharedPhoneNum = storage.getString('_userPhoneNumber');
-    final sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
+    sharedPhoneNum = storage.getString('userPhoneNumber');
+    sharedPlayerIdOneSignal = storage.getString('playerIdOneSignal');
 
-    print('this is from loading $sharedDeviceName');
-    print('this is from loading $sharedToken');
-    print('this is from loading $sharedPlayerIdOneSignal');
+    print('this is from loading device name : $sharedDeviceName');
+    print('this is from loading token : $sharedToken');
+    print('this is from loading player id : $sharedPlayerIdOneSignal');
 
     if (sharedToken == null) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/signin_page', (route) => false);
+      print('token if null : $sharedToken');
+      print('token if null, mounted?: $mounted');
+      Get.offAllNamed('/welcome');
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, '/signin_page', (route) => false);
     } else {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/dashboard', (route) => false);
+      print('token if not null : $sharedToken');
+      print('token if not null, mounted?: $mounted');
+      // Get.off(()=>EmailVerification());
+      Get.offAllNamed('/dashboard');
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, '/dashboard', (route) => false);
     }
   }
 
-  static const String oneSignalAppId = "f88df26b-2ffc-4811-babc-aaad1ead4c20";
+  static const String oneSignalAppId = "8ccd5fa1-7218-4f73-bfea-bd84b99bb016";
   void configOneSignel() {
-    OneSignal.shared.setAppId('f88df26b-2ffc-4811-babc-aaad1ead4c20');
+    OneSignal.shared.setAppId('8ccd5fa1-7218-4f73-bfea-bd84b99bb016');
   }
 
   @override
@@ -72,7 +84,7 @@ class _LoadingScreensState extends State<LoadingScreens> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset(
-                  'assets/medic.png',
+                  'assets/Clinical-Logo-White.png',
                   width: 300,
                 ),
                 const CircularProgressIndicator(),
@@ -136,6 +148,12 @@ class _LoadingScreensState extends State<LoadingScreens> {
     OneSignal.shared.setAppId(oneSignalAppId);
     //Remove this method to stop OneSignal Debugging
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final status = await OneSignal.shared.getDeviceState();
+    String? osUserID = status?.userId;
+    await storage.setString('playerIdOneSignal', osUserID ?? '');
+    print('Player ID: ' '$osUserID');
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
     OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
@@ -172,13 +190,6 @@ class _LoadingScreensState extends State<LoadingScreens> {
     });
 
     OneSignal.shared
-        .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {
-      SharedPreferences sprefs = await SharedPreferences.getInstance();
-
-      final status = await OneSignal.shared.getDeviceState();
-      String? osUserID = status?.userId;
-      await sprefs.setString('playerIdOneSignal', osUserID ?? '');
-      print('Player ID: ' '$osUserID');
-    });
+        .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {});
   }
 }

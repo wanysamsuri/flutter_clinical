@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/customshape.dart';
 import 'package:flutter_clinic/screens/health%20record/EMC_screen.dart';
+import 'package:flutter_clinic/screens/health%20record/refferal_letter_index.dart';
+import 'package:flutter_clinic/screens/health%20record/e-mc_index.dart';
 import 'package:flutter_clinic/screens/health%20record/note_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/screens/health%20record/refer_letter_screen.dart';
@@ -42,22 +44,30 @@ class _HealthRecordState extends State<HealthRecord>
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          // automaticallyImplyLeading: false,
-          // toolbarHeight: screenHeight * 0.1,
-          // backgroundColor: Colors.grey[50],
-          // elevation: 0.0,
-          // flexibleSpace: ClipPath(
-          //     clipper: CustomShape(),
-          //     child: Container(
-          //       height: 200,
-          //       width: MediaQuery.of(context).size.width,
-          //       color: Color.fromARGB(255, 3, 205, 219),
-          //     )),
-          backgroundColor: Color.fromARGB(255, 157, 228, 234),
-          title: const Text('Health Record'),
-          centerTitle: true,
-        ),
+            automaticallyImplyLeading: false,
+            toolbarHeight: screenHeight * 0.07,
+            backgroundColor: Colors.grey[50],
+            elevation: 0.0,
+            flexibleSpace: ClipPath(
+                // clipper: CustomShape(),
+                child: Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              color: Color.fromARGB(255, 157, 228, 234),
+            )),
+            title: const Text('Nearby Clinics'),
+            centerTitle: true,
+            leading: GestureDetector(
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )),
         body: Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
@@ -96,12 +106,18 @@ class _HealthRecordState extends State<HealthRecord>
               ),
               Expanded(
                 child: TabBarView(controller: tabController, children: [
-                  Note(orderId: widget.orderId,),
+                  Note(
+                    orderId: widget.orderId,
+                  ),
                   Prescription(
                     orderId: widget.orderId,
                   ),
-                  EMC(),
-                  ReferLetter()
+                  EMCScreen(
+                    orderId: widget.orderId,
+                  ),
+                  ReferralLetterScreen(
+                    orderId: widget.orderId,
+                  ),
                 ]),
               )
             ],

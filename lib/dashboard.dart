@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/screens/find%20clinics/view_more.dart';
 import 'package:flutter_clinic/screens/health%20record/panel_records.dart';
 import 'package:flutter_clinic/screens/health%20record/prescription_screen.dart';
 import 'package:flutter_clinic/record_screen.dart';
@@ -76,7 +77,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               title: const Text('Records')),
           AnimatedBarItems(
-              selectedColor: Colors.blue,
+              selectedColor: Color.fromARGB(255, 170, 182, 193),
               icon: const Icon(
                 Icons.person_outline,
               ),
@@ -90,20 +91,20 @@ class _DashboardState extends State<Dashboard> {
         opacity: 0.2,
         currentIndex: _selectedIndex,
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'buttonToPhoneCallBottomNav',
-        onPressed: () {
-          setState(() {
-            heart = !heart;
-          });
-        },
-        backgroundColor: Colors.white,
-        child: Icon(
-          heart ? CupertinoIcons.location_solid : CupertinoIcons.location,
-          color: Colors.red,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: 'buttonToPhoneCallBottomNav',
+      //   onPressed: () {
+      //     setState(() {
+      //       heart = !heart;
+      //     });
+      //   },
+      //   backgroundColor: Colors.white,
+      //   child: Icon(
+      //     heart ? CupertinoIcons.location_solid : CupertinoIcons.location,
+      //     color: Colors.red,
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

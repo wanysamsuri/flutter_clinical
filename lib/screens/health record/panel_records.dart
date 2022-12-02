@@ -3,8 +3,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/record_screen.dart';
+import 'package:flutter_clinic/screens/empty_state.dart';
+import 'package:flutter_clinic/screens/empty_state_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 import '../../customshape.dart';
 
@@ -44,60 +47,113 @@ class _PanelRecordsState extends State<PanelRecords> {
           centerTitle: true,
           title: const Text('Panels Records'),
         ),
-        body: FutureBuilder(
-            future: futureFetchPanelList,
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return GridView.builder(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthRecord(
-                                        orderId: snapshot.data[index]['id']
-                                            .toString(),
-                                      )));
-                        },
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: Adaptive.h(10),
-                                width: Adaptive.w(20),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: NetworkImage(snapshot.data[index]
-                                            ['panel']['logo_url']))),
+        body: SingleChildScrollView(
+            child: FutureBuilder(
+                future: futureFetchPanelList,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      height: 120,
+                      child: SkeletonAnimation(
+                          shimmerDuration: 500,
+                          child: Container(
+                            height: 120,
+                            padding: EdgeInsets.all(30),
+                            // color: Colors.grey,
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
+                                  
+                                ],
                               ),
-                              Text(
-                                snapshot.data[index]['panel']['name']
-                                    .toString()
-                                    .toUpperCase(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ),
+                            ),
+                          )),
+                    );
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      List panelList = snapshot.data;
+                      print('has data');
+                      return (panelList.isNotEmpty)
+                          ? GridView.builder(
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2),
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HealthRecord(
+                                                  orderId: snapshot.data[index]
+                                                          ['id']
+                                                      .toString(),
+                                                )));
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.all(10),
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        color: secondaryColor,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: Adaptive.h(10),
+                                          width: Adaptive.w(20),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: NetworkImage(snapshot
+                                                          .data[index]['panel']
+                                                      ['logo_url']))),
+                                        ),
+                                        Text(
+                                          snapshot.data[index]['panel']['name']
+                                              .toString()
+                                              .toUpperCase(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              })
+                          : Center(
+                              child: EmptyStateScreen(),
+                            );
+                    } else if (snapshot.hasError) {
+                      print('has error');
+                      return Center(
+                        child: Text('error'),
                       );
-                    });
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }));
+                    } else {
+                      print('Empty');
+                      return Center(
+                        child: Text('Empty'),
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                })));
   }
 }
