@@ -54,28 +54,60 @@ class _PanelRecordsState extends State<PanelRecords> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
                       height: 120,
-                      child: SkeletonAnimation(
-                          shimmerDuration: 500,
-                          child: Container(
-                            height: 120,
-                            padding: EdgeInsets.all(30),
-                            // color: Colors.grey,
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 10,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                  
-                                ],
-                              ),
-                            ),
-                          )),
+                      child: Column(
+                        children: [
+                          Expanded(
+                              child: GridView.builder(
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2),
+                                  itemCount: 10,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                        color: Colors.white,
+                                        shadowColor: Colors.grey[300],
+                                        elevation: 3.0,
+                                        // margin: EdgeInsets.all(30),
+                                        shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                                color: Color(0xFFEEEEEE),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: SkeletonAnimation(
+                                            shimmerDuration: 500,
+                                            child: Container(
+                                              height: 120,
+                                              padding: EdgeInsets.all(30),
+                                              // color: Colors.grey,
+                                              child: Center(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Container(
+                                                      margin:
+                                                          EdgeInsets.all(10),
+                                                      padding:
+                                                          EdgeInsets.all(20),
+                                                      height: 10,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.grey,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            )));
+                                  }))
+                        ],
+                      ),
                     );
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
