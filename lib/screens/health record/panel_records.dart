@@ -53,28 +53,30 @@ class _PanelRecordsState extends State<PanelRecords> {
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
-                      height: 120,
-                      child: Column(
-                        children: [
-                          Expanded(
-                              child: GridView.builder(
-                                  shrinkWrap: true,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2),
-                                  itemCount: 10,
-                                  itemBuilder: (context, index) {
-                                    return Card(
-                                        color: Colors.white,
-                                        shadowColor: Colors.grey[300],
-                                        elevation: 3.0,
-                                        // margin: EdgeInsets.all(30),
-                                        shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                                color: Color(0xFFEEEEEE),
-                                                width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
+                      // height: 120,
+                      child: Expanded(
+                        child: Column(
+                          children: [
+                            GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2),
+                                itemCount: 10,
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                      margin: EdgeInsets.all(10),
+                                      color: Colors.white,
+                                      shadowColor: Colors.grey[300],
+                                      elevation: 3.0,
+                                      // margin: EdgeInsets.all(30),
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xFFEEEEEE),
+                                              width: 1),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: Container(
                                         child: SkeletonAnimation(
                                             shimmerDuration: 500,
                                             child: Container(
@@ -104,9 +106,11 @@ class _PanelRecordsState extends State<PanelRecords> {
                                                   ],
                                                 ),
                                               ),
-                                            )));
-                                  }))
-                        ],
+                                            )),
+                                      ));
+                                })
+                          ],
+                        ),
                       ),
                     );
                   } else if (snapshot.connectionState == ConnectionState.done) {
