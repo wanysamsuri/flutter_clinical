@@ -464,6 +464,53 @@ class ApiService {
     }
   }
 
+  Future postUpdatePhoneNumber(
+      String phoneNum) async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+    final headerToken = storage.getString('token');
+
+    final endpointHighlight = Uri.parse('$baseUrl/update-profile');
+    final changePasswordBody = {
+      'phone': phoneNum,
+      
+    };
+    final response = await http.post(endpointHighlight,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $headerToken'
+        },
+        body: changePasswordBody);
+    final responseBody = json.decode(response.body);
+    if (response.statusCode == 200) {
+      print(responseBody['message']);
+      if (responseBody['success'] == false) {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: (responseBody['message']),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Color.fromRGBO(255, 255, 255, 1),
+            fontSize: 16.0);
+        Get.back();
+        return responseBody;
+      }
+    } else {
+      await storage.clear();
+      Get.offAllNamed('/loading');
+    }
+  }
+
   Future postResetPassword(String email) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
