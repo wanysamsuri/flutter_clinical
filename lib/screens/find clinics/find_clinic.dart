@@ -185,30 +185,31 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                             height: 120,
                             padding: EdgeInsets.all(30),
                             // color: Colors.grey,
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 10,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    height: 10,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                ],
-                              ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 10,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                    ),
+                                    Container(
+                                      height: 10,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           )),
                     );
