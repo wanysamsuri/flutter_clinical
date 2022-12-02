@@ -1,4 +1,4 @@
-# flutter_clinic
+# Clinical
 
 A new Flutter project.
 
