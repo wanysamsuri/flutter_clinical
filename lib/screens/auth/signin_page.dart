@@ -12,6 +12,7 @@ import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/route_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -206,7 +207,11 @@ class _SignInState extends State<SignIn> {
                                             ],
                                           ),
                                           child: InkWell(
-                                            onTap: () {
+                                            onTap: () async {
+                                              SharedPreferences storage =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                                      
                                               final isValidForm = formkey
                                                   .currentState!
                                                   .validate();
@@ -220,12 +225,19 @@ class _SignInState extends State<SignIn> {
                                                 // );
                                                 // Navigator.of(context)
                                                 //     .pushNamed('/dashboard');
-
+                                                print(nricController.text);
+                                                print(passwordController.text);
+                                                // print(sharedDeviceName);
+                                                print(storage.getString(
+                                                    'modelPhone'));
+                                                // print(sharedPlayerIdOneSignal);
+                                                print(storage.getString(
+                                                    'playerIdOneSignal'));
                                                 ApiService().userLogin(
                                                     nricController.text,
                                                     passwordController.text,
-                                                    sharedDeviceName!,
-                                                    sharedPlayerIdOneSignal!);
+                                                    sharedDeviceName.toString(),
+                                                    sharedPlayerIdOneSignal.toString());
                                               }
                                             },
                                             child: Center(
