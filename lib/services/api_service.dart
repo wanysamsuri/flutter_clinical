@@ -212,7 +212,6 @@ class ApiService {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
-    
   }
 
   Future fetchNotificationById(String id) async {
@@ -231,7 +230,6 @@ class ApiService {
       await storage.clear();
       Get.offAllNamed('/loading');
     }
-    
   }
 
   Future deleteDevice(String deviceId) async {
@@ -464,8 +462,7 @@ class ApiService {
     }
   }
 
-  Future postUpdatePhoneNumber(
-      String phoneNum) async {
+  Future postUpdatePhoneNumber(String phoneNum) async {
     SharedPreferences storage = await SharedPreferences.getInstance();
 
     final headerToken = storage.getString('token');
@@ -473,7 +470,6 @@ class ApiService {
     final endpointHighlight = Uri.parse('$baseUrl/update-profile');
     final changePasswordBody = {
       'phone': phoneNum,
-      
     };
     final response = await http.post(endpointHighlight,
         headers: {
@@ -635,7 +631,7 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
     if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body);
+      final responseBody = json.decode(response.body)['data'];
       return responseBody;
     } else if (response.statusCode == 401) {
       await storage.clear();
@@ -885,9 +881,7 @@ class ApiService {
 
     final endpointPanelRecords = Uri.parse('$baseUrl/verify-sms-otp');
 
-    final verifyBody = {
-      'otp': otp
-    };
+    final verifyBody = {'otp': otp};
     final response = await http.post(endpointPanelRecords, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken',
