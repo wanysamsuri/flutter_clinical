@@ -635,7 +635,7 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
     if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body)['data'];
+      final responseBody = json.decode(response.body);
       return responseBody;
     } else if (response.statusCode == 401) {
       await storage.clear();
