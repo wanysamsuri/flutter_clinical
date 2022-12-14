@@ -623,7 +623,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FindClinicScreen()));
+                      ;
                     },
                   ),
                   InkWell(
@@ -641,7 +645,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HealthTestScreen()));
+                      ;
                     },
                   ),
                   InkWell(
