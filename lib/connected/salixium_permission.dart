@@ -55,95 +55,84 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
             },
           ),
         ),
-        bottomNavigationBar: FutureBuilder(
-            future: ApiService().fetchSalixium(),
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return Container(
-                  child: BottomAppBar(
-                    color: primaryColor,
-                    child: InkWell(
-                      child: Container(
-                        height: Adaptive.h(6),
-                        color: Colors.transparent,
-                        child: Container(
-                          color: primaryColor,
-                          child: Center(
-                            child: Text(
-                              'NEXT',
-                              style: TextStyle(
-                                fontSize: 0.27.dp,
-                                // fontWeight: FontWeight.bold
-                              ),
-                            ),
-                          ),
-                        ),
+        bottomNavigationBar: Container(
+          child: BottomAppBar(
+            color: primaryColor,
+            child: InkWell(
+              child: Container(
+                height: Adaptive.h(6),
+                color: Colors.transparent,
+                child: Container(
+                  color: primaryColor,
+                  child: Center(
+                    child: Text(
+                      'NEXT',
+                      style: TextStyle(
+                        fontSize: 0.27.dp,
+                        // fontWeight: FontWeight.bold
                       ),
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  backgroundColor: Colors.orange[50],
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  title: Icon(Icons.ads_click),
-                                  // content: Text('STRAVA'),
-                                  actions: [
-                                    SafeArea(
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              child: MaterialButton(
-                                                  onPressed: () {
-                                                    // ApiService()
-                                                    //     .fetchUserStrava();
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SalixiumScreen(
-                                                                    serviceName:
-                                                                        '')));
-                                                  },
-                                                  child: Text(
-                                                    'Continue',
-                                                    style: TextStyle(
-                                                        color: Colors.green),
-                                                  )),
-                                            ),
-                                            Container(
-                                              child: MaterialButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                        'Cancel',
-                                                        style: TextStyle(
-                                                            color: Colors.red),
-                                                      ),
-                                                    ],
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ));
-                      },
                     ),
                   ),
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }),
+                ),
+              ),
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          backgroundColor: Colors.orange[50],
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          title: Icon(Icons.ads_click),
+                          // content: Text('STRAVA'),
+                          actions: [
+                            SafeArea(
+                              child: Center(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: MaterialButton(
+                                          onPressed: () {
+                                            // ApiService()
+                                            //     .fetchUserStrava();
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SalixiumScreen(
+                                                            serviceName: '')));
+                                          },
+                                          child: Text(
+                                            'Continue',
+                                            style:
+                                                TextStyle(color: Colors.green),
+                                          )),
+                                    ),
+                                    Container(
+                                      child: MaterialButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                'Cancel',
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ));
+              },
+            ),
+          ),
+        ),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(
@@ -195,91 +184,80 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                         ),
                       ])),
               Container(
-                padding: EdgeInsets.all(Adaptive.w(2)),
-                // height: Adaptive.h(20),
-                child: SafeArea(
-                  child: FutureBuilder(
-                    future: ApiService().fetchHighlight(),
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.hasData) {
-                        return Container(
-                          padding: EdgeInsets.all(Adaptive.w(2)),
-                          // height: Adaptive.h(30),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: 1,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 1.0, vertical: 10),
+                  padding: EdgeInsets.all(Adaptive.w(2)),
+                  // height: Adaptive.h(20),
+                  child: SafeArea(
+                    child: Container(
+                      padding: EdgeInsets.all(Adaptive.w(2)),
+                      // height: Adaptive.h(30),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                itemCount: 1,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 1.0, vertical: 10),
 
-                                        //body listview
-                                        child: Container(
-                                          // height: Adaptive.h(40),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            // boxShadow: [
-                                            //   BoxShadow(
-                                            //       color: Colors.grey, //New
-                                            //       blurRadius: 10.0,
-                                            //       offset: Offset(-1, -1))
-                                            // ],
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              // SizedBox(
-                                              //   height: 1,
-                                              // ),
-                                              Container(
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  'Thousands of amazing developers from all over the world are making apps for Strava. Far more athletes are using those apps to augment their Strava experience. ',
-                                                  textAlign: TextAlign.justify,
-                                                  style: TextStyle(
-                                                    fontSize: 17,
-                                                    // fontWeight:
-                                                    //     FontWeight.bold,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
+                                    //body listview
+                                    child: Container(
+                                      // height: Adaptive.h(40),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.circular(20),
+                                        // boxShadow: [
+                                        //   BoxShadow(
+                                        //       color: Colors.grey, //New
+                                        //       blurRadius: 10.0,
+                                        //       offset: Offset(-1, -1))
+                                        // ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          // SizedBox(
+                                          //   height: 1,
+                                          // ),
+                                          Container(
+                                            padding: EdgeInsets.all(15),
+                                            child: Text(
+                                              'Thousands of amazing developers from all over the world are making apps for Strava. Far more athletes are using those apps to augment their Strava experience. ',
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                // fontWeight:
+                                                //     FontWeight.bold,
+                                                color: Colors.black,
                                               ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 15,
-                                                    right: 15,
-                                                    bottom: 15),
-                                                child: Text(
-                                                  'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
-                                                  textAlign: TextAlign.justify,
-                                                  style: TextStyle(
-                                                    fontSize: 17,
-                                                    // fontWeight:
-                                                    //     FontWeight.bold,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }),
-                              ]),
-                        );
-                      } else {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
-                ),
-              ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                left: 15,
+                                                right: 15,
+                                                bottom: 15),
+                                            child: Text(
+                                              'There’s an app for everyone, from those that let you dive deep into the nerdiest of performance data, to an app that helps you make a friend in your neighborhood who runs the same pace as you. Give one a try, but remember: We can’t promise they all work perfectly, and support for each app is entirely up to the developer.',
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                // fontWeight:
+                                                //     FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ]),
+                    ),
+                  )),
               SizedBox(
                 height: Adaptive.h(10),
                 child: Container(
