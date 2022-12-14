@@ -12,6 +12,7 @@ import 'package:flutter_clinic/screens/loading_screen.dart';
 import 'package:flutter_clinic/services/api_service.dart';
 import 'package:get/route_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);

@@ -84,7 +84,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/clinical_my.png"
+  image_path: "assets/clinical_my.jpg"
   min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
