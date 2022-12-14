@@ -6,6 +6,7 @@ import 'package:flutter_clinic/connected/strava_permission.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
+import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
@@ -580,7 +581,9 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => BMIScreen()));
+                      ;
                     },
                   ),
                   InkWell(
@@ -598,7 +601,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AppointmentScreen()));
+                      ;
                     },
                   ),
                   InkWell(
