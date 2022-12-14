@@ -44,7 +44,7 @@ class ApiService {
       storage.setString('token', responseBody['token']['token']);
       storage.setString('userName', responseBody['user']['name']);
       storage.setString('userEmail', responseBody['user']['email']);
-      storage.setString('userPhoneNumber', responseBody['user']['phone']);
+      // storage.setString('userPhoneNumber', responseBody['user']['phone']);
       // Get.snackbar('$loginUserName', '$headerToken');
       // Get.toNamed('/loading');
       Get.offAll(() => LoadingScreens());

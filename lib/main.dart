@@ -20,6 +20,9 @@ import 'package:flutter_clinic/screens/profile/terms_condition.dart';
 import 'package:flutter_clinic/screens/welcome_page.dart';
 import 'package:flutter_clinic/dashboard.dart';
 import 'package:flutter_clinic/services/api_service.dart';
+import 'package:flutter_clinic/utils/get_device.dart';
+import 'package:flutter_clinic/utils/get_player_id.dart';
+import 'package:flutter_clinic/utils/get_sharedprefs.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -45,21 +48,24 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
-    initPlatformState();
+
     super.initState();
+    SharedPrefsStorage().refreshStorage();
+    PlayerId().getPlayerId();
+    // GetDeviceInfo().getModelDetails();
 
     // configOneSignal();
   }
 
-  static const String oneSignalAppId = "8ccd5fa1-7218-4f73-bfea-bd84b99bb016";
-  void configOneSignal() {
-    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-    OneSignal.shared.setAppId(oneSignalAppId);
-    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-      print('accepted permission: $accepted');
-    });
-    OneSignal.shared.postNotificationWithJson({'notification': 'hello'});
-  }
+  // static const String oneSignalAppId = "8ccd5fa1-7218-4f73-bfea-bd84b99bb016";
+  // void configOneSignal() {
+  //   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+  //   OneSignal.shared.setAppId(oneSignalAppId);
+  //   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+  //     print('accepted permission: $accepted');
+  //   });
+  //   OneSignal.shared.postNotificationWithJson({'notification': 'hello'});
+  // }
 
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -85,77 +91,59 @@ class _MyAppState extends State<MyApp> {
             // '/notification': ((context) =>  NotificationScreen()),
             '/kyc_email': ((context) => const EmailVerification()),
           },
-          home: const LoadingScreens());
+          initialRoute: '/loading',
+          );
     });
   }
 
-  Future<void> initPlatformState() async {
-    final baseUrl = 'https://staging.clinical.my/api/v1';
-    SharedPreferences storage = await SharedPreferences.getInstance();
+//   Future<void> initPlatformState() async {
+//     OneSignal.shared.setAppId(oneSignalAppId);
+//     //Remove this method to stop OneSignal Debugging
+//     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
 
-    final headerToken = storage.getString('token');
+// // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+//     OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+//       print("Accepted permission: $accepted");
+//     });
 
-    final endpointPanelRecords = Uri.parse('$baseUrl/patient-records');
-    final response = await http.get(endpointPanelRecords, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $headerToken'
-    });
-    if (response.statusCode == 200) {
-      print('Okay good');
-    } else if (response.statusCode == 401) {
-      await storage.clear();
-      print('token cleared!');
-      Get.offAllNamed('/loading');
-    }
+//     OneSignal.shared.setNotificationWillShowInForegroundHandler(
+//         (OSNotificationReceivedEvent event) {
+//       // Will be called whenever a notification is received in foreground
+//       // Display Notification, pass null param for not displaying the notification
+//       event.complete(event.notification);
+//     });
 
-    // final responseBody = json.decode(response.body)['data']['data'];
+//     OneSignal.shared
+//         .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+//       // Will be called whenever a notification is opened/button pressed.
+//     });
 
-    OneSignal.shared.setAppId(oneSignalAppId);
-    //Remove this method to stop OneSignal Debugging
-    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+//     OneSignal.shared.setPermissionObserver((OSPermissionStateChanges changes) {
+//       // Will be called whenever the permission changes
+//       // (ie. user taps Allow on the permission prompt in iOS)
+//     });
 
-// The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
-    OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-      print("Accepted permission: $accepted");
-    });
+//     OneSignal.shared
+//         .setSubscriptionObserver((OSSubscriptionStateChanges changes) {
+//       // Will be called whenever the subscription changes
+//       // (ie. user gets registered with OneSignal and gets a user ID)
+//     });
 
-    OneSignal.shared.setNotificationWillShowInForegroundHandler(
-        (OSNotificationReceivedEvent event) {
-      // Will be called whenever a notification is received in foreground
-      // Display Notification, pass null param for not displaying the notification
-      event.complete(event.notification);
-    });
+//     OneSignal.shared.setEmailSubscriptionObserver(
+//         (OSEmailSubscriptionStateChanges emailChanges) {
+//       // Will be called whenever then user's email subscription changes
+//       // (ie. OneSignal.setEmail(email) is called and the user gets registered
+//     });
 
-    OneSignal.shared
-        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-      // Will be called whenever a notification is opened/button pressed.
-    });
+//     OneSignal.shared
+//         .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {
+//       SharedPreferences storage = await SharedPreferences.getInstance();
 
-    OneSignal.shared.setPermissionObserver((OSPermissionStateChanges changes) {
-      // Will be called whenever the permission changes
-      // (ie. user taps Allow on the permission prompt in iOS)
-    });
+//       final status = await OneSignal.shared.getDeviceState();
+//       String? osUserID = status!.userId;
+//       storage.setString('playerIdOneSignal', osUserID ?? '');
+//       print('Player ID:  $osUserID');
+//     });
+//   }
 
-    OneSignal.shared
-        .setSubscriptionObserver((OSSubscriptionStateChanges changes) {
-      // Will be called whenever the subscription changes
-      // (ie. user gets registered with OneSignal and gets a user ID)
-    });
-
-    OneSignal.shared.setEmailSubscriptionObserver(
-        (OSEmailSubscriptionStateChanges emailChanges) {
-      // Will be called whenever then user's email subscription changes
-      // (ie. OneSignal.setEmail(email) is called and the user gets registered
-    });
-
-    OneSignal.shared
-        .setSubscriptionObserver((OSSubscriptionStateChanges changes) async {
-      SharedPreferences sprefs = await SharedPreferences.getInstance();
-
-      final status = await OneSignal.shared.getDeviceState();
-      String? osUserID = status?.userId;
-      await sprefs.setString('playerIdOneSignal', osUserID ?? '');
-      print('Player ID: ' '$osUserID');
-    });
-  }
 }
