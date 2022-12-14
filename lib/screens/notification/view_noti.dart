@@ -259,5 +259,7 @@ class _ViewNotificationState extends State<ViewNotification> {
             ),
           ),
         ));
+
+        
   }
 }

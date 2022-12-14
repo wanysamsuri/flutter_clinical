@@ -108,37 +108,35 @@ class _SalixiumScreenState extends State<SalixiumScreen> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: SkeletonAnimation(
-                                        shimmerDuration: 500,
-                                        child: Container(
-                                          height: 300,
-                                          margin: EdgeInsets.all(10),
-                                          padding: EdgeInsets.only(
-                                              right: 20,
-                                              left: 20,
-                                              top: 10,
-                                              bottom: 20),
-                                          // color: Colors.grey,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                height: 10,
-                                                // width: 200,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                              ),
-                                              SizedBox(
-                                                height: 1,
-                                              )
-                                            ],
-                                          ),
-                                        )),
+                                      shimmerDuration: 500,
+                                      child: Container(
+                                        height: 300,
+                                        margin: EdgeInsets.all(10),
+                                        padding: EdgeInsets.only(
+                                            right: 20,
+                                            left: 20,
+                                            top: 10,
+                                            bottom: 20),
+                                        // color: Colors.grey,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              height: 10,
+                                              // width: 200,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 },
                               );
