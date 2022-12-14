@@ -73,11 +73,9 @@ class _AppointmentFormState extends State<AppointmentForm> {
                 Navigator.pop(context);
               },
             )),
-        body: SafeArea(
-            child: SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.all(Adaptive.w(3)),
-              height: Adaptive.h(90),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -360,7 +358,10 @@ class _AppointmentFormState extends State<AppointmentForm> {
                             ),
                           )),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ])),
-        )));
+        ));
   }
 }

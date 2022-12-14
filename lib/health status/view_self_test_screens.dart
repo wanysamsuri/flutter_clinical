@@ -339,7 +339,7 @@ class _ViewSelfTestScreenState extends State<ViewSelfTestScreen> {
                               } else {
                                 print('Empty');
                                 return Center(
-                                  child: Text('Empty'),
+                                  child: EmptyStateScreen(),
                                 );
                               }
                             } else {

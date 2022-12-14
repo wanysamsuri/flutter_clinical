@@ -6,6 +6,7 @@ import 'package:flutter_clinic/connected/strava_permission.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
+import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/models/service.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
@@ -580,7 +581,9 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => BMIScreen()));
+                      ;
                     },
                   ),
                   InkWell(
@@ -598,7 +601,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AppointmentScreen()));
+                      ;
                     },
                   ),
                   InkWell(
@@ -616,7 +623,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FindClinicScreen()));
+                      ;
                     },
                   ),
                   InkWell(
@@ -634,25 +645,11 @@ void _showBottomSheet(BuildContext context) {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  InkWell(
-                    child: Container(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.medication,
-                          size: 30,
-                          color: Colors.black,
-                        ),
-                        title: Text(
-                          'Tutorial',
-                          style: TextStyle(fontSize: 18, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HealthTestScreen()));
+                      ;
                     },
                   ),
                   InkWell(
