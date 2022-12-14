@@ -436,15 +436,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                   ),
                                 ),
                               ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ViewSelfTestScreen(
-                                              serviceName: '',
-                                            )));
-                              },
+                              onTap: () {},
                             ),
                           );
                         })),

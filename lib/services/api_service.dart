@@ -633,7 +633,8 @@ class ApiService {
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body)['data'];
       return responseBody;
-    } else if (response.statusCode == 401) {
+    } 
+    else if (response.statusCode == 401) {
       await storage.clear();
       Get.offAllNamed('/loading');
     }

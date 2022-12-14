@@ -224,7 +224,8 @@ class _SignInState extends State<SignIn> {
                                                   nricController.text,
                                                   passwordController.text,
                                                   sharedDeviceName!,
-                                                  sharedPlayerIdOneSignal!);
+                                                  sharedPlayerIdOneSignal
+                                                      .toString());
                                             }
                                           },
                                           child: Center(
