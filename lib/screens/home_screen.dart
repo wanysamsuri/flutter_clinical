@@ -661,24 +661,6 @@ void _showBottomSheet(BuildContext context) {
                           color: Colors.black,
                         ),
                         title: Text(
-                          'Tutorial',
-                          style: TextStyle(fontSize: 18, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  InkWell(
-                    child: Container(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.medication,
-                          size: 30,
-                          color: Colors.black,
-                        ),
-                        title: Text(
                           'Strava',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
