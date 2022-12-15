@@ -13,6 +13,7 @@ import 'package:skeleton_text/skeleton_text.dart';
 
 import '../constant.dart';
 import '../record_screen.dart';
+import '../screens/empty_state_screen.dart';
 import '../screens/profile/edit_password.dart';
 import '../screens/profile/edit_profile.dart';
 import '../services/api_service.dart';
@@ -26,13 +27,8 @@ class StravaProfileScreen extends StatefulWidget {
 }
 
 class _StravaProfileScreenState extends State<StravaProfileScreen> {
-  Future? futureFetchStravaActivity;
   @override
-  void initState() {
-    // TODO: implement initState
-    futureFetchStravaActivity = ApiService().fetchStravaActivity();
-    super.initState();
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {

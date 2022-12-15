@@ -14,6 +14,8 @@ import '../../customshape.dart';
 import '../../services/api_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../empty_state_screen.dart';
+
 class ViewNotification extends StatefulWidget {
   const ViewNotification({Key? key}) : super(key: key);
 

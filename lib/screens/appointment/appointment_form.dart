@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/mainpage.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../constant.dart';
+import '../home_screen.dart';
 
 // List<Widget> services = <Widget>[
 //   Text('Doctor - Home Visit'),
@@ -48,31 +50,47 @@ class _AppointmentFormState extends State<AppointmentForm> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: screenHeight * 0.07,
-            backgroundColor: Colors.grey[50],
-            elevation: 0.0,
-            flexibleSpace: ClipPath(
-                //clipper: CustomShape(),
-                child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 157, 228, 234),
-            )),
-            title: const Text(
-              'Appointment Request',
-              style: TextStyle(color: Colors.black),
+          automaticallyImplyLeading: false,
+          toolbarHeight: screenHeight * 0.07,
+          backgroundColor: Colors.grey[50],
+          elevation: 0.0,
+          flexibleSpace: ClipPath(
+              //clipper: CustomShape(),
+              child: Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            color: Color.fromARGB(255, 157, 228, 234),
+          )),
+          title: const Text(
+            'Appointment Request',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+          leading: GestureDetector(
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 20,
             ),
-            centerTitle: true,
-            leading: GestureDetector(
-              child: const Icon(
-                Icons.close,
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          actions: <Widget>[
+            IconButton(
+              iconSize: 25,
+              icon: const Icon(
+                Icons.cancel,
                 color: Colors.black,
               ),
-              onTap: () {
-                Navigator.pop(context);
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false);
               },
-            )),
+            ),
+          ],
+        ),
         body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.all(Adaptive.w(3)),

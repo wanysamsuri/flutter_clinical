@@ -4,14 +4,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class EmptyStateScreen extends StatefulWidget {
-  const EmptyStateScreen({Key? key}) : super(key: key);
+class EmptyScreen extends StatefulWidget {
+  const EmptyScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmptyStateScreen> createState() => _EmptyStateScreenState();
+  State<EmptyScreen> createState() => _EmptyScreenState();
 }
 
-class _EmptyStateScreenState extends State<EmptyStateScreen> {
+class _EmptyScreenState extends State<EmptyScreen> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
