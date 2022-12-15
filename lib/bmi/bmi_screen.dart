@@ -26,7 +26,7 @@ class BMIScreen extends StatefulWidget {
 class _BMIScreenState extends State<BMIScreen> {
   int currentindex = 0;
   int _gender = 0;
-  int _height = 0;
+  int _height = 150;
   int _age = 25;
   int _weight = 50;
   String result = '';

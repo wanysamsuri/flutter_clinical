@@ -25,7 +25,7 @@ class AgeWeightWidget extends StatefulWidget {
 }
 
 class _AgeWeightWidgetState extends State<AgeWeightWidget> {
-  int counter = 0;
+  int counter = 50;
 
   @override
   void initState() {
@@ -101,6 +101,5 @@ class _AgeWeightWidgetState extends State<AgeWeightWidget> {
                 ),
               )
             ])));
-  
   }
 }
