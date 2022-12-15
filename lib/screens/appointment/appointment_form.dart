@@ -294,88 +294,54 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                     ),
                                   ),
                                   SizedBox(height: screenHeight * 0.02),
-                                  Container(
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Container(
-                                                child: customRadio(
-                                                    "Doctor - Home Visit", 1),
-                                              ),
-                                              Container(
-                                                child: customRadio(
-                                                    "Doctor - Video Consultation",
-                                                    2),
-                                              ),
-                                              Container(
-                                                child: customRadio(
-                                                    "Nurse - Home Visit", 3),
-                                              ),
-                                            ],
-                                          ),
-                                        ]),
-                                  )
-
-                                  // ToggleButtons(
-                                  //   onPressed: (int index) {
-                                  //     setState(() {
-                                  //       // The button that is tapped is set to true, and the others to false.
-                                  //       for (int i = 0;
-                                  //           i < _selectedServices.length;
-                                  //           i++) {
-                                  //         _selectedServices[i] = i == index;
-                                  //       }
-                                  //     });
-                                  //   },
-                                  //   borderRadius:
-                                  //       const BorderRadius.all(Radius.circular(8)),
-                                  //   selectedBorderColor: primaryColor,
-                                  //   selectedColor: Colors.black,
-                                  //   fillColor: secondaryColor,
-                                  //   color: Colors.black,
-                                  //   constraints: const BoxConstraints(
-                                  //     minHeight: 60.0,
-                                  //     minWidth: 110.0,
-                                  //   ),
-                                  //   isSelected: _selectedServices,
-                                  //   children: services,
-                                  // ),
                                 ],
                               ),
                             ),
                           ]),
                     ),
+                    Container(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              child: customRadio("Doctor - Home Visit", 1),
+                            ),
+                            Container(
+                              child:
+                                  customRadio("Doctor - Video Consultation", 2),
+                            ),
+                            Container(
+                              child: customRadio("Nurse - Home Visit", 3),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    Center(
-                      child: Container(
-                          width: 400,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 3, 205, 219),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(0.0, 1.0), //(x,y)
-                                blurRadius: 6.0,
-                              ),
-                            ],
-                          ),
-                          child: InkWell(
-                            // onTap: () {
-                            //   Navigator.of(context).pushNamed('');
-                            // },
-                            child: Center(
-                              child:
-                                  Text('Next', style: TextStyle(fontSize: 20)),
+                    Container(
+                        width: 400,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 3, 205, 219),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0.0, 1.0), //(x,y)
+                              blurRadius: 6.0,
                             ),
-                          )),
-                    ),
+                          ],
+                        ),
+                        child: InkWell(
+                          // onTap: () {
+                          //   Navigator.of(context).pushNamed('');
+                          // },
+                          child: Center(
+                            child: Text('Next', style: TextStyle(fontSize: 20)),
+                          ),
+                        )),
                     SizedBox(
                       height: 20,
                     ),
