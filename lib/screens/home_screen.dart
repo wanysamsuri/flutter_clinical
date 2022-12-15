@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //   ),
         // ),
         title: Image.asset('assets/Clinical-Logo.png',
-            fit: BoxFit.fill, height: Adaptive.h(3), width: Adaptive.w(30)),
+            fit: BoxFit.contain, height: Adaptive.h(3), width: Adaptive.w(30)),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Text(
                                 services[index].serviceName.toString(),
-                                style: TextStyle(fontSize: 0.226.dp),
+                                style: TextStyle(fontSize: Adaptive.dp(0.18)),
                               )
                             ],
                           );

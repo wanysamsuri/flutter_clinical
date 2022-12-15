@@ -630,9 +630,11 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
+    final responseBody = json.decode(response.body);
+    print('Strava Sync StatusCode : ${response.statusCode}');
+    print('Strave Data :  ${responseBody['data']}');
     if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body)['data'];
-      return responseBody;
+      return responseBody['data'];
     } else if (response.statusCode == 401) {
       await storage.clear();
       Get.offAllNamed('/loading');

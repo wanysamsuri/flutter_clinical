@@ -13,6 +13,7 @@ import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/main.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:swipebuttonflutter/swipebuttonflutter.dart';
 
@@ -26,7 +27,7 @@ class BMIScreen extends StatefulWidget {
 class _BMIScreenState extends State<BMIScreen> {
   int currentindex = 0;
   int _gender = 0;
-  int _height = 0;
+  int _height = 150;
   int _age = 25;
   int _weight = 50;
   String result = '';
@@ -129,6 +130,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                       ),
                                       Container(
                                         height: 100,
+                                        // width: 300,
                                         child: CupertinoPicker.builder(
                                             // backgroundColor: Colors.white,
                                             itemExtent: 30,
@@ -153,38 +155,43 @@ class _BMIScreenState extends State<BMIScreen> {
                           child: Card(
                               elevation: 12,
                               shape: const RoundedRectangleBorder(),
-                              child: Column(children: [
-                                Text(
-                                  'Age',
-                                  style: const TextStyle(
-                                      fontSize: 20, color: Colors.grey),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Text(
-                                        _age.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Icon(Icons.arrow_drop_down_circle)
-                                    ],
+                              child: SizedBox(
+                                width: Adaptive.w(20),
+                                child: Column(children: [
+                                  Text(
+                                    'Age',
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.grey),
                                   ),
-                                )
-                              ])),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text(
+                                          _age.toString(),
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Icon(Icons.arrow_drop_down_circle)
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                              )),
                         )),
 
                     // AgeWeightWidget(
@@ -227,35 +234,40 @@ class _BMIScreenState extends State<BMIScreen> {
                           child: Card(
                               elevation: 12,
                               shape: const RoundedRectangleBorder(),
-                              child: Column(children: [
-                                Text(
-                                  'Weight (kg)',
-                                  style: const TextStyle(
-                                      fontSize: 20, color: Colors.grey),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        _weight.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Icon(Icons.arrow_drop_down_circle)
-                                    ],
+                              child: SizedBox(
+                                width: Adaptive.w(20),
+                                child: Column(children: [
+                                  Text(
+                                    'Weight (kg)',
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.grey),
                                   ),
-                                )
-                              ])),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          _weight.toString(),
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        Icon(Icons.arrow_drop_down_circle)
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                              )),
                         )),
 
                     // AgeWeightWidget(
