@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               Text(
                                 services[index].serviceName.toString(),
-                                style: TextStyle(fontSize: Adaptive.dp(0.18)),
+                                style: TextStyle(fontSize: Adaptive.sp(14)),
                               )
                             ],
                           );

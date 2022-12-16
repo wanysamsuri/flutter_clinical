@@ -70,7 +70,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                   color: primaryColor,
                   child: Center(
                       child: Text('Add New Record',
-                          style: TextStyle(fontSize: Adaptive.dp(0.2)))),
+                          style: TextStyle(fontSize: Adaptive.sp(15)))),
                 ),
               ),
               onTap: () {
@@ -85,7 +85,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                     ))),
                     builder: ((context) => Container(
                           padding: EdgeInsets.all(Adaptive.h(2)),
-                          // height: Adaptive.h(50),
+                          height: Adaptive.h(70),
                           decoration: BoxDecoration(
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(20)),
@@ -97,7 +97,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                 child: Text(
                                   'Add New Record',
                                   style: TextStyle(
-                                      fontSize: 0.26.dp,
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               )),
@@ -177,8 +177,8 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                                 .center,
                                                             style: TextStyle(
                                                               fontSize:
-                                                                  Adaptive.dp(
-                                                                      0.18),
+                                                                  Adaptive.sp(
+                                                                      13),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
@@ -208,10 +208,15 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                         )));
               },
             ),
+            IntrinsicWidth(
+                stepHeight: 10,
+                child: VerticalDivider(
+                  thickness: 5,
+                )),
             InkWell(
               child: Text(
                 'View Self Test Result',
-                style: TextStyle(fontSize: Adaptive.dp(0.2)),
+                style: TextStyle(fontSize: Adaptive.sp(15)),
               ),
               onTap: () {
                 Navigator.push(
@@ -247,7 +252,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                       Text(
                         "Health Status",
                         style: TextStyle(
-                            fontSize: Adaptive.dp(0.3),
+                            fontSize: Adaptive.sp(25),
                             fontWeight: FontWeight.bold),
                       ),
                       // SizedBox(
@@ -256,7 +261,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                       Text(
                         "Track all your health aspects",
                         style: TextStyle(
-                            fontSize: Adaptive.dp(0.2),
+                            fontSize: Adaptive.sp(15),
                             fontWeight: FontWeight.bold),
                       ),
                     ]),
@@ -397,7 +402,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                   padding: EdgeInsets.all(10),
                                   child: Image.asset(
                                     healthChoice[index].image.toString(),
-                                    scale: 3,
+                                    scale: Adaptive.h(2),
                                   ),
                                 ),
                                 SizedBox(
@@ -407,7 +412,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                   child: Text(
                                     healthChoice[index].serviceName.toString(),
                                     style: TextStyle(
-                                      fontSize: Adaptive.dp(0.18),
+                                      fontSize: Adaptive.sp(15),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
@@ -499,6 +504,10 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
               //           //   ),
               //           // );
               //         })),
+              ,
+              SizedBox(
+                height: Adaptive.h(3),
+              )
             ],
           ),
         ),

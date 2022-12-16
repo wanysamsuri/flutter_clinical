@@ -156,7 +156,7 @@ class _BMIScreenState extends State<BMIScreen> {
                               elevation: 12,
                               shape: const RoundedRectangleBorder(),
                               child: SizedBox(
-                                width: Adaptive.w(20),
+                                width: Adaptive.w(30),
                                 child: Column(children: [
                                   Text(
                                     'Age',
@@ -235,7 +235,7 @@ class _BMIScreenState extends State<BMIScreen> {
                               elevation: 12,
                               shape: const RoundedRectangleBorder(),
                               child: SizedBox(
-                                width: Adaptive.w(20),
+                                width: Adaptive.w(30),
                                 child: Column(children: [
                                   Text(
                                     'Weight (kg)',

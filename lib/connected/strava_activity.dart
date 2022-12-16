@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/health%20status/view_status.dart';
+import 'package:flutter_clinic/screens/health%20record/empty_state.dart';
 import 'package:flutter_clinic/screens/home_screen.dart';
 import 'package:flutter_clinic/screens/profile/terms_condition.dart';
 import 'package:get/get.dart';
@@ -82,285 +83,335 @@ class _StravaActivityScreenState extends State<StravaActivityScreen> {
                       child: FutureBuilder(
                           future: futureFetchStravaActivity,
                           builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // gridDelegate:
-                                  //     SliverGridDelegateWithFixedCrossAxisCount(
-                                  //         crossAxisCount: 2),
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      margin: EdgeInsets.all(10),
-                                      padding: EdgeInsets.all(20),
-                                      decoration: BoxDecoration(
-                                          color: secondaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: Container(
-                                        // height: Adaptive.h(20),
-                                        width: Adaptive.w(20),
-                                        child: Container(
-                                          child: Column(
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    snapshot.data[index]['name']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    // overflow: TextOverflow.ellipsis,
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                    style: TextStyle(
-                                                        fontSize: 19,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  SizedBox(
-                                                    height: Adaptive.h(1),
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        child: Icon(
-                                                          Icons.route_rounded,
-                                                          size: 20,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Container(
-                                                        child: Text(
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.hasData) {
+                                List activityStravaList = snapshot.data;
+                                return (activityStravaList.isNotEmpty)
+                                    ? ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        // gridDelegate:
+                                        //     SliverGridDelegateWithFixedCrossAxisCount(
+                                        //         crossAxisCount: 2),
+                                        itemCount: snapshot.data.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            margin: EdgeInsets.all(10),
+                                            padding: EdgeInsets.all(20),
+                                            decoration: BoxDecoration(
+                                                color: secondaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: Container(
+                                              // height: Adaptive.h(20),
+                                              width: Adaptive.w(20),
+                                              child: Container(
+                                                child: Column(
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
                                                           snapshot.data[index]
-                                                                  ['type']
+                                                                  ['name']
                                                               .toString()
                                                               .toUpperCase(),
+                                                          // overflow: TextOverflow.ellipsis,
                                                           textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 2,
-                                                  ),
-                                                  Divider(
-                                                    thickness: 2,
-                                                    // color: Colors.black,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 2,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Container(
-                                                        child: Text(
-                                                          'Distance',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          'Elev. Gain',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index]
-                                                                  ['distance']
-                                                              .toString()
-                                                              .toUpperCase(),
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                              TextAlign.justify,
                                                           style: TextStyle(
-                                                              fontSize: 18,
+                                                              fontSize: 19,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index][
-                                                                  'total_elevation_gain']
-                                                              .toString()
-                                                              .toUpperCase(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                        SizedBox(
+                                                          height: Adaptive.h(1),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Container(
-                                                        child: Text(
-                                                          'Moving Time',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
+                                                        Row(
+                                                          children: [
+                                                            Container(
+                                                              child: Icon(
+                                                                Icons
+                                                                    .route_rounded,
+                                                                size: 20,
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        ['type']
+                                                                    .toString()
+                                                                    .toUpperCase(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          'Elapsed Time',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
+                                                        SizedBox(
+                                                          height: 2,
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 3,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index][
-                                                                  'moving_time']
-                                                              .toString()
-                                                              .toUpperCase(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                        Divider(
+                                                          thickness: 2,
+                                                          // color: Colors.black,
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index][
-                                                                  'elapsed_time']
-                                                              .toString()
-                                                              .toUpperCase(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                        SizedBox(
+                                                          height: 2,
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 3,
-                                                  ),
-                                                  Divider(
-                                                    thickness: 2,
-                                                    // color: Colors.black,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 3,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                        child: Icon(
-                                                          Icons.thumb_up,
-                                                          color:
-                                                              Colors.grey[500],
-                                                          size: 20,
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              child: Text(
+                                                                'Distance',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                'Elev. Gain',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index][
-                                                                  'kudos_count']
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'distance']
+                                                                    .toString()
+                                                                    .toUpperCase(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'total_elevation_gain']
+                                                                    .toString()
+                                                                    .toUpperCase(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Icon(
-                                                          Icons
-                                                              .comment_outlined,
-                                                          color:
-                                                              Colors.grey[500],
-                                                          size: 20,
+                                                        SizedBox(
+                                                          height: 10,
                                                         ),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          snapshot.data[index][
-                                                                  'comment_count']
-                                                              .toString(),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          // style: TextStyle(
-                                                          //     fontWeight:
-                                                          //         FontWeight.bold),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              child: Text(
+                                                                'Moving Time',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                'Elapsed Time',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                        SizedBox(
+                                                          height: 3,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'moving_time']
+                                                                    .toString()
+                                                                    .toUpperCase(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'elapsed_time']
+                                                                    .toString()
+                                                                    .toUpperCase(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 3,
+                                                        ),
+                                                        Divider(
+                                                          thickness: 2,
+                                                          // color: Colors.black,
+                                                        ),
+                                                        SizedBox(
+                                                          height: 3,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              child: Icon(
+                                                                Icons.thumb_up,
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                size: 20,
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'kudos_count']
+                                                                    .toString(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Icon(
+                                                                Icons
+                                                                    .comment_outlined,
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                size: 20,
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data[index]
+                                                                        [
+                                                                        'comment_count']
+                                                                    .toString(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                // style: TextStyle(
+                                                                //     fontWeight:
+                                                                //         FontWeight.bold),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  });
+                                            ),
+                                          );
+                                        })
+                                    : Center(
+                                        child: EmptyStateScreen(),
+                                      );
+                              } else {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
                             } else {
-                              return Center(child: CircularProgressIndicator());
+                              return Center(
+                                child: EmptyStateScreen(),
+                              );
                             }
                           }),
                     ),

@@ -11,6 +11,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../constant.dart';
 import '../record_screen.dart';
+import '../screens/empty_state_screen.dart';
 import '../screens/profile/edit_password.dart';
 import '../screens/profile/edit_profile.dart';
 import '../services/api_service.dart';
@@ -24,11 +25,11 @@ class StravaProfileScreen extends StatefulWidget {
 }
 
 class _StravaProfileScreenState extends State<StravaProfileScreen> {
-  Future? futureFetchStravaActivity;
+  Future? futureFetchStravaUser;
   @override
   void initState() {
     // TODO: implement initState
-    futureFetchStravaActivity = ApiService().fetchStravaActivity();
+    futureFetchStravaUser = ApiService().fetchUserStrava();
     super.initState();
   }
 
@@ -68,226 +69,247 @@ class _StravaProfileScreenState extends State<StravaProfileScreen> {
         //     )),
         body: SafeArea(
             child: FutureBuilder(
-                future: ApiService().fetchUserStrava(),
+                future: futureFetchStravaUser,
                 builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return Container(
-                        padding: EdgeInsets.only(left: 16, right: 16),
-                        child: ListView(children: [
-                          SizedBox(height: 10),
-                          Center(
-                            child: Stack(children: [
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: screenWidth * 0.03,
-                                  ),
-                                  Align(
-                                    child: Container(
-                                      height: Adaptive.h(20),
-                                      width: Adaptive.w(30),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  snapshot.data['profile']))),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ]),
-                          ),
-                          SizedBox(height: 10),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            // height: Adaptive.h(9),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              // color: Colors.grey[200]
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Hello,',
-                                    style: TextStyle(
-                                      letterSpacing: 5,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ),
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      List profileStravaList = snapshot.data;
+                      return (profileStravaList.isEmpty)
+                          ? Container(
+                              padding: EdgeInsets.only(left: 16, right: 16),
+                              child: ListView(children: [
                                 SizedBox(height: 10),
                                 Center(
-                                  child: Container(
-                                    padding: EdgeInsets.only(left: 5),
-                                    child: Text(
-                                      snapshot.data['username'],
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                                  child: Stack(children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(
+                                          height: screenWidth * 0.03,
+                                        ),
+                                        Align(
+                                          child: Container(
+                                            height: Adaptive.h(20),
+                                            width: Adaptive.w(30),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(snapshot
+                                                        .data['profile']))),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ]),
+                                ),
+                                SizedBox(height: 10),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  // height: Adaptive.h(9),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    // color: Colors.grey[200]
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          'Hello,',
+                                          style: TextStyle(
+                                            letterSpacing: 5,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.blueGrey,
+                                          ),
+                                        ),
                                       ),
+                                      SizedBox(height: 10),
+                                      Center(
+                                        child: Container(
+                                          padding: EdgeInsets.only(left: 5),
+                                          child: Text(
+                                            snapshot.data['username'],
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(
+                                  thickness: 2,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  // height: Adaptive.h(9),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.grey[200]),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          'Fullname:',
+                                          style: TextStyle(
+                                            // letterSpacing: 5,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            // color: Colors.blueGrey,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          snapshot.data['fullname'],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: Adaptive.h(2)),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  // height: Adaptive.h(9),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.grey[200]),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          'Username:',
+                                          style: TextStyle(
+                                            // letterSpacing: 5,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            // color: Colors.blueGrey,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          snapshot.data['username'],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: Adaptive.h(2)),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  // height: Adaptive.h(9),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.grey[200]),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          'Sex:',
+                                          style: TextStyle(
+                                            // letterSpacing: 5,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            // color: Colors.blueGrey,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Container(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Text(
+                                          snapshot.data['sex'],
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: Adaptive.h(2)),
+                                Container(
+                                  child: Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(130, 45),
+                                        primary:
+                                            Color.fromARGB(255, 157, 228, 234),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                      ),
+                                      child: Text(
+                                        'Edit',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      onPressed: () {},
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Divider(
-                            thickness: 2,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            // height: Adaptive.h(9),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.grey[200]),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                                SizedBox(height: Adaptive.h(5)),
                                 Container(
-                                  padding: EdgeInsets.only(left: 5),
+                                  // height: 10,
                                   child: Text(
-                                    'Fullname:',
+                                    snapshot.data['created_at'],
                                     style: TextStyle(
-                                      // letterSpacing: 5,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      // color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    snapshot.data['fullname'],
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: Adaptive.h(2)),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            // height: Adaptive.h(9),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.grey[200]),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Username:',
-                                    style: TextStyle(
-                                      // letterSpacing: 5,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      // color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    snapshot.data['username'],
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: Adaptive.h(2)),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            // height: Adaptive.h(9),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.grey[200]),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Sex:',
-                                    style: TextStyle(
-                                      // letterSpacing: 5,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      // color: Colors.blueGrey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    snapshot.data['sex'],
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: Adaptive.h(2)),
-                          Container(
-                            child: Container(
-                              alignment: Alignment.bottomCenter,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(130, 45),
-                                  primary: Color.fromARGB(255, 157, 228, 234),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                ),
-                                child: Text(
-                                  'Edit',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: Adaptive.h(5)),
-                          Container(
-                            // height: 10,
-                            child: Text(
-                              snapshot.data['created_at'],
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          )
-                        ]));
+                                )
+                              ]))
+                          : Center(
+                              child: EmptyStateScreen(),
+                            );
+                    } else {
+                      return Center(
+                        child: EmptyStateScreen(),
+                      );
+                    }
                   } else {
-                    return const Center(
+                    return Center(
                       child: CircularProgressIndicator(),
                     );
                   }
