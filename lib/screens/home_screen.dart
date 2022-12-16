@@ -8,6 +8,7 @@ import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
 import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/models/service.dart';
+import 'package:flutter_clinic/pedometer/step_screen.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
 import 'package:flutter_clinic/screens/highlight/article_details_show.dart';
@@ -649,6 +650,28 @@ void _showBottomSheet(BuildContext context) {
                           context,
                           MaterialPageRoute(
                               builder: (context) => HealthTestScreen()));
+                      ;
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.medication,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Step Counter',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StepMainScreen()));
                       ;
                     },
                   ),

@@ -209,6 +209,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                   width: double.infinity,
                                   child: CupertinoPicker.builder(
                                       backgroundColor: Colors.white,
+                                      
                                       itemExtent: 30,
                                       scrollController:
                                           FixedExtentScrollController(
