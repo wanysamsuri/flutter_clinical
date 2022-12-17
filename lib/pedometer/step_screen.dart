@@ -13,6 +13,18 @@ class StepMainScreen extends StatefulWidget {
 }
 
 class _StepMainScreenState extends State<StepMainScreen> {
+  Widget currentValue = Text('From latest to newest');
+  List<PopupMenuEntry<Widget>> _items = [
+    PopupMenuItem(
+      child: Text('From latest to newest'),
+      value: Text('From latest to newest'),
+    ),
+    PopupMenuItem(
+      child: Text('From newest to latest'),
+      value: Text('From newest to latest'),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -86,13 +98,14 @@ class _StepMainScreenState extends State<StepMainScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.only(
+                        top: 15, left: 8.0, right: 8.0, bottom: 15.0),
                     child: Text(
                       'Today',
                       style: TextStyle(fontSize: 30),
@@ -102,42 +115,28 @@ class _StepMainScreenState extends State<StepMainScreen> {
                     height: 10,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(15.0),
-                    height: Adaptive.h(18),
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: secondaryColor,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey, //New
-                              blurRadius: 10.0,
-                              offset: Offset(0, 0))
-                        ]),
+                    padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      padding: EdgeInsets.all(12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Center(
-                                child: Container(
-                                  child: Text('Steps'),
-                                ),
-                              ),
-                              Container(
-                                child: Text(
-                                  '1001',
-                                  style: TextStyle(fontSize: 30),
-                                ),
-                              )
-                            ],
-                          ),
-                          Container(
+                      padding: const EdgeInsets.all(20.0),
+                      height: Adaptive.h(18),
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: secondaryColor,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey, //New
+                                blurRadius: 10.0,
+                                offset: Offset(0, 0))
+                          ]),
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Image.asset('assets/footstep.png'),
                               // child: LineChart(LineChartData(
                               //     minX: 0,
                               //     maxX: 5,
@@ -146,8 +145,32 @@ class _StepMainScreenState extends State<StepMainScreen> {
                               //     lineBarsData: [
                               //       LineChartBarData(spots: [FlSpot(0, 3)])
                               //     ])),
-                              )
-                        ],
+                            ),
+                            Column(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                              children: [
+                                Center(
+                                  child: Container(
+                                    child: Text('Steps'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  child: Text(
+                                    '1001',
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -163,7 +186,20 @@ class _StepMainScreenState extends State<StepMainScreen> {
                           'Previous',
                           style: TextStyle(fontSize: 18),
                         ),
-                        Icon(Icons.sort),
+                        Container(
+                            child: PopupMenuButton<Widget>(
+                          icon: Icon(Icons.sort),
+                          onSelected: (newValue) {
+                            currentValue = newValue;
+                          },
+                          itemBuilder: (context) {
+                            return _items;
+                          },
+                        ))
+                        // IconButton(
+                        //   icon: Icon(Icons.sort),
+                        //   onPressed: () {},
+                        // ),
                       ],
                     ),
                   ),
@@ -185,31 +221,37 @@ class _StepMainScreenState extends State<StepMainScreen> {
 
                                   //body listview
                                   child: Container(
-                                    height: Adaptive.h(18),
+                                    height: Adaptive.h(10),
                                     width: screenWidth,
-                                    // height: Adaptive.h(40),
                                     decoration: BoxDecoration(
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(20),
-                                      // boxShadow: [
-                                      //   BoxShadow(
-                                      //       color: Colors.grey, //New
-                                      //       blurRadius: 10.0,
-                                      //       offset: Offset(-1, -1))
-                                      // ],
                                     ),
-                                    child: Column(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         // SizedBox(
                                         //   height: 1,
                                         // ),
+
                                         Container(
-                                          padding: EdgeInsets.all(15),
                                           child: Text(
-                                            'Test',
-                                            textAlign: TextAlign.justify,
+                                            '200',
+                                            textAlign: TextAlign.left,
                                             style: TextStyle(
                                               fontSize: 17,
+                                              // fontWeight:
+                                              //     FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Text(
+                                            '17/12/2022',
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
                                               // fontWeight:
                                               //     FontWeight.bold,
                                               color: Colors.black,
