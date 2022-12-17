@@ -44,29 +44,43 @@ class _StepMainScreenState extends State<StepMainScreen> {
                 Navigator.pop(context);
               },
             )),
-        bottomNavigationBar: Container(
-          child: BottomAppBar(
-            color: primaryColor,
-            child: InkWell(
-              child: Container(
-                height: Adaptive.h(6),
-                color: Colors.transparent,
-                child: Container(
-                  color: primaryColor,
-                  child: Center(
-                    child: Text(
-                      'Record',
-                      style: TextStyle(
-                        fontSize: 0.27.dp,
-                        // fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              onTap: () {},
-            ),
+        // bottomNavigationBar: Container(
+        //   child: BottomAppBar(
+        //     color: primaryColor,
+        //     child: InkWell(
+        //       child: Container(
+        //         height: Adaptive.h(6),
+        //         color: Colors.transparent,
+        //         child: Container(
+        //           color: primaryColor,
+        //           child: Center(
+        //             child: Text(
+        //               'Record',
+        //               style: TextStyle(
+        //                 fontSize: 0.27.dp,
+        //                 // fontWeight: FontWeight.bold
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //       onTap: () {},
+        //     ),
+        //   ),
+        // ),
+        floatingActionButton: FloatingActionButton.extended(
+          elevation: 0.0,
+          icon: const Icon(Icons.add, color: Colors.black),
+          label: const Text(
+            'Record',
+            style: TextStyle(color: Colors.black),
           ),
+          backgroundColor: primaryColor,
+          onPressed: () {},
+          // shape: BeveledRectangleBorder(
+          //     borderRadius: BorderRadius.circular(5),
+          //     side: const BorderSide(color: Colors.grey)
+          //     ),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -87,6 +101,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                     height: 10,
                   ),
                   Container(
+                    padding: const EdgeInsets.all(15.0),
                     height: Adaptive.h(18),
                     width: screenWidth,
                     decoration: BoxDecoration(
@@ -94,9 +109,26 @@ class _StepMainScreenState extends State<StepMainScreen> {
                         color: Colors.grey[300]),
                     child: Container(
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.legend_toggle),
-                          Text('Steps'),
+                          Column(
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Center(
+                                child: Container(
+                                  child: Text('Steps'),
+                                ),
+                              ),
+                              Container(
+                                child: Text('1000'),
+                              )
+                            ],
+                          ),
+                          Container(
+                            child: Text('1000'),
+                          )
                         ],
                       ),
                     ),
