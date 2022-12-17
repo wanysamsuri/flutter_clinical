@@ -56,6 +56,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.pop(context);
               },
             )),
         // bottomNavigationBar: Container(
@@ -225,9 +226,9 @@ class _StepMainScreenState extends State<StepMainScreen> {
 
                                   //body listview
                                   child: Container(
-                                    padding: EdgeInsets.all(10),
+                                    padding: EdgeInsets.all(5),
                                     height: Adaptive.h(10),
-                                    width: screenWidth,
+                                    // width: screenWidth,
                                     decoration: BoxDecoration(
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(20),
@@ -236,34 +237,43 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        // SizedBox(
-                                        //   height: 1,
-                                        // ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            // SizedBox(
+                                            //   height: 1,
+                                            // ),
 
-                                        Container(
-                                          child: Text(
-                                            'Steps:',
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                              // fontWeight:
-                                              //     FontWeight.bold,
-                                              color: Colors.black,
+                                            Container(
+                                              child: Text(
+                                                'Steps: 104',
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  // fontWeight:
+                                                  //     FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
 
-                                        Container(
-                                          child: Text(
-                                            '17/12/2022',
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              // fontWeight:
-                                              //     FontWeight.bold,
-                                              color: Colors.black,
+                                            Container(
+                                              child: Text(
+                                                '17/12/2022',
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                  // fontWeight:
+                                                  //     FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
+                                        Container(
+                                          child: Text('tah lah'),
+                                        )
                                       ],
                                     ),
                                   ),
