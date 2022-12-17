@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:flutter_clinic/pedometer/pedometer_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StepMainScreen extends StatefulWidget {
@@ -89,7 +90,10 @@ class _StepMainScreenState extends State<StepMainScreen> {
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: primaryColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => PedometerScreen()));
+          },
           // shape: BeveledRectangleBorder(
           //     borderRadius: BorderRadius.circular(5),
           //     side: const BorderSide(color: Colors.grey)
@@ -221,6 +225,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
 
                                   //body listview
                                   child: Container(
+                                    padding: EdgeInsets.all(10),
                                     height: Adaptive.h(10),
                                     width: screenWidth,
                                     decoration: BoxDecoration(
@@ -237,7 +242,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
 
                                         Container(
                                           child: Text(
-                                            '200',
+                                            'Steps:',
                                             textAlign: TextAlign.left,
                                             style: TextStyle(
                                               fontSize: 17,
@@ -247,6 +252,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                             ),
                                           ),
                                         ),
+
                                         Container(
                                           child: Text(
                                             '17/12/2022',
