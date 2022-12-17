@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_clinic/constant.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StepMainScreen extends StatefulWidget {
   const StepMainScreen({super.key});
@@ -42,6 +44,41 @@ class _StepMainScreenState extends State<StepMainScreen> {
               Navigator.pop(context);
             },
           )),
+      bottomNavigationBar: Container(
+        child: BottomAppBar(
+          color: primaryColor,
+          child: InkWell(
+            child: Container(
+              height: Adaptive.h(6),
+              color: Colors.transparent,
+              child: Container(
+                color: primaryColor,
+                child: Center(
+                  child: Text(
+                    'Record',
+                    style: TextStyle(
+                      fontSize: 0.27.dp,
+                      // fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            onTap: () {},
+          ),
+        ),
+      ),
+      body: Container(
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          padding: const EdgeInsets.all(15.0),
+          child: Text(
+            'Today',
+            style: TextStyle(fontSize: 30),
+          ),
+        ),
+      )),
     );
   }
 }
