@@ -174,6 +174,8 @@ class _PanelRecordsState extends State<PanelRecords> {
                           : Center(
                               child: EmptyStateScreen(),
                             );
+                    
+                    
                     } else if (snapshot.hasError) {
                       print('has error');
                       return Center(

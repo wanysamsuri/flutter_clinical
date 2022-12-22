@@ -157,7 +157,7 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
                               child: Text(
                                 "STRAVA",
                                 style: TextStyle(
-                                    fontSize: 0.4.dp,
+                                    fontSize: Adaptive.dp(0.3),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
