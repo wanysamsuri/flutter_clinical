@@ -233,7 +233,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Row(
+                                    child: Row( 
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
