@@ -254,6 +254,8 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                             // ),
 
                                             Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Container(
                                                   child: Text(
