@@ -235,7 +235,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10),
                                   prefixIcon: Icon(Icons.search),
-                                  labelText: 'Sarch',
+                                  labelText: 'Search',
                                   border: InputBorder.none),
                             ),
                           ),

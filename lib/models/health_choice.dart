@@ -10,13 +10,13 @@ class HealthChoice {
 
 List<HealthChoice> healthChoice = [
   HealthChoice(
-      serviceName: 'Lifestyle',
+      serviceName: 'LIFESTYLE',
       image: 'assets/healthy-lifestyle.png',
       navigator: (context) {
         Navigator.pop(context);
       }),
   HealthChoice(
-      serviceName: 'Symptoms',
+      serviceName: 'SYMPTOMS',
       image: 'assets/symptoms.png',
       navigator: (context) {
         Navigator.pop(context);

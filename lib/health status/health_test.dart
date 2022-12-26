@@ -234,155 +234,152 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
         physics: ClampingScrollPhysics(),
         // physics: BouncingScrollPhysics(),
         child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: Adaptive.w(5)),
-                height: Adaptive.h(15),
-                width: Adaptive.w(100),
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 157, 228, 234),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40))),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Health Status",
-                        style: TextStyle(
-                            fontSize: Adaptive.sp(25),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      // SizedBox(
-                      //   height: Adaptive.h(0.5),
-                      // ),
-                      Text(
-                        "Track all your health aspects",
-                        style: TextStyle(
-                            fontSize: Adaptive.sp(15),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ]),
-              ),
-              SizedBox(
-                height: Adaptive.h(3),
-              ),
-              Container(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: healthStatus.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 2.0, vertical: 10),
-                          //body listview
-                          child: InkWell(
-                            child: Center(
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                // height: Adaptive.h(10),
-                                width: Adaptive.w(90),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.grey[200],
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.grey, //New
-                                          blurRadius: 5.0,
-                                          offset: Offset(-0.1, -0.1))
-                                    ]),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      Center(
-                                        child: Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Image.asset(
-                                            healthStatus[index]
-                                                .image
-                                                .toString(),
-                                            width: 40,
-                                            height: 40,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: Adaptive.w(7),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                            left: Adaptive.w(2)),
-                                        child: Text(
-                                          healthStatus[index]
-                                              .serviceName
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ViewTestScreen(
-                                            serviceName: '',
-                                          )));
-                            },
-                          ),
-                        );
-                      })),
-              SizedBox(
-                height: Adaptive.h(3),
-              ),
-              Container(
-                padding:
-                    EdgeInsets.only(left: Adaptive.w(5), right: Adaptive.w(5)),
-                child: Text(
-                  'MORE FROM MYCLINICAL',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Divider(
-                thickness: 2,
-              ),
-              SizedBox(
-                height: Adaptive.h(2),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: Adaptive.w(5),
-                ),
-                child: GridView.builder(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: Adaptive.w(5)),
+              height: Adaptive.h(15),
+              width: Adaptive.w(100),
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 157, 228, 234),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40))),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Health Status",
+                      style: TextStyle(
+                          fontSize: Adaptive.sp(25),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    // SizedBox(
+                    //   height: Adaptive.h(0.5),
+                    // ),
+                    Text(
+                      "Track all your health aspects",
+                      style: TextStyle(
+                          fontSize: Adaptive.sp(15),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ]),
+            ),
+            SizedBox(
+              height: Adaptive.h(3),
+            ),
+            Container(
+                child: ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 30,
-                        childAspectRatio: 1.5),
-                    itemCount: healthChoice.length,
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: healthStatus.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 4.0,
-                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 2.0, vertical: 10),
                         //body listview
                         child: InkWell(
+                          child: Center(
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              // height: Adaptive.h(10),
+                              width: Adaptive.w(90),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.grey[200],
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey, //New
+                                        blurRadius: 5.0,
+                                        offset: Offset(-0.1, -0.1))
+                                  ]),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    Center(
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        child: Image.asset(
+                                          healthStatus[index].image.toString(),
+                                          width: 40,
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: Adaptive.w(7),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(left: Adaptive.w(2)),
+                                      child: Text(
+                                        healthStatus[index]
+                                            .serviceName
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewTestScreen(
+                                          serviceName: '',
+                                        )));
+                          },
+                        ),
+                      );
+                    })),
+            SizedBox(
+              height: Adaptive.h(3),
+            ),
+            Container(
+              padding:
+                  EdgeInsets.only(left: Adaptive.w(5), right: Adaptive.w(5)),
+              child: Text(
+                'MORE FROM MYCLINICAL',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            Divider(
+              thickness: 2,
+            ),
+            SizedBox(
+              height: Adaptive.h(2),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: Adaptive.w(5),
+              ),
+              child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 30,
+                      childAspectRatio: 1.5),
+                  itemCount: healthChoice.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 4.0,
+                      ),
+                      //body listview
+                      child: InkWell(
                           child: Container(
                             padding: EdgeInsets.all(10),
                             // height: Adaptive.h(5),
@@ -396,31 +393,35 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                       blurRadius: 5.0,
                                       offset: Offset(-0.1, -0.1))
                                 ]),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Image.asset(
-                                    healthChoice[index].image.toString(),
-                                    scale: Adaptive.h(2),
+                            child: Column(children: [
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: Image.asset(
+                                  healthChoice[index].image.toString(),
+                                  scale: Adaptive.h(2),
+                                ),
+                              ),
+                              SizedBox(
+                                height: Adaptive.h(2),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: Adaptive.w(2)),
+                                child: Text(
+                                  healthChoice[index].serviceName.toString(),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
-                              onTap: () {},
-                            ),
+                            ]),
                           ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewSelfTestScreen(
-                                          serviceName: '',
-                                        )));
-                          },
-                        ),
-                      );
-                    }),
-              ) // Container(
+                          onTap: () {}),
+                    );
+                  }),
+
+              // Container(
               //     padding: EdgeInsets.only(
               //       left: Adaptive.w(5),
               //       right: Adaptive.w(5),
@@ -492,12 +493,11 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
               //           //   ),
               //           // );
               //         })),
-              ,
-              SizedBox(
-                height: Adaptive.h(3),
-              )
-            ],
-          ),
+            ),
+            SizedBox(
+              height: Adaptive.h(2),
+            )
+          ]),
         ),
       ),
     );
