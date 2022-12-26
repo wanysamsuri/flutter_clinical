@@ -68,7 +68,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                     child: Text(
                       'NEXT',
                       style: TextStyle(
-                        fontSize: 0.27.dp,
+                        fontSize: 3.7.pt,
                         // fontWeight: FontWeight.bold
                       ),
                     ),

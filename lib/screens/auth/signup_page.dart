@@ -23,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  bool isHiddenPassword = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,14 +114,20 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all()),
-                            child: TextField(
-                              controller: _nricController,
-                              keyboardType: TextInputType.number,
-                              style: TextStyle(fontSize: 20),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                              ),
-                            ),
+                            child: TextFormField(
+                                controller: _nricController,
+                                keyboardType: TextInputType.number,
+                                style: TextStyle(fontSize: 20),
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                ),
+                                validator: (value) {
+                                  if (value != null && value.length < 12) {
+                                    return 'Enter a valid IC No. Numbers only';
+                                  } else {
+                                    return null;
+                                  }
+                                }),
                           ),
 
                           //email
@@ -181,13 +188,24 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all()),
-                            child: TextField(
-                              controller: _passwordController,
-                              style: TextStyle(fontSize: 20),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                              ),
-                            ),
+                            child: TextFormField(
+                                obscureText: isHiddenPassword,
+                                controller: _passwordController,
+                                style: TextStyle(fontSize: 20),
+                                decoration: InputDecoration(
+                                  suffixIcon: InkWell(
+                                    onTap: _togglePasswordView,
+                                    child: Icon(Icons.visibility),
+                                  ),
+                                  border: InputBorder.none,
+                                ),
+                                validator: (value) {
+                                  if (value != null && value.length < 8) {
+                                    return 'Enter min. 8 characters';
+                                  } else {
+                                    return null;
+                                  }
+                                }),
                           ),
                           SizedBox(height: 34),
                           Center(
@@ -260,5 +278,11 @@ class _SignUpState extends State<SignUp> {
                         ]))),
           ),
         ));
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      isHiddenPassword = !isHiddenPassword;
+    });
   }
 }

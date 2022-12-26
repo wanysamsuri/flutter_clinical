@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter_clinic/screens/empty_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import '../../customshape.dart';
 import '../../services/api_service.dart';
+import '../error_screen.dart';
 
 class FindClinicScreen extends StatefulWidget {
   const FindClinicScreen(
@@ -557,7 +559,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                 } else {
                   print('Empty');
                   return Center(
-                    child: Text('Empty'),
+                    child: ErrorPage(),
                   );
                 }
               } else {

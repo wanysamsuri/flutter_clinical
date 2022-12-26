@@ -270,11 +270,6 @@ class _SignInState extends State<SignIn> {
   }
 
   void _togglePasswordView() {
-    // if (isHiddenPassword == true) {
-    //   isHiddenPassword = false;
-    // } else  {
-    //   isHiddenPassword = true;
-    // }
     setState(() {
       isHiddenPassword = !isHiddenPassword;
     });
