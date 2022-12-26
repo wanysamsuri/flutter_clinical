@@ -15,17 +15,19 @@ class StepMainScreen extends StatefulWidget {
 }
 
 class _StepMainScreenState extends State<StepMainScreen> {
-  Widget currentValue = Text('From latest to newest');
+  Widget currentValue = Text('Sort by');
   List<PopupMenuEntry<Widget>> _items = [
     PopupMenuItem(
-      child: Text('From latest to newest'),
-      value: Text('From latest to newest'),
+      child: Text('From highest to lowest'),
+      value: Text('From highest to lowest'),
     ),
     PopupMenuItem(
-      child: Text('From newest to latest'),
-      value: Text('From newest to latest'),
-    )
+      child: Text('From lowest to highest'),
+      value: Text('From lowest to highest'),
+    ),
   ];
+
+  bool order = false;
 
   @override
   Widget build(BuildContext context) {
@@ -192,20 +194,24 @@ class _StepMainScreenState extends State<StepMainScreen> {
                           'Previous',
                           style: TextStyle(fontSize: 18),
                         ),
-                        Container(
-                            child: PopupMenuButton<Widget>(
-                          icon: Icon(Icons.sort),
-                          onSelected: (newValue) {
-                            currentValue = newValue;
-                          },
-                          itemBuilder: (context) {
-                            return _items;
-                          },
-                        ))
-                        // IconButton(
+                        // Container(
+                        //     child: PopupMenuButton<Widget>(
                         //   icon: Icon(Icons.sort),
-                        //   onPressed: () {},
-                        // ),
+                        //   onSelected: (newValue) {
+                        //     currentValue = newValue;
+                        //   },
+                        //   itemBuilder: (context) {
+                        //     return _items;
+                        //   },
+                        // ))
+                        IconButton(
+                          icon: Icon(Icons.sort),
+                          onPressed: () {
+                            setState(() {
+                              order = !order;
+                            });
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -216,6 +222,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           ListView.builder(
+                              reverse: order,
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.vertical,

@@ -17,7 +17,6 @@ List<StepCounterDataModel> stepCounterData = [
     date: '19/12/2022',
     label: 'okay fun walk',
   ),
-  StepCounterDataModel(step: '10000', date: '20/12/2022', label: 'fun walk'),
-  StepCounterDataModel(step: '53', date: '21/12/2022', label: 'fun walk'),
-  StepCounterDataModel(step: '5454', date: '22/12/2022', label: 'fun walk'),
+  StepCounterDataModel(step: '10000', date: '20/12/2022', label: 'penat walk'),
+  StepCounterDataModel(step: '53', date: '21/12/2022', label: 'semput walk'),
 ];
