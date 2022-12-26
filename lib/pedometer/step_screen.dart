@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/pedometer/pedometer_screen.dart';
+import 'package:flutter_clinic/pedometer/step_data.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StepMainScreen extends StatefulWidget {
@@ -218,7 +219,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.vertical,
-                              itemCount: 5,
+                              itemCount: stepCounterData.length,
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(
@@ -233,7 +234,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                       color: Colors.grey[200],
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    child: Row( 
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
@@ -245,22 +246,42 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                             //   height: 1,
                                             // ),
 
-                                            Container(
-                                              child: Text(
-                                                'Steps: 104',
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  // fontWeight:
-                                                  //     FontWeight.bold,
-                                                  color: Colors.black,
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    'Steps: ',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      // fontWeight:
+                                                      //     FontWeight.bold,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
+                                                Container(
+                                                  child: Text(
+                                                    stepCounterData[index]
+                                                        .step
+                                                        .toString(),
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
 
                                             Container(
                                               child: Text(
-                                                '17/12/2022',
+                                                stepCounterData[index]
+                                                    .date
+                                                    .toString(),
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
                                                   // fontWeight:
@@ -272,8 +293,11 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                           ],
                                         ),
                                         Container(
-                                          child: Text('tah lah'),
-                                        )
+                                            child: Text(
+                                          stepCounterData[index]
+                                              .label
+                                              .toString(),
+                                        ))
                                       ],
                                     ),
                                   ),
