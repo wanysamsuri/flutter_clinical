@@ -235,7 +235,7 @@ class _SignUpState extends State<SignUp> {
                                           _phoneController.text,
                                           _passwordController.text,
                                           sharedDeviceName!,
-                                          sharedPlayerIdOneSignal!);
+                                          sharedPlayerIdOneSignal.toString());
                                       // Navigator.of(context)
                                       //     .pushNamed('/dashboard');
                                     }

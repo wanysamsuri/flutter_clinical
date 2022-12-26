@@ -605,7 +605,6 @@ class ApiService {
 
   Future fetchUserStrava() async {
     SharedPreferences storage = await SharedPreferences.getInstance();
-
     final headerToken = storage.getString('token');
     final endpointUserStrava = Uri.parse('$baseUrl/stravas/profile');
     final response = await http.get(endpointUserStrava, headers: {
@@ -613,11 +612,14 @@ class ApiService {
       'Authorization': 'Bearer $headerToken'
     });
     if (response.statusCode == 200) {
+      print('Strava Profile StatusCode : ${response.statusCode}');
       final responseBody = json.decode(response.body)['data'];
       return responseBody;
     } else if (response.statusCode == 401) {
       await storage.clear();
       Get.offAllNamed('/loading');
+    } else {
+      print('Strava Profile Error StatusCode : ${response.statusCode}');
     }
   }
 
@@ -630,12 +632,23 @@ class ApiService {
       'Accept': 'application/json',
       'Authorization': 'Bearer $headerToken'
     });
-    if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body)['data'];
+    if (response.body.isNotEmpty) {
+      final responseBody = json.decode(response.body);
+      print('Strava Sync StatusCode : ${response.statusCode}');
+      print('Strave Data :  ${responseBody['data']}');
+      if (response.statusCode == 200) {
+        return responseBody['data'];
+      } else if (response.statusCode == 401) {
+        await storage.clear();
+        Get.offAllNamed('/loading');
+      } else {
+        print('Strava Sync Error StatusCode : ${response.statusCode}');
+        print(response.body);
+      }
+    } else {
+      print('Strava Sync Response Empty StatusCode : ${response.statusCode}');
+      final responseBody = response.body;
       return responseBody;
-    } else if (response.statusCode == 401) {
-      await storage.clear();
-      Get.offAllNamed('/loading');
     }
   }
 
