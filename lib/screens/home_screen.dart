@@ -8,6 +8,7 @@ import 'package:flutter_clinic/health%20status/health_status.dart';
 import 'package:flutter_clinic/health%20status/health_test.dart';
 import 'package:flutter_clinic/health%20status/new_record.dart';
 import 'package:flutter_clinic/models/service.dart';
+import 'package:flutter_clinic/pedometer/pedometer_screen.dart';
 import 'package:flutter_clinic/pedometer/step_screen.dart';
 import 'package:flutter_clinic/screens/appointment/appointment_screen.dart';
 import 'package:flutter_clinic/bmi/bmi_screen.dart';
@@ -259,6 +260,84 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           );
                         }),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    const Text(
+                      "Step Counter",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: screenHeight * 0.02,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(20.0),
+                        height: Adaptive.h(18),
+                        width: screenWidth,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: secondaryColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey, //New
+                                  blurRadius: 10.0,
+                                  offset: Offset(0, 0))
+                            ]),
+                        child: InkWell(
+                            child: Container(
+                              padding: EdgeInsets.all(12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    child: Image.asset('assets/footstep.png'),
+                                  ),
+                                  Column(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          'Today',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: Adaptive.h(2),
+                                      ),
+                                      Container(
+                                        child: Text('Steps'),
+                                      ),
+                                      Container(
+                                        child: Text(
+                                          '1001',
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: (() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PedometerScreen()));
+                            })),
+                      ),
+                    ),
                     SizedBox(
                       height: screenHeight * 0.02,
                     ),
