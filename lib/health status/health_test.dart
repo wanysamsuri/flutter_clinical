@@ -85,7 +85,7 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                     ))),
                     builder: ((context) => Container(
                           padding: EdgeInsets.all(Adaptive.h(2)),
-                          height: Adaptive.h(70),
+                          height: Adaptive.h(55),
                           decoration: BoxDecoration(
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(20)),
@@ -117,20 +117,18 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                           gridDelegate:
                                               const SliverGridDelegateWithFixedCrossAxisCount(
                                                   crossAxisCount: 3,
-                                                  mainAxisSpacing: 5,
+                                                  mainAxisSpacing: 10,
                                                   crossAxisSpacing: 10),
                                           itemCount: healthStatus.length,
                                           itemBuilder: (context, index) {
                                             return Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 4.0, vertical: 4),
-
-                                              //body listview
                                               child: InkWell(
                                                 child: Container(
-                                                  padding: EdgeInsets.all(5),
-                                                  // height: Adaptive.h(15),
-                                                  width: Adaptive.w(40),
+                                                  // padding: EdgeInsets.all(5),
+                                                  // height: Adaptive.h(100),
+                                                  // width: Adaptive.w(40),
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -147,44 +145,39 @@ class _HealthTestScreenState extends State<HealthTestScreen> {
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
-                                                            .start,
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
                                                     children: [
-                                                      Center(
-                                                        child: Container(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Image.asset(
-                                                            healthStatus[index]
-                                                                .image
-                                                                .toString(),
-                                                            width: 40,
-                                                            height: 40,
-                                                          ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.all(5),
+                                                        child: Image.asset(
+                                                          healthStatus[index]
+                                                              .image
+                                                              .toString(),
+                                                          width: 40,
+                                                          height: 40,
                                                         ),
                                                       ),
-                                                      Center(
-                                                        child: Container(
-                                                          // width: Adaptive.w(20),
-                                                          // padding:
-                                                          //     EdgeInsets.only(
-                                                          //         left: 5),
-                                                          child: Text(
-                                                            healthStatus[index]
-                                                                .serviceName
-                                                                .toString(),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  Adaptive.sp(
-                                                                      13),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
+                                                      Container(
+                                                        // width: Adaptive.w(20),
+                                                        // padding:
+                                                        //     EdgeInsets.only(
+                                                        //         left: 5),
+                                                        child: Text(
+                                                          healthStatus[index]
+                                                              .serviceName
+                                                              .toString(),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                Adaptive.sp(13),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.black,
                                                           ),
                                                         ),
                                                       ),
