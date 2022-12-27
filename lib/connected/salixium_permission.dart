@@ -78,7 +78,7 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                          backgroundColor: secondaryColor,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
