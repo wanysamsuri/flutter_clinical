@@ -290,18 +290,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Container(
                               padding: EdgeInsets.all(12),
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                // crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    child: Image.asset('assets/footstep.png'),
+                                    child: Image.asset(
+                                      'assets/footstep.png',
+                                      height: Adaptive.h(20),
+                                      width: Adaptive.w(20),
+                                    ),
                                   ),
                                   Column(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
                                         child: Text(
@@ -360,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ConnectionState.done) {
                             if (snapshot.hasData) {
                               return SizedBox(
-                                height: screenHeight * 0.5,
+                                height: screenHeight * 0.4,
                                 child: ListView.builder(
                                   physics: BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
@@ -660,10 +661,9 @@ void _showBottomSheet(BuildContext context) {
                         ),
                       ),
                     ),
-                    onTap: () {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BMIScreen()));
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => BMIScreen()));
                       ;
                     },
                   ),

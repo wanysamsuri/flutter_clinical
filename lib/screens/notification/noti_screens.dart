@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/screens/loading_screen.dart';
+import 'package:intl/intl.dart';
 
 import '../../customshape.dart';
 import '../../services/api_service.dart';
@@ -122,11 +123,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         ),
                                         Container(
                                           child: Text(
-                                            (snapshot.data['created_at']),
+                                            DateFormat('MMM dd yyyy hh:mm a')
+                                                .format(DateTime.parse(snapshot
+                                                        .data['created_at'])
+                                                    .toLocal()),
                                             style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black,
-                                            ),
+                                                fontSize: 12,
+                                                color: Colors.black),
                                           ),
                                         ),
                                         SizedBox(

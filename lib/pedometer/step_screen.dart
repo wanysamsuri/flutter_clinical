@@ -139,32 +139,32 @@ class _StepMainScreenState extends State<StepMainScreen> {
                       child: Container(
                         padding: EdgeInsets.all(12),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              child: Image.asset('assets/footstep.png'),
-                              // child: LineChart(LineChartData(
-                              //     minX: 0,
-                              //     maxX: 5,
-                              //     minY: 0,
-                              //     maxY: 5,
-                              //     lineBarsData: [
-                              //       LineChartBarData(spots: [FlSpot(0, 3)])
-                              //     ])),
+                              child: Image.asset(
+                                'assets/footstep.png',
+                                height: Adaptive.h(20),
+                                width: Adaptive.w(20),
+                              ),
                             ),
                             Column(
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Center(
-                                  child: Container(
-                                    child: Text('Steps'),
+                                Container(
+                                  child: Text(
+                                    'Today',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: Adaptive.h(2),
+                                ),
+                                Container(
+                                  child: Text('Steps'),
                                 ),
                                 Container(
                                   child: Text(
