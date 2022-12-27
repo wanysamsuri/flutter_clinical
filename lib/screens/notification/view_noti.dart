@@ -67,7 +67,7 @@ class _ViewNotificationState extends State<ViewNotification> {
             )),
         body: Container(
           padding: EdgeInsets.only(top: Adaptive.w(1)),
-          height: 130.h,
+          // height: 130.h,
           child: SafeArea(
             child: FutureBuilder(
               future: ApiService().fetchNotification(),
@@ -141,7 +141,7 @@ class _ViewNotificationState extends State<ViewNotification> {
 
                                               //body listview
                                               child: Container(
-                                                height: 12.h,
+                                                // height: 12.h,
                                                 decoration: BoxDecoration(
                                                     color: Colors.grey[200],
                                                     borderRadius:
@@ -261,7 +261,5 @@ class _ViewNotificationState extends State<ViewNotification> {
             ),
           ),
         ));
-
-        
   }
 }
