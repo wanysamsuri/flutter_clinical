@@ -51,7 +51,6 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pop(context);
             },
           ),
         ),
@@ -79,53 +78,51 @@ class _SalixiumPermissionScreenState extends State<SalixiumPermissionScreen> {
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                          backgroundColor: Colors.orange[50],
+                          backgroundColor: secondaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
-                          title: Icon(Icons.ads_click),
+                          title: Image.asset('assets/salixium.png',
+                              height: Adaptive.h(8), width: Adaptive.w(30)),
                           // content: Text('STRAVA'),
                           actions: [
-                            SafeArea(
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      child: MaterialButton(
-                                          onPressed: () {
-                                            // ApiService()
-                                            //     .fetchUserStrava();
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SalixiumScreen(
-                                                            serviceName: '')));
-                                          },
-                                          child: Text(
-                                            'Continue',
-                                            style:
-                                                TextStyle(color: Colors.green),
-                                          )),
-                                    ),
-                                    Container(
-                                      child: MaterialButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                'Cancel',
-                                                style: TextStyle(
-                                                    color: Colors.red),
-                                              ),
-                                            ],
-                                          )),
-                                    ),
-                                  ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  // width: 200,
+                                  // color: Colors.white,
+                                  child: MaterialButton(
+                                      onPressed: () {
+                                        // ApiService()
+                                        //     .fetchUserStrava();
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SalixiumScreen(
+                                                        serviceName: '')));
+                                      },
+                                      child: Text(
+                                        'Continue',
+                                        style: TextStyle(color: Colors.green),
+                                      )),
                                 ),
-                              ),
+                                Container(
+                                  child: MaterialButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Cancel',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ],
                             ),
                           ],
                         ));

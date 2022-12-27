@@ -49,7 +49,6 @@ class _StravaPermissionScreenState extends State<StravaPermissionScreen> {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pop(context);
             },
           ),
         ),

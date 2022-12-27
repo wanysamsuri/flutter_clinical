@@ -59,7 +59,6 @@ class _StepMainScreenState extends State<StepMainScreen> {
               ),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pop(context);
               },
             )),
         // bottomNavigationBar: Container(

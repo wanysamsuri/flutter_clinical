@@ -660,9 +660,10 @@ void _showBottomSheet(BuildContext context) {
                         ),
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => BMIScreen()));
+                    onTap: () {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BMIScreen()));
                       ;
                     },
                   ),
