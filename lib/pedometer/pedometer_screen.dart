@@ -222,6 +222,11 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       'Steps taken at:',
                       style: TextStyle(fontSize: 26),
                     ),
+                    const Divider(
+                      height: 10,
+                      thickness: 0,
+                      color: Colors.white,
+                    ),
                     Text(
                       _timeStamp.toString(),
                       style: const TextStyle(fontSize: 18),
@@ -236,7 +241,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       style: TextStyle(fontSize: 30),
                     ),
                     const Divider(
-                      height: 10,
+                      height: 15,
                       thickness: 0,
                       color: Colors.white,
                     ),
@@ -264,7 +269,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       style: TextStyle(fontSize: 26),
                     ),
                     const Divider(
-                      height: 20,
+                      height: 10,
                       thickness: 0,
                       color: Colors.white,
                     ),
@@ -272,7 +277,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       _status == 'walking'
                           ? Icons.directions_walk
                           : _status == 'stopped'
-                              ? Icons.accessibility_new
+                              ? Icons.accessibility_new 
                               : Icons.error,
                       size: 40,
                     ),

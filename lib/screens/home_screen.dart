@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 padding: EdgeInsets.all(Adaptive.w(5)),
-                // height: Adaptive.h(15),
+                // height: Adaptive.h(10),
                 width: Adaptive.w(100),
                 decoration: const BoxDecoration(
                     color: primaryColor,
@@ -363,7 +363,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ConnectionState.done) {
                             if (snapshot.hasData) {
                               return SizedBox(
-                                height: screenHeight * 0.4,
+                                height: screenHeight * 0.48,
                                 child: ListView.builder(
                                   physics: BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
