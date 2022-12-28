@@ -322,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       Container(
                                         child: Text(
-                                          '1001',
+                                          '-',
                                           style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.bold),

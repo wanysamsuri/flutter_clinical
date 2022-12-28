@@ -142,7 +142,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
+                            Container( 
                               child: Image.asset(
                                 'assets/footstep.png',
                                 height: Adaptive.h(20),
@@ -160,7 +160,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                 ),
                                 Container(
                                   child: Text(
-                                    '1001',
+                                    '-',
                                     style: TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold),
