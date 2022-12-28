@@ -79,6 +79,8 @@ dependencies:
   clickable_list_wheel_view: ^0.2.0
   pedometer: ^3.0.0
   fl_chart: ^0.55.2
+  hive: ^2.2.3
+  jiffy: ^5.0.0
 
 dev_dependencies:
   flutter_test:
