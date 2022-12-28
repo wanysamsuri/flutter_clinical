@@ -226,29 +226,32 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                       // color: Colors.grey,
                                       child: Column(
                                         children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                height: 10,
-                                                width: 150,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                              ),
-                                              Container(
-                                                height: 10,
-                                                width: 150,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                              ),
-                                            ],
+                                          Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  height: 10,
+                                                  width: 100,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.grey,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                ),
+                                                Container(
+                                                  height: 10,
+                                                  width: 100,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.grey,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -310,8 +313,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                     //body listview
                                     child: InkWell(
                                       child: Container(
-                                        padding:
-                                            EdgeInsets.all(Adaptive.h(2)),
+                                        padding: EdgeInsets.all(Adaptive.h(2)),
                                         height: Adaptive.h(12),
                                         decoration: BoxDecoration(
                                             color: secondaryColor,
@@ -343,14 +345,11 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                   child: RichText(
                                                     text: TextSpan(
                                                         text: snapshot
-                                                            .data['data']
-                                                                [index]
+                                                            .data['data'][index]
                                                                 ['distance']
-                                                            .toStringAsFixed(
-                                                                1),
+                                                            .toStringAsFixed(1),
                                                         style: TextStyle(
-                                                            color:
-                                                                Colors.black,
+                                                            color: Colors.black,
                                                             fontSize: 0.3.dp,
                                                             fontWeight:
                                                                 FontWeight
@@ -416,12 +415,11 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                   decoration: BoxDecoration(
                                                       color: Colors.grey[200],
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(20)),
+                                                          BorderRadius.circular(
+                                                              20)),
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .start,
+                                                        MainAxisAlignment.start,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
@@ -431,9 +429,8 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                           Container(
                                                               child: Text(
                                                             snapshot.data[
-                                                                        'data']
-                                                                    [index]
-                                                                ['name'],
+                                                                    'data']
+                                                                [index]['name'],
                                                             style: TextStyle(
                                                                 fontSize:
                                                                     0.29.dp,
@@ -445,9 +442,8 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                           //   width: Adaptive.w(10),
                                                           // ),
                                                           Container(
-                                                            alignment:
-                                                                Alignment
-                                                                    .center,
+                                                            alignment: Alignment
+                                                                .center,
                                                             child: RichText(
                                                               text: TextSpan(
                                                                   text: snapshot
@@ -462,8 +458,9 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black,
-                                                                      fontSize: 0.3
-                                                                          .dp,
+                                                                      fontSize:
+                                                                          0.3
+                                                                              .dp,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold),
@@ -472,8 +469,9 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                     TextSpan(
                                                                         text:
                                                                             ' km',
-                                                                        style:
-                                                                            TextStyle(fontWeight: FontWeight.bold)),
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold)),
                                                                   ]),
                                                             ),
                                                           ),
@@ -485,16 +483,13 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                       Column(
                                                         children: [
                                                           Container(
-                                                              width:
-                                                                  Adaptive.w(
-                                                                      90),
+                                                              width: Adaptive.w(
+                                                                  90),
                                                               child: Text(
                                                                 snapshot.data[
                                                                             'data']
-                                                                        [
-                                                                        index]
-                                                                    [
-                                                                    'address'],
+                                                                        [index]
+                                                                    ['address'],
                                                                 maxLines: 5,
                                                                 overflow:
                                                                     TextOverflow
@@ -504,11 +499,13 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                         0.25.dp),
                                                               )),
                                                           Container(
-                                                              width: Adaptive
-                                                                  .w(90),
+                                                              width: Adaptive.w(
+                                                                  90),
                                                               child: RichText(
                                                                   text: TextSpan(
-                                                                      text: snapshot.data['data'][index]
+                                                                      text: snapshot.data['data']
+                                                                              [
+                                                                              index]
                                                                           [
                                                                           'city'],
                                                                       style: TextStyle(
@@ -522,22 +519,21 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                         text:
                                                                             (', ')),
                                                                     TextSpan(
-                                                                      text: snapshot.data['data'][index]
+                                                                      text: snapshot.data['data']
+                                                                              [
+                                                                              index]
                                                                           [
                                                                           'postcode'],
                                                                     ),
                                                                   ]))),
                                                           Container(
-                                                              width:
-                                                                  Adaptive.w(
-                                                                      90),
+                                                              width: Adaptive.w(
+                                                                  90),
                                                               child: Text(
                                                                 snapshot.data[
                                                                             'data']
-                                                                        [
-                                                                        index]
-                                                                    [
-                                                                    'website'],
+                                                                        [index]
+                                                                    ['website'],
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .blue,
@@ -554,8 +550,7 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                             child: Container(
                                                               padding:
                                                                   EdgeInsets
-                                                                      .all(
-                                                                          10),
+                                                                      .all(10),
                                                               // width: Adaptive.w(
                                                               // 50),
                                                               // height:
@@ -564,8 +559,9 @@ class _FindClinicScreenState extends State<FindClinicScreen> {
                                                                   color:
                                                                       primaryColor,
                                                                   borderRadius:
-                                                                      BorderRadius.circular(
-                                                                          20)),
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20)),
                                                               child: Center(
                                                                   child: Text(
                                                                 'Get Location',

@@ -274,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(10.0),
                         height: Adaptive.h(18),
                         width: screenWidth,
                         decoration: BoxDecoration(
@@ -303,6 +303,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
                                         child: Text(

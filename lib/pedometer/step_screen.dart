@@ -153,18 +153,10 @@ class _StepMainScreenState extends State<StepMainScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text(
-                                    'Today',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  ),
+                                  child: Text('Steps'),
                                 ),
                                 SizedBox(
                                   height: Adaptive.h(2),
-                                ),
-                                Container(
-                                  child: Text('Steps'),
                                 ),
                                 Container(
                                   child: Text(
