@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic/constant.dart';
 import 'package:hive/hive.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pedometer/pedometer.dart';
@@ -226,26 +227,46 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       style: const TextStyle(fontSize: 18),
                     ),
                     const Divider(
-                      height: 100,
+                      height: 50,
                       thickness: 0,
                       color: Colors.white,
                     ),
-                    const Text(
+                    Text(
                       'Steps taken:',
                       style: TextStyle(fontSize: 30),
                     ),
-                    Text(
-                      _todaySteps.toString(),
-                      style: const TextStyle(fontSize: 60),
-                    ),
                     const Divider(
-                      height: 100,
+                      height: 10,
+                      thickness: 0,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Center(
+                        child: Text(
+                          _todaySteps.toString(),
+                          style: const TextStyle(fontSize: 60),
+                        ),
+                      ),
+                    ),
+
+                    const Divider(
+                      height: 50,
                       thickness: 0,
                       color: Colors.white,
                     ),
                     const Text(
                       'Pedestrian status:',
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 26),
+                    ),
+                    const Divider(
+                      height: 20,
+                      thickness: 0,
+                      color: Colors.white,
                     ),
                     Icon(
                       _status == 'walking'
@@ -253,7 +274,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                           : _status == 'stopped'
                               ? Icons.accessibility_new
                               : Icons.error,
-                      size: 100,
+                      size: 40,
                     ),
                     Center(
                       child: Text(
