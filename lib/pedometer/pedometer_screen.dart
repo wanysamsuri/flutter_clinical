@@ -277,7 +277,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       _status == 'walking'
                           ? Icons.directions_walk
                           : _status == 'stopped'
-                              ? Icons.accessibility_new 
+                              ? Icons.accessibility_new
                               : Icons.error,
                       size: 40,
                     ),
