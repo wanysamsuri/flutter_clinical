@@ -254,8 +254,15 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       height: 200,
                       width: 200,
                       decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(100)),
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(100),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey, //New
+                              blurRadius: 10.0,
+                              offset: Offset(-1, -1))
+                        ],
+                      ),
                       child: Center(
                         child: Text(
                           _todaySteps.toString(),

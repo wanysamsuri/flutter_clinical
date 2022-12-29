@@ -159,7 +159,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                                   height: Adaptive.h(2),
                                 ),
                                 Container(
-                                  child: Text(
+                                  child: Text( 
                                     '-',
                                     style: TextStyle(
                                         fontSize: 30,
