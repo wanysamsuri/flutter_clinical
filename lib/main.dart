@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clinic/record_screen.dart';
 import 'package:flutter_clinic/screens/appointment/queue_new.dart';
@@ -25,16 +24,20 @@ import 'package:flutter_clinic/utils/get_player_id.dart';
 import 'package:flutter_clinic/utils/get_sharedprefs.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
+import 'package:hive/hive.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const MyApp());
-}
+Future<void> main() async {
+    runApp(const MyApp());
+    WidgetsFlutterBinding.ensureInitialized();
+    final appDocumentDirectory = await getApplicationDocumentsDirectory();
+    Hive.init(appDocumentDirectory.path);
+  }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -43,10 +46,13 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   void initState() {
+
+    
     // TODO: implement initState
 
     super.initState();
@@ -56,6 +62,8 @@ class _MyAppState extends State<MyApp> {
 
     // configOneSignal();
   }
+
+  
 
   // static const String oneSignalAppId = "8ccd5fa1-7218-4f73-bfea-bd84b99bb016";
   // void configOneSignal() {
@@ -70,32 +78,33 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
-          title: 'Clinical',
-          debugShowCheckedModeBanner: false,
-          routes: {
-            '/loading': ((context) => const LoadingScreens()),
-            '/profile': ((context) => const PatientProfileScreen()),
-            '/feedback': ((context) => const FeedbackScreen()),
-            '/terms': ((context) => const TermsConditionScreen()),
-            '/help': ((context) => const HelpScreen()),
-            '/welcome': ((context) => const Welcome()),
-            '/homepage_page': ((context) => const HomeScreen()),
-            '/signin_page': ((context) => const SignIn()),
-            '/signup_page': ((context) => const SignUp()),
-            // '/record_screen': ((context) =>  HealthRecord()),
-            '/panel_records': ((context) => const PanelRecords()),
-            '/dashboard': ((context) => const Dashboard()),
-            '/queue_new': ((context) => const QueueNew()),
-            '/noNoti': ((context) => const NoNotiScreens()),
-            '/device': ((context) => const ConnectedDevicesScreens()),
-            // '/notification': ((context) =>  NotificationScreen()),
-            '/kyc_email': ((context) => const EmailVerification()),
-          },
-          initialRoute: '/loading',
-          );
+        title: 'Clinical',
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/loading': ((context) => const LoadingScreens()),
+          '/profile': ((context) => const PatientProfileScreen()),
+          '/feedback': ((context) => const FeedbackScreen()),
+          '/terms': ((context) => const TermsConditionScreen()),
+          '/help': ((context) => const HelpScreen()),
+          '/welcome': ((context) => const Welcome()),
+          '/homepage_page': ((context) => const HomeScreen()),
+          '/signin_page': ((context) => const SignIn()),
+          '/signup_page': ((context) => const SignUp()),
+          // '/record_screen': ((context) =>  HealthRecord()),
+          '/panel_records': ((context) => const PanelRecords()),
+          '/dashboard': ((context) => const Dashboard()),
+          '/queue_new': ((context) => const QueueNew()),
+          '/noNoti': ((context) => const NoNotiScreens()),
+          '/device': ((context) => const ConnectedDevicesScreens()),
+          // '/notification': ((context) =>  NotificationScreen()),
+          '/kyc_email': ((context) => const EmailVerification()),
+        },
+        initialRoute: '/loading',
+      );
     });
   }
 
+  // }
 //   Future<void> initPlatformState() async {
 //     OneSignal.shared.setAppId(oneSignalAppId);
 //     //Remove this method to stop OneSignal Debugging

@@ -88,14 +88,20 @@ class _BMIScreenState extends State<BMIScreen> {
                   height: 20,
                 ),
                 GenderWidget(
-                  onChange: (genderVal) {
+                  onChange: (genderVal) async {
+                    SharedPreferences storage =
+                        await SharedPreferences.getInstance();
+                    storage.setString('gender', genderVal.toString());
                     _gender = genderVal;
                   },
-                ),
+                ), 
                 SizedBox(
                   height: 20,
                 ),
-                HeightWidget(onChange: (heightVal) {
+                HeightWidget(onChange: (heightVal) async {
+                  SharedPreferences storage =
+                      await SharedPreferences.getInstance();
+                  storage.setString('height', heightVal.toString());
                   _height = heightVal;
                 }),
                 SizedBox(

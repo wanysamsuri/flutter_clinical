@@ -142,7 +142,7 @@ class _StepMainScreenState extends State<StepMainScreen> {
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container( 
+                            Container(
                               child: Image.asset(
                                 'assets/footstep.png',
                                 height: Adaptive.h(20),
