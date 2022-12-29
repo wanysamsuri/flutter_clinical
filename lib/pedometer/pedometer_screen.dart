@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clinic/constant.dart';
 import 'package:hive/hive.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PedometerScreen extends StatefulWidget {
@@ -156,6 +158,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      // backgroundColor: primaryColor,
       appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: screenHeight * 0.07,
@@ -182,59 +185,119 @@ class _PedometerScreenState extends State<PedometerScreen> {
               Navigator.pop(context);
             },
           )),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Steps taken at:',
-                style: TextStyle(fontSize: 30),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [primaryColor, Colors.green.shade50],
+                    begin: FractionalOffset(0.5, 0.0),
+                    end: FractionalOffset(0.0, 0.5),
+                    stops: [0.0, 2.0],
+                    tileMode: TileMode.clamp)),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                padding: EdgeInsets.all(Adaptive.w(2)),
+                // height: Adaptive.h(15),
+                width: Adaptive.w(100),
+                decoration: const BoxDecoration(
+                    // color: Color.fromARGB(255, 157, 228, 234),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(40),
+                        bottomRight: Radius.circular(40))),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Center(
+                            child:
+                                Image.asset('assets/footstep.png', height: 60)),
+                      ),
+                      SizedBox(
+                        height: Adaptive.h(1),
+                      ),
+                    ]),
               ),
-              Text(
-                _timeStamp.toString(),
-                style: const TextStyle(fontSize: 20),
-              ),
-              const Divider(
-                height: 100,
-                thickness: 0,
-                color: Colors.white,
-              ),
-              const Text(
-                'Steps taken:',
-                style: TextStyle(fontSize: 30),
-              ),
-              Text(
-                _todaySteps.toString(),
-                style: const TextStyle(fontSize: 60),
-              ),
-              const Divider(
-                height: 100,
-                thickness: 0,
-                color: Colors.white,
-              ),
-              const Text(
-                'Pedestrian status:',
-                style: TextStyle(fontSize: 30),
-              ),
-              Icon(
-                _status == 'walking'
-                    ? Icons.directions_walk
-                    : _status == 'stopped'
-                        ? Icons.accessibility_new
-                        : Icons.error,
-                size: 100,
+              SizedBox(
+                height: Adaptive.h(6),
               ),
               Center(
-                child: Text(
-                  _status,
-                  style: _status == 'walking' || _status == 'stopped'
-                      ? const TextStyle(fontSize: 30)
-                      : const TextStyle(fontSize: 20, color: Colors.red),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'Steps taken at:',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(1),
+                    ),
+                    Text(
+                      _timeStamp.toString(),
+                      style: const TextStyle(fontSize: 20),
+                    ),
+
+                    SizedBox(
+                      height: Adaptive.h(4),
+                    ),
+
+                    const Text(
+                      'Steps taken:',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(1),
+                    ),
+                    Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Center(
+                        child: Text(
+                          _todaySteps.toString(),
+                          style: const TextStyle(fontSize: 60),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(4),
+                    ),
+                    const Text(
+                      'Pedestrian status:',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: Adaptive.h(1),
+                    ),
+                    Icon(
+                      _status == 'walking'
+                          ? Icons.directions_walk
+                          : _status == 'stopped'
+                              ? Icons.accessibility_new
+                              : Icons.error,
+                      size: 50,
+                    ),
+
+                    Center(
+                      child: Text(
+                        _status,
+                        style: _status == 'walking' || _status == 'stopped'
+                            ? const TextStyle(fontSize: 30)
+                            : const TextStyle(fontSize: 20, color: Colors.red),
+                      ),
+                    ),
+                    // ElevatedButton(onPressed: () {}, child: Text('Start'))
+                  ],
                 ),
               ),
-              // ElevatedButton(onPressed: () {}, child: Text('Start'))
-            ],
+              // SizedBox(
+              //   height: Adaptive.h(9),
+              // ),
+            ]),
           ),
         ),
       ),
