@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_choice_chip/flutter_3d_choice_chip.dart';
 import 'package:flutter_clinic/constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GenderWidget extends StatefulWidget {
   final Function(int) onChange;
@@ -37,7 +38,10 @@ class _GenderWidgetState extends State<GenderWidget> {
             width: 110,
             border: Border.all(color: Colors.grey),
             style: _gender == 1 ? selected : unselected,
-            onSelected: () {
+            onSelected: () async {
+              SharedPreferences storage = await SharedPreferences.getInstance();
+              storage.setString('gender', _gender.toString());
+
               setState(() {
                 _gender = 1;
               });

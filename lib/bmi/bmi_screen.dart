@@ -11,9 +11,11 @@ import 'package:flutter_clinic/bmi/height.dart';
 import 'package:flutter_clinic/bmi/score.dart';
 import 'package:flutter_clinic/constant.dart';
 import 'package:flutter_clinic/main.dart';
+import 'package:flutter_clinic/utils/get_sharedprefs.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:swipebuttonflutter/swipebuttonflutter.dart';
 
@@ -216,7 +218,6 @@ class _BMIScreenState extends State<BMIScreen> {
                                   width: double.infinity,
                                   child: CupertinoPicker.builder(
                                       backgroundColor: Colors.white,
-                                      
                                       itemExtent: 30,
                                       scrollController:
                                           FixedExtentScrollController(

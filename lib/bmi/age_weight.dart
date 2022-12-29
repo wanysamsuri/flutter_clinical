@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AgeWeightWidget extends StatefulWidget {
   final Function(int) onChange;
@@ -59,7 +60,10 @@ class _AgeWeightWidgetState extends State<AgeWeightWidget> {
                         backgroundColor: Colors.blue,
                         child: Icon(Icons.remove, color: Colors.white),
                       ),
-                      onTap: () {
+                      onTap: () async {
+                        SharedPreferences storage =
+                            await SharedPreferences.getInstance();
+                        storage.setString('counter', counter.toString());
                         setState(() {
                           if (counter > widget.min) {
                             counter--;
@@ -88,7 +92,10 @@ class _AgeWeightWidgetState extends State<AgeWeightWidget> {
                         backgroundColor: Colors.blue,
                         child: Icon(Icons.add, color: Colors.white),
                       ),
-                      onTap: () {
+                      onTap: () async {
+                        SharedPreferences storage =
+                            await SharedPreferences.getInstance();
+                        storage.setString('counter', counter.toString());
                         setState(() {
                           if (counter < widget.max) {
                             counter++;

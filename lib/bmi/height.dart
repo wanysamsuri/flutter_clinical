@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HeightWidget extends StatefulWidget {
   final Function(int) onChange;
@@ -51,7 +52,10 @@ class _HeightWidgetState extends State<HeightWidget> {
                   max: 240,
                   value: _height.toDouble(),
                   thumbColor: Colors.grey,
-                  onChanged: (value) {
+                  onChanged: (value) async {
+                    SharedPreferences storage =
+                        await SharedPreferences.getInstance();
+                    storage.setString('height', _height.toString());
                     setState(() {
                       _height = value.toInt();
                     });
