@@ -26,8 +26,10 @@ class _PedometerScreenState extends State<PedometerScreen> {
   late String _status = '';
   late int _todaySteps = 0;
   late int _steps = 0;
-  DateTime now = DateTime.now();
-  late String _timestamp = DateFormat('dd/MM/yyyy kk:mm:ss').format(now);
+  DateTime date = DateTime.now();
+  late String _date = DateFormat('dd/MM/yyyy').format(date);
+  DateTime time = DateTime.now();
+  late String _time = DateFormat('kk:mm:ss').format(time);
   // late DateTime _timeStamp = DateTime.now();
   // late String a = '';
 
@@ -231,14 +233,50 @@ class _PedometerScreenState extends State<PedometerScreen> {
                   children: <Widget>[
                     const Text(
                       'Steps taken at:',
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(
                       height: Adaptive.h(1),
                     ),
-                    Text(
-                      _timestamp.toString(),
-                      style: const TextStyle(fontSize: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(12),
+                            // border: Border.all(
+                            //   // color: Colors.black,
+                            // )
+                          ),
+                          child: Center(
+                            child: Text(
+                              _date.toString(),
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 150,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(12),
+                            // border: Border.all(
+                            //   // color: Colors.black,
+                            // )
+                          ),
+                          child: Center(
+                            child: Text(
+                              _time.toString(),
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
 
                     SizedBox(
@@ -276,8 +314,8 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       height: Adaptive.h(4),
                     ),
                     const Text(
-                      'Pedestrian status:',
-                      style: TextStyle(fontSize: 30),
+                      'Status:',
+                      style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(
                       height: Adaptive.h(1),
