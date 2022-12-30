@@ -26,7 +26,9 @@ class _PedometerScreenState extends State<PedometerScreen> {
   late String _status = '';
   late int _todaySteps = 0;
   late int _steps = 0;
-  late DateTime _timeStamp = DateTime.now();
+  DateTime now = DateTime.now();
+  late String _timestamp = DateFormat('dd/MM/yyyy kk:mm:ss').format(now);
+  // late DateTime _timeStamp = DateTime.now();
   // late String a = '';
 
   @override
@@ -235,7 +237,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       height: Adaptive.h(1),
                     ),
                     Text(
-                      _timeStamp.toString(),
+                      _timestamp.toString(),
                       style: const TextStyle(fontSize: 20),
                     ),
 
